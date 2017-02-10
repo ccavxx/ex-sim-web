@@ -1,0 +1,205 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace olive "Library://com.olive.core/flex/olive";
+@namespace designs "designs.*";
+@namespace renderers "com.iolive.topology.renderers.*";
+designs|CompositeRenderer{
+	normalBackgroundAlpha :0;
+	normalBorderAlpha:0;
+	overBackgroundAlpha:0;
+	selectedBackgroundAlpha:0;
+	overBorderThickness:1;
+	selectedBorderAlpha:0.5;
+}
+olive|GroupedComponent{
+	borderStyle:dash;
+	backgroundAlpha:0.05;
+}
+.compositeRendererLabel{
+	fontSize:14;
+	color:#A0522D;
+	fontWeight:bold;
+}
+/*--add--*/
+.icon-computer{
+}
+.icon-database{
+	backgroundImage:'../img/icons/database.png';
+}
+.icon-ie{
+	backgroundImage:'../img/icons/ie.png';
+}
+.icon-loading{
+	backgroundImage:'../img/icons/loading.gif';
+}
+.icon-pie{
+	backgroundImage:'../img/icons/pie.png';
+}
+.icon-bar{
+	backgroundImage:'../img/icons/bar.png';
+}
+.icon-line{
+	backgroundImage:'../img/icons/line.png';
+}
+.icon-table{
+	backgroundImage:'../img/icons/table.png';
+}
+.icon-db{
+	backgroundImage:'../img/icons/db.png';
+}
+.icon-map{
+	backgroundImage:'../img/icons/map.png';
+}
+.icon-db-search{
+	backgroundImage:'../img/icons/db_search.png';
+}
+.icon-timer{
+	backgroundImage:'../img/icons/timer.png';
+}
+
+.icon-router{
+	backgroundImage:'../img/icons/asset/router.png';
+}
+.icon-switch{
+	backgroundImage:'../img/icons/asset/switch.png';
+}
+.icon-firewall{
+	backgroundImage:'../img/icons/asset/firewall.png';
+}
+.icon-vpn{
+	backgroundImage:'../img/icons/asset/vpn.png';
+}
+.icon-ips{
+	backgroundImage:'../img/icons/asset/ips.png';
+}
+.icon-ids{
+	backgroundImage:'../img/icons/asset/ids.png';
+}
+.icon-flow{
+	backgroundImage:'../img/icons/asset/flow.png';
+}
+.icon-flowsec{
+	backgroundImage:'../img/icons/asset/flow.png';
+}
+.icon-antidos{
+	backgroundImage:'../img/icons/asset/antidos.png';
+}
+.icon-antivirus{
+	backgroundImage:'../img/icons/asset/antivirus.png';
+}
+.icon-audit{
+	backgroundImage:'../img/icons/asset/audit.png';
+}
+.icon-server{
+	backgroundImage:'../img/icons/asset/server.png';
+}
+.icon-asset{
+	backgroundImage:'../img/icons/asset/default.png';
+}
+/**大设备图标*/
+.icon-router-big,.icon-switch-big,.icon-firewall-big,.icon-vpn-big,.icon-ips-big,
+.icon-ids-big,.icon-flow-big,.icon-flowsec-big,.icon-antidos-big,.icon-antivirus-big,
+.icon-audit-big,.icon-server-big,.icon-asset-big{
+	width: 24px ;
+	height: 24px;
+}
+.icon-router-big{
+	backgroundImage:'../img/icons/asset/router-big.png';
+}
+.icon-switch-big{
+	backgroundImage:'../img/icons/asset/switch-big.png';
+}
+.icon-firewall-big{
+	backgroundImage:'../img/icons/asset/firewall-big.png';
+}
+.icon-vpn-big{
+	backgroundImage:'../img/icons/asset/vpn-big.png';
+}
+.icon-ips-big{
+	backgroundImage:'../img/icons/asset/ips-big.png';
+}
+.icon-ids-big{
+	backgroundImage:'../img/icons/asset/ids-big.png';
+}
+.icon-flow-big{
+	backgroundImage:'../img/icons/asset/flow-big.png';
+}
+.icon-flowsec-big{
+	backgroundImage:'../img/icons/asset/flow-big.png';
+}
+.icon-antidos-big{
+	backgroundImage:'../img/icons/asset/antidos-big.png';
+}
+.icon-antivirus-big{
+	backgroundImage:'../img/icons/asset/antivirus-big.png';
+}
+.icon-audit-big{
+	backgroundImage:'../img/icons/asset/audit-big.png';
+}
+.icon-server-big{
+	backgroundImage:'../img/icons/asset/server-big.png';
+}
+.icon-asset-big{
+	backgroundImage:'../img/icons/asset/default-big.png';
+}
+/*操作系统样式*/
+.icon-os-linux{
+	backgroundImage:'../img/icons/os/linux.gif';
+}
+.icon-os-redhat{
+	backgroundImage:'../img/icons/os/redhat.gif';
+}
+.icon-os-solaris{
+	backgroundImage:'../img/icons/os/solaris.gif';
+}
+.icon-os-win{
+	backgroundImage:'../img/icons/os/win.gif';
+}
+.icon-os-unix{
+	backgroundImage:'../img/icons/os/unix.png';
+}
+.icon-os-mac{
+	backgroundImage:'../img/icons/os/mac.png';
+}
+.icon-os-switch{
+	backgroundImage:'../img/icons/os/switch.png';
+}
+.icon-os-router{
+	backgroundImage:'../img/icons/os/router.png';
+}
+.icon-os-vmware{
+	backgroundImage:'../img/icons/os/vmware.png';
+}
+.icon-os-default{
+	backgroundImage:'../img/icons/os/default.png';
+}
+.icon-status-1{
+	backgroundImage:'../img/icons/status-1.png';
+}
+.icon-status-2{
+	backgroundImage:'../img/icons/status-2.png';
+}
+.icon-status-3{
+	backgroundImage:'../img/icons/status-3.png';
+}
+.icon-status-4{
+	backgroundImage:'../img/icons/status-4.png';
+}
+
+.icon-clock{
+	backgroundImage:'../img/icons/clock.png';
+}
+.icon-import{
+	backgroundImage:'../img/icons/import.png';
+}
+/*资产状态图标*/
+.icon-status-online{
+	backgroundImage:'../img/icons/status-1.png';
+}
+.icon-status-offline{
+	backgroundImage:'../img/icons/status-4.png';
+}
+.icon-status-unknow{
+	backgroundImage:'../img/icons/status-3.png';
+}

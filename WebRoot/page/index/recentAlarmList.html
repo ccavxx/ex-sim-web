@@ -1,0 +1,16 @@
+<table id="main_event_table" class="easyui-datagrid" 
+       data-options="fitColumns:true,singleSelect:true,fit:true,scrollbarSize:0,striped:true,border:false,
+       				 onDblClickRow:simHandler.showEventDetail,url:'/sim/alarm/todayAlarm',
+       				 pagination:true">  
+    <thead>  
+        <tr>  
+            <th data-options="field:'END_TIME',width:15">时间</th>  
+            <th data-options="field:'NAME',width:15">事件名称</th>  
+            <th data-options="field:'PRIORITY',width:10,align:'center',formatter:simHandler.levelFormatter">级别</th>  
+            <th data-options="field:'DVC_ADDRESS',width:15">设备地址</th>  
+            <th data-options="field:'SRC_ADDRESS',width:15">源地址</th>  
+            <th data-options="field:'DEST_ADDRESS',width:15">目的地址</th>  
+            <th data-options="field:'DESC',width:20">描述</th>  
+        </tr>  
+    </thead>  
+</table> 

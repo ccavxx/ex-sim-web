@@ -1,0 +1,143 @@
+<div class="easyui-layout" data-options="fit:true,border:false">
+	<form id="add_taskForm">
+		<div data-options="height:130,region:'north',collapsible:false,border:false,title:'筛选条件',headerCls:'sim-panel-header'">
+			<div style="padding:10px 0px 0px 10px;">
+				名称：<input id="taskName" name="taskName" style="height:15px;" type="text"  placeholder="请输入主题名称">
+				&nbsp;&nbsp;
+				时间：<select id="intervalId" name="interval" class="noborderadius" style="width:100px;height:25px;font-size:12px;" onchange="selectOptionInterval(this.value)">
+	                 </select>
+	                <span id="user_define_time" >
+					<input readonly="readonly" id="startDate" name="startTime" type="text" style="width:172px;height:15px;" class="Wdate cursorHand" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})">
+					-
+					<input readonly="readonly" id="endDate" name="endTime" type="text" style="width:172px;height:15px;" class="Wdate cursorHand" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'startDate\')}'})">
+			       </span>
+			</div>
+			<div style="padding-left: 10px;float: left;" id="queryCondition"></div>
+			<div style="float: right;">
+				<a href="javascript:void(0)" data-options="iconCls:'icon-save'"
+					class="easyui-linkbutton" onclick="submitTask();">保存</a> <a id="subject_back_btn"
+					href="javascript:void(0)" data-options="iconCls:'icon-goback'"
+					class="easyui-linkbutton" >返回</a>
+			</div>
+		</div>
+		<div data-options="region:'center',border:false,title:'主题流程',headerCls:'sim-panel-header'"
+			 style="padding:20px 10px 0px 10px;">
+			<input type="hidden" name="taskId" id="taskId">
+			<input type="hidden" name="deviceType" id="deviceTypeId"> 
+			<input type="hidden" name="host" id="hostId"> 
+			<input type="hidden" name="group" id="groupId"> 
+			<input type="hidden" name="searchCondition" id="searchCondition"> 
+			<input type="hidden" name="conditionName" id="conditionName">
+			<input type="hidden" name="operator" id="operator">
+			<input type="hidden" name="queryContent" id="queryContent">
+			<input type="hidden" name="queryType" id="queryType">
+			<input type="hidden" name="taskOperator" value="add" id="taskOperator">
+			<input type="hidden" id="groupvalue" name="groupColumn" />
+			<input type="hidden" id="functionName" name="functionName" />
+			<input type="hidden" id="orderbyColumm" name="orderbyColumm" />
+			<div style="float: left">
+				<div class="easyui-panel"
+					data-options="title:'分组',headerCls:'layoutWHeader',tools: [{iconCls:'icon-add',handler:showGroupDialog }]"
+					style="height:300px;width:230px;">
+					<div class="taskcontent" style="padding-left: 10px;" id="groupid"></div>
+				</div>
+			</div>
+			<div class="taskarrow"></div>
+			<div style="float: left">
+				<div class="easyui-panel"
+					data-options="title:'统计方式',headerCls:'layoutWHeader',tools: [{iconCls:'icon-add',handler:showStatistics}]"
+					style="height:300px;width:230px;">
+					<div class="taskcontent" style="padding-left: 10px;"
+						id="statistics_functionName"></div>
+				</div>
+			</div>
+			<div class="taskarrow"></div>			
+			<div style="float: left">
+				<div class="easyui-panel"
+					data-options="title:'排序',headerCls:'layoutWHeader',tools: [{iconCls:'icon-add',handler:showOrderbyDialog}]"
+					style="height:300px;width:230px;">
+					<div class="taskcontent" style="padding-left: 10px;"
+						id="orderby_id"></div>
+				</div>
+			</div>
+
+			<!-- 分组字段 -->
+			<div id="groupDialog" class="easyui-dialog"
+				style="width:403px;height:355px;background-color:#fff;"
+				data-options="resizable:true,modal:true,buttons:[
+															{text:'确定', handler:check_group },
+															{ text:'关闭', handler:function(){ $('#groupDialog').dialog('close'); } }
+														],closed:'true'">
+				<table id="group_table"></table>
+			</div>
+			<!-- 统计字段 -->
+			<div id="statisticsDialog" class="easyui-dialog"
+				style="width:430px;height:350px;background-color:#fff;"
+				data-options="resizable:true,modal:true,buttons:[
+															{text:'确定',handler:check_functionName},
+															{text:'关闭',handler:function(){$('#statisticsDialog').dialog('close');}}
+														],closed:'true'">
+				<table id="statistics_table"></table>
+			</div>
+			<!-- 排序字段 -->
+			<div id="orderbyDialog" class="easyui-dialog"
+				style="width:300px;height:350px;background-color:#fff;"
+				data-options="resizable:true,modal:true,buttons:[
+										{ text:'确定', handler:check_orderby },
+										{ text:'关闭', handler:function(){ $('#orderbyDialog').dialog('close'); }}
+									],
+									closed:'true'">
+				<table id="orderby_table"></table>
+			</div>
+			<div class="taskarrow"></div>
+			<!-- 统计结果信息 -->
+			<div style="float: left;padding-left:10px;">
+				<div class="easyui-panel" data-options="title:'结果类型',headerCls:'layoutWHeader'" style="height:300px;width:250px;">
+					<div style="padding-left:10px;padding-top:10px;">
+						<table>
+							<tr>
+								<td valign="top">结果：</td>
+								<td>
+									<!-- <input type="radio" onclick="judgeDiagram(this.value);" value="0" id="rad_table" checked="checked" name="diagram" /><label style="display: inline-block;" for="rad_table">表格</label><br /> -->
+									<input type="radio" onclick="judgeDiagram(this.value);" value="1" id="rad_column" checked="checked" name="diagram" /><label style="display: inline-block;" for="rad_column">柱状图</label><br />
+									<input type="radio" onclick="judgeDiagram(this.value);" value="6" id="rad_spline" name="diagram" /><label style="display:inline-block;" for="rad_spline">曲线图</label><br /> 
+									<input type="radio" onclick="judgeDiagram(this.value);" value="5" id="rad_pie" name="diagram" /><label style="display: inline-block;" for="rad_pie">饼图</label><br/>
+									<input type="radio" onclick="judgeDiagram(this.value);" value="7" id="rad_table" name="diagram" /><label style="display: inline-block;" for="rad_table">表格</label>
+								</td>
+							</tr>
+						</table>
+						<div style="height: 30px;">
+							<span>每组：</span>
+							<select style="width: 150px;" data-options="editable:false" class="easyui-combobox" id="groupTopFields" name="groupTopFields">
+							</select>
+						</div>
+						<div style="height: 30px;">	
+							<span>TOP：</span>
+							<select style="width:150px;" name="topNumber" id="topNumber"></select>
+						</div>
+						<div id="chartxAxis">
+							<span>横轴：</span>
+							<select style="width: 150px;" data-options="editable:false" class="easyui-combobox"  id="categoryAxisField" name="categoryAxisField"></select>
+						</div>
+					</div>
+				</div>
+			</div>			
+		</div>
+	</form>
+</div>
+<script src="/js/sim/log/log_statistics2.js"></script>
+<style type="text/css">
+.taskarrow {
+	float: left;
+	margin: 150px 10px 0px 10px;
+	width: 20px;
+	height: 25px;
+	background-repeat: no-repeat;
+	background-image: url(../../img/lc-arrow.png);
+}
+
+.taskcontent {
+	width: 200px;
+	height: 220px;
+}
+</style>

@@ -1,0 +1,164 @@
+<div style="padding:0 3px;position:relative;">
+	<table class="table table-striped staticHtml" style="border:1px solid #dddddd;">
+		<tbody>
+			<tr>
+				<td colspan="3" ><a id="AppServer/Oracle">8.1.1 Weblogic V10</a></td>
+			</tr>
+			<tr>
+				<td colspan="3" >
+					<table class="table table-bordered">
+						<tr>
+							<td>名称</td>
+							<td colspan="2">Weblogic</td>
+							<td>类别</td>
+							<td>中间件</td>
+						</tr>
+						<tr>
+							<td rowspan="3">日志源配置</td>
+							<td>设备类型</td>
+							<td colspan="3">应用服务-> Oracle-> Weblogic V10</td>
+						</tr>
+						<tr>
+							<td>日志格式</td>
+							<td colspan="3">TXT</td>
+						</tr>
+						<tr>
+							<td colspan="4"><img src="/data/logDataSource02/image134.jpg" /><pre>Weblogic的访问日志和服务器系统日志分别存放在以下两个文件中，X:\fundcrm\mydomain\myserver\access.log，X:\fundcrm\mydomain\myserver\myserver.log，上图使用的是目录方式。</pre></td>
+						</tr>
+						<tr>
+							<td rowspan="2">产品配置</td>
+							<td>系统菜单</td>
+							<td colspan="3"></td>
+						</tr>
+						<tr>
+							<td colspan="4"><pre>查找、确认并记录下对应的日志文件位置，Weblogic的访问日志和服务器系统日志分别存放在以下两个文件中，X:\fundcrm\mydomain\myserver\access.log，X:\fundcrm\mydomain\myserver\myserver.log。</pre></td>
+						</tr>
+						<tr>
+							<td>备注</td>
+							<td colspan="4"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="background-color:#99ccff;"></td>
+			</tr>
+			<tr>
+				<td colspan="3" ><a name="AppServer/Weblogic/Weblogic for Windows">Weblogic for Windows</a></td>
+			</tr>
+			<tr>
+				<td colspan="3" >
+					<pre>配置 SexFox 传感器 
+・ 点击开始 ― 程序 ― SecFoxSensorGUI ； 
+・ 右键点击桌面右下角 SecFox 日志传感器图标，点击托盘菜单中的注册； 
+・ 在弹出的对话框中输入日志服务器地址及端口号（默认为 8698 ），点击确定； 
+・ 在托盘菜单中点击设置； 
+・ 在弹出的配置对话框中选择日志定制； 
+・ 在文件定制复选框中打钩，在日志文件中输入 weblogic8.1 的访问日志和服务器系统日志的绝对路径，中间用“ ; ”分隔，如“ D:\fundcrm\mydomain\myserver\access.log; D:\fundcrm\mydomain\myserver\myserver.log ”，路径视具体情况而定； 
+・ 设置日志轮询时间 ( 默认为 30 秒 ) ，点击确定； 
+・ 点击托盘菜单中的重启服务。</pre>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="background-color:#99ccff;"></td>
+			</tr>
+			<tr>
+				<td colspan="3" ><a name="AppServer/Weblogic/Weblogic for Linux">Weblogic for Linux</a></td>
+			</tr>
+			<tr>
+				<td colspan="3" >
+					<pre>在配置前，请确认已经进行过 Linux 系统的 sylsog 配置。 
+1. 登陆 linux 服务器； 
+2. 在 /var/log 目录下面创建 secfox 目录，并在 secfox 目录下创建脚本 secfox.sh ，脚本内容如下： 
+#! /bin/bash 
+INPUT_FILE="/home/weblogic/log/access.log" 
+PROGRAM_TYPE="weblogic" 
+PROGRAM_NAME="secfox_sensor*" 
+tail -F $INPUT_FILE|logger   -t $PROGRAM_TYPE   -p local5.info&  
+echo $pid 
+#### 注意根据 access.log 的实际路径，修改 INPUT_FILE 变量的值。 
+3. chmod 755 /var/log/secfox/secfox.sh 
+4. 运行脚本 
+nohup  /var/log/secfox/secfox.sh  > /dev/null& 
+5. 设置开机启动脚本 
+通过 rc.local 启动，设置脚本开机启动 
+在 /etc/rc.local ，增加一行：/var/log/secfox/secfox.sh。</pre>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="background-color:#99ccff;"></td>
+			</tr>
+			<tr>
+				<td colspan="3" ><a name="AppServer/Weblogic/Weblogic for AIX">Weblogic for AIX</a></td>
+			</tr>
+			<tr>
+				<td colspan="3" >
+					<pre>在配置前，请确认已经进行过 AIX 系统的 sylsog 配置。 
+1. 登陆 AIX 服务器； 
+2. 在 /var/log 目录下面创建 secfox 目录，并在 secfox 目录下创建脚本 secfox.sh ，脚本内容如下： 
+#! /bin/ksh 
+INPUT_FILE="/home/weblogic/log/access.log" 
+PROGRAM_TYPE="weblogic" 
+PROGRAM_NAME="secfox_sensor*" 
+tail -f $INPUT_FILE|logger   -t $PROGRAM_TYPE   -p local5.info&  
+echo $pid 
+#### 注意根据 access.log 的实际路径，修改 INPUT_FILE 变量的值。 
+3. chmod 755 /var/log/secfox/secfox.sh 
+4. 运行脚本 
+nohup  /var/log/secfox/secfox.sh  > /dev/null& 
+5. 设置开机启动脚本 
+rc.local 是 inittab 里的一个脚本指向，通过运行 lsitab -a|grep rc.local ，我们可以得到 rc.local:2:once:/etc/rc.local >  /dev/console 2>&1 
+如果 inittab 文件里没有关于 rc.local 的信息，可以通过此命令创建脚本。 mkitab -i rcnfs "rc.local:2:once:/etc/rc.local >  /dev/console 2>&1" （注意最后面的 " 也是命令的一部分）。
+注意系统运行级别要与你想要运行的系统运行级别一致，这里系统运行级别是 2 。 
+touch /etc/rc.local # 新建 rc.local 文件 
+chmod 700 /etc/rc.local # 设置执行权限 
+在 /etc/rc.local ，增加一行： 
+nohup 　 /var/log/secfox/secfox.sh >/dev/null& 
+AIX 系统在重新启动时，就会运行 /etc/rc.local 里的脚本了。</pre>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="background-color:#99ccff;"></td>
+			</tr>
+			<tr>
+				<td colspan="3" ><a id="AppServer/Oracle">8.1.2 Weblogic V8.1</a></td>
+			</tr>
+			<tr>
+				<td colspan="3" >
+					<table class="table table-bordered">
+						<tr>
+							<td>名称</td>
+							<td colspan="2">Weblogic</td>
+							<td>类别</td>
+							<td>中间件</td>
+						</tr>
+						<tr>
+							<td rowspan="3">服务器配置</td>
+							<td>设备类型</td>
+							<td colspan="3">应用服务-> Oracle-> Weblogic V8.1</td>
+						</tr>
+						<tr>
+							<td>日志格式</td>
+							<td colspan="3">TXT</td>
+						</tr>
+						<tr>
+							<td colspan="4"><img src="/data/logDataSource02/image135.jpg" /></td>
+						</tr>
+						<tr>
+							<td rowspan="2">产品配置</td>
+							<td>系统菜单</td>
+							<td colspan="3"></td>
+						</tr>
+						<tr>
+							<td colspan="4"><pre>查找、确认并记录下对应的日志文件位置，Weblogic的访问日志和服务器系统日志分别存放在以下两个文件中，X:\fundcrm\mydomain\myserver\access.log，X:\fundcrm\mydomain\myserver\myserver.log。</pre></td>
+						</tr>
+						<tr>
+							<td>备注</td>
+							<td colspan="4"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

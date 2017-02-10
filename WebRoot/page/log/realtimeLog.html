@@ -1,0 +1,67 @@
+<div id="log_monitor_tips"></div>
+<div class="easyui-layout" fit="true">
+	<div
+		data-options="region:'west',title:'实时日志',split:true,iconCls:'icon-layout-log',headerCls:'layoutWHeader',bodyCls:'layoutWBody'"
+		style="width:200px;">
+		<ul id="logTree" ></ul>
+	</div>
+	<div
+		data-options="region:'center',title:'实时日志列表',headerCls:'sim-panel-header',bodyCls:'sim-panel-body'">
+		<table class="easyui-datagrid" id="log_table"
+			data-options="fit:true,fitColumns:true,singleSelect:true,toolbar:'#toolBar',border:false,striped:true,
+			   				onLoadSuccess:simLogMonitorHandler.onLoadSuccess,view:detailview,detailFormatter:simLogMonitorHandler.detailFormatter,onExpandRow:simLogMonitorHandler.onExpandRow">
+			<thead>
+				<tr>
+					<th data-options="field:'START_TIME',width:13">时间</th>
+					<th data-options="field:'DVC_ADDRESS',width:13">设备地址</th>
+					<th data-options="field:'DVC_TYPE',width:13">设备类型</th>
+					<th
+						data-options="field:'ORIGINAL_DATA',width:60,formatter:simLogMonitorHandler.formatterOriginalDataField">原始日志</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+<div id="toolBar" style="padding:5px;height:25px;">
+	<div style="float:left;">
+		<!-- icon-start -->
+		<a class="easyui-linkbutton" id="logStop" href="javascript:void(0)"
+			data-options="iconCls:'icon-stop-refresh'" onclick="onLogDataStop();">停止刷新</a>
+		<a class="easyui-linkbutton" href="javascript:void(0)"
+			data-options="iconCls:'icon-clear-all'"
+			onclick="onLogMonitorClean();">清空</a>
+	</div>
+	<div style="padding-top:3px;padding-left:50px;float:left;"
+		id="log_group_form">
+		<form class="margin0 horizon-toolbar">
+			<table>
+				<tr>
+					<td>过滤器:</td>
+					<td><select id="log_group"></select></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+
+</div>
+
+<script type="text/javascript" src="/js/sim/log/log_monitor.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#log_group_form").hide();
+		$.ajax({
+			type : "post",
+			url : "/sim/logMonitor/login",
+			async : false,
+			dataType : "json",
+			success : function(data) {
+				if (data.usable == 'true') {
+					startHeartTimer(5000);
+					onLoadLogMonitorData();
+				} else if (data.usable == 'false') {
+					showAlertMessage("当前已被(" + data.ip + ")打开，请稍后再试!");
+				}
+			}
+		});
+	});
+</script>

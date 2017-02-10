@@ -1,0 +1,86 @@
+<div class="easyui-panel" style="padding: 5px;" data-options="fit:true,title:'邮件服务器配置',headerCls:'sim-panel-header',bodyCls:'sim-panel-body'">
+	<div class="alert alert-info">
+		<strong>描述 </strong>
+		邮件告警以及计划报表中，发送邮件所使用的邮件服务器信息。
+	</div>
+	<div class="row-fluid">
+		<div class="span7">
+			<form class="bs-docs-example form-horizontal" id="sysconfig_mail_form">
+				<div class="control-group">
+					<label class="control-label"><span style="color:red;">*</span>邮件服务器地址</label>
+					<div class="controls">
+						<input type="text" name="serverip" />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label"><span style="color:red;">*</span>邮件服务器端口</label>
+					<div class="controls">
+						<input type="text" name="serverport" placeholder="25" value="25">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label"><span style="color:red;">*</span>邮件发送人</label>
+					<div class="controls">
+						<input type="text" name="mailsender" />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label"><span style="color:red;">*</span>用户名</label>
+					<div class="controls">
+						<input type="text" name="loginaccount" />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label"><span style="color:red;">*</span>口令</label>
+					<div class="controls">
+						<input type="password" name="loginpwd" />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">SSL连接</label>
+					<div class="controls">
+						<label class="checkbox" style="width: 70px;">
+							<input type="checkbox" name="ssl" value="true">是
+						</label>
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<a class="easyui-linkbutton" id="sysconfig_mail_form_submit_button"  
+							onclick="$('#sysconfig_mail_form').submit()" data-options="iconCls:'icon-apply'">应用</a>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="span5 well">
+			<p class="text-info"><strong>邮件服务器IP：</strong>设置邮件服务器IP地址。</p>
+			<p class="text-info"><strong>邮件服务器端口：</strong>设置邮件服务器端口。</p>
+			<p class="text-info"><strong>邮件发送人：</strong>设置发信方的Email地址。</p>
+			<p class="text-info"><strong>用户名：</strong>发信方登录邮件系统的用户名。</p>
+			<p class="text-info"><strong>口令：</strong>发信方登录邮件系统的口令。</p>
+			<p class="text-info"><strong>备注：</strong>通常外网邮件服务器地址为SMTP+域名(例如:smtp.qq.com)，非SSL连接方式端口为25，SSL连接端口为465。</p>
+			<div>
+				<table  class="table table-bordered">
+				   <caption>常用邮件服务器信息</caption>
+					<thead>
+						<tr>
+							<td>邮箱服务器</td>
+							<td>地址</td>
+							<td>端口</td>
+							<td>SSL端口</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr><td>网易163/126</td><td>smtp.163.com/smtp.126.com</td><td>25</td><td>465</td></tr>
+						<tr><td>新浪</td><td>smtp.sina.com.cn</td><td>25</td><td></td></tr>
+						<tr><td>雅虎 </td><td>smtp.mail.yahoo.com.cn</td><td></td><td>465</td></tr>
+						<tr><td>搜狐 </td><td>smtp.sohu.com</td><td>25</td><td></td></tr>
+						<tr><td>QQ/QQ企业邮箱</td><td>smtp.qq.com/smtp.exmail.qq.com</td><td>25</td><td>465</td></tr>
+						<tr><td>Foxmail </td><td>smtp.foxmail.com</td><td>25</td><td>465</td></tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="/js/sim/sysconfig/sysconfig_mailserver.js" type="text/javascript"></script>

@@ -1,0 +1,341 @@
+/* Default CSS file for FlexViz */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace ui "com.iolive.topology.ui.*";
+@namespace dividedbox "com.iolive.topology.ui.dividedbox.*";
+@namespace renderers "com.iolive.topology.renderers.*";
+@namespace controls "com.iolive.topology.controls.*";
+@namespace search "com.iolive.topology.search.*";
+@namespace renderers1 "com.iolive.topology.ui.renderers.*";
+@namespace handler "com.iolive.topology.handler.*";
+
+/* OliveGraph */
+controls|DefaultToolBar {
+	skinClass:ClassReference("skins.control.DefaultControlBarSkin");
+}
+controls|SearchBar{
+	skinClass:ClassReference("skins.control.DefaultControlBarSkin");
+}
+.whitebg {
+	background-alpha: 1;
+	background-color: #ffffff;	
+}
+
+.nobg {
+	background-alpha: 0;	
+}
+
+/** 画布标题Label默认样式名称 **/
+.oliveGraphHeaderLabel {
+	color: #336699;
+	fontSize: 14;
+	font-weight: bold;
+	horizontal-center: 0;
+}
+
+/** 画布底部Label **/
+.flexGraphFooterLabel {
+	bottom: 16;		/* 去除滚动条的位置  */
+	color: #bbbbbb;
+	fontSize: 12;
+	fontWeight: bold;
+	horizontalCenter: 0;
+}
+
+controls|LayoutsBox {
+	horizontal-gap: 2;
+	vertical-align: middle;
+}
+
+.layoutsComboBox {
+	paddingLeft: 4;
+	paddingRight: 0;
+	arrowButtonWidth: 18;	
+}
+
+.buttonBar {
+	button-height: 22;
+	button-width: 24;
+	height: 22;
+}
+
+.searchResultsLabel {
+	color: #444444;
+}
+
+.searchResultsLabelError {
+	color: #cc0000;
+}
+
+/* Node and arc renderers  */
+
+renderers|SimpleLabelNodeRenderer {
+	horizontal-align: center; 
+	horizontal-gap: 0;
+	vertical-gap: 0;
+	
+	normal-border-alpha: 1;
+	normal-border-style: solid;
+	normal-border-thickness: 1;
+	normal-border-color: #5E6162;
+	normalBorderStyle:none;
+	
+	over-border-style: solid;
+	over-border-thickness: 1;
+	over-border-color: #009DFF;
+	overBackgroundColor:#D7E3F0;
+	overBackgroundAlpha:0.1;
+	
+	selected-border-style: solid;
+	selected-border-thickness: 1;
+	selected-border-color: #009DFF;
+	selected-font-weight: bold;
+	selectedBackgroundColor:#D7E3F0;
+	selectedBackgroundAlpha:0.1;
+	
+	matching-border-style: solid;
+	matching-border-thickness: 1;
+	matching-border-color: #00DD00;
+	matching-font-style: italic;
+}
+
+renderers|SimpleLabelPlusIconNodeRenderer{
+	horizontal-align: center; 
+	horizontal-gap: 0;
+	vertical-gap: 0;
+	
+	normal-border-alpha: 1;
+	normal-border-style: solid;
+	normal-border-thickness: 1;
+	normal-border-color: #5E6162;
+	
+	over-border-style: solid;
+	over-border-thickness: 1;
+	over-border-color: #009DFF;
+	overBackgroundColor:#D7E3F0;
+	overBackgroundAlpha:0.5;
+	
+	selected-border-style: solid;
+	selected-border-thickness: 1;
+	selected-border-color: #009DFF;
+	selected-font-weight: bold;
+	selectedBackgroundColor:#D7E3F0;
+	selectedBackgroundAlpha:0.5;
+	
+	matching-border-style: solid;
+	matching-border-thickness: 1;
+	matching-border-color: #00DD00;
+	matching-font-style: italic;
+}
+
+renderers|ImageNodeRenderer{
+	normal-border-alpha: 0;
+	normal-border-style: "none";
+	normalBackgroundAlpha:0;
+	normalBorderStyle:none;
+	
+	over-border-style: solid;
+	over-border-thickness: 1;
+	over-border-color: #009DFF;
+	overBackgroundAlpha:1;
+	overBackgroundColor:#D7E3F0;
+	overBackgroundAlpha:0.5;
+	
+	
+	selected-border-style: solid;
+	selected-border-thickness: 1;
+	selected-border-color: #009DFF;
+	selected-font-weight: bold;
+	selectedBackgroundColor:#D7E3F0;
+	selectedBackgroundAlpha:0.5;
+	
+	matching-border-style: solid;
+	matching-border-thickness: 1;
+	matching-border-color: #00DD00;
+	matching-font-style: "微软雅黑";
+	matchingBackgroundAlpha:0;
+}
+
+renderers|SimpleShapeNodeRenderer{
+	normal-border-alpha: 0;
+	normal-border-style: "none";
+	normalBackgroundAlpha:0;
+	normalBorderStyle:none;
+	
+	over-border-style: solid;
+	over-border-thickness: 1;
+	over-border-color: #009DFF;
+	overBackgroundColor:#D7E3F0;
+	overBackgroundAlpha:0.5;
+	
+	selected-border-style: solid;
+	selected-border-thickness: 1;
+	selected-border-color: #009DFF;
+	selected-font-weight: bold;
+	selectedBackgroundColor:#D7E3F0;
+	selectedBackgroundAlpha:0.5;
+	
+	matching-border-style: solid;
+	matching-border-thickness: 1;
+	matching-border-color: #00DD00;
+	matching-font-style: italic;
+	matchingBackgroundAlpha:0;
+}
+
+renderers|NodeText {
+	textAlign: center;	
+}
+
+renderers|DefaultArcRenderer {
+	normalLineThickness:0;
+	overLineThickness:0;
+	selectedLineThickness:0;
+}
+
+renderers|AbstractArcRenderer{
+	normalLineThickness:0;
+	overLineThickness:0;
+	selectedLineThickness:0;
+}
+renderers|SimpleArrowHeadArcRenderer{
+	normalLineThickness:0;
+	overLineThickness:0;
+	selectedLineThickness:0;
+}
+renderers|SimpleDoubleArrowHeadArcRenderer{
+	normalLineThickness:1;
+	overLineThickness:0;
+	selectedLineThickness:0;
+}
+renderers|SimpleBrokenLineRenderer{
+	normalLineThickness:3;
+	overLineThickness:3;
+	selectedLineThickness:3;
+	normalLineColor:#C0C0C0;
+}
+renderers|ArcLabel {
+	font-size: 11;
+	text-align: center;
+}
+
+/* Filter Panels */
+
+.filterSelected {
+	color: #000000;
+}
+
+.filterUnselected {
+	color: #999999;	
+}
+
+.rotateArcLabels {
+	disabled-color: #666666;	
+}
+
+/* Progress Panel */
+
+.progressPanel {
+	cornerRadius: 2;
+	roundedBottomCorners: false;
+	borderThicknessBottom: 0;
+	borderThicknessLeft: 0;
+	borderThicknessRight: 0;
+	horizontalGap: 0;
+	verticalGap: 0;
+	paddingLeft: 0;
+	paddingRight: 0;
+	paddingBottom: 0; 
+	horizontalAlign: center;
+	verticalAlign: middle;
+	horizontalCenter: 0;
+	verticalCenter: 0;
+	headerHeight: 24;
+	/*headerColors: #426FD9,#2647A0;*/
+	highlightAlphas: 0.1,0;
+	color: #ffffff;
+	borderAlpha: 1;
+	fontSize: 11;	
+}
+/* 画布元素默认的背景样式 */
+.oliveGraphToolTip {
+	borderThickness: 1;
+	borderStyle: solid;
+	verticalGap: 0;
+	cornerRadius: 3;
+	dropShadowEnabled: true;
+}
+
+/**
+* 画布元素 ToolTip Label样式
+*/
+.oliveGraphToolTipLabel {
+	font-weight: bold;	
+}
+
+
+/**
+*框选样式
+*/
+ui|MarqueeSelectionComponent {
+	border-alpha: 0.5;
+	border-color: #ff0000;
+	border-thickness: 3;
+	line-style: dotted;
+	background-alpha: 0.5;
+	background-color: #F6FAEB;
+	corner-radius: 5;	
+}
+
+.alert {
+	color: #ffffff;
+	rounded-bottom-corners: true;
+	border-alpha: 0.9;
+	border-color: #869ca7;
+	background-alpha: 0.9;
+	background-color: #869ca7;
+}
+
+.black {
+	color: #000000;	
+}
+
+.panelControlBar {
+	horizontal-align: center;
+	paddingTop: 5;
+	paddingBottom: 5;
+	horizontalGap: 2;
+}
+
+
+.nodePropertyFormItem {
+	paddingLeft: 5;
+	paddingTop: 5;
+	paddingRight: 18;
+	paddingBottom: 5;
+}
+
+.nodePropertyFormItemAlt {
+	paddingLeft: 5;
+	paddingTop: 5;
+	paddingRight: 18;
+	paddingBottom: 5;
+	backgroundColor: #f5fafa;	
+}
+
+.nodePropertyText {
+	color: #000000;
+	font-weight: normal;	
+}
+
+/**
+*节点缩略图的Checkbox
+*/
+renderers|ThumbnailCheckBox{
+	skinClass:ClassReference("skins.checkbox.ThumbnailCheckBoxSkin");
+}
+renderers|GroupedComponent{
+	borderColor:#000000;
+	borderStyle:hatch;
+	backgroundAlpha:0.2;
+	backgroundColor:#FFFFFF;
+}

@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation="
+	     http://www.springframework.org/schema/beans
+	     http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	     http://www.springframework.org/schema/tx
+	     http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+	     http://www.springframework.org/schema/aop
+	     http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		 http://www.springframework.org/schema/jee
+		 http://www.springframework.org/schema/jee/spring-jee-3.2.xsd">
+	<!-- 数据源 -->
+	<jee:jndi-lookup id="simDataSource" jndi-name="java:/SIM_DS" /> 
+	<jee:jndi-lookup id="sessionFactory" jndi-name="java:/hibernate/SessionFactory" />
+
+	<!-- 事务管理对象 -->
+	<bean id="txManager" class="org.springframework.transaction.jta.JtaTransactionManager"/>
+	<!-- 事务定义 -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="save*"/>
+			<tx:method name="add*"/>
+			<tx:method name="update*"/>
+			<tx:method name="del*"/>
+			<tx:method name="setResponseState"/>
+			<tx:method name="remove*"/>
+			<tx:method name="config*"/>
+			<tx:method name="regist*"/>
+			<tx:method name="insert*"/>
+			<tx:method name="change*"/>
+			<tx:method name="enable*"/>
+			<tx:method name="disable*"/>
+			<tx:method name="switch*"/>
+			<tx:method name="*" read-only="true"/>
+		</tx:attributes>
+	</tx:advice>
+	<!-- 事务切入点 -->
+	<aop:config>
+		<aop:pointcut id="serviceOperation" expression="execution(* com.topsec.tsm.sim.*.service.*.*(..))" />
+		<aop:pointcut id="assServiceOperation" expression="execution(* com.topsec.tsm.ass.service.*.*(..))" />
+		<aop:pointcut id="evtRespServiceOperation" expression="execution(* com.topsec.tsm.tal.service.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="assServiceOperation" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="evtRespServiceOperation" />
+	</aop:config>
+	<bean id="annotationSessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="simDataSource"/>
+		</property>
+		<property name="hibernateProperties">
+		  <props>
+		    <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+		    <prop key="hibernate.hbm2ddl.auto">update</prop>
+		    <prop key="hibernate.show_sql">false</prop>
+		  </props>
+		</property>
+		<property name="annotatedClasses">
+		  <list>
+			<value>com.topsec.tsm.ass.persistence.Device</value>
+			<value>com.topsec.tsm.ass.persistence.AssGroup</value>     
+			<value>com.topsec.tsm.ass.persistence.Asset</value>
+			<value>com.topsec.tsm.ass.persistence.AssetAware</value>   
+			<value>com.topsec.tsm.ass.persistence.AssetResourceHandler</value>
+			<value>com.topsec.tsm.ass.persistence.AssResource</value>   
+			<value>com.topsec.tsm.ass.persistence.HardwareComponent</value>
+			<value>com.topsec.tsm.ass.persistence.Interface</value>   
+			<value>com.topsec.tsm.ass.persistence.OsPlatform</value>   
+			<value>com.topsec.tsm.ass.persistence.SoftwareApplication</value>   		
+		  </list>
+		</property>
+	</bean>	
+	<import resource="classpath:jms_communication.xml"></import>
+	<bean id="channelCenter" class="com.topsec.tsm.node.main.ChannelCenter" init-method="initialize"/>
+	
+	<bean id="testService" class="com.topsec.tsm.sim.test.service.TestServiceImpl">
+		<property name="dao">
+			<bean class="com.topsec.tsm.sim.test.dao.TestDao">
+				<property name="sessionFactory" ref="sessionFactory"/>
+			</bean>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,24 @@
+<div class="informDiv" style="overflow:auto;margin:20px;padding:20px;">
+	<form name="event_resp_add_form" id="event_resp_add_form_id">
+		<table>
+			<tr>
+				<td class="first" align="right"><span style="color:red;">*</span>名称</td>
+				<td  class="second"><input type="text" id="resp_name"name="resp_name"
+					style="height:24px;width:218px;" data-rule="required;length[1~30];"/></td>
+			</tr>
+			<tr>
+				<td align="right">描述</td>
+				<td><textarea id="resp_desc" name="resp_desc"
+						style="height: 50px;width: 206px;" data-rule="length[~100]"></textarea></td>
+			</tr>
+			<tr>
+				<td align="right"><span style="color:red;">*</span>响应方式<span id="evt_resp_span_id"></span></td>
+				<td><input id="eventRespType" name="cfg" class="easyui-combobox" style="height:24px;width:220px;" />
+					<input type="hidden" id="hid_eventRespType" name="cfg0" data-rule="required;"/></td>
+			</tr>
+		</table>
+		<div style="height:15px;"></div>
+		<div id="resp_inform_show_div" ></div>
+		<div style="height:15px;"></div>
+	</form>
+</div>

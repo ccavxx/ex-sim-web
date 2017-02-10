@@ -1,0 +1,17 @@
+<style type="text/css">
+.handCss{
+cursor:pointer;width:16px;height:16px;margin-right:5px;
+} 
+</style>
+<div class="easyui-layout sim" data-options="fit:true" id="log_subject_panel">
+	 <div data-options="region:'center',border:false,title:'主题列表'" >
+		  <div class="easyui-panel" data-options="border:false,fit:true">
+			     <table id="log_statistics_table" data-options="scrollbarSize:0"></table> 
+		 </div>
+		 <div id="reportToolBar" style="padding:3px;">
+		    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="delTask('',1);">删除</a>
+		</div>
+	 </div>
+	 <div id="logtask_dialog"></div>
+</div>
+<script src="/js/sim/log/logtasklist.js"></script>

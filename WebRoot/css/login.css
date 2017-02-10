@@ -1,0 +1,201 @@
+@charset "utf-8";
+
+body {
+	font-size: 12px;
+	background: url(../img/login/bg.jpg) repeat-x top #3f484d;
+	font-size: 14px;
+	color: #444d50;
+	margin: 0;
+	padding: 0;
+}
+
+ul,li {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+img {
+	border: 0;
+}
+.form-horizontal .control-label {
+  float: left;
+  width: 80px;
+  padding-top: 5px;
+  text-align: right;
+}
+.form-horizontal .control-group{
+	margin-bottom: 10px;
+}
+.form-horizontal .controls {
+  *display: inline-block;
+  *padding-left: 20px;
+  margin-left: 90px;
+  *margin-left: 0;
+}
+.form-horizontal .controls input{
+	padding:2px 0px;
+	background:#fff; 
+	border:solid 1px #85adba; 
+	width:160px; 
+	height:21px; 
+	line-height:21px;
+	-webkit-border-radius:0px;
+	border-radius: 0px ;
+}
+.denglu {
+	width: 935px;
+	margin: 0 auto;
+	margin-top: 160px;
+}
+
+.banq {
+	width: 785px;
+	margin: 0 auto;
+	color: #d3d6d7;
+	text-align: right;
+	font-weight: bold;
+	padding-right: 150px;
+}
+
+.denglu-left {
+	background: url(../img/login/lefttu1.png) no-repeat;
+	width: 455px;
+	height: 346px;
+	float: left;
+	padding: 55px 0 16px 16px
+}
+.denglu-right {
+	background: url(../img/login/right1.png) no-repeat;
+	width: 424px;
+	height: 369px;
+	float: right;
+	padding: 48px 20px 0 20px;
+}
+.donglulog{
+	margin-bottom:33px;
+}
+.donglulog img{
+	height:51px;
+}
+.donglutit {
+	margin-left: 70px;
+}
+
+.pwd {
+	padding: 10px 0;
+}
+
+.yzm img {
+	padding: 0 1px;
+}
+
+.yzm span {
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.yzm span a {
+	color: #015db8;
+	text-decoration: none;
+}
+
+.yzm span a:hover {
+	color: #015db8;
+	text-decoration: underline;
+}
+
+.but {
+	margin: 0 auto;
+	width: 250px;
+	*width: 270px;
+	margin-top: 30px;
+	line-height:50px;
+	font-size:12px;
+}
+
+.but ul li {
+	float: left;
+	width: 84px;
+	height: 38px;
+}
+
+.but ul li.butjj {
+	margin-right: 20px;
+}
+
+.but ul li input {
+	height: 38px;
+	width: 84px;
+}
+
+.butys {
+	width: 76px;
+	font-weight: bold;
+	height: 30px;
+	overflow: hidden;
+	height: auto;
+	padding: 4px;
+	font-size: 14px;
+	border: 0;
+	background: url(../img/login/but1.png) no-repeat;
+	color: #fff;
+}
+
+/*bianhuantu*/
+/* css 重置 */
+ul {
+	list-style: none;
+}
+
+a {
+	blr: expression(this.onFocus = this.blur () );
+	outline: none;
+}
+
+/*本例css*/
+.carousel {
+	width: 450px;
+	height: 350px;
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+}
+
+.carousel img {
+	/*border: solid 1px #568392;*/
+}
+/*数字按钮样式*/
+.carousel .num {
+	position: absolute;
+	bottom: 12px;
+	left: 15px;
+	top: 325px;
+	zoom: 1;
+	z-index: 3
+}
+
+.carousel .num li {
+	width: 18px;
+	height: 17px;
+	line-height: 17px;
+	text-align: center;
+	font-weight: 400;
+	font-family: "微软雅黑", Arial;
+	color: #FFFFFF;
+	background: #4c879c;
+	margin-right: 10px;
+	border-radius: 50%;
+	cursor: pointer;
+	float: left;
+}
+.login-error{
+	padding:0px 3px;
+	margin:5px 20px 5px 70px;
+	width: 80%;
+	height:20px;
+	line-height: 20px;
+}
+.carousel .num li.on {
+	background: #ee8c29;
+} /*当前项*/

@@ -1,0 +1,47 @@
+<div style="padding:0 3px;position:relative;">
+	<table class="table table-striped staticHtml"
+		style="border:1px solid #dddddd;">
+		<tbody>
+			<tr>
+				<td colspan="3"><a name="服务器/AIX日志代理配置">1.3 AIX日志代理配置</a>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<table class="table table-bordered">
+						<tr>
+							<td>名称</td>
+							<td colspan="2">IBM AIX</td>
+							<td>类别</td>
+							<td>OS/AIX</td>
+						</tr>
+						<tr>
+							<td rowspan="2">日志源配置</td>
+							<td>设备类型</td>
+							<td colspan="3">服务器-> IBM-> AIX</td>
+						</tr>
+						<tr>
+							<td colspan="4"><img
+								src="/data/logDataSource02/image055.jpg" /></td>
+						</tr>
+						<tr>
+							<td>主机配置</td>
+							<td colspan="4"><pre>AIX5.1、5.3和6.1实现syslog外发配置方式相同，具体如下：
+1）修改 /etc/syslog.conf 文件，在最后增加两行内容： 
+*.debug;local5.none	 @IPAddress 
+local5.info @IPAddress 
+## 注意 *.debug 与 @ 之间是制表符分隔符。 
+保存配置。 
+2） 重启 syslogd 
+stopsrc -s syslogd 
+startsrc -s syslogd</pre></td>
+						</tr>
+						<tr>
+							<td>备注</td>
+							<td colspan="4"></td>
+						</tr>
+					</table></td>
+			</tr>
+		</tbody>
+	</table>
+</div>

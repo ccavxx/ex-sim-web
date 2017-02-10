@@ -1,0 +1,51 @@
+<div>
+	<!-- border-style: solid;border-color: black;border-width: thin; -->
+	<form id="alarm_queryform_Id" action="ssasa" method="post"
+		style="margin: 0 auto;width: 400px; display: block;" name="_alarmQueryForm">
+		<table style="width: 380x;margin: 0 auto;">
+			<tr><td width="50">时间：</td>
+				<td>
+					开始
+					<div class="input-append date form_datetime_1">
+					    <input name="startTime" size="16" type="text" value="" readonly style="width: 150px;">
+					    <span class="add-on"><i class="icon-th"></i></span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td width="50"></td>
+				<td>
+					结束
+					<div class="input-append date form_datetime_2">
+					    <input name="endTime" size="16" type="text" value="" readonly style="width: 150px;">
+					    <span class="add-on"><i class="icon-th"></i></span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>等级：</td>
+				<td>
+					非常高<input type="checkbox" name="level" value="4" /> 
+					         高<input type="checkbox" name="level" value="3" /> 
+					         中<input type="checkbox"	name="level" value="2" /> 
+					        低<input type="checkbox" name="level" value="1" /> 
+				        非常低<input type="checkbox" name="level" value="0" />
+				</td>
+			</tr>
+			<tr>
+				<td>名称：</td>
+				<td><input name="alarmName" type="text"></input></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><a class="easyui-linkbutton" onclick="doAlarmQuery();">查询</a></td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script type="text/javascript">
+<!--
+	$(".form_datetime_1").datetimepicker({format: 'yyyy-mm-dd hh:ii:ss',language:'zh-CN'});
+	$(".form_datetime_2").datetimepicker({format: 'yyyy-mm-dd hh:ii:ss',language:'zh-CN'});
+//-->
+</script>

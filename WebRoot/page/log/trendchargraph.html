@@ -1,0 +1,38 @@
+<div class="easyui-layout" data-options="fit:true,border:false">
+		   <div title="查询条件" data-options="region:'north',border:false,iconCls:'icon-search-conditions',headerCls:'sim-panel-header'" style="padding:3px;height:65px;">
+				请选择年份：<select id="logyear" style="width:120px;"></select><span style="padding-left:10px;"></span>
+                                        请选择月份：<select id="logmonth" style="width:120px;"></select><span style="padding-left:10px;"></span>
+                <div id="logday_div" style="display: inline-block;"> 请选择天数：<select style="width:120px;" id="logday"></select><span style="padding-left:10px;"></span></div>
+	                             请选择日志源：<select class="easyui-combotree" data-options="height:24,url:'/sim/logSearch/getTree',method:'get',valueField:'id',textField:'text'" id="logdata">
+	                         <option>所有设备</option>
+	                      </select>
+	       		<a class="easyui-linkbutton"  data-options="iconCls:'icon-search'" onclick="searchLogData('');">查询</a>
+	       		<!-- zhu_zengwen 日志摘要中的word导出功能-->
+				<a class="easyui-linkbutton"  data-options="iconCls:'icon-export'" onclick="exportReportWord();">导出</a>
+				
+			</div>
+			<div class="sim" data-options="region:'center',fit:true"">
+				<div id="log_stic" class="easyui-tabs" data-options="border:false,fit:true"> 
+				    <div title="日志概要图形统计">  
+				       <div  style="height:450px;width:66%;float: left;margin-top:60px;margin-left:40px;border:1px solid #e3e3e3;border-radius:4px;">
+				         <div id="log_chart" style="height:90%;"></div>
+				       </div>
+				       <div title="日志概要列表统计" style="height:450px;width:24%;float:right;margin-right:40px;margin-top:60px;border:1px solid #e3e3e3;border-radius:4px;">  
+						    <table id="logtotal_table" style="height:450px;width:350px;"></table>
+				    	</div>  
+				    </div>  
+				    
+				    <div title="日志大小数量趋势图">  
+				      <div  style="height:450px;width:66%;float: left;margin-top:60px;margin-left:40px;border:1px solid #e3e3e3;border-radius:4px;">
+				         <div id="log_size_chart" style="height:400px;"></div>
+				       </div>
+				        <div title="日志统计列表" style="height:450px;width:24%;float:right;margin-top:60px;margin-right:40px;border:1px solid #e3e3e3;border-radius:4px;">  
+						    <table id="log_datagrid_id" style="height:450px;width:350px;"></table>
+				    	</div>
+				    </div>  
+				</div>  
+			</div>
+			
+</div>
+<script src="/js/sim/log/log_echarts.js"></script>
+<script type="text/javascript" src="/js/sim/log/log_trendchargraph.js"></script>

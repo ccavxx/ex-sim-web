@@ -1,0 +1,101 @@
+<div class="row-fluid" style="height: 500px;">
+	<div class="span3" style="height: 100%">
+		<div class="sim sim-high-table" style="height:500px;">
+		    <table id="main_device_table" class="easyui-treegrid"
+		           data-options="fitColumns:true,scrollbarSize:0,fit:true,animate:true,showHeader:true,striped:true,
+		                         showFooter:true,idField:'id',treeField:'name',url:'/sim/index/assetList',
+		                         onLoadSuccess:simMainHandler.mainDeviceTableLoadSuccess,
+		                         onDblClickRow:simMainHandler.expandAssetRow,title:'资产列表',iconCls:'icon-grid'">
+		      <thead>
+		          <tr>
+		              <th data-options="field:'name',width:200,formatter:simMainHandler.formatDroggleNode">名称</th>
+		              <th data-options="field:'ip',width:120,formatter:simMainHandler.formatDeviceTableIp">IP地址</th>
+		              <th data-options="field:'eventCount',width:80,formatter:simMainHandler.deviceEventFormatter">事件</th>
+		          </tr>
+		      </thead>
+		    </table>  
+		</div>
+		<!-- <div class="sim" style="height:245px;margin-top: 5px;">
+		  <div id="main_event_name_panel" class="easyui-panel" data-options="fit:true,tools:'#main_event_name_panel_tools',onOpen:simMainHandler.drawEventNamePieChart,iconCls:'icon-grid'" title="事件名称统计-最近1天">  
+		    <div id="main_event_name_pie_chart" style="margin: 0 auto; width: 100%; height:100%;"></div>
+		  </div> 
+		  <div id="main_event_name_panel_tools">
+		    <a href="javascript:void(0)" title="最近1天"  class="panelToolsAct" onclick="simMainHandler.changeEventNameBarChart('day');simHandler.showEventIconAct(this)">天</a>|
+		    <a href="javascript:void(0)" title="最近1周" onclick="simMainHandler.changeEventNameBarChart('week');simHandler.showEventIconAct(this)">周</a>|
+		    <a href="javascript:void(0)" title="最近1月" onclick="simMainHandler.changeEventNameBarChart('month');simHandler.showEventIconAct(this)">月</a>
+		  </div>
+		</div> -->
+	</div>
+	<!-- 99.6=(500-2)/500,如果最外层div的高度要进行调整，根据此公式重新计算此div的高度
+	     减2是由于flex中的SimTabBarButtonSkin的top=-2引起的
+	 -->
+	<div id="centerContainer" class="sim span6">
+	 	<div id="container" class="easyui-tabs" data-options="tabPosition:'bottom',border:true" style="height:500px;">
+		    <div title="今日数据分布" class="sim" data-options="fit:true">
+				<div id="mapTab" class="easyui-tabs" fit="true" style="height: 500px;">
+					<div title="全国数据分布" style="padding:10px;">
+						<div id="china" style="height: 400px; padding:10px;"></div>
+					</div>
+					<div title="全球数据分布" style="padding:10px;">
+						<div id="world" style="height: 400px; padding:10px;"></div>
+					</div>
+					<div title="网段数据分布" style="padding:10px;">
+						<div id="lan" style="height: 400px;">
+						</div>
+					</div>
+				</div>
+			</div>
+	 		<div title="业务拓扑" style="height: 100%;" data-options="fit:true,border:false,href:'/page/asset/topo/topoBrowse.html'"/>
+	 	</div>
+ 	</div>
+	<div class="span3" style="height: 100%">
+		<div class="sim" style="height: 100%;">
+			<div id="main_log_panel" class="easyui-panel" data-options="fit:true,iconCls:'icon-grid'" title="日志数量大小统计">  
+		   </div>
+		</div>
+<!-- 
+		<div class="sim" style="height:48%;padding-top: 2%;">
+		  <div id="main_event_level_panel" class="easyui-panel" data-options="fit:true,tools:'#main_event_level_panel_tools',onOpen:simMainHandler.drawEventLevelPieChart,iconCls:'icon-grid'" title="事件级别统计-最近1天">  
+		    <div id="main_event_level_pie_chart" style="margin: 0 auto; width: 346px; height:209px;"></div>
+		  </div> 
+		  <div id="main_event_level_panel_tools">
+		    <a href="javascript:void(0)" title="最近1天" class="panelToolsAct" onclick="simMainHandler.changeEventLevelBarChart('day');simHandler.showEventIconAct(this)">天</a>|
+		    <a href="javascript:void(0)" title="最近1周" onclick="simMainHandler.changeEventLevelBarChart('week');simHandler.showEventIconAct(this)">周</a>|
+		    <a href="javascript:void(0)" title="最近1月" onclick="simMainHandler.changeEventLevelBarChart('month');simHandler.showEventIconAct(this)">月</a>
+		  </div>
+		</div>	
+ -->	
+	</div>
+</div>
+<div class="row-fluid" style="margin-top:5px;">
+	<div class="span6 sim" style="height:400px;float: left;">
+		<div id="main_event_river_panel" class="easyui-panel" data-options="fit:true,tools:'#main_event_river_panel_tools',onOpen:simMainHandler.drawEventRiverChart,iconCls:'icon-grid'" title="事件河流图-最近1天">  
+			<div id="main_event_river" style="width: 100%; height:100%;"></div>
+		</div> 
+		<div id="main_event_river_panel_tools">
+			<a href="javascript:void(0)" title="最近1天" onclick="simMainHandler.changeEventRiverChart('day');simHandler.showEventIconAct(this)" class="panelToolsAct">天</a>|
+			<a href="javascript:void(0)" title="最近1周" onclick="simMainHandler.changeEventRiverChart('week');simHandler.showEventIconAct(this)">周</a>|
+			<a href="javascript:void(0)" title="最近1月" onclick="simMainHandler.changeEventRiverChart('month');simHandler.showEventIconAct(this)">月</a>
+		</div>
+	</div>
+	<div class="span6 sim" style="height:400px;float: left;">
+		<div id="main_event_chord_panel" class="easyui-panel" data-options="fit:true,tools:'#main_event_chord_panel_tools',onOpen:simMainHandler.drawEventChordChart,iconCls:'icon-grid'" title="主机访问关系图-最近1天">  
+			<div id="main_event_chord" style="width: 100%; height:100%;"></div>
+		</div> 
+		<div id="main_event_chord_panel_tools">
+			<a href="javascript:void(0)" title="最近100" onclick="simMainHandler.changeEventChordChart('100');simHandler.showEventIconAct(this)" style="width: 30px;" class="panelToolsAct">100</a>|
+			<a href="javascript:void(0)" title="最近500" onclick="simMainHandler.changeEventChordChart('500');simHandler.showEventIconAct(this)" style="width: 30px;">500</a>|
+			<a href="javascript:void(0)" title="最近1000" onclick="simMainHandler.changeEventChordChart('1000');simHandler.showEventIconAct(this)" style="width: 30px;">1000</a>
+		</div>
+	</div>
+</div>	
+<script src="/js/sim/log/log_echarts.js"></script>
+<script src="/js/sim/extends/dateformat.js"></script>
+<script src="/js/echart/model.js"></script>
+<script src="/js/echart/map/chinaCityGeoCoordMap.js"></script>
+<script src="/js/echart/map/worldGeoInfo.js"></script>
+<script src="/js/echart/map/china.js"></script>
+<script src="/js/echart/map/world.js"></script>
+<script src="/js/echart/map/lan.js"></script>
+<script src="/js/sim/eventChord.js"></script>
+<script src="/js/sim/main.js"></script>

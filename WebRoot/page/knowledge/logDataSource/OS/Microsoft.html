@@ -1,0 +1,71 @@
+<div style="padding:0 3px;position:relative;">
+	<table class="table table-striped staticHtml" style="border:1px solid #dddddd;">
+		<tbody>
+			<tr>
+				<td colspan="3" ><a name="主机/Windows">1.1	Windows</a></td>
+			</tr>
+			<tr>
+				<td colspan="3" >
+					<pre>通过安装代理可以采集 windows 的应用日志、系统日志和安全日志。采集日志之前，请打开 windows 的审核策略修改其安全设置（打开方式：运行gpedit.msc进入本地组策略编辑器>计算机配置>Windows设置>安全设置>本地策略>审核策略，按照下图2.1所示，进行策略的修改），如此可以使日志内容更详细。</pre>
+					<div style="margin:auto;width:500px;text-align:center;"><img src="/data/logDataSource/image001.jpg" />图2.1　windows审核策略界面</div></td>
+			</tr>
+			<tr>
+				<td colspan="3" style="background-color:#99ccff;"></td>
+			</tr>
+			<tr>
+				<td colspan="3" ><a name="服务器/WindowsEventlog">1.1.1 Windows Eventlog</a></td>
+			</tr>
+			<tr>
+				<td colspan="3" >
+					<table class="table table-bordered">
+						<tr>
+							<td>名称</td>
+							<td colspan="2">Windows EventLog</td>
+							<td>类别</td>
+							<td>OS/Windows</td>
+						</tr>
+						<tr>
+							<td rowspan="2">日志源配置</td>
+							<td>设备类型</td>
+							<td colspan="3">服务器->微软->WindowsEventLog</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<p>选择设备类型后，WMI配置信息信息中填写被收集主机的用户名和密码即可，点击保存，如下图：</p>
+								<p><img src="/data/logDataSource02/image051.jpg" /></p>
+							</td>
+						</tr>
+						<tr>
+							<td rowspan="2">监视对象配置</td>
+							<td>监视对象类型</td>
+							<td colspan="3">服务器-> 微软-> WindowsStatus</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<img src="/data/logDataSource02/image051.png" />
+							</td>
+						</tr>
+						<tr>
+							<td>主机配置</td>
+							<td colspan="4">
+								<p>安全管理系统收集远程收集WindowsEventLog日志需要被收集主机和安全管理系统服务器同时开启WMI服务，步骤如下：</p>
+								<p>运行services.msc，进入系统服务，找到名称为Windows Management Instrumentation服务，开启该服务，如下图：</p>
+								<p><img src="/data/logDataSource02/image052.jpg" /></p>
+								<p>若主机不允许开启WMI服务或者安全管理系统安装在linux系统上无法使用WMI服务，则必须通过在被收集主机上安装安全管理系统代理来收集Windows日志，步骤如下：</p>
+								<p>在安全管理系统平台上进入产品支持->产品信息，点击“Agent下载”，安装Agent并开启Agent服务即可。</p>
+							</td>
+						</tr>
+						<tr>
+							<td>备注</td>
+							<td colspan="4">
+								<p>采集日志之前，请打开 windows 的审核策略修改其安全设置（打开方式：</p>
+								<p>运行gpedit.msc进入本地组策略编辑器 > 计算机配置 > Windows设置 > 安全设置 > 本地策略>审核策略，按照下图2.1所示，进行策略的修改），如此可以使日志内容更详细。</p>
+								<p><img src="/data/logDataSource02/image053.jpg" /></p>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

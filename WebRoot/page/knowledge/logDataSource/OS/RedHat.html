@@ -1,0 +1,86 @@
+<div style="padding:0 3px;position:relative;">
+	<table class="table table-striped staticHtml" style="border:1px solid #dddddd;">
+		<tbody>
+			<tr>
+				<td colspan="3" ><a name="OS/RedHat">1.2	Linux</a></td>
+			</tr>
+			<tr>
+				<td colspan="3" >
+					<table class="table table-bordered">
+						<tr>
+							<td>名称</td>
+							<td colspan="2">Linux</td>
+							<td>类别</td>
+							<td>OS/Linux</td>
+						</tr>
+						<tr>
+							<td rowspan="2">日志源配置</td>
+							<td>设备类型</td>
+							<td colspan="3">服务器-> 红帽-> 红帽</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<img src="/data/logDataSource02/image054.jpg" />
+							</td>
+						</tr>
+						<tr>
+							<td rowspan="2">监视对象配置</td>
+							<td>监视对象类型</td>
+							<td colspan="3">服务器-> 红帽-> 红帽</td>
+						</tr>
+						<tr>
+							<td colspan="4"><img src="/data/logDataSource02/image054.png" /></td>
+						</tr>
+						<tr>
+							<td>主机配置</td>
+							<td colspan="4">
+								<pre>1、Redhat 9.0 及更高版本 
+通过命令行方式在 linux 主机上配置日志服务器的 ip 地址 
+一、通过 ssh 登陆到 linux 主机 
+二、 syslog 发送配置方法如下： 
+1）寻找syslog.conf文件
+#find / -name syslog.conf
+注：syslog.conf文件通常是存储与根目录的etc下。
+
+2）修改syslog.conf文件
+#vi /etc/syslog.conf
+注：vi 后输入syslog.conf文件的绝对路径，如/etc/syslog.conf。
+然后，按insert后即可修改文件，在该文件最后添加一条命令：*.* @ IPAddress
+注：* @之间有空格，切勿漏输；IPAddress是日志转发的目的IP，即安全管理系统收集节点的服务器IP。
+这里的 *.* 代表所有的日志，也可以定义如 mail.* 或者 *.info 等指定具体的日志进行发送。
+最后，按ESC后输wq保存修改。
+3）重启syslog服务
+#service syslog restart 
+
+2、Redhat 6.0 
+1）#vi  /etc/rsyslog.conf
+修改 /etc/rsyslog.conf 配置文件，在该文件内容最后增加一行： 
+*.* @IPAddress 
+2）保存文件后，重启 rsyslog 服务 
+# service rsyslog restart </pre>
+							</td>
+						</tr>
+						<tr>
+							<td>备注</td>
+							<td colspan="4">Redhat添加多个日志转发IP时添加多行*.* @IPAddress 即可。</td>
+						</tr>
+						<tr>
+				<td rowspan="2">日志源配置</td>
+				<td>设备类型</td>
+				<td colspan="3">服务器-> 红帽-> Openssh Sftp</td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<img src="/data/logDataSource02/image00122.png" />
+				</td>
+			</tr>
+			<tr>
+				<td>备注</td>
+				<td colspan="4"></td>
+			</tr>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

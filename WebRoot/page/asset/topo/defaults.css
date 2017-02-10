@@ -1,0 +1,110 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace spark "mx.skins.spark.*";
+@namespace ui "com.iolive.topology.ui.*";
+
+mx|Canvas{
+	interactionMode:touch;
+}
+mx|Label{
+	fontFamily:"微软雅黑,宋体";
+}
+s|Label{
+	fontFamily:"微软雅黑,宋体";
+}
+mx|Button{
+	fontFamily:"微软雅黑,宋体";
+}
+mx|HBox {
+	vertical-align: middle;	
+}
+mx|Accordion{
+	openDuration:500;
+}
+mx|AccordionHeader{
+	skin:ClassReference("skins.accordion.AccordionSkin");
+	fontFamily:"微软雅黑,宋体";
+}
+mx|Menu 
+{ 
+	color:#000000;
+	fontFamily:"微软雅黑";
+	fontSize:13;
+	contentBackgroundColor:#2192C8;
+	contentBackgroundAlpha:0.55;
+	disabledColor:#CCCCCC;
+	borderVisible:false;
+	selectionColor:#ecfbd4;
+	rollOverColor:#bce774;
+	dropShadowVisible:false;
+} 
+mx|ToolTip{
+	backgroundColor:#2192C8;
+	backgroundAlpha:0.55;
+	fontFamily:"微软雅黑";
+	fontSize:12;
+}
+s|TitleWindow{
+	color:#000000;
+	borderAlpha:0;
+	skinClass:ClassReference("skins.titlewindow.IoliveTitleWindowSkin");
+}
+s|TextInput{
+	fontFamily:"微软雅黑,宋体";
+}
+s|DataGrid{
+	fontFamily:"微软雅黑,宋体";
+	skinClass:ClassReference("skins.datagrid.DataGridSkin");
+}
+mx|ProgressBar{
+	textIndent: 2;
+	color: #000000;	
+	fontSize:12;
+	fontFamily:"微软雅黑,宋体";
+}
+mx|VScrollBar{ 
+	downArrowUpSkin: Embed(source="/assets/scrollbar/downArrowUpSkin.png");
+	downArrowOverSkin: Embed(source="/assets/scrollbar/downArrowUpSkin.png");
+	downArrowDownSkin: Embed(source="/assets/scrollbar/downArrowUpSkin.png");
+	upArrowUpSkin: Embed(source="/assets/scrollbar/upArrowUpSkin.png");
+	upArrowOverSkin: Embed(source="/assets/scrollbar/upArrowUpSkin.png");
+	upArrowDownSkin: Embed(source="/assets/scrollbar/upArrowUpSkin.png");
+	thumbDownSkin: Embed(source="/assets/scrollbar/thumbUpSkin1.png",
+		scaleGridLeft="7", scaleGridTop="5", scaleGridRight="8", scaleGridBottom="7");
+	thumbUpSkin: Embed(source="/assets/scrollbar/thumbUpSkin1.png",
+		scaleGridLeft="7", scaleGridTop="5", scaleGridRight="8", scaleGridBottom="7");
+	thumbOverSkin: Embed(source="/assets/scrollbar/thumbUpSkin1.png",
+		scaleGridLeft="7", scaleGridTop="5", scaleGridRight="8", scaleGridBottom="7");
+	trackSkin: Embed(source="/assets/scrollbar/trackSkin.png",
+		scaleGridLeft="7", scaleGridTop="4", scaleGridRight="8", scaleGridBottom="6" );	
+}
+
+mx|HScrollBar{ 
+	downArrowUpSkin: Embed(source="/assets/scrollbar/downArrowUpSkin.png");
+	downArrowOverSkin: Embed(source="/assets/scrollbar/downArrowUpSkin.png");
+	downArrowDownSkin: Embed(source="/assets/scrollbar/downArrowUpSkin.png");
+	upArrowUpSkin: Embed(source="/assets/scrollbar/upArrowUpSkin.png");
+	upArrowOverSkin: Embed(source="/assets/scrollbar/upArrowUpSkin.png");
+	upArrowDownSkin: Embed(source="/assets/scrollbar/upArrowUpSkin.png");
+	thumbDownSkin: Embed(source="/assets/scrollbar/thumbUpSkin1.png",
+		scaleGridLeft="7", scaleGridTop="5", scaleGridRight="8", scaleGridBottom="7");
+	thumbUpSkin: Embed(source="/assets/scrollbar/thumbUpSkin1.png",
+		scaleGridLeft="7", scaleGridTop="5", scaleGridRight="8", scaleGridBottom="7");
+	thumbOverSkin: Embed(source="/assets/scrollbar/thumbUpSkin1.png",
+		scaleGridLeft="7", scaleGridTop="5", scaleGridRight="8", scaleGridBottom="7");
+	trackSkin: Embed(source="/assets/scrollbar/trackSkin.png",
+		scaleGridLeft="7", scaleGridTop="4", scaleGridRight="8", scaleGridBottom="6" );	
+}
+
+s|Scroller{
+	skinClass:ClassReference("skins.scrollbarskin.ScollerSkinElegant");
+}
+s|HScrollBar
+{
+	skin-class:ClassReference("skins.scrollbarskin.SkinHScrollerBarElegant");
+}
+s|VScrollBar
+{
+	skin-class:ClassReference("skins.scrollbarskin.SKinVScrollerBarElegant");
+}

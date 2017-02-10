@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="E:\Object.Work\workspace\TAL-WEB\src\ireport" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="title" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="chart" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="footlogo" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="headlogo" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="cretime" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="V_DOWN_PAGE" class="java.lang.Integer" isForPrompting="false"/>
+	<background>
+		<band splitType="Prevent"/>
+	</background>
+	<title>
+		<band height="37" splitType="Prevent">
+			<printWhenExpression><![CDATA[new Boolean($V{PAGE_NUMBER}.intValue()==1)]]></printWhenExpression>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" mode="Opaque" x="63" y="20" width="438" height="15" forecolor="#FFFFFF" backcolor="#6666FF"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{title}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement key="image-4" x="63" y="0" width="168" height="20"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{headlogo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="20" splitType="Prevent">
+			<printWhenExpression><![CDATA[new Boolean($V{PAGE_NUMBER}.intValue()>1)]]></printWhenExpression>
+			<image>
+				<reportElement key="image-2" x="63" y="0" width="168" height="20"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{headlogo}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="300" splitType="Prevent">
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement key="image-1" x="63" y="26" width="438" height="242"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.0" lineColor="#6666FF"/>
+					<topPen lineWidth="1.0" lineColor="#6666FF"/>
+					<leftPen lineWidth="1.0" lineColor="#6666FF"/>
+					<bottomPen lineWidth="1.0" lineColor="#6666FF"/>
+					<rightPen lineWidth="1.0" lineColor="#6666FF"/>
+				</box>
+				<imageExpression class="java.lang.String"><![CDATA[$P{chart}]]></imageExpression>
+			</image>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Prevent"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Prevent"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="35" splitType="Prevent">
+			<image>
+				<reportElement key="image-3" x="339" y="10" width="164" height="25"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{footlogo}]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-4" x="63" y="10" width="105" height="25"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{cretime}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line-1" x="63" y="5" width="438" height="1" forecolor="#6699FF"/>
+			</line>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-5" x="221" y="10" width="56" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[new Integer($V{PAGE_NUMBER}.intValue()+$P{V_DOWN_PAGE}.intValue())]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Prevent"/>
+	</summary>
+</jasperReport>

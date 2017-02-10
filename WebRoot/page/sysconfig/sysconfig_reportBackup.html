@@ -1,0 +1,60 @@
+<div class="easyui-panel" style="padding: 5px;" data-options="fit:true,title:'报表存储策略配置',headerCls:'sim-panel-header',bodyCls:'sim-panel-body'">
+	<div class="alert alert-info">
+		<strong>描述 </strong>
+		报表存储策略的配置
+	</div>
+	<div class="row-fluid">
+		<div class="span7">
+			<form class="form-horizontal" id="sysconfig_reportbackup_form">
+				<div class="control-group">
+					<label class="control-label">审计系统报表保存期</label>
+					<div class="controls">
+						<select name="systemreport">
+						    <option value="2m">2个月</option>
+						    <option value="3m">3个月</option>
+						    <option value="6m">6个月</option>
+						    <option value="1y" selected="">1年</option>
+						    <option value="0m">永远保存</option>
+						</select>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">主动日志报表保存期</label>
+					<div class="controls">
+						<select name="activereport">
+						    <option value="2m">2个月</option>
+						    <option value="3m" selected="">3个月</option>
+						    <option value="6m">6个月</option>
+						    <option value="1y">1年</option>
+						    <option value="0m">永远保存</option>
+						</select>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">被动日志报表保存期</label>
+					<div class="controls">
+						<select name="passivereport">
+						    <option value="2m">2个月</option>
+						    <option value="3m">3个月</option>
+						    <option value="6m">6个月</option>
+						    <option value="1y" selected="">1年</option>
+						    <option value="0m">永远保存</option>
+						</select>			
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<a class="easyui-linkbutton" id="sysconfig_reportbackup_form_submit_button"  
+							onclick="$('#sysconfig_reportbackup_form').submit()" data-options="iconCls:'icon-apply'">应用</a>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="span5 well">
+			<p class="text-info"><strong>审计系统报表保存期：</strong>该选项用来设置系统报表数据的保存期限，超过保存期限的统计数据将被自动删除。</p>
+			<p class="text-info"><strong>主动日志报表保存期：</strong>该选项用来设置主动日志报表数据的保存期限，超过保存期限的统计数据将被自动删除。</p>
+			<p class="text-info"><strong>被动日志报表保存期：</strong>该选项用来设置被动日志报表数据的保存期限，超过保存期限的统计数据将被自动删除。</p>
+		</div>
+	</div>
+</div>
+<script src="/js/sim/sysconfig/sysconfig_reportbackup.js" type="text/javascript"></script>

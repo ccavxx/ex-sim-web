@@ -1,0 +1,51 @@
+<div class="easyui-panel" fit="true" border="false" id="alarm_main_div_id">
+	<div id="panelTools">
+	 	 <a href="javascript:void(0)"  onclick="">天</a>
+         <a href="javascript:void(0)"  onclick="">周</a>
+         <a href="javascript:void(0)"  onclick="">月</a>
+		 <a href="javascript:void(0)" class="icon-pie"    onclick="doAlarmLevel(0)"></a>
+		 <a href="javascript:void(0)" class="icon-bar"    onclick="doAlarmLevel(1)"></a>
+	     <a href="javascript:void(0)" class="icon-table"  onclick="doAlarmLevel(2)"></a>
+	</div>
+	<div id="panelTools1">
+		 <a href="javascript:void(0)"  onclick="">天</a>
+         <a href="javascript:void(0)"  onclick="">周</a>
+         <a href="javascript:void(0)"  onclick="">月</a>
+		 <a href="javascript:void(0)" class="icon-pie"    onclick="doAlarmDev(0)"></a>
+		 <a href="javascript:void(0)" class="icon-bar" 	  onclick="doAlarmDev(1)"></a>
+	     <a href="javascript:void(0)" class="icon-table"  onclick="doAlarmDev(2)"></a>
+	</div>
+	<div id="panelTools2">
+	 	 <a href="javascript:void(0)"  onclick="">天</a>
+         <a href="javascript:void(0)"  onclick="">周</a>
+         <a href="javascript:void(0)"  onclick="">月</a>
+		 <a href="javascript:void(0)" class="icon-line"	  onclick="doAlarmTrend(0)"></a>
+		 <a href="javascript:void(0)" class="icon-bar"	  onclick="doAlarmTrend(1)"></a>
+	     <a href="javascript:void(0)" class="icon-table"  onclick="doAlarmTrend(2)"></a>
+	</div>
+	<div class="easyui-layout" data-options="fit:true" >
+		 <div data-options="region:'north',border:false,height:335">
+		 	<table class="main_panel_bgc_table" style="height:100%;width:100%;border:none;margin:0px;padding:0px;">
+		 		<tbody>
+		 			<tr style="height:330px;">
+		 				<td style="width:325px;"><div id="_alarm_level_id" title="告警级别" class="easyui-panel" data-options="fit:true,collapsible:false,tools:'#panelTools',headerCls:'sim-panel-header',bodyCls:'sim-panel-body'"></div></td>
+		 				<td style="width:2px;"></td>
+		 				<td style="width:345px;"><div id="_alarm_category_id" title="IP地址" class="easyui-panel" data-options="fit:true,collapsible:false,tools:'#panelTools1',headerCls:'sim-panel-header',bodyCls:'sim-panel-body'"></div></td>
+		 				<td style="width:2px;"></td>
+		 				<td style="width:auto;"><div id="_alarm_trend_id" title="告警趋势" class="easyui-panel" data-options="fit:true,collapsible:false,tools:'#panelTools2',headerCls:'sim-panel-header',bodyCls:'sim-panel-body'" ><div id="_alarm_trend_cg_id"></div></div></td>
+		 			</tr>
+					<tr style="height:auto;"><td colspan="5"></td></tr>
+		 		</tbody>
+		 	</table>
+		 </div>
+	</div>
+	 <div id="alarm_div_id" class="sim">
+		<table  id="alarm_table_id" ></table>
+	 </div>
+</div>
+<script type="text/javascript" src="/js/sim/extends/dateformat.js"></script>
+<script type="text/javascript" src="/js/sim/event/event_evtquery_base.js"></script>
+<script type="text/javascript" src="/js/sim/event/event_summary_cartogram.js"></script>
+<script type="text/javascript" src="/js/sim/alarm/alarm_statistic.js"></script>
+
+ 

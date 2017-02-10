@@ -1,0 +1,49 @@
+<div class="easyui-layout" data-options="fit:true,border:false" id="user_management_panel">
+	 <div data-options="region:'center',border:false">
+	    <div class="easyui-panel" data-options="fit:'true',border:false">
+		   <table id="user_management_table" class="easyui-datagrid" data-options="singleSelect:true,fitColumns:true,fit:true,
+		   url:'/sim/authUser/getView',  loadMsg:'数据加载中请稍后', toolbar: '#toolBar', pagination:true, pageSize:20,">
+		     <thead>  
+        <tr>  
+            <th data-options="field:'USERNAME',width:100">名称</th>  
+            <th data-options="field:'ROLENAME',width:100">所属角色</th>  
+            <th data-options="field:'STATUS',width:100,formatter: function(value,row,index){
+	        	if(value=='0'){
+	        		return '停用';
+	        	}
+	        	else if(value=='1'){
+	        		return '启用';
+	        	}
+	        }">状态</th>  
+            <th data-options="field:'EXPIRETIME',width:100">有效期</th>  
+            <th data-options="field:'CREATEUSER',width:100">创建者</th>
+            <th data-options="field:'LASTMODIFYUSER',width:100">最后修改者</th>
+            <th data-options="field:'LASTMODIFYTIME',width:100">最后修改时间</th>
+            <th data-options="field:'action',width:50,formatter:formatterUserAction">操作</th>
+        </tr>  
+    </thead> 
+		   </table>  
+	    </div>
+	    <div id="toolBar" style="padding:3px;">
+	    	<form style="margin:0px;">
+		    	<table>
+		    		<tbody>
+		    			<tr>
+		    				<td>角色名称：</td>
+		    				<td><select name="roleid" id="searchRoleId" style="height:24px;font-size:12px;width:120px;padding:0px;margin:0px;">
+				                   <option value="">全部</option>
+				                   <option value="51">账号管理员</option>
+				                   <option value="52">审计管理员</option>
+				                   <option value="53">操作管理员</option>
+				               	</select></td>
+		    				<td><a href="javascript:void(0)"  style="" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="user_search();">查询</a></td>
+		    				<td><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="user_add_open();">新建</a></td>
+		    			</tr>
+		    		</tbody>
+		    	</table>
+	    	</form>
+		</div>
+	</div>  
+</div>
+<div id="user_dialog"></div>
+<script src="../../js/sim/user/user_management.js"></script>

@@ -1,0 +1,7 @@
+[
+ {"id":4,"state":"open","text":"非常高"},
+ {"id":3,"state":"open","text":"高"},
+ {"id":2,"state":"open","text":"中"},
+ {"id":1,"state":"open","text":"低"},
+ {"id":0,"state":"open","text":"非常低"}
+ ]

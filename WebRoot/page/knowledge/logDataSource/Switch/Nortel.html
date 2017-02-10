@@ -1,0 +1,46 @@
+<div style="padding:0 3px;position:relative;">
+	<table class="table table-striped staticHtml" style="border:1px solid #dddddd;">
+		<tbody>
+			<tr>
+				<td colspan="3" ><a name="交换机/北电">5.6	北电</a></td>
+			</tr>
+			<tr>
+				<td colspan="3" >
+					<table class="table table-bordered">
+						<tr>
+							<td>名称</td>
+							<td colspan="2">北电交换机</td>
+							<td>类别</td>
+							<td>网络产品</td>
+						</tr>
+						<tr>
+							<td rowspan="2">日志源配置</td>
+							<td>设备类型</td>
+							<td colspan="3">交换机-> 北电-> Passport</td>
+						</tr>
+						<tr>
+							<td colspan="4"><img src="/data/logDataSource02/image065.jpg" /></td>
+						</tr>
+						<tr>
+							<td>北电交换机配置</td>
+							<td colspan="4">
+								<pre>可以使用串口线直接连接，如果交换机配置有管理IP并且允许telnet登陆，则也可以通过telnet进行登陆。
+1、	输入enable命令进入特权模式。
+2、	输入config进行配置模式。
+3、配置syslog日志接收主机地址
+sys syslog host 1 create  
+sys syslog host 1 address 10.2.1.100 
+sys syslog host 1 host enable  
+sys syslog host 1 severity info warning error fa安全管理系统</pre>
+							</td>
+						</tr>
+						<tr>
+							<td>备注</td>
+							<td colspan="4"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,17 @@
+<div class="easyui-layout sim" data-options="fit:true" >
+	<div data-options="region:'center',title:'日志过滤规则配置',headerCls:'sim-panel-header',bodyCls:'sim-panel-body'" >
+		<div id="sysconf_logfilterrule_table_panel" class="easyui-panel" data-options="fit:true,border:0">
+			<!-- 日志过滤规则列表 -->
+			<table id="sysconf_logfilterrule_table" data-options="border:false,scrollbarSize:0" ></table>
+			
+		</div>
+		<div id="sysconf_logfilterrule_table_toolbar" style="padding:2px 0 2px 5px">
+			<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="javascript:simSysConfLogFilterRule.addLogFilterRule();">新建</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-enabled'" onclick="javascript:simSysConfLogFilterRule.changeAvailable(1);">启用</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-disable'" onclick="javascript:simSysConfLogFilterRule.changeAvailable(0);">禁用</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="javascript:simSysConfLogFilterRule.removeLogFilterRule();">删除</a>
+		</div>
+	</div>
+	<div id="sysconf_logfilterrule_editor_dialog" ></div>
+</div>
+<script src="/js/sim/sysconfig/sysconfig_logfilterrule.js" type="text/javascript"></script>

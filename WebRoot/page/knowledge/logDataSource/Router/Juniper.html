@@ -1,0 +1,50 @@
+<div style="padding:0 3px;position:relative;">
+	<table class="table table-striped staticHtml" style="border:1px solid #dddddd;">
+		<tbody>
+			<tr>
+				<td colspan="3" ><a name="路由器/Juniper">17.4 Juniper路由器</a></td>
+			</tr>
+			<tr>
+				<td colspan="3" >
+					<table class="table table-bordered">
+						<tr>
+							<td>名称</td>
+							<td colspan="2">Juniper路由器</td>
+							<td>类别</td>
+							<td>安全产品</td>
+						</tr>
+						<tr>
+							<td rowspan="2">日志源配置</td>
+							<td>设备类型</td>
+							<td colspan="3">路由器-> Juniper-> 路由器</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<img src="/data/logDataSource02/image076.jpg" />
+							</td>
+						</tr>
+						<tr>
+							<td rowspan="2">Juniper路由器配置</td>
+							<td>系统菜单</td>
+							<td colspan="3"></td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<pre>可以使用串口线直接连接，如果路由器配置有管理IP并且允许telnet登陆，则也可以通过telnet进行登陆。
+1、	输入edit命令进入编辑模式。
+2、配置syslog，配置info级别以上的都需要发送，将syslog发往1.2.3.4
+set system syslog host 1.2.3.4 any info
+使用完配置命令后，均需要执行以下步骤进行保存：
+3、commit保存配置文件。</pre>
+							</td>
+						</tr>
+						<tr>
+							<td>备注</td>
+							<td colspan="4"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

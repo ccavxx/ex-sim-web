@@ -1,0 +1,9 @@
+[
+ [
+	{field:"END_TIME",title:"时间",width:200},
+	{field:"NAME",title:"告警名称",width:200},
+	{field:"PRIORITY",title:"严重级别",width:200},
+	{field:"SRC_ADDRESS",title:"源地址",width:200},
+	{field:"MESSAGE",title:"描述",width:200},
+  ]
+]

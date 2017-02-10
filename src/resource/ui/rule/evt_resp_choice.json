@@ -1,0 +1,314 @@
+[{
+			"name" : "rep_cfg_integer",
+			"items" : [{
+						"label" : "Topic",
+						"name" : "topic",
+						"showInput" : true,
+						"showSelect" : false,
+						"requried" : true,
+						"dataType" : "String",
+						"validatesize" : "unlimit"
+					}, {
+						"label" : "是否加密",
+						"name" : "encryption",
+						"showInput" : false,
+						"showSelect" : true,
+						"requried" : true,
+						"dataType" : "String",
+						"validatesize" : "unlimit",
+						"options":["是","否"],
+						"value" : [true, false]
+					}, {
+						"label" : "IP",
+						"name" : "serverip",
+						"showInput" : true,
+						"showSelect" : false,
+						"requried" : true,
+						"dataType" : "IP",
+						"validatesize" : "unlimit"
+					}, {
+						"label" : "端口",
+						"name" : "serverport",
+						"showInput" : true,
+						"showSelect" : false,
+						"requried" : true,
+						"dataType" : "Integer",
+						"validatesize" : [0, 65535]
+					}]
+		}, {
+			"name" : "resp_cfg_wavalert",
+			"items" : [{
+						"label" : "等级",
+						"name" : "basegrade",
+						"showInput" : false,
+						"showSelect" : true,
+						"requried" : true,
+						"dataType" : "Integer",
+						"validatesize" : "unlimit",
+						"options":["等级一","等级二","等级三","等级四","等级五"],
+						"value" : [1, 2, 3, 4, 5]
+					}, {
+						"label" : "循环次数",
+						"name" : "exectimes",
+						"showInput" : true,
+						"showSelect" : false,
+						"requried" : true,
+						"dataType" : "Integer",
+						"validatesize" : [1, 5]
+					},
+					 {
+						"label" : "间隔时间(秒)",
+						"name" : "execinterval",
+						"showInput" : true,
+						"showSelect" : false,
+						"requried" : true,
+						"dataType" : "Integer",
+						"validatesize" : [1, 5]
+					}]
+		}, {
+			"name" : "resp_cfg_snmptrap",
+			"items" : [
+
+					{
+						"label" : "SNMP协议版本",
+						"name" : "snmp_ver",
+						"showInput" : false,
+						"showSelect" : true,
+						"requried" : true,
+						"dataType" : "String",
+						"options":["SNMP V1","SNMP V2C"],
+						"value" : ["v1", "v2c"]
+					},
+
+					{
+						"label" : "SNMP通信字",
+						"name" : "snmp_community",
+						"showInput" : true,
+						"showSelect" : false,
+						"requried" : true,
+						"dataType" : "String",
+						"validatesize" : "unlimit"
+					}, {
+						"label" : "传输协议",
+						"name" : "transfer_protocol",
+						"showInput" : false,
+						"showSelect" : true,
+						"requried" : true,
+						"dataType" : "String",
+						"options":["UDP"],
+						"value" : ["udp"]
+					}, {
+						"label" : "服务器IP地址",
+						"name" : "serverip",
+						"showInput" : true,
+						"showSelect" : false,
+						"requried" : true,
+						"dataType" : "IP",
+						"validatesize" : "unlimit"
+					}, {
+						"label" : "端口",
+						"name" : "serverport",
+						"showInput" : true,
+						"showSelect" : false,
+						"requried" : true,
+						"dataType" : "Integer",
+						"validatesize" : [0, 65535]
+					}]
+		}, {
+			"name" : "resp_cfg_execcmd",
+			"items" : [{
+						"label" : "命令或脚本",
+						"name" : "execcmd",
+						"showInput" : true,
+						"showSelect" : false,
+						"requried" : true,
+						"dataType" : "String",
+						"validatesize" : "unlimit"
+					}]
+		}, {
+			"name" : "resp_cfg_wavashinelert",
+			"items" : [{
+						"label" : "等级",
+						"name" : "basegrade",
+						"showInput" : false,
+						"showSelect" : true,
+						"requried" : true,
+						"dataType" : "Integer",
+						"validatesize" : "unlimit",
+						"options":["等级一","等级二","等级三","等级四","等级五"],
+						"value" : [1, 2, 3, 4, 5]
+					}, {
+						"label" : "通知内容",
+						"name" : "shinecontent",
+						"showInput" : true,
+						"showSelect" : false,
+						"requried" : false,
+						"dataType" : "text",
+						"validatesize" : "unlimit"
+					}]
+		}, {
+			"name" : "resp_cfg_mail",
+			"items" : [{
+						"label" : "标题",
+						"name" : "title",
+						"showInput" : true,
+						"showSelect" : false,
+						"requried" : true,
+						"dataType" : "String",
+						"validatesize" : "unlimit"
+					}, {
+						"label" : "通知内容",
+						"name" : "content",
+						"showInput" : true,
+						"showSelect" : false,
+						"requried" : true,
+						"dataType" : "text",
+						"validatesize" : "unlimit"
+					},
+					{
+						"label" : "邮件",
+						"name" : "email",
+						"showInput" : true,
+						"showSelect" : false,
+						"requried" : false,
+						"dataType" : "String",
+						"onclick":true,
+						"validatesize" : "unlimit"
+					},{
+						"label" : "邮件地址",
+						"name" : "mailreceivers",
+						"showInput" : true,
+						"showSelect" : false,
+						"requried" : true,
+						"dataType" : "text",
+						"isSelect":true,
+						"submitAllValue":true,
+						"validatesize" : "unlimit"
+					}
+					]
+		},{
+			"name":"resp_cfg_phonemsg",
+			"items":[
+					
+					{
+						"label" : "标题",
+						"name" : "title",
+						"showInput" : true,
+						"showSelect" : false,
+						"requried" : true,
+						"dataType" : "String",
+						"validatesize" : "unlimit"
+					},
+					 {
+						"label" : "内容",
+						"name" : "content",
+						"showInput" : true,
+						"showSelect" : false,
+						"requried" : true,
+						"dataType" : "text",
+						"validatesize" : "unlimit"
+					},
+					{
+						"label" : "电话",
+						"name" : "phone",
+						"showInput" : true,
+						"showSelect" : false,
+						"requried" : false,
+						"dataType" : "String",
+						"onclick":true,
+						"validatesize" : "unlimit"
+					},
+					{
+						"label" : "电话号码列表",
+						"name" : "phonelist",
+						"showInput" : true,
+						"showSelect" : false,
+						"requried" : true,
+						"dataType" : "text",
+						"submitAllValue":true,
+						"isSelect":true,
+						"validatesize" : "unlimit",
+						"options":[],
+						"value":[]
+					},
+					{
+						"label" : "连接时使用(N)",
+						"name" : "smscomport",
+						"showInput" : false,
+						"showSelect" : true,
+						"requried" : true,
+						"dataType" : "String",
+						"validatesize" : "unlimit",
+						"options":[],
+						"value" : []
+					},
+					{
+						"label" : "每秒位数(B)",
+						"name" : "smsbaudrate",
+						"showInput" : false,
+						"showSelect" : true,
+						"requried" : true,
+						"dataType" : "Integer",
+						"validatesize" : "unlimit",
+						"options":[9600,57600,115200],
+						"value" : [9600,57600,115200]
+					}
+			]
+		}, {
+			"name" : "resp_cfg_umsgate",
+			"items" : [{
+						"label" : "企业编号",
+						"name" : "spCode",
+						"showInput" : true,
+						"showSelect" : false,
+						"requried" : true,
+						"dataType" : "String",
+						"validatesize" : "unlimit"
+					},{
+						"label" : "用户名称",
+						"name" : "loginName",
+						"showInput" : true,
+						"showSelect" : false,
+						"requried" : true,
+						"dataType" : "String",
+						"validatesize" : "unlimit"
+					},{
+						"label" : "用户密码",
+						"name" : "password",
+						"showInput" : true,
+						"showSelect" : false,
+						"requried" : true,
+						"dataType" : "password",
+						"validatesize" : "unlimit"
+					},{
+						"label" : "短信内容",
+						"name" : "messageContent",
+						"showInput" : true,
+						"showSelect" : false,
+						"requried" : true,
+						"dataType" : "text",
+						"validatesize" :"unlimit"
+					},{
+						"label" : "电话",
+						"name" : "phone",
+						"showInput" : true,
+						"showSelect" : false,
+						"requried" : false,
+						"dataType" : "String",
+						"onclick":true,
+						"validatesize" : "unlimit"
+					},{
+						"label" : "电话号码列表",
+						"name" : "phonelist",
+						"showInput" : true,
+						"showSelect" : false,
+						"requried" : true,
+						"dataType" : "text",
+						"submitAllValue":true,
+						"isSelect":true,
+						"validatesize" : "unlimit",
+						"options":[],
+						"value":[]
+					}]
+		}
+]

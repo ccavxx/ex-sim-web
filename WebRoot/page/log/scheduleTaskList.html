@@ -1,0 +1,18 @@
+<style type="text/css">
+.handCss{
+cursor:pointer;width:16px;height:16px;margin-right:5px;
+} 
+</style>
+<div class="easyui-layout sim" data-options="fit:true" id="log_taskReport_panel">
+	 <div data-options="region:'center',border:false,title:'任务列表'" >
+		  <div class="easyui-panel" data-options="border:false,fit:true">
+			     <table id="taskReport_table" data-options="scrollbarSize:0"></table> 
+		 </div>
+		 <div id="taskReportToolBar" style="padding:3px;">
+		    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="openScheduleDialog('add','');">创建任务</a>
+		    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="delScheduleStatTask('','');">删除</a>
+		</div>
+	 </div>
+	 <div id="taskReport_dialog"></div>
+</div>
+<script src="/js/sim/log/schedule_tasklist.js"></script>

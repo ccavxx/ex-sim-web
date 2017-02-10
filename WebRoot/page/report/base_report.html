@@ -1,0 +1,23 @@
+<meta name="renderer" content="webkit">
+<style type="text/css">
+.aorange {
+  color: orange;
+}
+.ared {
+  color: red;
+}
+</style>
+<div id="report-main" class="easyui-layout" fit="true">
+ 	<div id="report-left" title="基本报表" data-options="region:'west',split:true,iconCls:'icon-layout-log',headerCls:'layoutWHeader',bodyCls:'layoutWBody'" style="width:200px;">
+		<ul id="rptTree" class="easyui-tree" data-options="url:'/sim/report/getReportTree',onLoadSuccess:report.treeOnLoadSuccess,onSelect:report.onClickHandler"></ul>
+	</div><!-- onClick:report.onClickHandler, -->
+	<div id="report-right" data-options="region:'center',border:false" style="border: none;">
+		<div  title="报表" class="easyui-panel" data-options="fit:true,headerCls:'sim-panel-header',bodyCls:'sim-panel-body'">  
+ 			<div class="alert">
+				这里是基本报表，您可以点击要浏览的报表类型。在随后显示的报表查询页面中输入查询的时间段和类型。
+			</div>
+ 		</div>
+	</div>
+</div>
+
+<script src="/js/sim/report/report.js" type="text/javascript"></script>

@@ -1,0 +1,58 @@
+<div style="padding:0 3px;position:relative;">
+	<table class="table table-striped staticHtml" style="border:1px solid #dddddd;">
+		<tbody>
+			<tr>
+				<td colspan="3" ><a name="路由器/Cisco">17.1 Cisco路由器</a></td>
+			</tr>
+			<tr>
+				<td colspan="3" >
+					<table class="table table-bordered">
+						<tr>
+							<td>名称</td>
+							<td colspan="2">思科路由器</td>
+							<td>类别</td>
+							<td>安全产品</td>
+						</tr>
+						<tr>
+							<td rowspan="2">日志源配置</td>
+							<td>设备类型</td>
+							<td colspan="3">路由器-> 思科-> Cisco Router</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<img src="/data/logDataSource02/image073.jpg" />
+							</td>
+						</tr>
+						<tr>
+							<td rowspan="2">思科路由器配置</td>
+							<td>系统菜单</td>
+							<td colspan="3"></td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<pre>可以使用串口线直接连接，如果路由器配置有管理IP并且允许telnet登陆，则也可以通过telnet进行登陆。
+1、	输入enable命令进入特权模式。
+2、	输入config terminal进行配置模式。
+3、打开路由器的syslog功能
+logging on
+4、 直接配置相应的syslog发送到的接收主机，221.176.80.18为该业务主机(采集机)的ip地址。
+logging 221.176.80.18
+5、配置发送syslog的主机格式类型。
+logging facility local4  
+6、	选择发送warning以上级别的log信息。
+logging trap warnings
+使用完配置命令后，均需要执行以下步骤进行保存：
+7、输入end命令退出配置模式。
+8、copy running start保存配置文件。</pre>
+							</td>
+						</tr>
+						<tr>
+							<td>备注</td>
+							<td colspan="4"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

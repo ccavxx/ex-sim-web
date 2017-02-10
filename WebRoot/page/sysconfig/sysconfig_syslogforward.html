@@ -1,0 +1,105 @@
+<div class="easyui-panel" style="padding: 5px;" data-options="fit:true,title:'Syslog日志转发配置',headerCls:'sim-panel-header',bodyCls:'sim-panel-body'">
+	<div class="alert alert-info">
+		<strong>描述 </strong>
+		将日志进行格式化后，以syslog方式转发给需要的设备。
+	</div>
+	<div class="row-fluid">
+		<div class="span7">
+			<form class="form-horizontal hgap3" id="sysconfig_syslogforward_form">
+				<div style="border-bottom: 1px solid #ccc;margin-left: 20px;width:500px;">
+					<b>Syslog日志转发配置</b>
+				</div>
+				<br />
+				<div class="control-group">
+					<label class="control-label"><span style="color:red;">*</span>日志转发IP地址</label>
+					<div class="controls">
+						<input id="syslog_receivers" type="text" name="receivers" >
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label"><span style="color:red;">*</span>端口</label>
+					<div class="controls">
+						<input type="text" name="port" value="514">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label"><span style="color:red;">*</span>转发速度</label>
+					<div class="controls">
+						<input type="text" name="frequency" >
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">状态</label>
+					<div class="controls">
+			            <label class="checkbox">
+			              <input type="checkbox" name="send" value="true">　启用
+			            </label>
+					</div>
+				</div>				
+				<div class="control-group">
+					<label class="control-label">仅转发原始日志</label>
+					<div class="controls">
+			            <label class="checkbox">
+			              <input type="checkbox" name="onlyRawLog" value="true">　是
+			            </label>
+					</div>
+				</div>				
+				<div class="control-group">
+					<label class="control-label"><span style="color:red;">*</span>过滤器</label>
+					<div class="controls">
+						<div class="input-append">
+						  <textarea rows="3" name="filterSql" readonly="readonly"></textarea>
+							<div class="btn-group btn-group-vertical" style="margin-left:5px;">
+								<button class="btn" type="button" id="sysconfig_syslogforward_form_filter_default_btn">默认</button>
+								<button class="btn" type="button" id="sysconfig_syslogforward_form_filter_edit_btn">编辑</button>
+							</div>						  
+						</div>	
+						<span class="msg-box" for="filterSql"></span>						
+					</div>
+				</div>
+				<div style="border-bottom: 1px solid #ccc;margin-left: 20px;width:500px;">
+					<b>日志头配置</b>
+				</div>
+				<br />
+				<div class="control-group">
+					<label class="control-label">头信息分隔符</label>
+					<div class="controls">
+			        	<input type="text" name="spliter">
+					</div>
+				</div>				
+				<div class="control-group">
+					<label class="control-label">头信息前缀</label>
+					<div class="controls">
+		            	<input type="text" name="prefix">
+					</div>
+				</div>				
+				<div class="control-group">
+					<label class="control-label">是否包含设备IP</label>
+					<div class="controls">
+			            <label class="checkbox">
+			              <input type="checkbox" name="isIncludeLogDeviceIp" value="true">　是
+			            </label>
+					</div>
+				</div>				
+				<div class="control-group">
+					<div class="controls">
+						<a class="easyui-linkbutton" onclick="$('#sysconfig_syslogforward_form').submit()" data-options="iconCls:'icon-apply'">应用</a>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="span5 well">
+			<p class="text-info"><strong>日志转发IP地址：</strong>设置日志转发IP地址，多个地址使用逗号分割。</p>
+			<p class="text-info"><strong>端口：</strong>设置转发端口，默认端口514。</p>
+			<p class="text-info"><strong>转发速度：</strong>设置每秒钟转发日志的最大条数，范围：1-1000。</p>
+			<p class="text-info"><strong>状态：</strong>勾选表示启用、取消勾选表示禁用。</p>
+			<p class="text-info"><strong>仅转发原始日志：</strong>设置是否仅转发原始日志，包括：停止、启动。</p>
+			<p class="text-info"><strong>过滤器：</strong>只有符合过滤条件的日志才会转发。</p>
+			<p class="text-info">
+				<strong>日志格式：</strong>
+				<span>头信息前缀+头信息分隔符+设备IP+头信息分隔符+原始日志。</span><br>
+			</p>
+		</div>
+	<div id="sysconf_syslogforward_res_msg"></div>
+</div>
+<script src="/js/sim/sysconfig/sysconfig_syslogforward.js" type="text/javascript"></script>

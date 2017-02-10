@@ -1,0 +1,86 @@
+<div style="padding:0 3px;position:relative;">
+	<table class="table table-striped staticHtml" style="border:1px solid #dddddd;">
+		<tbody>
+			<tr>
+				<td colspan="3" ><a name="IDS/LinkTrust">3.9 启明入侵检测系统</a></td>
+			</tr>
+			<tr>
+				<td colspan="3" >
+					<table class="table table-bordered">
+						<tr>
+							<td>名称</td>
+							<td colspan="2">启明入侵检测系统</td>
+							<td>类别</td>
+							<td>安全产品</td>
+						</tr>
+						<tr>
+							<td rowspan="2">日志源配置</td>
+							<td>设备类型</td>
+							<td colspan="3">入侵检测-> 启明-> NIDS V6.0</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<img src="/data/logDataSource02/image104.png" />
+							</td>
+						</tr>
+						<tr>
+							<td rowspan="2">启明入侵检测系统页面配置</td>
+							<td>系统菜单</td>
+							<td colspan="3">常用配置-> 组件管理-> 本地引擎管理-> 引擎配置-> Syslog配置</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<img src="/data/logDataSource02/image105.jpg" />
+							</td>
+						</tr>
+						<tr>
+							<td>备注</td>
+							<td colspan="4">“服务器地址”填入安全管理系统的IP地址。策略响应方式要勾选“syslog”。</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" >
+					<pre>天阗入侵检测系统控制台>系统设置>SNMP Trap设置，如下图。</pre>
+					<div style="margin:auto;width:500px;text-align:center;"><img src="/data/logDataSource/image004.jpg" /><br>图4.1.1　天阗入侵检测系统配置界面</div>
+					<pre>天清入侵防御系统控制台>策略任务>入侵防御>策略编辑，如下图。</pre>
+					<div style="margin:auto;width:500px;text-align:center;"><img src="/data/logDataSource/image005.jpg" /></div>
+					<pre>双击当前应用的策略，本例中当前应用的策略为“串行保护策略集衍生策略”， 如下图。</pre>
+					<div style="margin:auto;width:500px;text-align:center;"><img src="/data/logDataSource/image006.jpg" /></div>
+					<pre>设置模板>相应设置模板，如下图。</pre>
+					<div style="margin:auto;width:500px;text-align:center;"><img src="/data/logDataSource/image007.jpg" /></div>
+					<pre>新建三个策略模板：报警日志 snmp 、报警日志包阻断 snmp 、报警日志 RST 包阻断 snmp，并在右侧的相应方式上勾选 snmp 选项，保存后关闭即可，三个模板配置完成后的截图如下： </pre>
+					<div style="margin:auto;width:500px;text-align:center;"><img src="/data/logDataSource/image008.jpg" /></div>
+					<div style="margin:auto;width:500px;text-align:center;"><img src="/data/logDataSource/image009.jpg" /></div>
+					<div style="margin:auto;width:500px;text-align:center;"><img src="/data/logDataSource/image010.jpg" /></div>
+					<pre>在策略编辑页面，点击“响应方式”，把事件按响应方式排列，然后对相同响应方式的事件批量应用新建的相应的相应模板。  </pre>
+					<div style="margin:auto;width:500px;text-align:center;"><img src="/data/logDataSource/image011.jpg" /></div>
+					<div style="margin:auto;width:500px;text-align:center;"><img src="/data/logDataSource/image012.jpg" /></div>
+					<pre>保存策略。</pre>
+					<div style="margin:auto;width:500px;text-align:center;"><img src="/data/logDataSource/image013.jpg" /></div>
+					<pre>重新在控制台主页面下发编辑后的策略。</pre>
+					<div style="margin:auto;width:500px;text-align:center;"><img src="/data/logDataSource/image014.jpg" /></div>
+					<div style="margin:auto;width:500px;text-align:center;"><img src="/data/logDataSource/image015.jpg" /></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="background-color:#99ccff;"></td>
+			</tr>
+			<tr>
+				<td rowspan="2">日志源配置</td>
+				<td>设备类型</td>
+				<td colspan="3">入侵检测-> 启明-> NIDS V5.5</td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<img src="/data/logDataSource02/image00392.png" />
+				</td>
+			</tr>
+			<tr>
+				<td>备注</td>
+				<td colspan="4"></td>
+			</tr>
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,27 @@
+<div id="event_mg_importId" class="p5">
+	<form name="importForm" action="#">
+		<label>日期来源</label>
+		<div class="input-append date form_datetime_1">
+		    <input name="startTime" size="16" type="text" value="" readonly style="width: 150px;">
+		    <span class="add-on"><i class="icon-th"></i></span>
+		</div>
+		<span class="alert">选择日期则自动添加</span>
+		<label>选择结果</label>
+		<select name="importArea" id="importAreaId" multiple="multiple" ondblclick=""></select>
+		<span class="alert">双击删除</span>
+	</form>
+</div> 
+<script type="text/javascript">
+(function(){
+	$("#importAreaId").dblclick(function(){
+		$(this).find(":selected").remove() ;
+	}) ;
+	$(".form_datetime_1").datepicker({format: 'yyyy-mm-dd',language:'zh-CN'}).on('changeDate',function(evt){
+		var filename=evt.date.Format('yyyyMMdd'),option=new Option(filename,filename+'.zip');
+		if($("#importAreaId>option[value='"+filename+".zip']").length>0){//如果已经存在则直接返回
+			return ;
+		}
+		importForm.importArea.options.add(option);
+	});
+})();
+</script>

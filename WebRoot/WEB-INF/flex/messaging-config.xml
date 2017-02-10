@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service id="message-service" 
+    class="flex.messaging.services.MessageService">
+
+    <adapters>
+        <adapter-definition id="actionscript" class="flex.messaging.services.messaging.adapters.ActionScriptAdapter" default="true" />
+        <!-- <adapter-definition id="jms" class="flex.messaging.services.messaging.adapters.JMSAdapter"/> -->
+    </adapters>
+
+    <default-channels>
+        <channel ref="my-amf"/>
+    </default-channels>
+    
+    <destination id="MessagingDestination" channels="my-polling-amf" />
+	<destination id="logSearcherDestination">
+		<properties>
+			<server>
+				<allow-subtopics>true</allow-subtopics>
+				<subtopic-separator>.</subtopic-separator>
+			</server>
+		</properties>
+		<channels>
+			<channel ref="my-polling-amf" />
+			<channel ref="my-streaming-amf" />
+		</channels>
+	</destination>
+</service>

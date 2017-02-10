@@ -1,0 +1,45 @@
+<div style="padding:0 3px;position:relative;">
+	<table class="table table-striped staticHtml" style="border:1px solid #dddddd;">
+		<tbody>
+			<tr>
+				<td colspan="3" ><a name="防火墙/网神">2.5	网神</a></td>
+			</tr>
+
+			<tr>
+				<td colspan="3" >
+					<table class="table table-bordered">
+						<tr>
+							<td>名称</td>
+							<td colspan="2">网神防火墙</td>
+							<td>类别</td>
+							<td>安全产品</td>
+						</tr>
+						<tr>
+							<td rowspan="2">日志源配置</td>
+							<td>设备类型</td>
+							<td colspan="3">防火墙->网神-> SecGate3600</td>
+						</tr>
+						<tr>
+							<td colspan="4"><img src="/data/logDataSource02/image0025.png" /></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="3" ><pre>主要有两种方式进行配置： 
+1）通过防火墙的 web 管理页面进行配置，首先需要保证可以进行 web 管理，需要将浏览器所在机器设置为防火墙的管理主机，该选项在“管理配置”>“管理主机”位置，在“系统配置”>“日志服务器”中配置为服务器所在ip，端口默认514。 
+  
+2）或者可以通过命令行方式在防火墙上配置日志服务器的 ip 地址和端口，首先通过终端或网络登陆到防火墙，键入的命令如下： 
+语法： 
+logsrv set ip port udp 
+参数说明： 
+ip        设置日志服务器的 IP 地址 
+port    设置日志服务器的端口，UDP 协议的默认端口是514 
+udp     设置发送日志使用的协议 
+示例： 
+firewall>logsrv set 192.168.100.1 514 udp </pre></td>
+			</tr>
+		</tbody>
+	</table>
+</div>

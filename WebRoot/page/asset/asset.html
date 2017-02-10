@@ -1,0 +1,153 @@
+<link href="/css/sim-asset.css" rel="stylesheet" type="text/css" />
+<!-- 本页面组件id命名全部使用前辍al(asset list)统一命名 -->
+<div id="assetLayoutId" class="easyui-layout" fit="true">
+	<div data-options="region:'west',
+					collapsed:'true',
+					split:true,
+					headerCls:'layoutWHeader',
+					bodyCls:'layoutWBody',
+					onExpand:al.onAssetLayoutWestExpand" style="width:200px;" title="资产分类">
+		<ul id="al_asset_tree" class="easyui-tree sim-high-tree"
+		    data-options="url:'/sim/assetlist/getAssetTree',
+		    formatter:al.assetTreeFormatter,
+		    onLoadSuccess:al.loadSuccessHandler,
+		    onSelect:al.assetItemClickHandler,
+		    animate:true"></ul>
+	</div>
+	<div data-options="region:'center',border:false,onResize:function(width,height){
+			if(al.al_asset_form){
+				al.al_asset_form.dialog('resize',{
+					width:width
+				});
+			}
+		}" class="sim" >
+		<div id="al_asset_tabs" class="easyui-tabs" data-options="fit:true,border:false,onBeforeClose:onCloseAssetTab,tools:'#al_asset_tabs_tools'">  
+			<div title="资产列表" style="position: relative;">
+				<div id="al_asset_panel" class="easyui-panel sim" data-options="border:false,fit:true">
+					<div id="al_asset_list_panel" style="width: 100%;height: 100%;">
+						<table id="al_asset_table" class="easyui-datagrid datagrid-border" 
+							   data-options="url:'/sim/assetlist/assetGrid',
+							   				 pagination:true,pageSize:20,fitColumns:true,fit:true,striped:true,singleSelect:true,
+							   				 checkOnSelect:false,selectOnCheck:false,
+							   				 onDblClickCell:al.assetCellDbClickHandler,
+							   				 view:detailview,detailFormatter:al.detailFormatter,
+							   				 onExpandRow:al.onExpandRow"
+							   toolbar="#al_toolbar">
+							<thead>
+								<tr>
+									<th data-options="field:'id',checkbox:true,width:3">选择</th>
+									<!-- <th data-options="field:'available',width:3,align:'center',formatter:al.availableFormatter">状态</th> -->
+									<th data-options="field:'name',width:14,formatter:al.nameFormatter">资产名称</th>
+									<th data-options="field:'ip',width:10">IP地址</th>
+									<th data-options="field:'deviceTypeName',width:10">资产类型</th>
+									<th data-options="field:'nodeName',width:9">管理节点</th>
+									<th data-options="field:'osName',width:10,formatter:al.osFormatter">操作系统</th>
+									<th data-options="field:'safeRank',width:5,formatter:al.safeRankFormatter">安全等级</th>
+									<th data-options="field:'logCount',width:7,formatter:al.logCountFormatter">今日日志数</th>
+									<th data-options="field:'linkman',width:4">联系人</th>
+									<!-- no_field1,no_field2表示此列不需要field字段，并不是指取值字段是no_field1,no_field2 -->
+									<th data-options="field:'no_field1',width:3,formatter:al.stateFormatter">状态</th>
+									<th data-options="field:'creator',width:4">创建人</th>
+									<th data-options="field:'no_field3',width:3,align:'center',formatter:al.toolsFormatter">工具</th>
+									<th data-options="field:'no_field2',width:4,align:'center',formatter:al.operationFormatter">操作</th>
+								</tr>  
+							</thead>  
+						</table> 
+						<div id="al_menu" class="easyui-menu" style="width:80px; display:none;">
+							<!--放置一个隐藏的菜单Div -->
+						</div>
+					</div>
+					<div id="al_asset_card_panel" style="display: none;width: 100%;height: 100%;overflow: auto;">
+						<div id="al_asset_card_container"/>
+					</div>
+					<div id="al_asset_form"></div>
+				</div>
+			</div>  
+		</div> 
+		<div id="importAsset_tabs" class="easyui-tabs" data-options="fit:true,border:false">
+			<!-- onBeforeClose:onCloseAssetTab -->
+		</div>
+	</div>
+</div>
+<div id="al_asset_tabs_tools">
+	<select class="panel_tool_select" onchange="al.switchAssetView(this)">
+		<option value="grid">列表视图</option>
+		<option value="card">卡片视图</option>
+	</select>
+</div>
+<div id="al_toolbar" style="padding:3px;">
+	 <form id="asset_listform_Id" method="post" onkeydown="enterEventHandler(event,function(){al.searchQuery();})" style="margin: 0 auto;font-size:12px;" >
+		<table style="height:28px;vertical-align:middle;text-align:center;">
+			<tr>
+				<td style="width:60px;text-align: right;">IP地址:</td>
+				<td style="width:102px;">
+					<input name="ip" type="text" />
+				</td>
+				<td style="width:80px;">资产名称:</td>
+				<td style="width:102px;">
+					<input type="text" name="name" />
+				</td>
+				<td style="width:80px;">资产类型:</td>
+				<td style="width:152px;">
+					<select id="asset_listform_Id_deviceType" name="deviceType" class="easyui-combotree"
+		      		  data-options="height:24,width:150,url:'/sim/asset/assetCategories',onBeforeSelect:al.beforeDeviceTypeSelect"/>
+				</td>
+				<td style="width:80px;">管理节点:</td>
+					<td style="width:152px;">
+				       <select name="nodeId" class="easyui-combobox"
+				      		data-options="height:24,width:152,panelHeight:80,editable:false,url:'/sim/node/allNode',textField:'ip',valueField:'nodeId'"/>
+					</td>
+				
+				
+				<td style="width:50px;"><a href="javascript:void(0);" title="更多" onclick="al.more(this);" style="background:none" class="easyui-linkbutton" data-options="plain:true,iconCls:'easyui-accordion-expand'"></a></td>
+				<td style="width:85px;"><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="al.searchQuery()">查询</a></td>
+				<td style="width:85px;"><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-clear-all'" onclick="$('#asset_listform_Id').form('reset')">清空</a></td>
+			</tr>
+		</table>
+		<div id="assetMoreSearchInfoId" style="display:none;">
+			<table style="height:30px;vertical-align:middle;text-align:center;">
+				<tr>
+					<td style="width:60px;text-align: right;">操作系统:</td>
+				      <td style="width:152px;">
+					  <select id="asset_listform_Id_osName" name="osName" class="easyui-combobox" 
+    					data-options="height:24,width:150,url:'/sim/asset/osList',valueField:'value',textField:'value'"></select>
+				    </td>
+					<td style="width:80px;">安全等级:</td>
+					<td style="width:152px;">
+						<select name="safeRank" class="easyui-combobox"
+      		  				data-options="height:24,width:152,editable:false,url:'/sim/asset/safeRankList',valueField:'value',textField:'value',panelHeight:80"></select>
+  					</td>
+  					<td style="width:80px;">状态:</td>
+					<td style="width:152px;">
+						<select id="asset_listform_Id_Enabled" name="enabled">
+							<option value="">全部</option>
+							<option value="1">启用</option>
+							<option value="0">禁用</option>
+						</select>
+					</td>
+					<td colspan="3"></td>
+				</tr>
+			</table>
+		</div>
+	 </form>
+	 <table style="height:28px;vertical-align: middle;text-align: center;width:100%">
+		<tr>
+			<td style="width:85px;"><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="al.newAsset()">新建</a></td>
+			<td style="width:85px;"><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="al.openAssetDiscover()">发现</a></td>
+			<td style="width:85px;"><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-enabled'" onclick="al.changeAssetsState(1)">启用</a></td>
+			<td style="width:85px;"><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-disable'" onclick="al.changeAssetsState(0)">禁用</a></td>
+			<td style="width:85px;"><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="al.deleteSelectAssets()">删除</a></td>
+			<td style="width:85px;"><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-import'" onclick="al.openAssetTemplate()">导入</a></td>
+			<td style="width:85px;"><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-export'" onclick="al.exportAssetExcel()">导出</a></td>
+			<td style="width:108px;"><a href="/sim/assetlist/downloadAssetTemplet" class="easyui-linkbutton" data-options="iconCls:'icon-export'" onclick="javascript:void(0)">下载模板</a></td>
+			<td style="text-align: right;color:red;font-size:12px;font-weight: bolder;"></td>
+		</tr>
+	</table>
+</div>
+
+<link rel="stylesheet" href="/css/bootstrap-switch.min.css" />
+<script src="/js/global/bootstrap-switch.min.js" ></script>
+<script src="/js/sim/asset/asset_index.js" type="text/javascript"></script>
+<script src="/js/sim/asset/asset_index_formatter.js" type="text/javascript"></script>
+
+<!-- script type="text/javascript" src="/js/sim/asset/import_asset.js"> </script-->

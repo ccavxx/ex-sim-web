@@ -1,0 +1,86 @@
+<div id="dataSourceLayoutId" class="easyui-layout" fit="true">
+	<div data-options="region:'center',border:false" class="sim" >
+		<div id="dl_tabs" class="easyui-tabs" data-options="fit:true,border:false">  
+			<div title="日志源列表" style="position: relative;">
+				<div id="dl_panel" class="easyui-panel sim" data-options="border:false,fit:true">
+						<table id="dl_table" class="easyui-datagrid datagrid-border" 
+							   data-options="url:'/sim/datasource/showDataSourceList',
+							   				 pagination:true,pageSize:20,fitColumns:true,fit:true,striped:true,singleSelect:true,
+							   				 checkOnSelect:false,selectOnCheck:false,onDblClickRow:dl.dataSourceDblClickRow"
+							   				 toolbar="#dl_toolbar">
+							<thead>
+								<tr>
+									<th data-options="field:'resourceId',checkbox:true,width:3">选择</th>
+									<th data-options="field:'deviceIp',width:10,sortable:true">IP地址</th>
+									<th data-options="field:'resourceName',width:10">日志源名称</th>
+									<th data-options="field:'deviceTypeName',width:10">日志源类型</th>
+									<th data-options="field:'collectMethod',width:5">收集方式</th>
+									<th data-options="field:'saveRawLog',width:5,formatter:dl.saveRawLogFormatter">存储原始日志</th>
+									<th data-options="field:'overwriteEventTime',width:5,formatter:dl.overwriteEventTimeFormatter">覆盖日志时间</th>
+									<th data-options="field:'archiveTime',width:5,formatter:dl.archiveTimeFormatter">日志保存时间</th>
+									<th data-options="field:'reportKeepTime',width:5,formatter:dl.reportKeepTimeFormatter">报表保存时间</th>
+									<th data-options="field:'rule',width:10">过滤规则</th>
+									<th data-options="field:'aggregator',width:10">归并规则</th>
+									<th data-options="field:'available',width:5,align:'center',formatter:dl.stateFormatter">状态</th>
+									<th data-options="field:'creater',width:5,align:'center'">创建人</th>
+									<th data-options="field:'no_field',width:4,align:'center',formatter:dl.operationFormatter">操作</th>
+								</tr>
+							</thead>
+						</table>
+					<div id="dl_dialog"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="dl_toolbar" style="padding:3px;">
+    <form id="dl_toolbar_form" method="post" onkeydown="enterEventHandler(event,function(){dl.searchQuery();})" style="margin: 0 auto;font-size:12px;" >
+		<table style="height:30px;vertical-align:middle;text-align:center;">
+			<tr>
+				<td style="width:50px;">IP地址:</td>
+				<td>
+					<input name="ip" type="text" style="width:150px;margin-bottom: 0px;" />
+				</td>
+				<td style="width:80px;">日志源名称:</td>
+				<td>
+					<input name="name" type="text" style="width:150px;margin-bottom: 0px;" />
+				</td>
+				<td style="width:80px;">日志源类型:</td>
+				<td>
+					<select id="dl_toolbar_dataSourceType" name="dataSourceType" class="easyui-combotree"
+		      		  data-options="editable:false,height:24,width:150,url:'/sim/datasource/dataSourceTree?deviceType=all',
+		      		  onBeforeSelect:dl.beforeDataSourceSelect"/>
+				</td>
+				<td style="width:60px;">收集方式:</td>
+				<td>
+			       <select id="dl_toolbar_collectMethod" name="collectMethod" class="easyui-combobox"
+			      		data-options="editable:false,height:24,width:150,url:'/sim/datasource/getCollectMethodList',valueField:'value',textField:'value'">
+				   </select>
+				</td>
+				<td style="width:50px;">状态:</td>
+				<td>
+			       <select id="dl_toolbar_state" name="state" class="easyui-combobox"
+			           data-options="editable:false,panelHeight:80,height:24,width:150">
+			           <option value="">全部</option>
+			           <option value="1">启用</option>
+    			       <option value="0">禁用</option>
+				   </select>
+				</td>
+				<td style="width:85px;"><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="dl.searchQuery()">查询</a></td>
+				<td style="width:85px;"><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-clear-all'" onclick="dl.clearCondition()">清空</a></td>
+			</tr>
+		</table>
+	</form>
+    <table style="height:28px;vertical-align: middle;text-align: center;width:100%">
+        <tr>
+	        <td style="width:85px;"><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="dl.addDataSource()">新建</a></td>
+	        <td style="width:85px;"><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-enabled'" onclick="dl.changeDataSource(1)">启用</a></td>
+	        <td style="width:85px;"><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-disable'" onclick="dl.changeDataSource(0)">禁用</a></td>
+	        <td style="width:85px;"><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="dl.deleteSelectDataSources()">删除</a></td>
+	        <td style="text-align: right;color:red;font-size:12px;font-weight: bolder;"></td>
+        </tr>
+    </table>
+</div>
+
+<script src="/js/sim/asset/datasource_list.js"></script>

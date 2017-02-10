@@ -1,0 +1,13 @@
+<div style="text-align:center;margin:30px auto auto auto;">
+<span>修改刷新间隔：</span><input name="freqtime" id="event_monitor_freqtime_id"
+		class="easyui-combobox" panelHeight="135"
+		data-options="width:104,height:24,valueField:'time',textField:'text',editable:false,
+		data:[{'time':5,'text':'5秒'},{'time':10,'text':'10秒'},{'time':20,'text':'20秒'},{'time':30,'text':'30秒'},{'time':60,'text':'60秒'}],
+		onLoadSuccess:function(node, data){
+			var freq = 5;
+			if(_evtMonitorFreq['freq']){
+				freq = _evtMonitorFreq['freq'];
+			}
+			$(this).combobox('setValue', freq);
+		}" />
+</div>

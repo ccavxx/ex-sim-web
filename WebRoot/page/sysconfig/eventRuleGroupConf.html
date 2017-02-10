@@ -1,0 +1,139 @@
+<div class="easyui-layout" data-options="fit:true"  id="eventrule_panel">
+	<div data-options="region:'center',title:'关联规则列表',headerCls:'sim-panel-header',bodyCls:'sim-panel-body'" >
+		<div id="evtrule_group_main_panel_id" class="easyui-panel" data-options="fit:true,border:false">
+			<div id="al_toolbar" style="display:none;">
+				<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="eventRuleGroup.showAddEventRuleGroup();">新建</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="eventRuleGroup.deleteMRuleGroup()">删除</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-enabled'" onclick="eventRuleGroup.batchSetUp();">启用</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-disable'" onclick="eventRuleGroup.batchTurnOff();">禁用</a>
+				<a href="/sim/sysconfig/event/exportEventRulesExcel" class="easyui-linkbutton" data-options="iconCls:'icon-export'" >导出</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-import'" onclick="openImportWind();">导入</a>
+			</div>
+			<table id="al_evtrule_group_table" toolbar="#al_toolbar" data-options="scrollbarSize:0"></table>
+			
+			
+		</div>
+	</div>
+	<div id="al_add_evtrule_group"></div>
+	<div id="al_alarm_dialog"></div>
+</div>
+
+<!-- 导入规则 -->
+<div style="display:none;">
+	<div id="importEventRulesExcel" class="easyui-window p5" data-options="title:'导入关联规则',collapsible:false,
+			width:345,height:180,minimizable:false,maximizable:false,closed:true,modal:true,closable:false">
+		<div class="easyui-layout" fit="true">
+			<div region="center" border="false" class="p5" style="border:1px solid #ccc;">
+				<form id="importEventRulesExcelForm" enctype="multipart/form-data" method="post" class="p0 margin0">
+					<input type="file" name="eventRulesExcel" class="horizon-fileupload" id="eventRulesExcelId" />
+				</form>
+				<div id="eventRulesExcelMsgId"></div>
+			</div>
+			<div region="south" border="false" class="pt5 h32" style="text-align:center;">
+		        <div id="importEventRulesExcel_sourth_btns1" style="display:none;">
+		        	<img src="/img/loading_withoutstate.jpg" />
+		        </div>
+		        <div id="importEventRulesExcel_sourth_btns2" style="display:block;">
+		        	<a class="easyui-linkbutton" href="javascript:importExcelFile();" >确定</a>
+		        	<a class="easyui-linkbutton" href="javascript:closeImportWind();">关闭</a>
+		        </div>
+		    </div>
+		</div>
+	</div>
+</div>
+<style>
+ #al_alarm_dialog .dialog-button{
+	text-align:center;
+ }
+</style>
+<!-- 复用了知识库部分代码 -->
+<script src="/js/sim/knowledge/knowledge.js"></script>
+<script src="/js/sim/sysconfig/eventRule_maincfg_form_knowledge_plugin.js"></script>
+<!-- 事件规则配置 -->
+<script src="/js/sim/sysconfig/eventRuleGroupConf.js"></script>
+<script>
+var knowledge = new Knowledge("#kn_query_table_id");
+knowledge._plugin_set["associateList"] = new Array();// IE
+function _kn_openW() {
+	$("#knowledge_datagrid_id").window("open");
+}
+function doAssociation() {
+	knowledge.doAssociation();
+}
+function openImportWindBtns() {
+	$("#importEventRulesExcel_sourth_btns1").css("display", "none");
+	$("#importEventRulesExcel_sourth_btns2").css("display", "inline-block");
+}
+function closeImportWindBtns() {
+	$("#importEventRulesExcel_sourth_btns1").css("display", "block");
+	$("#importEventRulesExcel_sourth_btns2").css("display", "none");
+}
+function openImportWind() {
+	openImportWindBtns();
+	$("#importEventRulesExcel").window("open");
+	$("#eventRulesExcelMsgId").html("");
+}
+function closeImportWind() {
+	$("#importEventRulesExcel").window("close");
+	$("#importEventRulesExcelForm").form('reset');
+}
+function importExcelFile() {
+	
+	$("#importEventRulesExcelForm").form("submit", {
+        url: "/sim/sysconfig/event/importEventRulesExcel",
+        onSubmit: function() {
+        	var fileVal = $("#eventRulesExcelId").val();
+        	if(!fileVal) {
+        		$("#eventRulesExcelMsgId").html("请选择要上传的文件！");
+        		return false;
+        	}
+        	closeImportWindBtns();
+       		return true;
+        },
+        dataType: "json",
+        success: function(result) {
+        	result = JSON.parse(result);
+        	if(result.uploadInfo == "success") {
+        		eventRuleGroup.showEventRuleGroupListReload();
+        	}
+        	var msg = "<div style='overflow-y:auto;height:245px;font-size:12px;'>" + result.message.replace("\\n","").replace(/\\n/g,"<br/>") + "</div>";
+        	showPopMessage("提示", msg);
+        	openImportWindBtns();
+        	closeImportWind();
+        }
+    });
+}
+// 初始化化类和加载规则列表
+var eventRuleGroup = new EventRuleGroup();
+$(function(){
+	$("#eventRulesExcelId").cnfileupload();
+	$("#eventRulesExcelId").change(function() {
+		var filepathname = $("#eventRulesExcelId").val();
+		var fileName = filepathname.substring(filepathname.lastIndexOf("\\") + 1);
+		var filetypename = fileName.substring(fileName.lastIndexOf('.'), fileName.length);
+        
+        if (filetypename != ".xls") {// 这里限定上传文件文件类型
+        	$("#eventRulesExcelMsgId").html("<span style='color:Red'>错误提示:上传文件应该是.xls后缀,而不应该是" + filetypename + ",请重新选择文件</span>");
+        	$("#importEventRulesExcelForm").form("reset");
+        	return;
+        } else {
+        	$("#eventRulesExcelMsgId").html("文件名：" + fileName);
+        	var eventRulesExcelFile = document.getElementById("eventRulesExcelId").files[0];
+        	
+            if (eventRulesExcelFile) {
+                var fileSize = 0;
+                if (eventRulesExcelFile.size > 1024 * 1024) {
+                    fileSize = (Math.round(eventRulesExcelFile.size * 100 / (1024 * 1024)) / 100).toString() + 'MB';
+                } else {
+                	fileSize = (Math.round(eventRulesExcelFile.size * 100 / 1024) / 100).toString() + 'KB';
+                }
+                if(eventRulesExcelFile.size > 200 * 1024 * 1024) {
+                	$("#eventRulesExcelMsgId").html("<span style='color:Red'>错误提示:上传文件大小是:"+ fileSize+", 超出最大文件大小限制,请重新选择文件</span>");
+                	$("#importEventRulesExcelForm").form("reset");
+                }
+            }
+        }
+	});
+	eventRuleGroup.showEventRuleGroupList();
+});
+</script>

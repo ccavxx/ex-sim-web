@@ -1,0 +1,70 @@
+<div style="padding:0 3px;position:relative;">
+	<table class="table table-striped staticHtml" style="border:1px solid #dddddd;">
+		<tbody>
+			<tr>
+				<td colspan="3" ><a name="负载均衡/F5">14.1 F5 BIG-IP负载均衡系统</a></td>
+			</tr>
+			<tr>
+				<td colspan="3" >
+					<table class="table table-bordered">
+						<tr>
+							<td>名称</td>
+							<td colspan="2">F5 BIG-IP负载均衡系统</td>
+							<td>类别</td>
+							<td>安全产品</td>
+						</tr>
+						<tr>
+							<td rowspan="2">日志源配置</td>
+							<td>设备类型</td>
+							<td colspan="3">负载均衡->F5-> BIG-IP</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<p><img src="/data/logDataSource02/image056.png" /></p>
+							</td>
+						</tr>
+						<tr>
+							<td rowspan="2">F5 BIG-IP负载均衡系统CLI配置</td>
+							<td>系统菜单</td>
+							<td colspan="3"></td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<pre>1、	登录BIG-IP命令行界面，确认系统版本
+[root@test:Active]config # b version |grep V
+2、	V10.0以上版本格式为bagpipe syslog remote server {&lt;name> {host &lt;IP_address>}}
+[root@test:Active]config # bagpipe syslog remote server {LogServer {10.33.2.102}}
+[root@test:Active]config # bagpipe save
+3、	V9.4.2-V9.4.8版本格式为bagpipe syslog remote server &lt;IP_address>
+[root@test:Active]config # bagpipe syslog remote server 10.33.2.102
+[root@test:Active]config # bagpipe save
+4、	V9.0-9.4.1版本
+[root@test:Active]config # cd /etc/syslog-ng/
+[root@test:Active]config #vi syslog-ng.conf
+（将如下内容添加到内容最后）
+destination remote_server {
+udp(“10.33.2.102” port (514));
+};
+filter f_alllogs{
+level (info…emerg);
+};
+log{
+source(local);
+filter(f_alllogs);
+destination(remote_server);
+};
+[root@test:Active]syslog-ng # bigstart restart syslog-ng
+Stopping syslog-ng:[OK]
+Starting syslog-ng:[OK]</pre>
+							</td>
+						</tr>
+						<tr>
+							<td>备注</td>
+							<td colspan="4">配置步骤中的“10.33.2.102”为举例所用的安全管理系统地址，实际操作中请更改为实际使用的安全管理系统的IP地址。</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

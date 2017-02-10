@@ -1,0 +1,76 @@
+<div class="alert alert-info" style="margin-bottom:10px;padding:5px;">
+	<strong>描述 </strong>
+	日志源将多条符合归并规则的信息合为一条信息。
+</div>
+<form class="form-horizontal hgap5" id="sysconfig_aggregator_form" >
+	<input type="hidden" name="id" />
+	<input type="hidden" name="module" value="0" />
+	<input type="hidden" name="base" value="0" />
+	<!-- 隐藏默认最大实例数为 1000 -->
+	<input type="hidden" id="maxCountId" name="maxCount" value="1000" />
+	<div class="control-group">
+		<label class="control-label"><span style="color:red;">*</span>名称</label>
+		<div class="controls">
+			<input type="text" name="name" placeholder="规则名称">
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label">状态</label>
+		<div class="controls">
+			<label class="checkbox">
+			  <input type="checkbox" name="available" value="1">　启用
+			</label>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label"><span style="color:red;">*</span>日志源类型</label>
+		<div class="controls">
+			<select id="sysconfig_aggregator_logsourcetype" class="easyui-combotree" data-options="height:24,width:200,
+				url:'/sim/datasource/categoryTree',
+				onBeforeSelect:simSysConfaggregator.onBeforeSelect,
+				onClick:simSysConfaggregator.onClick,
+				onLoadSuccess:simSysConfaggregator.onLoadSuccess"></select>
+			<input type="hidden" name="securityObjectType" /> 
+		</div>
+	</div>
+
+	<div class="control-group">
+        <label class="control-label"><span style="color:red;">*</span>超时(秒)</label>
+        <div class="controls">
+            <input type="text" id="timeOutId" name="timeOut" value="10" />
+        </div>
+    </div>
+	<div class="control-group">
+		<label class="control-label"><span style="color:red;">*</span>次数</label>
+		<div class="controls">
+			<input type="text" id="timesId" name="times" value="2" />
+		</div>
+	</div>
+
+	<div class="control-group">
+		<label class="control-label"><span style="color:red;">*</span>归并条件</label>
+		<div class="controls">
+			<div class="input-append">
+			    <textarea rows="5" readonly="readonly" name="filterSql" style="max-width:681px;">SELECTOR(TRUE)</textarea>
+				<div class="btn-group btn-group-vertical" style="margin-left: 5px;">
+					<button class="btn" type="button" id="sysconfig_aggregator_form_default_btn">默认</button>
+					<button class="btn" type="button" id="sysconfig_aggregator_form_edit_btn">编辑</button>
+				</div>
+			</div>
+			<span class="msg-box" for="filterSql"></span>
+		</div>
+	</div>
+	<div id="aggregatorDevicecolumnsetOutDiv" style="display:none;border:1px solid #95cfd1;padding:15px 15px 0 0;width:800px;margin:20px 0px 20px 58px;" class="control-group">
+    	<div class="control-group">
+          <label class="control-label" style="width:104px;"><span style="color:red;">*</span>分组字段设置</label>
+          <div class="controls" id="aggregatorDevicecolumnset" style="margin-left:112px;"></div>
+        </div>
+	</div>
+	<div class="control-group">
+		<div class="controls">
+			<button type="submit" id="sysconfig_aggregator_form_submit_button" class="btn btn-small" style="margin:2px;"><i class="icon-save" style="width:16px;height:16px;margin-right:8px;"></i>保存</button>
+			<button id="sysconfig_aggregator_form_cancel_button" class="btn btn-small" style="margin:2px;"><i class="icon-cancel" style="width:16px;height:16px;margin-right:8px;"></i>返回</button>
+		</div>
+	</div>
+</form>
+<script src="/js/sim/sysconfig/sysconfig_aggregator.js" type="text/javascript"></script>

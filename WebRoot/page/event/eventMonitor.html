@@ -1,0 +1,28 @@
+﻿ <div id="cc" class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'west',title:'实时事件',split:true,iconCls:'icon-layout-log',border:false,headerCls:'layoutWHeader',bodyCls:'layoutWBody'" style="width:200px;">
+		<div class="easyui-accordion" data-options="fit:true">
+			<div title="优先级别" data-options="iconCls:'icon-level'" style="overflow:auto;padding:10px;background-color:rgb(239, 248, 251);">
+				 <ul id="event_monitor_priority_menu_id" ></ul>
+			</div>
+			<div title="规则名称" data-options="iconCls:'icon-rule-name'" style="padding:10px;background-color:rgb(239, 248, 251);">
+				 <ul id="event_monitor_rule_menu_id"></ul>
+			</div>
+			<div title="规则分类" data-options="iconCls:'icon-event-style'" style="padding:10px;background-color:rgb(239, 248, 251);">
+				<ul id="event_monitor_category_menu_id"></ul>
+			</div>
+		</div>
+	</div>  
+    <div data-options="region:'center',title:'监视',headerCls:'sim-panel-header',bodyCls:'sim-panel-body'" >
+		<div class="easyui-layout" data-options="fit:true">
+			<div class="datagrid-toolbar" style="padding:3px;" data-options="region:'north',height:34,border:false" >
+				<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-clear-all" onclick="doEventMonitorClean();" >清空</a>
+				<a href="javascript:void(0)" id="eventMonitorQuerySwitch" class="easyui-linkbutton" iconCls="icon-stop-refresh" onclick="doEventMonitorStop();">停止刷新</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="refresh-space" onclick="setEventMonitorFreq()">刷新间隔</a>
+			</div>
+			<div data-options="region:'center',height:400,border:false" id="event_monitor_div_id">
+				<table id="event_monitor_table_id" data-options="headerCls:'sim-panel-header',border:false,noheader:true,scrollbarSize:0"></table>
+			</div>
+		</div>
+	</div>
+</div>  
+<script type="text/javascript" src="/js/sim/event/event_monitor.js"></script>

@@ -1,0 +1,80 @@
+<div id="leaks_query_main_div_id" class="easyui-layout" data-options="fit:true">
+	<div data-options="region:'west',split:true,title:'漏洞库',iconCls:'icon-layout-log',headerCls:'layoutWHeader',bodyCls:'layoutWBody'" style="width:100px;">
+ 		<ul id="leaks_menu_id"></ul> 
+ 	</div>  
+ 	<div  data-options="region:'center',title:'漏洞库管理',headerCls:'sim-panel-header',bodyCls:'sim-panel-body'"> 
+		<div id="leaksToolBar" style="height:50px">
+			<form name="leaks_query_Form" action="#">
+			 	<table class="tableHead horizon-toolbar">
+			 		<tr>
+			 			<td class="w100">
+				 			<div class="input-prepend input-append" style="padding:10px 0px 0px 10px;">
+			 					<span class="add-on">名称</span>
+				 				<input name="name" id="name" type="text" style="width:100px"/>
+				 			</div>
+			 			</td>
+			 			<td class="w100">
+			 				<div class="input-prepend input-append" style="padding:10px 10px 0px 10px;">
+				 				<span class="add-on">级别</span>
+				 				<select id="score" name="score" style="width:100px">
+				 					  <option value ="" selected = "selected">全部</option>
+									  <option value ="高">高</option>
+									  <option value ="中">中</option>
+									  <option value="低">低</option>
+								</select>
+							</div>
+			 			</td>
+			 			<td class="w100">
+							<div class="input-prepend input-append" style="padding:10px 10px 0px 0px;">
+								<span class="add-on">发布时间</span>
+								<input class="input-medium cursorHand" style="width: 80px;" id="published_begin_time" type="text" onclick="simHandler.showDaterangepickerWin('published_receipt_time');" readonly="readonly">
+								<span class="add-on">-</span>
+								<input class="input-medium cursorHand" style="width: 80px;" id="published_end_time" type="text" onclick="simHandler.showDaterangepickerWin('published_receipt_time');" readonly="readonly">
+								<a class="btn" id="published_receipt_time"><i class="icon-calendar"></i></a>
+							</div>
+						</td>
+			 			<td class="w100">
+							<div class="input-prepend input-append" style="padding:10px 10px 0px 0px;">
+								<span class="add-on">修改时间</span>
+								<input class="input-medium cursorHand" style="width: 80px;" id="mdf_begin_time" type="text" onclick="simHandler.showDaterangepickerWin('mdf_receipt_time');" readonly="readonly">
+								<span class="add-on">-</span>
+								<input class="input-medium cursorHand" style="width: 80px;" id="mdf_end_time" type="text" onclick="simHandler.showDaterangepickerWin('mdf_receipt_time');" readonly="readonly">
+								<a class="btn" id="mdf_receipt_time"><i class="icon-calendar"></i></a>
+							</div>
+						</td>
+			 			<td class="w100"><a class="easyui-linkbutton" data-options="iconCls:'icon-search'" href="javascript:void(0)" onclick="doQueryLeak();">查询</a></td>
+			 			<td class="w100"><a class="easyui-linkbutton" data-options="iconCls:'icon-clear-all'" href="javascript:void(0)" onclick="doClear();">清空</a></td>
+			 			<td class="w100"><a class="easyui-linkbutton" data-options="iconCls:'icon-import'" href="javascript:void(0)" onclick="openImportWind();">导入</a></td>
+			 			<td></td>
+			 		</tr>
+			 	</table>
+			 </form>
+		</div>
+		<table id="leaks_query_table_sel_id" toolbar="#leaksToolBar"></table>
+	</div>
+</div>
+
+<!-- 导入漏洞 -->
+<div style="display:none;">
+	<div id="importLeakXML" class="easyui-window p5" data-options="title:'导入漏洞文件',collapsible:false,
+			width:345,height:180,minimizable:false,maximizable:false,closed:true,modal:true,closable:false">
+		<div class="easyui-layout" fit="true">
+			<div region="center" border="false" class="p5" style="border:1px solid #ccc;">
+				<form id="leakXMLForm" enctype="multipart/form-data" method="post" class="p0 margin0">
+					<input type="file" name="leakXMLFile" class="horizon-fileupload" id="leakXMLId" />
+				</form>
+				<div id="leakXMLMsgId"></div>
+			</div>
+			<div region="south" border="false" class="pt5 h32" style="text-align:center;">
+		        <div id="importLeakXML_sourth_btns1" style="display:none;">
+		        	<img src="/img/loading_withoutstate.jpg" />
+		        </div>
+		        <div id="importLeakXML_sourth_btns2" style="display:block;">
+		        	<a class="easyui-linkbutton" href="javascript:importXMLFile();" >确定</a>
+		        	<a class="easyui-linkbutton" href="javascript:closeImportWind();">关闭</a>
+		        </div>
+		    </div>
+		</div>
+	</div>
+</div>
+<script src="/js/sim/leak/leaks.js"></script>

@@ -1,0 +1,56 @@
+<div style="padding:0 3px;position:relative;">
+	<table class="table table-striped staticHtml" style="border:1px solid #dddddd;">
+		<tbody>
+			<tr>
+				<td colspan="3" ><a name="路由器/华为">17.2 华为路由器</a></td>
+			</tr>
+			<tr>
+				<td colspan="3" >
+					<table class="table table-bordered">
+						<tr>
+							<td>名称</td>
+							<td colspan="2">华为路由器</td>
+							<td>类别</td>
+							<td>安全产品</td>
+						</tr>
+						<tr>
+							<td rowspan="2">日志源配置</td>
+							<td>设备类型</td>
+							<td colspan="3">路由器-> 华为-> Quidway Router</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<img src="/data/logDataSource02/image074.jpg" />
+							</td>
+						</tr>
+						<tr>
+							<td rowspan="2">华为路由器配置</td>
+							<td>系统菜单</td>
+							<td colspan="3"></td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<pre>可以使用串口线直接连接，如果路由器配置有管理IP并且允许telnet登陆，则也可以通过telnet进行登陆。
+1、	输入system命令进入特权模式。
+2、启用路由器的syslog功能
+info-center enable
+3、指定接收syslog的主机，221.176.80.18为该主机的ip地址。
+info-center loghost 221.176.80.18 language English
+以上命令是配置221.176.80.18接收syslog，syslog的语言为英文。
+4、	选择发送warning以上级别的syslog信息。
+info-center source default channel loghost log level warning
+使用完配置命令后，均需要执行以下步骤进行保存：
+5、输入return命令退出配置模式。
+6、save保存配置文件。</pre>
+							</td>
+						</tr>
+						<tr>
+							<td>备注</td>
+							<td colspan="4"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

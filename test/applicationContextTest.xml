@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:aop="http://www.springframework.org/schema/aop"
+     xmlns:context="http://www.springframework.org/schema/context"
+     xmlns:tx="http://www.springframework.org/schema/tx"
+     xmlns:jee="http://www.springframework.org/schema/jee"
+     xsi:schemaLocation="
+     http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+     http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context-3.2.xsd
+     http://www.springframework.org/schema/tx
+     http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+     http://www.springframework.org/schema/aop
+     http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+	<context:annotation-config/>    
+	<!-- 数据源 -->
+	<bean id="simDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="username" value="root"></property>
+		<property name="password" value="Talent^(123)$!@#"></property>
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://127.0.0.1:53306/sim?useUnicode=true&amp;characterEncoding=utf8"></property>
+	</bean>
+	<!-- jdbcTemplate -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="simDataSource"/>
+	</bean>
+	<!-- SessionFactory -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="simDataSource"/>
+		<property name="mappingResources">
+			<value>
+				mappings/mysql/AggregatorScene.hbm.xml,
+				mappings/mysql/AlarmCategory.hbm.xml,
+				mappings/mysql/AssAsset.hbm.xml,
+				mappings/mysql/AssHardwareInfo.hbm.xml,
+				mappings/mysql/AssKeyValue.hbm.xml,
+				mappings/mysql/AssManagementInfo.hbm.xml,
+				mappings/mysql/AssStatueStatistic.hbm.xml,
+				mappings/mysql/AssTopo.hbm.xml,
+				mappings/mysql/AssTopology.hbm.xml,
+				mappings/mysql/AssType.hbm.xml,
+				mappings/mysql/AssTypeKey.hbm.xml,
+				mappings/mysql/AuditNode.hbm.xml,
+				mappings/mysql/AuthAccount.hbm.xml,
+				mappings/mysql/AuthActiveuser.hbm.xml,
+				mappings/mysql/AuthDisableClient.hbm.xml,
+				mappings/mysql/AuthFailedlogin.hbm.xml,
+				mappings/mysql/AuthPermission.hbm.xml,
+				mappings/mysql/AuthResource.hbm.xml,
+				mappings/mysql/AuthRole.hbm.xml,
+				mappings/mysql/AuthUmConfig.hbm.xml,
+				mappings/mysql/AuthUserDevice.hbm.xml,
+				mappings/mysql/AuthUserRole.hbm.xml,
+				mappings/mysql/BlackGroup.hbm.xml,
+				mappings/mysql/Column.hbm.xml,
+				mappings/mysql/ColumnSet.hbm.xml,
+				mappings/mysql/Component.hbm.xml,
+				mappings/mysql/ConfigPolicy.hbm.xml,
+				mappings/mysql/CsosTask.hbm.xml,
+				mappings/mysql/CstDatasource.hbm.xml,
+				mappings/mysql/DataFlow.hbm.xml,
+				mappings/mysql/DBPartition.hbm.xml,
+				mappings/mysql/EventAssocKb.hbm.xml,
+				mappings/mysql/EventCategory.hbm.xml,
+				mappings/mysql/EventMonitor.hbm.xml,
+				mappings/mysql/EventRule.hbm.xml,
+				mappings/mysql/Filter.hbm.xml,
+				mappings/mysql/Group.hbm.xml,
+				mappings/mysql/Instrument.hbm.xml,
+				mappings/mysql/KBEvent.hbm.xml,
+				mappings/mysql/ManagedGroup.hbm.xml,
+				mappings/mysql/Module.hbm.xml,
+				mappings/mysql/ModuleConfig.hbm.xml,
+				mappings/mysql/Monitor.hbm.xml,
+				mappings/mysql/Node.hbm.xml,
+				mappings/mysql/Relationship.hbm.xml,
+				mappings/mysql/Resource.hbm.xml,
+				mappings/mysql/Response.hbm.xml,
+				mappings/mysql/RptMaster.hbm.xml,
+				mappings/mysql/RptMasterTb.hbm.xml,
+				mappings/mysql/RptMstSub.hbm.xml,
+				mappings/mysql/RptPolicyRule.hbm.xml,
+				mappings/mysql/RptRule.hbm.xml,
+				mappings/mysql/RptRuleValue.hbm.xml,
+				mappings/mysql/RptSub.hbm.xml,
+				mappings/mysql/RptSubTb.hbm.xml,
+				mappings/mysql/Segment.hbm.xml,
+				mappings/mysql/SimAlarm.hbm.xml,
+				mappings/mysql/SimAuditLog.hbm.xml,
+				mappings/mysql/SimBlacks.hbm.xml,
+				mappings/mysql/SimDatasource.hbm.xml,
+				mappings/mysql/SimDatasourceBlackList.hbm.xml,
+				mappings/mysql/SimDDbtask.hbm.xml,
+				mappings/mysql/SimDHardware.hbm.xml,
+				mappings/mysql/SimDPatchbase.hbm.xml,
+				mappings/mysql/SimNodeUpgrade.hbm.xml,
+				mappings/mysql/SimRule.hbm.xml,
+				mappings/mysql/SimRuleUpgrade.hbm.xml,
+				mappings/mysql/SimWhites.hbm.xml,
+				mappings/mysql/TAL_EventPolicy_Monitor.hbm.xml,
+				mappings/mysql/TAL_EventPolicy_R_Response.hbm.xml,
+				mappings/mysql/TAL_EventPolicy.hbm.xml,
+				mappings/mysql/TAL_Response_Result.hbm.xml,
+				mappings/mysql/TAL_Response.hbm.xml,
+				mappings/mysql/TopflowConfigure.hbm.xml,
+				mappings/mysql/TopflowUser.hbm.xml,
+				mappings/mysql/UpgradePlan.hbm.xml,
+				mappings/mysql/UpgradeRecord.hbm.xml,
+			</value>
+		</property>
+	</bean>
+	
+	<!-- 事务管理对象 -->
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="simDataSource" />
+	</bean>
+	
+	<!-- 事务定义 -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="save*"/>
+			<tx:method name="add*"/>
+			<tx:method name="update*"/>
+			<tx:method name="delete*"/>
+			<tx:method name="*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	<!-- 事务关注点 -->
+	<aop:config>
+		<aop:pointcut id="serviceOperation" expression="execution(* com.topsec.tsm.sim.*.service.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation" />
+	</aop:config>
+	
+	<import resource="../spring/applicationContext-asset.xml"/>
+	<import resource="../spring/applicationContext-event.xml"/>
+	<import resource="../spring/applicationContext-log.xml"/>
+	<import resource="../spring/applicationContext-report.xml"/>
+	<import resource="../spring/applicationContext-sysconfig.xml"/>
+	<import resource="../spring/node.xml"/>
+	
+	<bean id="testDao" class="com.topsec.tsm.sim.test.dao.TestDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean name="testService" class="com.topsec.tsm.sim.test.service.TestServiceImpl">
+		<property name="template" ref="jdbcTemplate"/>
+		<property name="dao" ref="testDao"/>
+	</bean>
+	
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"></bean>
+	
+	<bean class="com.topsec.tsm.sim.test.web.TestController"></bean>
+</beans>

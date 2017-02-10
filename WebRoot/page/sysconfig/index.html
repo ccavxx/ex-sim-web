@@ -1,0 +1,52 @@
+<style>
+.nav-header{
+	font-size:12px;
+}
+</style>
+<div>
+	<div class="row-fluid">
+		<div class="span2" style="background-color:white;">
+			<ul class="nav nav-list" id="sysconfig_menu" style="border: solid #C4DBE9 1px;border-top: none;">
+
+				<li class="nav-header" group="eventRulesGroup"><i class="icon-th-list"></i>事件规则<span class="groupMenu menuCollapsed"></span></li>
+				<ul class="nav nav-list _listGroup" id="eventRulesGroup" >
+				 	<li><a href="javascript:void(0)" id="initMenu" onclick="simSysconfig.changeMenu(this, event,'/page/sysconfig/eventRuleGroupConf.html')">关联规则</a></li>
+					<li><a href="javascript:void(0)" onclick="simSysconfig.changeMenu(this, event,'/page/sysconfig/sysconfig_logfilterrule.html')">过滤规则</a></li>
+					<li><a href="javascript:void(0)" onclick="simSysconfig.changeMenu(this, event,'/page/sysconfig/sysconfig_aggregatorrule.html')">归并规则</a></li>
+					<li><a href="javascript:void(0)" onclick="simSysconfig.changeMenu(this, event,'/page/sysconfig/sysconfig_eventfilterrule.html')">事件过滤</a></li>
+<!-- 				<li><a style="color:gray">黑名单</a></li>
+					<li><a style="color:gray">黑名单组</a></li> -->
+				</ul>
+				<li class="nav-header" group="logMngGroup"><i class="icon-th-list"></i>存储管理<span class="groupMenu menuCollapsed"></span></li>
+				<ul class="nav nav-list _listGroup" id="logMngGroup">
+					<li><a href="javascript:void(0)" onclick="simSysconfig.changeMenu(this, event,'/page/sysconfig/sysconfig_logStore.html')">存储策略</a></li>
+					<li><a href="javascript:void(0)" onclick="simSysconfig.changeMenu(this, event,'/page/sysconfig/sysconfig_logbackup.html')">备份策略</a></li>
+				</ul>
+				<li class="nav-header" group="replayConfig"><i class="icon-th-list"></i>转发配置<span class="groupMenu menuCollapsed"></span></li>
+				<ul class="nav nav-list _listGroup" id="replayConfig">
+					<li><a href="javascript:void(0)" onclick="simSysconfig.changeMenu(this, event,'/page/sysconfig/sysconfig_syslogforward.html')">Syslog转发</a></li>
+					<li><a href="javascript:void(0)" onclick="simSysconfig.changeMenu(this, event,'/page/sysconfig/sysconfig_jmsforward.html')">JMS转发</a></li>
+				</ul>
+				<li class="nav-header" group="systemConfigGroup"><i class="icon-th-list"></i>系统配置<span class="groupMenu menuCollapsed"></span></li>
+				<ul class="nav nav-list _listGroup" id="systemConfigGroup">
+					<!--li><a href="javascript:void(0)" onclick="simSysconfig.changeMenu(this, event,'/page/user/userMain.html')">用户管理</a></li-->
+					<li><a href="javascript:void(0)" onclick="simSysconfig.changeMenu(this, event,'/page/sysconfig/sysconfig_mailserver.html')">邮件服务器</a></li>
+					<li><a href="javascript:void(0)" onclick="simSysconfig.changeMenu(this, event,'/page/sysconfig/sysconfig_collectorport.html')">采集器端口</a></li>
+<!-- 					<li><a href="javascript:void(0)" onclick="simSysconfig.changeMenu(this, event,'/page/sysconfig/sysconfig_reportFooterImage.html')">报表页脚图片配置</a></li> -->
+					<li><a href="javascript:void(0)" onclick="simSysconfig.changeMenu(this, event,'/page/sysconfig/sysconfig_informManager.html')">告警方式管理</a></li>
+					<li><a href="javascript:void(0)" onclick="simSysconfig.changeMenu(this, event,'/sim/systemConfig/superiorConfigShowUI');">上级配置</a></li>
+					<li><a href="javascript:void(0)" id="initsuperiorList" onclick="simSysconfig.changeMenu(this, event,'/sim/systemConfig/superiorConfigListPage');">多级管理</a></li>
+					<li><a href="javascript:void(0)" onclick="simSysconfig.changeMenu(this, event,'/page/sysconfig/sysconfig_nodeManager.html');">代理管理</a></li>
+					<li><a href="javascript:void(0)" onclick="simSysconfig.changeMenu(this, event,'/page/sysconfig/sysconfig_sysBackup.jsp')">系统备份</a></li>
+					<li><a href="javascript:void(0)" onclick="simSysconfig.changeMenu(this, event,'/page/sysconfig/sysconfig_resource_mgr.html')">资源管理</a></li>
+					<li><a href="javascript:void(0)" onclick="simSysconfig.changeMenu(this, event,'/page/sysconfig/company_infoManager.jsp')">logo配置</a></li>
+<!-- 					<li><a href="javascript:void(0)" onclick="simSysconfig.changeMenu(this, event,'/page/sysconfig/sysconfig_productform.html');">设备信息提交</a></li> -->
+				</ul>
+			</ul>
+		</div>
+		<div class="span10">
+			<div id="sysconfig_container" style="position: relative;"></div>
+		</div>
+	</div>
+<script src="/js/sim/sysconfig/sysconfig.js"></script>
+<script src="/js/global/jquery.selection.js"></script>

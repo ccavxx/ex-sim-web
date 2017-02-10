@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service id="remoting-service" 
+    class="flex.messaging.services.RemotingService">
+
+    <adapters>
+        <adapter-definition id="java-object" class="flex.messaging.services.remoting.adapters.JavaAdapter" default="true"/>
+    </adapters>
+
+    <default-channels>
+        <channel ref="my-amf"/>
+    </default-channels>
+    
+	
+	 <destination id="TopoNode" channels="my-amf" >
+		<properties>
+			<factory>spring</factory>
+			<source>com.topsec.tsm.sim.node.service.NodeMgrFacade</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+	<destination id="AuditorNode" channels="my-amf" >
+		<properties>
+			<factory>spring</factory>
+			<source>com.topsec.tsm.sim.node.service.NodeMgrFacade</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+	 <destination id="echoServiceDestination" channels="my-amf">
+		<properties>
+			<factory>spring</factory>
+			<source>echoService</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+	<destination id="historyLogSearch" channels="my-amf">
+		<properties>
+			<source>com.topsec.tsm.tal.ui.history.action.SearchHistoryLogAction</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+	
+	<destination id="logMonitorAction" channels="my-amf">
+		<properties>
+			<source>com.topsec.tsm.ui.sim.logmonitor.web.LogMonitorAction</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+	<destination id="historyLogAction" channels="my-amf">
+		<properties>
+			<source>com.topsec.tsm.tal.ui.history.action.HistoryLogAction</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+	<destination id="logSearcherAction" channels="my-amf">
+		<properties>
+			<source>com.topsec.tsm.tal.ui.search.action.LogSearcherAction</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+	<destination id="eventQueryAction" channels="my-amf">
+		<properties>
+			<source>com.topsec.tsm.ui.sim.eventquery.web.EventQueryAction</source>
+			<scope>session</scope>
+		</properties>
+	</destination>
+	
+ </service>

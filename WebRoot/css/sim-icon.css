@@ -1,0 +1,438 @@
+/*wq*/
+.tree-folder {
+	background: url('../img/skin/tree/tree_icons_close.gif') no-repeat center center;
+}
+.tree-folder-open {
+    background: url('../img/skin/tree/tree_icons.gif') no-repeat center center;
+}
+.tree-file {
+	background: url('../img/skin/tree/tree_file.gif') no-repeat center center;
+}
+.icon-tree-leaf-single{
+	background:url('../img/skin/tree/icon_tree_leaf_single.gif') no-repeat center center;
+}
+.icon-tree-leaf-all{
+	background:url('../img/skin/tree/icon_tree_leaf_all.gif') no-repeat center center;
+}
+.icon-no{
+	width:16px;
+	height:16px;
+}
+/*--add--*/
+.icon-del{
+	background:url('../js/jquery-easyui/themes/icons/cancel.png') no-repeat center center;
+}
+.icon-word{
+	background:url('../img/report/word.gif') no-repeat center center;
+}
+.icon-pdf{
+	background:url('../img/report/pdf.gif') no-repeat center center;
+}
+.icon-excel{
+	background:url('../img/report/excel.gif') no-repeat center center;
+}
+.icon-computer{
+	background:url('../img/icons/computer.png') no-repeat center center;
+}
+.icon-database{
+	background:url('../img/icons/database.png') no-repeat center center;
+}
+.icon-ie{
+	background:url('../img/icons/ie.png') no-repeat center center;
+}
+.icon-loading{
+	background:url('../img/icons/loading.gif') no-repeat center center;
+}
+.icon-pie{
+	background:url('../img/icons/pie.png') no-repeat center center;
+}
+.icon-bar{
+	background:url('../img/icons/bar.png') no-repeat center center;
+}
+.icon-line{
+	background:url('../img/icons/line.png') no-repeat center center;
+}
+.icon-table{
+	background:url('../img/icons/table.png') no-repeat center center;
+}
+.icon-map{
+	background:url('../img/icons/map.png') no-repeat center center;
+}
+.icon-timer{
+	background:url('../img/icons/time.png') no-repeat center center;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+.icon-timer-green{
+	background:url('../img/icons/timer-green.png') no-repeat center center;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.icon-router{
+	background:url('../img/icons/asset/router.png') no-repeat center center;
+}
+.icon-switch{
+	background:url('../img/icons/asset/switch.png') no-repeat center center;
+}
+.icon-firewall{
+	background:url('../img/icons/asset/firewall.png') no-repeat center center;
+}
+.icon-vpn{
+	background:url('../img/icons/asset/vpn.png') no-repeat center center;
+}
+.icon-ips{
+	background:url('../img/icons/asset/ips.png') no-repeat center center;
+}
+.icon-ids{
+	background:url('../img/icons/asset/ids.png') no-repeat center center;
+}
+.icon-flow{
+	background:url('../img/icons/asset/flow.png') no-repeat center center;
+}
+.icon-flowsec{
+	background:url('../img/icons/asset/flow.png') no-repeat center center;
+}
+.icon-antidos{
+	background:url('../img/icons/asset/antidos.png') no-repeat center center;
+}
+.icon-antivirus{
+	background:url('../img/icons/asset/antivirus.png') no-repeat center center;
+}
+.icon-audit{
+	background:url('../img/icons/asset/audit.png') no-repeat center center;
+}
+.icon-gate{
+	background:url('../img/icons/asset/default.png') no-repeat center center;
+}
+.icon-server{
+	background:url('../img/icons/asset/os.png') no-repeat center center;
+}
+.icon-asset{
+	background:url('../img/icons/asset/default.png') no-repeat center center;
+}
+/**大设备图标*/
+.icon-router-24,.icon-switch-24,.icon-firewall-24,.icon-vpn-24,.icon-ips-24,
+.icon-ids-24,.icon-flow-24,.icon-flowsec-24,.icon-antidos-24,.icon-antivirus-24,
+.icon-audit-24,.icon-server-24,.icon-asset-24{
+	width: 24px ;
+	height: 24px;
+}
+.icon-router-24{
+	background:url('../img/icons/asset/router_24.png') no-repeat center center;
+}
+.icon-switch-24{
+	background:url('../img/icons/asset/switch_24.png') no-repeat center center;
+}
+.icon-firewall-24{
+	background:url('../img/icons/asset/firewall_24.png') no-repeat center center;
+}
+.icon-vpn-24{
+	background:url('../img/icons/asset/vpn_24.png') no-repeat center center;
+}
+.icon-ips-24{
+	background:url('../img/icons/asset/ips_24.png') no-repeat center center;
+}
+.icon-ids-24{
+	background:url('../img/icons/asset/ids_24.png') no-repeat center center;
+}
+.icon-flow-24{
+	background:url('../img/icons/asset/flow_24.png') no-repeat center center;
+}
+.icon-flowsec-24{
+	background:url('../img/icons/asset/flow_24.png') no-repeat center center;
+}
+.icon-antidos-24{
+	background:url('../img/icons/asset/antidos_24.png') no-repeat center center;
+}
+.icon-antivirus-24{
+	background:url('../img/icons/asset/antivirus_24.png') no-repeat center center;
+}
+.icon-audit-24{
+	background:url('../img/icons/asset/audit_24.png') no-repeat center center;
+}
+.icon-server-24{
+	background:url('../img/icons/asset/os_24.png') no-repeat center center;
+}
+.icon-gate-24{
+	background:url('../img/icons/asset/default_24.png') no-repeat center center;
+}
+.icon-asset-24{
+	background:url('../img/icons/asset/default_24.png') no-repeat center center;
+}
+/*操作系统样式*/
+.icon-os-linux{
+	background:url('../img/icons/os/linux.gif') no-repeat center center;
+}
+.icon-os-redhat{
+	background:url('../img/icons/os/redhat.gif') no-repeat center center;
+}
+.icon-os-solaris{
+	background:url('../img/icons/os/solaris.gif') no-repeat center center;
+}
+.icon-os-win{
+	background:url('../img/icons/os/win.gif') no-repeat center center;
+}
+.icon-os-unix{
+	background:url('../img/icons/os/unix.png') no-repeat center center;
+}
+.icon-os-mac{
+	background:url('../img/icons/os/mac.png') no-repeat center center;
+}
+.icon-os-switch{
+	background:url('../img/icons/os/switch.png') no-repeat center center;
+}
+.icon-os-router{
+	background:url('../img/icons/os/router.png') no-repeat center center;
+}
+.icon-os-vmware{
+	background:url('../img/icons/os/vmware.png') no-repeat center center;
+}
+.icon-os-default{
+	background:url('../img/icons/os/default.png') no-repeat center center;
+}
+.icon-status-1{
+	background:url('../img/icons/status-1.png') no-repeat center center;
+}
+.icon-status-2{
+	background:url('../img/icons/status-2.png') no-repeat center center;
+}
+.icon-status-3{
+	background:url('../img/icons/status-3.png') no-repeat center center;
+}
+.icon-status-4{
+	background:url('../img/icons/status-4.png') no-repeat center center;
+}
+
+.icon-import{
+	background:url('../img/skin/other_icon/icon_import.gif') no-repeat center center;
+}
+/*资产状态图标*/
+.icon-status-online,.icon-enabled{
+	background:url('../img/icons/status-1.png') no-repeat center center;
+}
+.icon-status-offline,.icon-disabled{
+	background:url('../img/icons/status-4.png') no-repeat center center;
+}
+.icon-status-unknow{
+	background:url('../img/icons/status-3.png') no-repeat center center;
+}
+.conditions-tab{
+	background:url('../img/icons/conditions/conditions_tab.gif') no-repeat center center;
+}
+.conditions-and{
+	background:url('../img/icons/conditions/conditions_and.gif') no-repeat center center;
+}
+.conditions-not{
+	background:url('../img/icons/conditions/conditions_not.gif') no-repeat center center;
+}
+.conditions-or{
+	background:url('../img/icons/conditions/conditions_or.gif') no-repeat center center;
+}
+.conditions-condition{
+	background:url('../img/icons/conditions/conditions_condition.gif') no-repeat center center;
+}
+.conditions-bracket{
+	background:url('../img/icons/conditions/conditions_bracket.png') no-repeat center center;
+}
+/*wq 自定义icon */
+.icon-add{
+	background:url('../img/skin/other_icon/icon_add.gif') no-repeat center center;
+}
+.icon-edit{
+	background:url('../img/skin/other_icon/icon_edit.gif') no-repeat center center;
+}
+.icon-search{
+	background:url('../img/skin/other_icon/icon_search.png') no-repeat center center;
+}
+.icon-calendar{
+	background:url('../img/skin/other_icon/icon_calendar.png') no-repeat center center;
+	width:16px;
+	height:16px;
+}
+.icon-panel-open{
+	background:url('../img/skin/other_icon/panel-open.png') no-repeat center center;
+}
+.icon-analyse {
+  background: url('../img/skin/other_icon/icon_analyse.gif') no-repeat center center;
+}
+.layout-button-left {
+	background: url('../img/skin/layout/layout_button_left.png') no-repeat center center;
+}
+.layout-button-right {
+	background: url('../img/skin/layout/layout_button_right.png') no-repeat center center;
+}
+.icon-layout-log{
+	width:20px;
+	height:18px;
+	background:url('../img/skin/layout/icon_layout_log.png') no-repeat center center;
+}
+.icon-clear-all{
+	background:url('../img/skin/other_icon/icon_clear_all.gif') no-repeat center center;
+}
+.icon-remove{
+	background:url('../img/skin/other_icon/icon_remove.png') no-repeat center center;
+}
+.icon-backup{
+	background:url('../img/skin/other_icon/icon_backup.gif') no-repeat center center;
+}
+.icon-cancel,
+.icon-goback{
+	background:url('../img/skin/other_icon/icon_goback.gif') no-repeat center center;
+}
+.icon-next{
+	background:url('../img/skin/other_icon/icon_next.gif') no-repeat center center;
+}
+.icon-apply{
+	background:url('../img/skin/other_icon/icon_apply.gif') no-repeat center center;
+}
+.icon-stop-refresh{
+	background:url('../img/skin/other_icon/icon_stop_refresh.gif') no-repeat center center;
+}
+.icon-export{
+	background:url('../img/icons/export.gif') no-repeat center center;
+}
+.icon-expand{
+	background:url('../img/down.png') no-repeat center center;
+}
+.icon-log-count{
+	background:url('../img/skin/other_icon/icon_log_count.png') no-repeat center center;
+}
+.icon-search-conditions{
+	background:url('../img/skin/other_icon/icon_search_conditions.png') no-repeat center center;
+}
+.log-datagrid{
+	background:url('../img/skin/other_icon/log_datagrid.png') no-repeat center center;
+}
+.log-size{
+	background:url('../img/skin/other_icon/icon_log_size.png') no-repeat center center;
+}
+.refresh-space{
+	background:url('../img/skin/other_icon/refresh_space.png') no-repeat center center;
+}
+.icon-level{
+	background:url('../img/skin/other_icon/icon-level.png') no-repeat center center;
+}
+.icon-rule-name{
+	background:url('../img/skin/other_icon/icon-rule-name.png') no-repeat center center;
+}
+.icon-event-style{
+	background:url('../img/skin/other_icon/event-style.png') no-repeat center center;
+}
+.icon-save{
+	background:url('../img/icons/save.png') no-repeat center center;
+}
+/*
+.icon-cancel{
+	background:url('../img/icons/cancel.png') no-repeat center center;
+}*/
+.icon-alarm{
+	background:url('../img/icons/alarm.png') no-repeat center center;
+}
+.icon-none{
+	display: none;
+}
+.icon-stop{
+	background:url('../img/skin/other_icon/icon_stop_refresh.gif') no-repeat center center;
+}
+.icon-start{
+	background:url('../img/icons/start.png') no-repeat center center;
+}
+.icon-clone{
+	background:url('../img/skin/other_icon/icon_clone.png') no-repeat center center;
+}
+.icon-asset-enabled{
+	background:url('../img/skin/other_icon/asset_enabled.png') no-repeat center center;
+	display: inline-block;
+}
+.icon-asset-disabled{
+	background:url('../img/skin/other_icon/asset_disabled.png') no-repeat center center;
+}
+.icon-log{
+	background:url('../img/skin/other_icon/icon-log.png') no-repeat center center;
+	display: inline-block;
+}
+.icon-event{
+	background:url('../img/skin/other_icon/icon-event.png') no-repeat center center;
+}
+.icon-up{
+	background:url('../img/icons/up.png') no-repeat center center;
+	width:14px;
+	height:14px;
+}
+.icon-down{
+	background:url('../img/icons/down.png') no-repeat center center;
+	width:14px;
+	height:14px;
+}
+.icon-disable{
+	background:url('../img/icons/ico_15.gif') no-repeat center center;
+}
+.icon-enabled{
+	background:url('../img/icons/ico_16.gif') no-repeat center center ;
+}
+.icon-enable-protection{
+	background:url('../img/icons/enable_protection.png') no-repeat center center ;
+}
+.icon-disable-protection{
+	background:url('../img/icons/disable_protection.png') no-repeat center center ;
+}
+.icon-deny{
+	background:url('../img/icons/denied.png') no-repeat center center ;
+	width: 14px;
+	height: 14px;
+}
+.icon-location{
+	background:url('../img/icons/location.png') no-repeat center center ;
+	width: 18px;
+	height: 18px;
+}
+.icon-tree{
+	background:url('../img/icons/tree.png') no-repeat center center ;
+	width: 18px;
+	height: 18px;
+}
+.icon-china-map{
+	background:url('../img/icons/china-map.png') no-repeat center center ;
+}
+.icon-global-green{
+	background:url('../img/icons/global-green.png') no-repeat center center ;
+	width: 15px;
+	height: 15px;
+}
+.icon-asset-cpu-info{
+	background:url('../img/icons/asset_cpu_info.png') no-repeat center center ;
+	width: 50px;
+	height: 50px;
+}
+.icon-monitor{
+	background:url('../img/icons/monitor.png') no-repeat center center ;
+}
+.icon-asset-memory-info{
+	background:url('../img/icons/asset_memory_info.png') no-repeat center center ;
+	width: 50px;
+	height: 50px;
+}
+.icon-asset-process-info{
+	background:url('../img/icons/asset_process_info.png') no-repeat center center ;
+	width: 50px;
+	height: 50px;
+}
+.icon-asset-service-info{
+	background:url('../img/icons/asset_service_info.png') no-repeat center center ;
+	width: 50px;
+	height: 50px;
+}
+.icon-asset-port-info{
+	background:url('../img/icons/asset_port_info.png') no-repeat center center ;
+	width: 50px;
+	height: 50px;
+}
+.icon-asset-leak-info{
+	background:url('../img/icons/asset_leak_info.png') no-repeat center center ;
+	width: 50px;
+	height: 50px;
+}
+.icon-asset-interfaces-info{
+	background:url('../img/icons/asset_interfaces_info.png') no-repeat center center ;
+	width: 50px;
+	height: 50px;
+}

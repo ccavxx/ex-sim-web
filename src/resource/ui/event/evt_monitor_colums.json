@@ -1,0 +1,28 @@
+[{
+	"field" : "END_TIME",
+	"title" : "时间"
+}, {
+	"field" : "PRIORITY",
+	"title" : "级别"
+}, {
+	"field" : "NAME",
+	"title" : "事件名"
+}, {
+	"field" : "SRC_ADDRESS",
+	"title" : "源地址"
+}, {
+	"field" : "DEST_ADDRESS",
+	"title" : "目的地址"
+}, {
+	"field" : "DVC_ADDRESS",
+	"title" : "设备地址"
+}, {
+	"field" : "CAT1_ID",
+	"title" : "一级分类"
+}, {
+	"field" : "CAT2_ID",
+	"title" : "二级分类"
+}, {
+	"field" : "DESCR",
+	"title" : "描述"
+}]

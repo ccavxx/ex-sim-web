@@ -1,0 +1,10 @@
+[
+ [
+ 	{field:"ck",checkbox:true},
+	{field:"name",title:"名称",width:100},
+	{field:"createTime",title:"时间",width:90},
+	{field:"priority",title:"级别",width:90},
+	{field:"cat1id",title:"分类1",width:80},
+	{field:"cat2id",title:"分类2",width:80}
+  ]
+]

@@ -1,0 +1,1148 @@
+/**
+ * @author
+ */
+var echartshow = {};
+Date.prototype.format=function(format){
+	var o={
+			"M+":this.getMonth()+1,
+			"d+":this.getDate(),
+			"h+":this.getHours(),
+			"m+":this.getMinutes(),
+			"s+":this.getSeconds(),
+			"q+":Math.floor((this.getMonth()+3)/3),
+			"s+":this.getMilliseconds()
+	};
+	if(/(y+)/.test(format)){
+		format=format.replace(RegExp.$1,(this.getFullYear()+"").substr(4-RegExp.$1.length));
+	}
+	for(var k in o){
+		if(new RegExp("("+k+")").test(format)){
+			format=format.replace(RegExp.$1,RegExp.$1.length==1?o[k]:("00"+o[k]).substr((""+o[k]).length));
+		}
+	}
+	return format;
+};
+echartshow.getFormatDateByLong=function(lval,pattern){
+	return echartshow.getFormatDate(new Date(lval),pattern);
+};
+
+echartshow.getFormatDate=function(date,pattern){
+	if(undefined==date){
+		date=new Date();
+	}
+	if(undefined==pattern){
+		pattern="yyyy-MM-dd hh:mm:ss";
+	}
+	return date.format(pattern);
+};
+
+echartshow.init=function(mainId,option){
+	require.config({
+		paths : {
+			echarts : '/js/echart/build/dist'
+		}
+	});
+	
+	require(
+			[
+			'echarts',
+			'echarts/chart/line', 
+			'echarts/chart/bar',
+			'echarts/chart/scatter', 
+			'echarts/chart/k', 
+			'echarts/chart/pie',
+			'echarts/chart/radar', 
+			'echarts/chart/force', 
+			'echarts/chart/chord',
+			'echarts/chart/gauge', 
+			'echarts/chart/funnel',
+			'echarts/chart/eventRiver', 
+			'echarts/chart/venn',
+			'echarts/chart/treemap', 
+			'echarts/chart/tree',
+			'echarts/chart/wordCloud', 
+			'echarts/chart/heatmap' ], 
+			function(ec) {
+				var myChart = ec.init(document.getElementById(mainId));
+				myChart.setOption(option);
+				
+			});
+	
+};
+
+echartshow.standardOption=function(subname,resultdata,topn,imgtype){
+	var structDesc=resultdata.dataStructureDesc;
+	
+	var categorys=structdescribe(structDesc,'categorys');
+	var statistical=structdescribe(structDesc,'statistical');
+	var maxval=-999;
+	for(var i=0;i<statistical.catename.length;i++){
+		if('FLOW_NO' == statistical.cateUnit[i]){
+			var tmpval=getMaxMinDat(resultdata,statistical.catename[i],'max',topn);
+			if(maxval<tmpval)maxval=tmpval;
+		}
+	}
+	var unit='';
+	if(-999 !=maxval){
+		unit=echartshow.getUnitType(maxval);
+	}
+	var xdata=getSinglexAxisData(resultdata,categorys,topn);
+	
+	var arraydat=getArrayyAxisData(resultdata,statistical,topn,unit);
+	
+	var seriesdat=getSeriesDat(imgtype,arraydat,topn);
+	var legenddat=getlegend(arraydat,topn);
+	if('' != unit)unit='('+unit+')';
+	var option =  {
+		    title : {
+		    	x:'center',
+				text : subname,
+				subtext : resultdata.describe
+		    },
+		    tooltip : {
+		        trigger: 'axis'
+		    },
+		    legend: {
+		    	y:'bottom',
+		        data:legenddat
+		    },
+		    toolbox: {
+		        show : true,
+		        feature : {
+//		            mark : {show: true},
+		            dataView : {
+		            	show : true,
+		            	title :false,
+						readOnly : true,
+						optionToContent : function(option1){
+							var table=echartshow.filldatviewTablecontent (resultdata,categorys,statistical,topn,'column');
+							var divt=$('<div/>').append(table);
+							return  divt.html();
+						},
+						lang: [echartshow.filldatviewTitle(subname,resultdata.describe).html()]
+		            },
+		            magicType : {show: true, type: ['line', 'bar']},//,'stack', 'tiled'
+		            restore : {show: false},
+		            saveAsImage : {show: true}
+		        }
+		    },
+		    calculable : true,
+		    xAxis : [
+		        {
+		            type : 'category',
+		            data : xdata.length==0?[0]:xdata
+		        }
+		    ],
+		    yAxis : [
+		        {
+		            type : 'value',
+		            axisLabel : {
+		                formatter: '{value} '+unit
+		            }
+		        }
+		    ],
+		    series : seriesdat
+		};
+	return option;
+};
+
+echartshow.pieOption=function(subname,resultdata,topn,imgtype){
+	var structDesc=resultdata.dataStructureDesc;
+	
+	var categorys=structdescribe(structDesc,'categorys');
+	var statistical=structdescribe(structDesc,'statistical');
+	var seriespara=structdescribe(structDesc,'series');
+	var xdata=getSinglexAxisData(resultdata,categorys,topn);
+	
+	var seriesdat=getPieSeriesUnit(resultdata,categorys,statistical,seriespara,topn);
+	
+	var option = {
+		    title : {
+		        text: subname,
+		        subtext: resultdata.describe,
+		        x:'center'
+		    },
+		    tooltip : {
+		        trigger: 'item',
+		        formatter: "{a} <br/>{b} : {c} ({d}%)"
+		    },
+		    legend: {
+		        orient : 'vertical',
+		        x : 'left',
+		        data:xdata
+		    },
+		    toolbox: {
+		        show : true,
+		        feature : {
+//		            mark : {show: true},
+		            dataView : {
+		            	show : true,
+						readOnly : true,
+						optionToContent : function(option1){
+							var table=echartshow.filldatviewTablecontent (resultdata,categorys,statistical,topn,'column');
+							var divt=$('<div/>').append(table);
+							return  divt.html();
+						},
+						lang: [echartshow.filldatviewTitle(subname,resultdata.describe).html()]
+		            },
+		            magicType : {
+		                show: true, 
+		                type: ['pie', 'funnel'],
+		                option: {
+		                    funnel: {
+		                        x: '25%',
+		                        width: '50%',
+		                        funnelAlign: 'left',
+		                        max: 1548
+		                    }
+		                }
+		            },
+		            restore : {show: false},
+		            saveAsImage : {show: true}
+		        }
+		    },
+		    calculable : true,
+		    series : seriesdat
+		};
+	return option;
+};
+
+echartshow.rainbowOption=function(subname,resultdata,topn,imgtype){
+	var structDesc=resultdata.dataStructureDesc;
+	
+	var categorys=structdescribe(structDesc,'categorys');
+	var statistical=structdescribe(structDesc,'statistical');
+	var seriesdat=structdescribe(structDesc,'series');
+	var maxval=-999;
+	for(var i=0;i<statistical.catename.length;i++){
+		if('FLOW_NO' == statistical.cateUnit[i]){
+			var tmpval=getMaxMinDat(resultdata,statistical.catename[i],'max',topn);
+			if(maxval<tmpval)maxval=tmpval;
+		}
+	}
+	var unit='';
+	if(-999 !=maxval){
+		unit=echartshow.getUnitType(maxval);
+	}
+	var xdata=getSinglexAxisData(resultdata,categorys,topn);
+	var ydata=getSingleyAxisData(resultdata,statistical,topn,unit);
+	var seriesN=getseries(resultdata,seriesdat);
+	if('' != unit)unit='('+unit+')';
+	var option = {
+			title : {
+				x : 'center',
+				text : subname,
+				subtext : resultdata.describe,
+				link : '/sim/index/'
+			},
+			tooltip : {
+				trigger : 'item'
+			},
+			toolbox : {
+				show : true,
+				feature : {
+					dataView : {
+						show : true,
+						readOnly : true,
+						optionToContent : function(option1){
+							var table=echartshow.filldatviewTablecontent (resultdata,categorys,statistical,topn,'column');
+							var divt=$('<div/>').append(table);
+							return  divt.html();//table.prop('outerHTML');
+						},
+						lang: [echartshow.filldatviewTitle(subname,resultdata.describe).html()]
+					},
+					restore : {
+						show : false
+					},
+					saveAsImage : {
+						show : true
+					}
+				}
+			},
+			calculable : true,
+			grid : {
+				borderWidth : 0,
+				y : 80,
+				y2 : 60
+			},
+			xAxis : [ {
+				type : 'category',
+				show : true,
+				data : xdata.length==0?[0]:xdata
+			} ],
+			yAxis : [ {
+				type : 'value',
+				axisLabel : {
+	                formatter: '{value} '+unit
+	            },
+				show : true
+			} ],
+			series : [ {
+				name : seriesN[0],
+				type : imgtype,
+				barMaxWidth:28,
+				itemStyle : {
+					normal : {
+						color : function(params) {
+							// build a color map as your need.
+							var colorList = [ '#FF7F50','#87CEFA','#C1232B', '#B5C334', '#FCCE10',
+									'#E87C25', '#27727B', '#FE8463', '#9BCA63',
+									'#FAD860', '#F3A43B', '#60C0DD', '#D7504B',
+									'#C6E579', '#F4E001', '#F0805A', '#26C0C0' ];
+							return colorList[params.dataIndex];
+						},
+						label : {
+							show : false,
+							position : 'top',
+							formatter : '{b}\n{c}'
+						}
+					}
+				},
+		        markPoint : {
+		            data : [
+		                {type : 'max', name: '最大值'},
+		                {type : 'min', name: '最小值'}
+		            ]
+		        },
+		        markLine : {
+		            data : [
+		                {type : 'average', name: '平均值'}
+		            ]
+		        },
+				data : ydata.length==0?[0]:ydata
+			} ]
+		};
+	return option;
+};
+
+echartshow.linkQueryInit=function(queryCondition){
+	var linkProperties={};
+	
+	linkProperties.statisticalProps=[];
+	linkProperties.particularlyQueryContents=[];
+	linkProperties.shareQueryContents=[];
+	
+	var qcont=0;
+	
+	if(null == queryCondition || queryCondition.length<=2){
+		return null;
+	}
+
+	var conditions=queryCondition.split('#SHARE@');
+	for(var i=0;i<conditions.length;i++){
+		if(0 == i){
+			var countlinks =conditions[i].split(',');
+			for(var j=0;j<countlinks.length;j++){
+				
+				var clinks=countlinks[j].split('$');
+				
+				linkProperties.statisticalProps[j]=clinks[0];
+				linkProperties.particularlyQueryContents[j]=[];
+				
+				var qcs=clinks[1].split('&');
+				for(var k=0;k<qcs.length;k++){
+					linkProperties.particularlyQueryContents[j][k]=qcs[k];
+				}
+				
+			}
+		}else{
+			var qcds=conditions[i].split('&');
+			for(var k=0;k<qcds.length;k++){
+				linkProperties.shareQueryContents[qcont++]=qcds[k];
+			}
+		}
+	}
+	return linkProperties;
+};
+
+echartshow.getUnitVal=function(val){
+	if(val>=1024*1024*1024*1024){
+		return ((val/(1024*1024))/(1024*1024)).toFixed(3) + ' (Tb)';
+	}else if(val>=1024*1024*1024){
+		return (val/(1024*1024*1024)).toFixed(3) + ' (Gb)';
+	}else if(val>=1024*1024){
+		return (val/(1024*1024)).toFixed(3) + ' (Mb)';
+	}else if(val>=1024){
+		return (val/1024).toFixed(3) + ' (Kb)';
+	}else{
+		return val + ' (B)';
+	}
+};
+
+echartshow.getUnitType=function(val){
+	if(val>=1024*1024*1024*1024){
+		return 'Tb';
+	}else if(val>=1024*1024*1024){
+		return 'Gb';
+	}else if(val>=1024*1024){
+		return 'Mb';
+	}else if(val>=1024){
+		return 'Kb';
+	}else{
+		return 'B';
+	}
+};
+
+echartshow.getUnitByType=function(val,types){
+	if('Tb' == types){
+		return parseFloat(((val/(1024*1024))/(1024*1024)).toFixed(3));
+	}else if('Gb' == types){
+		return parseFloat((val/(1024*1024*1024)).toFixed(3));
+	}else if('Mb' == types){
+		return parseFloat((val/(1024*1024)).toFixed(3));
+	}else if('Kb' == types){
+		return parseFloat((val/1024).toFixed(3));
+	}else{
+		return val;
+	}
+};
+
+function fillSingleLinkDat(queryContent,linedat){
+	var querySingleObj={};
+	var datType=null;
+	var datContent=null;
+	if(queryContent.indexOf('~')>-1){
+		var conds=queryContent.split('~');
+		datContent=conds[0];
+		datType=conds[1];
+	}else{
+		datContent=queryContent;
+		datType='String';
+	}
+	
+	var operatorSymbol=['!=','>=','<=','>','<','='];
+	var operatorCNSymbol=['不等于','大于等于','小于等于','大于','小于','等于'];
+	var queryContent=null;
+	for(var i=0;i<operatorSymbol.length;i++){
+		var symbol=operatorSymbol[i];
+		if(datContent.indexOf(symbol)>-1){
+			var datps=datContent.split(symbol);
+			var conditionName=datps[0];
+			
+			if(datps[1].indexOf('?')<0){
+				queryContent=datps[1];
+			}else{
+				if('GROUP' == conditionName && null == linedat[conditionName]){
+					queryContent=1;
+				}else{
+					queryContent=linedat[conditionName];
+				}
+			}
+			
+			var operator=operatorCNSymbol[i];
+			querySingleObj.queryType=datType;
+			querySingleObj.conditionName=conditionName;
+			querySingleObj.queryContent=queryContent;
+			querySingleObj.operator=operator;
+			
+			break;
+		}
+	}
+	return querySingleObj;
+}
+
+function fillLogQuerydat(queryCondition,linedat,queryConditionsObj){
+	
+	var linkPts=echartshow.linkQueryInit(queryCondition);
+	
+	var partiConts=linkPts.particularlyQueryContents;
+	var shareConts=linkPts.shareQueryContents;
+	var statistiConts=linkPts.statisticalProps;
+	if(statistiConts.length != partiConts.length){
+		return null;
+	}
+	var queryObjects={};
+	
+	var shareconditionName='';
+	var sharequeryType='';
+	var sharequeryContent='';
+	var shareoperatort='';
+	var isQuhost=false;
+	var queryHost=null;
+	var isGroup=false;
+	var queryGroup=null;
+	for(var j=0;j<shareConts.length;j++){
+		var qSgOj=fillSingleLinkDat(shareConts[j],linedat);
+		if('DVC_ADDRESS' == qSgOj.conditionName){
+			queryHost=qSgOj.queryContent;
+			isQuhost=true;
+			continue;
+		}
+		if('GROUP' == qSgOj.conditionName){
+			isGroup=true;
+			queryGroup=qSgOj.queryContent;
+			continue;
+		}
+		shareconditionName=shareconditionName+qSgOj.conditionName+',';
+		sharequeryType=sharequeryType+qSgOj.queryType+',';
+		sharequeryContent=sharequeryContent+qSgOj.queryContent+',';
+		shareoperatort=shareoperatort+qSgOj.operator+',';
+	}
+	
+	for(var i=0;i<partiConts.length;i++){
+		var queryObj={};
+		
+		var conditionName='';
+		var queryType='';
+		var queryContent='';
+		var operatort='';
+		
+		for(var pa=0;pa<partiConts[i].length;pa++){
+			
+			var qSgObj=fillSingleLinkDat(partiConts[i][pa],linedat);
+			
+			if('DVC_ADDRESS' == qSgObj.conditionName){
+				queryObj.host=qSgObj.queryContent;
+				continue;
+			}
+			if('GROUP' == qSgObj.conditionName){
+				queryObj.group=qSgObj.queryContent;
+				continue;
+			}
+			conditionName=conditionName+qSgObj.conditionName+',';
+			queryType=queryType+qSgObj.queryType+',';
+			queryContent=queryContent+qSgObj.queryContent+',';
+			operatort=operatort+qSgObj.operator+',';
+		}
+		if(shareconditionName.length>1){
+			conditionName=conditionName+shareconditionName;
+			queryType=queryType+sharequeryType;
+			queryContent=queryContent+sharequeryContent;
+			operatort=operatort+shareoperatort;
+		}
+		if(conditionName.length>1){
+			conditionName=conditionName.substring(0, conditionName.length-1);
+			queryType=queryType.substring(0, queryType.length-1);
+			queryContent=queryContent.substring(0, queryContent.length-1);
+			operatort=operatort.substring(0, operatort.length-1);
+		}
+		queryObj.conditionName=conditionName;
+		queryObj.queryType=queryType;
+		queryObj.queryContent=queryContent;
+		queryObj.operator=operatort;
+		
+		if(isQuhost && null != queryHost){
+			queryObj.host=queryHost;
+		}
+		if(isGroup && null != queryGroup){
+			queryObj.group=queryGroup;
+		}
+		queryObj.deviceType=queryConditionsObj.securityObjectType;
+		queryObj.queryStartDate=queryConditionsObj.stime;
+		queryObj.queryEndDate=queryConditionsObj.endtime;
+		if('ALL_ROLE_ADDRESS' == queryConditionsObj.dvcAddress || 'ONLY_BY_DVCTYPE' == queryConditionsObj.dvcAddress){
+			queryObj.host='';
+		}
+		
+		queryObjects[statistiConts[i]]=queryObj;
+		
+	}
+	
+	return queryObjects;
+}
+
+function fillEventQuerydat(queryCondition,linedat,queryConditionsObj){
+	
+	var linkPts=echartshow.linkQueryInit(queryCondition);
+	var partiConts=linkPts.particularlyQueryContents;
+	var shareConts=linkPts.shareQueryContents;
+	var statistiConts=linkPts.statisticalProps;
+	if(statistiConts.length != partiConts.length){
+		return null;
+	}
+	var queryObjects={};
+	var sharequeryObj={};
+	for(var j=0;j<shareConts.length;j++){
+		var qSgOj=fillSingleLinkDat(shareConts[j],linedat);
+		setEventObj(sharequeryObj,qSgOj.conditionName,qSgOj.queryContent);
+	}
+	for(var i=0;i<partiConts.length;i++){
+		var queryObj={};
+		for(var pa=0;pa<partiConts.length;pa++){
+			var qSgObj=fillSingleLinkDat(partiConts[i][pa],linedat);
+			setEventObj(queryObj,qSgObj.conditionName,qSgObj.queryContent);
+		}
+		setObjToObj(sharequeryObj,queryObj);
+		queryObj.startTime=queryConditionsObj.stime;
+		queryObj.endTime=queryConditionsObj.endtime;
+		
+		queryObjects[statistiConts[i]] = queryObj;
+	}
+	
+	return queryObjects;
+}
+
+function setEventObj(queryObj,conditionName,queryContent){
+	if(conditionName === "NAME" || conditionName === "EVENT_NAME"){
+		queryObj.query_event_Name=queryContent;
+	}else if(conditionName === "SRC_ADDRESS"){ 
+		queryObj.srcIp=queryContent;
+	}else if(conditionName === "DVC_ADDRESS"){
+		queryObj.deviceIp=queryContent;
+	}else if(conditionName === "DEST_ADDRESS"){
+		queryObj.destIp=queryContent;
+	}else if(conditionName === "PRIORITY"){
+		queryObj.priority=queryContent;
+	}else if(conditionName === "CAT1_ID"){
+		queryObj.category1=queryContent;
+	}else if(conditionName === "CAT2_ID"){
+		queryObj.category2=queryContent;
+	}else if(conditionName === "endTime"){
+		queryObj.endTime=queryContent;
+	}
+}
+
+function setObjToObj(fromObj,toObj){
+	if(null == fromObj)return;
+	if(null == toObj){
+		toObj={};
+	}
+	for(prop in fromObj){
+		toObj[prop]=fromObj[prop];
+	}
+}
+
+function getSinglexAxisData(json,categorys,topn){
+	
+	var xdata=[];
+	var cr=0;
+	var data=json.data[0];
+	var len = Math.min(topn,data.length); 
+	for(var xd=0;xd<len;xd++){
+		for(var i=0;i<categorys.catename.length;i++){
+			var property=categorys.catename[i];
+			var xval=data[xd][property];
+			if('PRIORITY' == property || 'RISK' == property)xval=riskCnName(xval);
+			if('START_TIME' == property )xval=echartshow.getFormatDateByLong(xval,'MM-dd hh:mm');
+			xdata[cr++]=xval;
+		}
+	}
+	return xdata;
+}
+
+function getArrayxAxisData(json,categorys,topn){
+	
+	var arrayXdat={};
+	
+	var data=json.data[0];
+	var len = Math.min(topn,data.length); 
+	for(var i=0;i<categorys.catename.length;i++){
+		var xdata=[];
+		var property=categorys.catename[i];
+		for(var xd=0;xd<len;xd++){
+			var xval=data[xd][property];
+			if('PRIORITY' == property || 'RISK' == property)xval=riskCnName(xval);
+			if('START_TIME' == property )xval=echartshow.getFormatDateByLong(xval,'MM-dd hh:mm');
+			xdata[xd]=xval;
+		}
+		arrayXdat[property]=xdata;//categorys.cateAlaxname[i]
+	}
+	
+	return arrayXdat;
+}
+
+function getSingleyAxisData(json,statistical,topn,unit){
+	
+	var ydata=[];
+	var cr=0;
+	var data=json.data[0];
+	var len = Math.min(topn,data.length); 
+	for(var xd=0;xd<len;xd++){
+		for(var i=0;i<statistical.catename.length;i++){
+			var yunitval=data[xd][statistical.catename[i]];
+			yunitval=yunitval==null?0:yunitval;
+			if('' !=unit)yunitval=echartshow.getUnitByType(yunitval,unit);
+			ydata[cr++]=yunitval;
+		}
+	}
+	return ydata;
+}
+
+//if('FLOW_NO' == statistical.cateUnit[i]){ydatval=echartshow.getUnit(ydatval);}
+function getArrayyAxisData(json,statistical,topn,unit){
+	
+	var arrayYdat={};
+	
+	var data=json.data[0];
+	var len = Math.min(topn,data.length); 
+	for(var i=0;i<statistical.catename.length;i++){
+		var ydata=[];
+		var statProperty=statistical.catename[i];
+		for(var xd=0;xd<len;xd++){
+			var yunitval=data[xd][statProperty];
+			yunitval=yunitval==null?0:yunitval;
+			if('' !=unit)yunitval=echartshow.getUnitByType(yunitval,unit);
+			ydata[xd]=yunitval;
+		}
+		arrayYdat[statistical.cateAlaxname[i]]=ydata;
+	}
+	
+	return arrayYdat;
+}
+
+function getseries(json,series){
+	
+	var sdata=[];
+	var cr=0;
+	for(var i=0;i<series.catename.length;i++){
+		sdata[cr++]=series.cateAlaxname[i];
+	}
+	return sdata;
+}
+
+function initSeriesUnit(imgtype,sername,valdat){
+	var ismooth='line'==imgtype?true:false;
+	var seriesUnit={
+        name:sername,
+        type:imgtype,
+        smooth:ismooth,
+        data:valdat,
+        markPoint : {
+            data : [
+                {type : 'max', name: '最大值'},
+                {type : 'min', name: '最小值'}
+            ]
+        },
+        markLine : {
+            data : [
+                {type : 'average', name: '平均值'}
+            ]
+        },
+        barMaxWidth:28,
+    };
+	return seriesUnit;
+}
+
+function getPieSeriesUnit(json,categorys,statistical,series,topn){
+	
+	var data=json.data[0];
+	var len = Math.min(topn,data.length); 
+	var sdata=[];
+	var property=categorys.catename[0];
+	var statProperty=statistical.catename[0];
+	for(var xd=0;xd<len;xd++){
+		var seunit={};
+		var xval=data[xd][property];
+		if('PRIORITY' == property || 'RISK' == property)xval=riskCnName(xval);
+		if('START_TIME' == property )xval=echartshow.getFormatDateByLong(xval,'MM-dd hh:mm');
+		
+		var yval=data[xd][statProperty];
+		seunit.name=xval;
+		seunit.value=yval;
+		sdata[xd]=seunit;
+	}
+	var sername=series.cateAlaxname[0];
+	var seriesdat=[];
+	var seriesUnit={
+            name:sername,
+            type:'pie',
+            radius : '55%',
+            center: ['50%', '60%'],
+            data:sdata.length==0?[0]:sdata
+        };
+	seriesdat[0]=seriesUnit;
+	return seriesdat;
+}
+
+function getSeriesDat(imgtype,arraydat,topn){
+	if(null == arraydat)return null;
+	if(null == imgtype || '' == imgtype)imgtype='bar';
+	var seriesdat=[];
+	var out=0;
+	for(var prop in arraydat){
+		if(out >=topn)return seriesdat;
+		var seriesUnit=initSeriesUnit(imgtype,prop,arraydat[prop]);
+		seriesdat[out++]=seriesUnit;
+	}
+	return seriesdat;
+}
+
+function getlegend(arraydat,topn){
+	if(null == arraydat)return null;
+	var legenddat=[];
+	var out=0;
+	for(var prop in arraydat){
+		if(out >=topn)return legenddat;
+		legenddat[out++]=prop;
+	}
+	return legenddat;
+}
+
+/**
+ * 
+ * @param json
+ * @param property
+ * @param type
+ * @returns
+ */
+function getMaxMinDat(json,property,type,topn){
+	var data=json.data[0];
+	var len=data.length;
+	if(0==len) return 0;
+	if(null ==topn || '' ==topn){
+		topn=len;
+	}else{
+		len=len<=topn?len:topn;
+	}
+	var max=data[0][property];
+	var min=data[0][property];
+	
+	for(var xd=1;xd<len;xd++){
+		var valnow=data[xd][property];
+		max=(valnow>max)?valnow:max;
+		min=(valnow<min)?valnow:min;
+	}
+	if('min'==type)return min;
+	if('max'==type)return max;
+	return -1;
+}
+
+function structdescribe(structDesc,type){
+	//{categorys:{PRIORITY~危险级别},series:{PRIORITY~危险级别},statistical:{OPCOUNT~计数}}
+	var categorys={};
+	categorys.catename=[];
+	categorys.cateAlaxname=[];
+	categorys.cateUnit=[];
+	
+	var series={};
+	series.catename=[];
+	series.cateAlaxname=[];
+	series.cateUnit=[];
+	
+	var statistical={};
+	statistical.catename=[];
+	statistical.cateAlaxname=[];
+	statistical.cateUnit=[];
+	
+	structDesc=structDesc.replace(/ /g, '');
+	structDesc=structDesc.substring(structDesc.indexOf('{', 0)+1, structDesc.lastIndexOf('}', structDesc.length-1));
+	var properties=structDesc.split(',', 3);
+	for(var i=0;i<properties.length;i++){
+		var props=properties[i].split(':', properties[i].length);
+		
+		var vt=props[1].substring(1,props[1].length-1);
+		var ts=vt.split(";");
+		for(var j=0;j<ts.length;j++){
+			
+			var tprop=ts[j].split('~');
+			
+			if('categorys'==props[0]){
+				categorys.catename[j]=tprop[0];
+				categorys.cateAlaxname[j]=tprop[1];
+				categorys.cateUnit[j]=tprop[2];
+			}else if('series'==props[0]){
+				series.catename[j]=tprop[0];
+				series.cateAlaxname[j]=tprop[1];
+				series.cateUnit[j]=tprop[2];
+			}else if('statistical'==props[0]){
+				statistical.catename[j]=tprop[0];
+				statistical.cateAlaxname[j]=tprop[1];
+				statistical.cateUnit[j]=tprop[2];
+			}
+		}
+	}
+	if('categorys'==type){
+		return categorys;
+	}else if('series'==type){
+		return series;
+	}else if('statistical'==type){
+		return statistical;
+	}
+}
+
+function riskCnName(val){
+	if(0 == val)return '无危险';
+	else if(1 == val)return '低危险';
+	else if(2 == val)return '中危险';
+	else if(3 == val)return '高危险';
+	else if(4 == val)return '非常危险';
+	return val;
+}
+
+function objToUrlString(queobj){
+	var queString='';
+	if(null == queobj){
+		return queString;
+	}
+	for(var prop in queobj){
+		if(queobj.hasOwnProperty(prop) && null != queobj[prop]){
+			queString+=(prop+'='+queobj[prop]+',');
+		}
+	}
+	if(queString.length>1){
+		queString=queString.substring(0, queString.length-1);
+	}
+	return queString;
+}
+
+echartshow.datViewProps=function(categorys,statistical,typeName){
+	
+	if(null == categorys || null == statistical)return null;
+	
+	if('headCnName' == typeName){
+		var headername=[];
+		var hcout=0;
+		for(var h=0;h<categorys.cateAlaxname.length;h++){
+			headername[hcout++]=categorys.cateAlaxname[h];
+		}
+		for(var hs=0;hs<statistical.cateAlaxname.length;hs++){
+			headername[hcout++]=statistical.cateAlaxname[hs];
+		}
+		return headername;
+	}
+	if('bodyColName' == typeName){
+		var bodyColName=[];
+		var bcout=0;
+		for(var b=0;b<categorys.catename.length;b++){
+			bodyColName[bcout++]=categorys.catename[b];
+		}
+		for(var bs=0;bs<statistical.catename.length;bs++){
+			bodyColName[bcout++]=statistical.catename[bs];
+		}
+		return bodyColName;
+	}
+	
+	if('bodyColUnit' == typeName){
+		var bodyColUnit=[];
+		var ucout=0;
+		for(var u=0;u<categorys.cateUnit.length;u++){
+			bodyColUnit[ucout++]=categorys.cateUnit[u];
+		}
+		for(var us=0;us<statistical.cateUnit.length;us++){
+			bodyColUnit[ucout++]=statistical.cateUnit[us];
+		}
+		return bodyColUnit;
+	}
+	
+};
+
+echartshow.filldatviewTitle=function(titletext,subtitle){
+	var titleDiv=$('<div/>').css('text-align','center');
+	var titleH4=$('<h4/>').addClass('parent-title').html(titletext);
+	var titlefont=$('<font/>').addClass('sub-title').html(subtitle);
+	
+	var hr=$('<hr style="width:90%;height:1px;padding:5px 0;margin:0 0 5px 15px;border:none;border-top:1px solid #eee;" />');
+	//padding:8px 0;margin:0 0 10px 0;border-bottom:1px solid #eee
+	titleDiv.append(titleH4);
+	titleDiv.append(titlefont);
+	titleDiv.append(hr);
+	return $('<div/>').append(titleDiv);
+};
+/**
+ * 
+ */
+echartshow.filldatviewTablecontent = function(jdat,categorys,statistical,top,type){
+	
+	if(null == jdat)return '';
+	var table = echartshow.addTable('dataview-table','center');
+	var headCnName=echartshow.datViewProps(categorys,statistical,'headCnName');
+	var sheader =echartshow.addThead(headCnName,'');
+	var bodyColName=echartshow.datViewProps(categorys,statistical,'bodyColName');
+	var bodyColUnit=echartshow.datViewProps(categorys,statistical,'bodyColUnit');
+	
+	var sbody = echartshow.addTbody(jdat,bodyColName,bodyColUnit,top,type);
+	table.append(sheader).append(sbody);
+	$('.echarts-dataview p').remove();
+	return table;
+};
+
+/**
+ * 添加表格头部信息
+ * @param header 头部信息
+ */
+echartshow.addThead = function(header,csstype){
+	var tr = echartshow.addTr("center","tableHead");
+	for(var i=0;i<header.length;i++){
+		tr.append(echartshow.addTh(csstype,header[i]));
+	}
+	var head = $("<thead/>");
+	head.append(tr);
+	tr=null;
+	return head;
+};
+
+/**
+ * 添加表格内容信息
+ * @param data 表格列集内容
+ * @param fields 表格列集
+ */
+echartshow.addTbody = function(jdat,bodyColName,bodyColUnit,top,type){
+	var tbody=$("<tbody/>");
+	var clazz= "sub-tabletdborder";
+	var bodyList = jdat.data[0];
+	var queryType=jdat.queryType;
+	var queryCondition=jdat.queryCondition;
+	var queryConditionsObj=jdat.queryConditionsObj;
+	
+	var len = Math.min(top,bodyList.length);
+	var drill=('DRILL'===jdat.reportType)?true:false;
+	for(var i=0;i<len;i++){
+		
+		var tr = echartshow.addTrContext(drill,bodyList[i],bodyColName,bodyColUnit,queryConditionsObj,queryType,queryCondition,clazz) ;
+		tbody.append(tr);
+		
+		/*if(type == "column" ){
+			var td = tr.find("td:first") ;
+			for(var j=bodyColName.length-2;j>=0;j--){
+				var span = $("<span index='"+j+"' chartIndex='"+i+"' class='column-block hand' style=\"background-color:"+simHandler.colors[i]+"\"/>") ;
+				span.mouseover(function(){
+					
+				}) ;
+				span.mouseout(function(){
+					
+				});
+				td.prepend(span) ;
+			}
+		}*/
+		
+	}
+	if(len<bodyList.total){
+//		tbody.append(echartshow.addMergeTd(bodyList.fields.length,tdata.moreUrl));
+	}
+	
+	tdata=null;
+	top=null;
+	return tbody ;
+};
+
+/**
+ * 添加表格一行内容
+ * @param data 一行列集内容
+ * @param fields 列集
+ * @param url url地址
+ * @param tdClazz td样式
+ */
+echartshow.addTrContext = function(drill,linedat,fields,bodyColUnit,queryConditionsObj,queryType,queryCondition,tdClazz){
+	var trStr= echartshow.addTr("","tableOddTd");
+	var drillUrl='';
+	var logQueryUrl='';
+	var eventQueryUrl='/sim/eventQuery/basicEventQuery?';
+	
+	var queryObjects=null;
+	if(null != queryType && '' != queryType){
+		if('LOG_QUERY' == queryType){
+			queryObjects=fillLogQuerydat(queryCondition,linedat,queryConditionsObj);
+		}else if('EVENT_QUERY'==queryType){
+			queryObjects=fillEventQuerydat(queryCondition,linedat,queryConditionsObj);
+		}
+	}
+	
+	for(var i =0;i<fields.length;i++){
+		var td =null;
+		var property=fields[i];
+		var datvalue=linedat[property];
+		var datunit=bodyColUnit[i];
+		if('FLOW_NO' == datunit){datvalue=echartshow.getUnitVal(datvalue);}
+		if('PRIORITY' == property || 'RISK' == property){datvalue=riskCnName(datvalue);}
+		if('START_TIME' == property ){datvalue=echartshow.getFormatDateByLong(datvalue,'yyyy-MM-dd hh:mm:ss');}
+		/*此处逻辑需要许许改一下
+*/
+		if(i==0 && drill==true){
+			var queryObj=null;
+			td = echartshow.addHrefTdJS(tdClazz, datvalue, "ablue", drillUrl,queryObj);
+			
+		}else if('NO_QUERY' != queryType){
+			var queryObj=null;
+			if(null != queryObjects){
+				try{
+					queryObj=queryObjects[property];
+				}catch(e){
+					queryObj=null;
+				}
+			}
+			if(null != queryObj){
+				if('LOG_QUERY'==queryType){
+					td = echartshow.addLogQuery(tdClazz, datvalue, "aorange", logQueryUrl,queryObj);
+				}else if('EVENT_QUERY'==queryType){
+					td = echartshow.addEventQueryJS(tdClazz, datvalue, "ared", eventQueryUrl,queryObj);
+				}
+			}else{
+				td = echartshow.addTd(tdClazz,datvalue);
+			}
+		}else{
+			td = echartshow.addTd(tdClazz,datvalue);
+		}
+		trStr.append(td) ;
+	}
+	return trStr ;
+};
+
+/**
+ * 添加一个带有超链接的td内容
+ * @param clazz td样式
+ * @param innerHTM td里面的内容
+ * @param aclazz 超链接的样式
+ * @param url url地址
+ */
+echartshow.addHrefTd = function(clazz,innerHTML,aclazz,url){
+	return echartshow.addTd(clazz,"").append($("<a/>").attr({"title":'下钻报表'}).bind("click",function(){newreport.drillReport(url,conditionObject);}).addClass(aclazz).css("cursor","pointer").html(innerHTML)) ;
+};
+/**
+ * 此方法需要 解决bind不能 绑定的问题，暂时在此处有点问题，以后找到原因后可以直接替换echartshow.addHrefTdJS()方法，暂时用 echartshow.addHrefTdJS()方法
+ */
+echartshow.addHrefTdJS = function(clazz,innerHTML,aclazz,url,drillQueryObject){
+	var drillstring=objToUrlString(drillQueryObject);
+	var a=$("<a onClick='newreport.drillReport(\""+url+"\",\""+drillstring+"\")'/>").attr({"title":'下钻报表'}).addClass(aclazz).css("cursor","pointer").html(innerHTML);
+	return echartshow.addTd(clazz,"").append(a) ;
+};
+
+echartshow.addLogQuery = function(clazz,innerHTML,aclazz,url,logQueryObject){
+	var logQueryParams=newreport.formatReportLogQueryObj(logQueryObject);
+	return echartshow.addTd(clazz,"").append($("<a/>").attr({"title":'查询日志',target:"_blank",href:'/page/forward.jsp?'+logQueryParams}).addClass(aclazz).css("cursor","pointer").html(innerHTML)) ;
+};
+/**
+ * 此方法需要 解决bind不能 绑定的问题，暂时在此处有点问题，以后找到原因后可以直接替换echartshow.addEventQueryJS()方法，暂时用 echartshow.addEventQueryJS()方法
+ */
+echartshow.addEventQuery = function(clazz,innerHTML,aclazz,url,eventQueryObject){
+	return echartshow.addTd(clazz,"").append( $("<a/>").bind("click",function(){newreport.reportEventQuery(url,eventQueryObject);}).attr({"title":'查询事件'}).addClass(aclazz).css("cursor","pointer").html(innerHTML) ) ;
+};
+echartshow.addEventQueryJS = function(clazz,innerHTML,aclazz,url,eventQueryObject){
+	var rptqryevtstring=objToUrlString(eventQueryObject);
+	var a=$("<a onClick='newreport.reportStringQueryEvent(\""+url+"\",\""+rptqryevtstring+"\")'/>").attr({"title":'查询事件'}).addClass(aclazz).css("cursor","pointer").html(innerHTML);
+	return echartshow.addTd(clazz,"").append(a) ;
+};
+
+echartshow.addMergeTd = function(column,moreUrl){
+	var trStr= echartshow.addTr("right","tableOddTd");
+	trStr.append($("<td/>").attr("colspan",column).append($("<a/>").bind("click",function(){report.moreReport(moreUrl);}).addClass("").css("cursor","pointer").html("更多") ));
+	return trStr;
+};
+
+echartshow.addSubSummarizeTd = function(column,content){
+	var trStr= echartshow.addTr("left","tableOddTd");
+	trStr.append($("<td/>").attr("colspan",column).css("cursor","pointer").html(content));
+	return trStr;
+};
+
+echartshow.addTable = function(clazz,align){
+	return $("<table/>").addClass(clazz).attr({"align":align,"cellpadding":0,"cellspacing":0}) ;
+};
+
+/**
+ * 添加一个tr
+ * @param align tr对齐方式
+ * @param clazz 样式
+ */
+echartshow.addTr = function(align,clazz){
+	return $("<tr/>").addClass(clazz).attr("align",align) ;
+};
+
+/**
+ * 添加一个td
+ * @param clazz 样式
+ * @param innerHTML 
+ */
+echartshow.addTd = function(clazz,innerHTML){
+	return $("<td/>").addClass(clazz).html(innerHTML) ;
+};
+
+/**
+ * 添加一个th
+ * @param clazz 样式
+ * @param innerHTML 
+ */
+echartshow.addTh = function(clazz,innerHTML){
+	var span = $("<span/>").html(innerHTML);
+	var div = $("<div/>").append(span);
+	return $("<th/>").addClass(clazz).append(div);
+};

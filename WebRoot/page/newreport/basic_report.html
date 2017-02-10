@@ -1,0 +1,61 @@
+<style type="text/css">
+.aorange {
+  color: orange;
+}
+.ared {
+  color: red;
+}
+.dataview-table{
+	text-align:center;
+	width:80%;
+	border-bottom:1px dotted #ccc;
+	margin:15px 10px 15px 60px;
+}
+.subchartdiv{
+	width:90%;
+	height:440px;
+	margin-top: 30px;
+	margin-left: 10px;
+	padding-top: 15px;
+}
+.subchartdiv-sm{
+	width:47%;
+	height:390px;
+	float:left;
+	margin-top: 25px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.parent-title{
+	line-height: 0px;
+	color:#333;
+}
+.sub-tabletdborder{
+	border-top:1px dotted  #ccc;
+	line-height:30px;
+	text-align: left;
+	padding-left:5px; 
+	line-height:28px;
+}
+.sub-title{
+	color:#AAA;
+}
+.easyui-layout .layoutWBody{
+	background-color:rgba(0, 0, 0, 0);
+}
+</style>
+<div id="page-body" class="easyui-layout" fit="true">
+ 	<div id="page-left" title="基础报表" data-options="region:'west',split:true,iconCls:'icon-layout-log',headerCls:'layoutWHeader',bodyCls:'layoutWBody'" style="width:200px;">
+		<ul id="showTree" class="easyui-tree" data-options="url:'/sim/basicreport/reportShowTree',onLoadSuccess:newreport.treeLoadSuccess,onSelect:newreport.clickBasicNode"></ul>
+		<ul id="showMonitorTree" class="easyui-tree" data-options="url:'/sim/basicreport/newstateMonitorTree',onLoadSuccess:newreport.treeMonitorLoadSuccess,onSelect:newreport.clickMonitorNode"></ul>
+	</div>
+	<div id="page-right" data-options="region:'center',border:false" style="border: none;">
+		<div  title="报表" class="easyui-panel" data-options="fit:true,headerCls:'sim-panel-header',bodyCls:'sim-panel-body'">  
+ 			<div class="alert">
+				基础信息报表。
+			</div>
+ 		</div>
+	</div>
+</div>
+
+<script src="/js/sim/newreport/new_report.js" type="text/javascript"></script>

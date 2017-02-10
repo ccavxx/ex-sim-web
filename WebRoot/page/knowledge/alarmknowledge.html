@@ -1,0 +1,32 @@
+<div id="kn_query_main_div_id" class="easyui-layout" data-options="fit:true">
+	<div data-options="region:'west',split:true,title:'知识库',iconCls:'icon-layout-log',headerCls:'layoutWHeader',bodyCls:'layoutWBody'" style="width:200px;">
+ 		<ul id="kn_menu_id"></ul> 
+ 	</div>  
+ 	<div  data-options="region:'center',title:'知识库管理',headerCls:'sim-panel-header',bodyCls:'sim-panel-body'"> 
+		<div id="kn_query_main_panel_id" class="easyui-panel" data-options="fit:true,border:false">
+	 		<div id="knToolBar">
+		 		<div id="kn_qt_id">
+					<form name="knowledge_query_Form" onkeydown="enterEventHandler(event,function(){knowledgeSelf.doQueryKnowledge();})" action="#" style="margin:0">
+					 	<table class="tableHead horizon-toolbar">
+					 		<tr>
+					 			<td class="w25">名称</td>
+					 			<td class="w100"><input name="name" type="text" style="width:100px"/></td>
+					 			<td class="w100"><a class="easyui-linkbutton" data-options="iconCls:'icon-search'" href="javascript:void(0)" onclick="knowledgeSelf.doQueryKnowledge();">查询</a></td>
+					 			<td class="w100"><a class="easyui-linkbutton" data-options="iconCls:'icon-add'" href="javascript:void(0)" onclick="knowledgeSelf.addKnowledge();">新建</a></td>
+					 			<td class="w100"><a class="easyui-linkbutton" data-options="iconCls:'icon-remove'" href="javascript:void(0)" onclick="knowledgeSelf.deleteKnowledge();">删除</a></td>
+					 			<td></td>
+					 		</tr>
+					 	</table>
+					 </form>
+		 		</div>
+			</div>
+			<table id="kn_query_table_sel_id" toolbar="#knToolBar" data-options="border:false,scrollbarSize:0"></table>
+			<div id="horizon_windowTeplateId">
+				<div id="kn_add_id"></div>	
+				<div id="kn_md_id"></div>
+			</div>
+		</div>
+ 	</div>
+</div>
+<script src="/js/sim/knowledge/knowledge.js"></script>
+<script src="/js/sim/knowledge/knowledge_init.js"></script>

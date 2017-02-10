@@ -1,0 +1,59 @@
+-- 51对应的是admin,52auditor,53operator
+DROP TABLE IF EXISTS `SYS_MENU_ROLE_COL`;
+CREATE TABLE `SYS_MENU_ROLE_COL` (
+  `SMRC_ID` VARCHAR(32),
+  `ROLE_ID` INT(10) NOT NULL ,
+  `MENU_ID` VARCHAR(32) NOT NULL,
+  PRIMARY KEY (`SMRC_ID`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('03f540eddc7d445082149e9475860930','53','3e46cc3561eb405c92a83995ec8c2929');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('055f58c7d0654cad8c1a116ebdb8f2d3','53','107849126136433bbe052462034803b8');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('0966091e07514f7ab0277c65a0b53a76','53','b914cc3a0bb94d659c0862b99a2287b8');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('0edcd5a9f297457eac29b13c17b74a86','53','f22bbe8e462a4955ba632e6873db415f');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('1079583cf22e46d79d3408791e05f988','53','f9d5775f9cd0491c8bc5c68a0b5bcb0a');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('15115c297ab8444791a42c5f22d19ba2','53','29c15f59a1554a13ab0b681c927d7304');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('90bf73108e9b6376bd375d323fab0117','53','36afcc5488086102935a70900d1f0355');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('90bf73108e9b4374bd375d323fab0117','53','34afcc5488084102935a70900d1f0355');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('160ef00d69e549cf8ea99ca524bdfe3f','53','58eaad349fee4b57b79e8279f554f292');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('203ad8c255eb4fdf9608263089150064','53','66b9b88a040f4c2eb93f462a2811d6f2');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('28c9dcb88f3e48188e82de04b7b30a95','53','8d66dc4e85994647beef872828ade253');
+-- insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('30430d631e63460f821e48d54268b27f','53','fb60dfd80d4a4b3face9754610d11f5f');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('34c1058dd2ae4fb1a102964f34aae7fc','52','6ed99823af65472e900df539ee8467c9');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('4c87ca73b263453b8338361866cc58ba','53','0f9abf3e9dda4502b54905666905ab50');
+-- insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('264222dcad2b4fe2b2f0d253de95cde3','53','5d734bc82e4c465aa3914c1fd50cbde8');
+-- insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('1b3105082391469b91312086c6bf93a9','53','f60d1d698b9647dea9d77723701badf0');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('4ee333cc332f4887a9e6a75c5be42472','53','6ed99823af65472e900df539ee8467c9');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('51ec3ba28e274a4486f27d74adb6b0c8','53','63f9f60d44504219a5570a92d19e63c5');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('6e7a1ed9c06d41de9e6a0f0552bfd54c','53','d3ba2394de4b4bfc9ce35ff66eb037a6');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('7350714426894564847096dbb8f8b582','53','894f97effee14179bf8a9549819ed0bd');
+-- insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('d8dda2143ca144169c71e4f83da301ca','53','a62ad53b49dc4c7d926b0153411ee9b1');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('98185ca389e124976f3f11230da5ff9c','53','4d851027b015b1e53ed7fb52c0f29f8d');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('9ee92b936a1b40d3983e2f480cafb3e3','53','bcc7e215fc2c489dba020076344d3e50');
+
+-- insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('762f5d7032ed427488046624f3d2a10f','52','cd68aa97daa8465eb30fee8f6a97168b');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('7886a3a46ec4416bb6b5f4900023977d','52','58eaad349fee4b57b79e8279f554f292');
+-- insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('78fc8d43d7fe44999bc8d6d655aff677','53','1101efe3d7cc47d0847798d602e678e7');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('80859776fc634a0fa5797b0541194c20','51','3e46cc3561eb405c92a83995ec8c2929');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('8cde4c9108cf4ea7a23617e3d0f7af1f','52','f22bbe8e462a4955ba632e6873db415f');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('9102179899b94058b360145917e062ba','53','cd68aa97daa8465eb30fee8f6a97168b');
+-- insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('95bfa719f1534bc2b5aea9d8e93d22d2','53','9c420344c4f44d60ac08b64d1452f8da');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('a2cf47da90dc407b85c247ea2ad6220a','51','78f9eb0a7c7a4200bc610921bac03735');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('abfc4484f9964ed3a6b6e0e0e22143b3','53','23cb4316f3b4421b9e80b37b5bb4c763');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('ac8f07504ac54f0c9a78dbec431e9fb2','53','3b64fb831af544b88f6ac4fb9d090f1c');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('aeda3c6539bc4e459f281b0b7414b984','52','6b7787823eec438a9d0144bd0bf9efc9');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('b1c07672a65c4480968d5b3b903f60b2','52','3b64fb831af544b88f6ac4fb9d090f1c');
+-- insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('c64b80ce009146cc9726be581d6fd28d','52','fb60dfd80d4a4b3face9754610d11f5f');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('d00ae82dbaf54a4fb113cf5c28247a7e','53','f044b2a934df4fd4bf30f5e0f2bbaaf3');
+-- insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('db3632bca9254a57b5fa775b6b123d50','52','c74a5bb1ecd649e1bf428543504a1078');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('de3c861e9bce400bb681cde8c1827b99','53','6b7787823eec438a9d0144bd0bf9efc9');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('e493e3889b944033ad63c15208777657','52','3e46cc3561eb405c92a83995ec8c2929');
+-- insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('ea68579bbe5e4cac933d8bfbf3652d82','53','c74a5bb1ecd649e1bf428543504a1078');
+-- insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('ed6810e2643647c3a153c6d2a751be96','53','fef0d99553124b03b45b832289374bc5');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('f9c91c0ad68446e6882fabb656d398e7','52','894f97effee14179bf8a9549819ed0bd');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('611a63a3e0ff4138a3a02a273b265cab','53','e070c136683c4b7d84188633320553f0');
+
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('er185ca389e124976f3f11230da5ff2b','52','4d851027b015b1e53ed7fb52c0f29f8d');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('the92b936a1b40d3983e2f480cafb3ty','52','bcc7e215fc2c489dba020076344d3e50');
+
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('ead304d9-e27b-42cc-a21b-1d9b315ff502','53','0b933b3e576e4dfeb945a57ed341e349');
+insert into `SYS_MENU_ROLE_COL` (`SMRC_ID`, `ROLE_ID`, `MENU_ID`) values('c293b920-bc30-4328-a06b-c00a0835b7d6','53','0eb48a4a4e7d4fa8a1d1fa8dbe1ff666');

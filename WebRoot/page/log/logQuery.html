@@ -1,0 +1,19 @@
+<div id="log_query_layout" class="easyui-layout" data-options="fit:true">  
+	<div data-options="region:'west',title:'日志类型',split:true,iconCls:'icon-layout-log',headerCls:'layoutWHeader',bodyCls:'layoutWBody'" style="width:200px;">
+		<ul id="log_query_tree"></ul>
+	</div>
+	<div data-options="region:'center',title:'日志内容',headerCls:'sim-panel-header',bodyCls:'sim-panel-body'" style="position: relative;">
+		<div class="easyui-layout" data-options="fit:true">
+			<div data-options="region:'center',border:false">
+				<table id="log_query_table" ></table>
+			</div>
+			<div data-options="region:'south',border:false" style="height: 100px;">
+				<span class="label label-info">原始日志:</span>
+					<p class="muted alert" id="raw_log_content"></p>
+			</div>
+		</div>
+		<div id="log_query_dialog"></div>
+	</div>  
+</div>
+<div id="log_query_table_pager"></div> 
+<script src="/js/sim/log/log_query.js"></script>

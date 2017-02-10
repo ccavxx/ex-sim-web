@@ -1,0 +1,79 @@
+<div class="p5" >
+	<form class="margin0" id="knowledge_modify_form_id" name="knowledge_modify_Form" action="#" >
+	 	<table class="horizon-toolbar tableBody">
+	 		<tr>
+	 			<td class="w50">名称</td>
+	 			<td class="w120"><input name="name" type="text" style="width:120px" />
+	 			<input name="id" type="hidden"/>
+	 			<input name="creater" type="hidden" /></td>
+	 			<td></td>
+	 		</tr>
+	 		<tr>
+	 			<td>一级分类</td>
+	 			<td><input type="text" id="modify_cat1_id" /></td>
+	 			<td><input name="cat1" id="hid_modify_cat1_id" type="hidden"/></td>
+	 		</tr>
+	 		<tr>
+	 			<td>二级分类</td>
+	 			<td><input class="easyui-combobox" data-options="width:120,height:24,valueField:'text',textField:'text',
+	 					editable:false, onChange : function(newValue, oldValue) {
+				        	$('#hid_modify_cat2_id').val(newValue);
+				        }" id="modify_cat2_id"/>
+	 			</td>
+	 			<td><input name="cat2" id="hid_modify_cat2_id" type="hidden"/></td>
+	 		</tr>
+	 		<tr>
+	 			<td>描述</td>
+	 			<td colspan="2"><textarea name="desc" class="w330 h80 p0"></textarea></td>
+	 		</tr>
+	 		<tr>
+	 			<td>解决方法</td>
+	 			<td colspan="2"><textarea name="solution" class="w330 h80 p0"></textarea></td>
+	 		</tr>
+	 		<tr>
+	 			<td colspan="3" class="txc">
+	 				<a class="easyui-linkbutton" href="javascript:void(0)" onclick="$('#knowledge_modify_form_id').submit();">保存</a>
+	 				<a class="easyui-linkbutton" href="javascript:void(0)" onclick="knowledgeSelf.closeKnowledgeW('kn_md_id');">取消</a>
+	 			</td>
+	 		</tr>
+	 	</table>
+ 	</form>
+</div>
+<script>
+
+$(function(){
+	$("#modify_cat1_id").combobox({
+		width : 120,
+		height : 24,
+		valueField : "text",
+        textField : "text",
+        editable : false,
+        url : "/sim/knowledge/knowledgeCategory",
+        onChange : function(newValue, oldValue) {
+        	$('#hid_modify_cat1_id').val(newValue);
+        },
+        onSelect : function(rec) {
+        	$("#modify_cat2_id").combobox("setValue", "");
+        	$("#hid_modify_cat2_id").val("");
+          	$("#modify_cat2_id").combobox("reload", "/sim/knowledge/knowledgeCategory?id=" + rec.id);   
+    	}
+	});
+
+	$("#knowledge_modify_form_id").validator({
+		theme: 'simple_right',
+		showOk: "",
+		rules: simHandler.rules,
+		fields:{
+			name : 'required;length[1~30];remote[/sim/knowledge/uniqueName, name, id];specialchar',
+			cat1 : 'required',
+			cat2 : 'required',
+			desc : 'length[~100]',
+			solution : 'length[~100]'
+		},
+		valid : function(form){
+			knowledgeSelf.doModifyKnowledge();
+		}
+	});
+});
+
+</script>

@@ -1,0 +1,20 @@
+<div class="easyui-panel" data-options="fit:true,title:'报表页脚图片配置',headerCls:'sim-panel-header',bodyCls:'sim-panel-body'" style="padding:5px;">
+	<div class="alert alert-info">
+		上传图片大小不能超过1M并且图片类型必须是Jpg、Png、Bmp<br>
+		上传图片宽度范围35－500像素，高度范围15－500像素
+	</div>
+	<div id="reportFooterImage">
+	</div>
+	<input type="file" name="upLoad" id="upLoad" style="height:24px;"/>
+	<div class="control-group" style="margin-top:10px;">
+	    <div>
+	      	<a class="easyui-linkbutton" iconCls="icon-apply" onclick="save_submit();">应用</a>
+	      	<a class="easyui-linkbutton" iconCls="icon-goback" onclick="recoverImage();">恢复默认</a>
+	    </div>   
+	</div>
+	<div id="warning" style="color:red" align="center">
+	</div>
+</div>
+<script src="/js/sim/sysconfig/sysconfig_reportFooterImage.js" /></script>
+<script type="text/javascript" src="/js/global/ajaxfileupload.js"></script>
+

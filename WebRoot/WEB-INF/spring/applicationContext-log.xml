@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="
+     http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+     <bean id="logReportTaskDao"  class="com.topsec.tsm.sim.log.dao.LogReportTaskDaoImp">
+		<property name="sessionFactory" ref="sessionFactory"/>		
+	</bean>
+	 <bean id="conditionDao"  class="com.topsec.tsm.sim.log.dao.LogQueryConditionDaoImp">
+		<property name="sessionFactory" ref="sessionFactory"/>		
+	</bean> 
+	<bean id="logQueryConditionService" class="com.topsec.tsm.sim.log.service.LogQueryConditionServiceImp">
+	  <property name="conditionDao" ref="conditionDao"></property>
+	</bean>
+	 <bean id="logReportTaskService"  class="com.topsec.tsm.sim.log.service.LogReportTaskServiceImp">
+		<property name="logReportTaskDao" ref="logReportTaskDao"/>		
+		<property name="nodeMgrDao" ref="nodeMgrDao"/>
+		<property name="userDao" ref="userDao"/>
+		<property name="dataSourceService" ref="dataSourceService"/>
+	</bean> 
+	<bean id="scheduleStatTaskDao" class="com.topsec.tsm.sim.log.dao.ScheduleStatTaskDaoImp">
+	   <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="scheduleStatTaskService" class="com.topsec.tsm.sim.log.service.ScheduleStatTaskServiceImp">
+       <property name="scheduleStatTaskDao" ref="scheduleStatTaskDao"/>
+    </bean>
+    
+    <!-- 日志格式化类 -->
+    <!-- ip地址定位 -->
+	<bean id="IpLocationFormatter" class="com.topsec.tsm.sim.log.formatter.IPLocationFormatter"/>
+	<!-- 源地址定位 -->
+	<bean id="SrcFormatter" class="com.topsec.tsm.sim.log.formatter.FieldMapperFormatter">
+		<constructor-arg index="0" value="SRC_ADDRESS"/>
+		<constructor-arg index="1" ref="IpLocationFormatter"/>
+	</bean>
+	<!-- 目的地址定位 -->
+	<bean id="DestFormatter" class="com.topsec.tsm.sim.log.formatter.FieldMapperFormatter">
+		<constructor-arg index="0" value="DEST_ADDRESS"/>
+		<constructor-arg index="1" ref="IpLocationFormatter"/>
+	</bean>
+	<!-- NAT源地址定位 -->
+	<bean id="NATSrcLocationFormatter" class="com.topsec.tsm.sim.log.formatter.FieldMapperFormatter">
+		<constructor-arg index="0" value="SRC_TRANS_ADDRESS"/>
+		<constructor-arg index="1" ref="IpLocationFormatter"/>
+	</bean>
+	<!-- NAT目的地址定位 -->
+	<bean id="NATDestLocationFormatter" class="com.topsec.tsm.sim.log.formatter.FieldMapperFormatter">
+		<constructor-arg index="0" value="DEST_TRANS_ADDRESS"/>
+		<constructor-arg index="1" ref="IpLocationFormatter"/>
+	</bean>
+	<!-- NAT源设备 -->
+	<bean id="NATSrcDeviceFormatter" class="com.topsec.tsm.sim.log.formatter.FieldMapperFormatter">
+		<constructor-arg index="0" value="SRC_TRANS_ADDRESS"/>
+		<constructor-arg index="1" ref="Ip2NameFormatter"/>
+	</bean>
+	<!-- NAT目的设备 -->
+	<bean id="NATDestDeviceFormatter" class="com.topsec.tsm.sim.log.formatter.FieldMapperFormatter">
+		<constructor-arg index="0" value="DEST_TRANS_ADDRESS"/>
+		<constructor-arg index="1" ref="Ip2NameFormatter"/>
+	</bean>
+	<!-- 日期格式化 -->
+	<bean id="DateFormatter" class="com.topsec.tsm.sim.log.formatter.DateFormatter"/>
+	<!-- 级别格式化 -->
+	<bean id="PriorityFormatter" class="com.topsec.tsm.sim.log.formatter.PriorityFormatter"/>
+	<!-- toString -->
+	<bean id="ToStringFormatter" class="com.topsec.tsm.sim.log.formatter.ToStringFormatter"/>
+	<!-- ip地址转换为资产名称 -->
+	<bean id="Ip2NameFormatter" class="com.topsec.tsm.sim.log.formatter.Ip2NameFormatter"/>
+	<!-- 源地址转换为源设备 -->
+	<bean id="SrcDeviceFormatter" class="com.topsec.tsm.sim.log.formatter.FieldMapperFormatter">
+		<constructor-arg index="0" value="SRC_ADDRESS"/>
+		<constructor-arg index="1" ref="Ip2NameFormatter"/>
+	</bean>
+	<!-- 目的地址转换为目的设备 -->	
+	<bean id="DestDeviceFormatter" class="com.topsec.tsm.sim.log.formatter.FieldMapperFormatter">
+		<constructor-arg index="0" value="DEST_ADDRESS"/>
+		<constructor-arg index="1" ref="Ip2NameFormatter"/>
+	</bean>
+	
+	<!-- 格式化工厂 -->
+	<bean id="formatterFactory" class="com.topsec.tsm.sim.log.formatter.SpringBeanFormatterFactory">
+		<property name="formatters">
+			<map>
+				<entry key="IpLocationFormatter" value-ref="IpLocationFormatter"/>
+				<entry key="SrcFormatter" value-ref="SrcFormatter"/>
+				<entry key="DestFormatter" value-ref="DestFormatter"/>
+				<entry key="NATSrcLocationFormatter" value-ref="NATSrcLocationFormatter"/>
+				<entry key="NATDestLocationFormatter" value-ref="NATDestLocationFormatter"/>
+				<entry key="NATSrcDeviceFormatter" value-ref="NATSrcDeviceFormatter"/>
+				<entry key="NATDestDeviceFormatter" value-ref="NATDestDeviceFormatter"/>
+				<entry key="DateFormatter" value-ref="DateFormatter"/>
+				<entry key="PriorityFormatter" value-ref="PriorityFormatter"/>
+				<entry key="ToStringFormatter" value-ref="ToStringFormatter"/>
+				<entry key="Ip2NameFormatter" value-ref="Ip2NameFormatter"/>
+				<entry key="SrcDeviceFormatter" value-ref="SrcDeviceFormatter"/>
+				<entry key="DestDeviceFormatter" value-ref="DestDeviceFormatter"/>
+			</map>
+		</property>
+	</bean>
+</beans>

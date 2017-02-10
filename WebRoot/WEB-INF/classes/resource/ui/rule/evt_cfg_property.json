@@ -1,0 +1,391 @@
+[{
+		"fields" : [ {
+				"alias" : "名称",
+				"name" : "NAME",
+				"showItem" : ["EQ", "NotEQ","StrCT","StrReg"],
+				"type" : "String",
+				"validate" : "notNull"
+			},{
+				"alias" : "一级分类",
+				"name" : "CAT1_ID",
+				"showItem" : ["EQ","NotNULL"],
+				"type" : "String",
+				"validate" : "notNull"
+			}, {
+				"alias" : "二级分类",
+				"name" : "CAT2_ID",
+				"showItem" : ["EQ","NotNULL"],
+				"type" : "String",
+				"validate" : "notNull"
+			},{
+				"alias" : "源地址",
+				"name" : "SRC_ADDRESS",
+				"showItem" : ["EQ", "NotEQ", "Include", "Exclude", "same", "diff", "Intranet", "Internet","NotNULL"],
+				"type" : "String",
+				"validate" : "IP"
+			}, {
+				"alias" : "目的地址",
+				"name" : "DEST_ADDRESS",
+				"showItem" : ["EQ", "NotEQ", "Include", "Exclude", "same", "diff", "Intranet", "Internet","NotNULL"],
+				"type" : "String",
+				"validate" : "IP"
+			}, {
+				"alias" : "设备地址",
+				"name" : "DVC_ADDRESS",
+				"showItem" : ["EQ", "NotEQ", "Include", "Exclude", "same", "diff", "Intranet", "Internet","NotNULL"],
+				"type" : "String",
+				"validate" : "IP"
+			}, {
+				"alias" : "事件ID",
+				"name" : "MSG_ID",
+				"showItem" : ["LT", "GT", "EQ", "NotEQ", "same", "diff","NotNULL"],
+				"type" : "Integer",
+				"validate" : "Integer",
+				"validateSize" : [0, 39791394]
+			}, {
+				"alias" : "源端口",
+				"name" : "SRC_PORT",
+				"showItem" : ["LT", "GT", "EQ", "NotEQ", "same", "diff","NotNULL"],
+				"type" : "Integer",
+				"validate" : "Integer",
+				"validateSize" : [0, 65535]
+			}, {
+				"alias" : "目的端口",
+				"name" : "DEST_PORT",
+				"showItem" : ["LT", "GT", "EQ", "NotEQ", "same", "diff","NotNULL"],
+				"type" : "Integer",
+				"validate" : "Integer",
+				"validateSize" : [0, 65535]
+			}, {
+				"alias" : "操作",
+				"name" : "OP",
+				"showItem" : ["EQ", "NotEQ", "StrReg","NotNULL"],
+				"type" : "String",
+				"validate" : "notNull"
+			}, {
+				"alias" : "结果",
+				"name" : "RESULT",
+				"showItem" : ["EQ", "NotEQ", "StrReg","NotNULL"],
+				"type" : "String",
+				"validate" : "notNull"
+			}, {
+				"alias" : "日志源类型",
+				"name" : "DVC_TYPE",
+				"showItem" : ["StartWith","EQ","NotEQ"],
+				"type" : "String",
+				"validate" : "notNull"
+			}, {
+				"alias" : "级别",
+				"name" : "PRIORITY",
+				"showItem" : ["LT", "GT", "EQ", "NotEQ","NotNULL"],
+				"type" : "Integer",
+				"validateSize" : [0, 65535]
+			}, {
+				"alias" : "CPU使用率",
+				"name" : "CPU_USED_PERCENT",
+				"showItem" : ["LT", "GT", "EQ", "NotEQ", "same", "diff","NotNULL"],
+				"type" : "Integer",
+				"validate" : "Integer",
+				"validateSize" : [0, 65535]
+			}, {
+				"alias" : "内存使用率",
+				"name" : "MEM_USED_PERCENT",
+				"showItem" : ["LT", "GT", "EQ", "NotEQ", "same", "diff","NotNULL"],
+				"type" : "Integer",
+				"validate" : "Integer",
+				"validateSize" : [0, 65535]
+			}, {
+				"alias" : "传输协议",
+				"name" : "TRANS_PROTOCOL",
+				"showItem" : ["EQ", "NotEQ","NotNULL"],
+				"type" : "String",
+				"validate" : "notNull"
+			}, {
+				"alias" : "应用协议",
+				"name" : "APP_PROTOCOL",
+				"showItem" : ["EQ", "NotEQ","NotNULL"],
+				"type" : "String",
+				"validate" : "notNull"
+			}, {
+				"alias" : "请求方法",
+				"name" : "REQUEST_METHOD",
+				"showItem" : ["EQ","NotEQ","NotNULL"],
+				"type" : "String",
+				"validate" : "notNull"
+			}, {
+				"alias" : "请求参数",
+				"name" : "OBJECT_PARAM",
+				"showItem" : ["StrCT", "StrNotCT","StrReg","NotNULL"],
+				"type" : "String",
+				"validate" : "notNull"
+			}, {
+				"alias" : "对象ID",
+				"name" : "OBJECT_ID",
+				"showItem" : ["StrCT", "StrNotCT","StrReg","NotNULL"],
+				"type" : "String",
+				"validate" : "notNull"
+			}, {
+				"alias" : "接口名称",
+				"name" : "INTERFACE_NAME",
+				"showItem" : ["EQ", "NotEQ", "StrReg","NotNULL"],
+				"type" : "String",
+				"validate" : "notNull"
+			}, {
+				"alias" : "接口IP",
+				"name" : "INTERFACE_IP",
+				"showItem" : ["EQ", "NotEQ", "StrReg","NotNULL"],
+				"type" : "String",
+				"validate" : "notNull"
+			}, {
+				"alias" : "磁盘名称",
+				"name" : "DISK_NAME",
+				"showItem" : ["StrCT", "StrNotCT", "StrReg","NotNULL"],
+				"type" : "String",
+				"validate" : "notNull"
+			}, {
+				"alias" : "磁盘使用率",
+				"name" : "DISK_USED_PERCENT",
+				"showItem" : ["LT", "GT", "EQ", "NotEQ", "same", "diff","NotNULL"],
+				"type" : "Integer",
+				"validate" : "Integer",
+				"validateSize" : [0, 65535]
+			}, {
+				"alias" : "背板使用率",
+				"name" : "SYS_BACKBOARDLOAD",
+				"showItem" : ["LT", "GT", "EQ", "NotEQ","NotNULL"],
+				"type" : "Integer",
+				"validate" : "Integer",
+				"validateSize" : [0, 65535]
+			}, {
+				"alias" : "CPU温度",
+				"name" : "SYS_CPUTEMPORATURE",
+				"showItem" : ["LT", "GT", "EQ", "NotEQ","NotNULL"],
+				"type" : "Integer",
+				"validate" : "Integer",
+				"validateSize" : [0, 65535]
+			}, {
+				"alias" : "主板温度",
+				"name" : "SYS_BOARDTEMPORATURE",
+				"showItem" : ["LT", "GT", "EQ", "NotEQ","NotNULL"],
+				"type" : "Integer",
+				"validate" : "Integer",
+				"validateSize" : [0, 65535]
+			}, {
+				"alias" : "会话连接数",
+				"name" : "SESSION_COUNT",
+				"showItem" : ["LT", "GT", "EQ", "NotEQ", "same", "diff","NotNULL"],
+				"type" : "Integer",
+				"validate" : "Integer",
+				"validateSize" : [0, 65535]
+			}, {
+				"alias" : "分类4",
+				"name" : "CAT4_ID",
+				"showItem" : ["EQ", "NotEQ","NotNULL"],
+				"type" : "String",
+				"validate" : "notNull"
+			},
+			{
+				"alias" : "接口状态",
+				"name" : "INTERFACE_STATUS",
+				"showItem" : ["EQ", "NotEQ", "StrReg","NotNULL"],
+				"type" : "String",
+				"validate" : "notNull"
+			}, {
+				"alias" : "接口入速度",
+				"name" : "INTERFACE_INSPEED",
+				"showItem" : ["LT", "GT", "EQ", "NotEQ","NotNULL"],
+				"type" : "Integer",
+				"validate" : "Integer",
+				"validateSize" : [0, 65535]
+			}, {
+				"alias" : "接口出速度",
+				"name" : "INTERFACE_OUTSPEED",
+				"showItem" : ["LT", "GT", "EQ", "NotEQ","NotNULL"],
+				"type" : "Integer",
+				"validate" : "Integer",
+				"validateSize" : [0, 65535]
+			}, {
+				"alias" : "处理方式",
+				"name" : "NAV_PRIMARY_ACTION",
+				"showItem" : ["StrReg","NotNULL"],
+				"type" : "String",
+				"validate" : "notNull"
+			}, {
+				"alias" : "事件描述",
+				"name" : "MESSAGE",
+				"showItem" : ["StrCT", "StrNotCT", "StrReg","NotNULL"],
+				"type" : "String",
+				"validate" : "notNull"
+			}, {
+				"alias" : "EventLog类型",
+				"name" : "FILE_NAME",
+				"showItem" : ["StrCT", "StrNotCT", "StrReg","NotNULL"],
+				"type" : "String",
+				"validate" : "notNull"
+			}, {
+				"alias" : "事件类型",
+				"name" : "DVC_EVENT_CATEGORY",
+				"showItem" : ["EQ", "NotEQ","StrCT"],
+				"type" : "String",
+				"validate" : "notNull"
+			}, {
+				"alias" : "时间",
+				"name" : "START_TIME",
+				"showItem" : ["Include", "Exclude","NotNULL"],
+				"type" : "Date",
+				"validate" : "notNull"
+			}, {
+				"alias" : "URL",
+				"name" : "REQUEST_URL",
+				"showItem" : ["StrCT", "StrNotCT", "StrReg","NotNULL"],
+				"type" : "String",
+				"validate" : "notNull"
+			}, {
+				"alias" : "用户",
+				"name" : "SRC_USER_NAME",
+				"showItem" : ["EQ", "NotEQ", "StrCT", "StrNotCT", "StrReg","NotNULL"],
+				"type" : "String",
+				"validate" : "notNull"
+			}, {
+				"alias" : "规则",
+				"name" : "FWRULE",
+				"showItem" : ["EQ", "NotEQ","NotNULL"],
+				"type" : "String",
+				"validate" : "notNull"
+			}, {
+				"alias" : "模块",
+				"name" : "DVC_PROCESS_NAME",
+				"showItem" : ["EQ", "NotEQ", "StrReg","NotNULL"],
+				"type" : "String",
+				"validate" : "notNull"
+			}
+		],
+		"ops" : [{
+				"alias" : "包含",
+				"name" : "StrCT",
+				"showInput" : true,
+				"showItem" : ["value1"],
+				"showLabel" : [""],
+				"showSelect" : false
+			}, {
+				"alias" : "不包含",
+				"name" : "StrNotCT",
+				"showInput" : true,
+				"showItem" : ["value1"],
+				"showLabel" : [""],
+				"showSelect" : false
+			}, {
+				"alias" : "正则",
+				"name" : "StrReg",
+				"showInput" : true,
+				"showItem" : ["value1"],
+				"showLabel" : [""],
+				"showSelect" : false
+			}, {
+				"alias" : "小于",
+				"name" : "LT",
+				"showInput" : true,
+				"showItem" : ["value1"],
+				"showLabel" : [""],
+				"showSelect" : false
+			}, {
+				"alias" : "大于",
+				"name" : "GT",
+				"showInput" : true,
+				"showItem" : ["value1"],
+				"showLabel" : [""],
+				"showSelect" : false
+			}, {
+				"alias" : "相等",
+				"name" : "EQ",
+				"showInput" : true,
+				"showItem" : ["value1"],
+				"showLabel" : [""],
+				"showSelect" : false
+			}, {
+				"alias" : "不相等",
+				"name" : "NotEQ",
+				"showInput" : true,
+				"showItem" : ["value1"],
+				"showLabel" : [""],
+				"showSelect" : false
+			}, {
+				"alias" : "非空",
+				"name" : "NotNULL",
+				"showInput" : false,
+				"showItem" : [""],
+				"showLabel" : [""],
+				"showSelect" : false
+			}, {
+				"alias" : "范围内",
+				"name" : "Include",
+				"showInput" : true,
+				"showItem" : ["value1", "value2"],
+				"showLabel" : ["起始", "结束"],
+				"showSelect" : false
+			}, {
+				"alias" : "范围外",
+				"name" : "Exclude",
+				"showInput" : true,
+				"showItem" : ["value1", "value2"],
+				"showLabel" : ["起始", "结束"],
+				"showSelect" : false
+			}, {
+				"alias" : "相同",
+				"name" : "same",
+				"showInput" : false,
+				"showItem" : [""],
+				"showLabel" : [""],
+				"showSelect" : false
+			}, {
+				"alias" : "不同",
+				"name" : "diff",
+				"showInput" : false,
+				"showItem" : [""],
+				"showLabel" : [""],
+				"showSelect" : false
+			}, {
+				"alias" : "本地局域网地址",
+				"name" : "Intranet",
+				"showInput" : false,
+				"showItem" : [""],
+				"showLabel" : [""],
+				"showSelect" : false
+			}, {
+				"alias" : "互联网地址",
+				"name" : "Internet",
+				"showInput" : false,
+				"showItem" : [""],
+				"showLabel" : [""],
+				"showSelect" : false
+			}, {
+				"alias" : "不在白名单中",
+				"name" : "WhitesOp",
+				"showInput" : false,
+				"showItem" : ["value1"],
+				"showLabel" : [""],
+				"showSelect" : true
+			}, {
+				"alias" : "在黑名单中",
+				"name" : "BlacksOp",
+				"showInput" : false,
+				"showItem" : ["value1"],
+				"showLabel" : [""],
+				"showSelect" : true
+			}, {
+				"alias" : "前辍",
+				"name" : "StartWith",
+				"showInput" : true,
+				"showItem" : ["value1"],
+				"showLabel" : [""],
+				"showSelect" : false
+			}
+		],
+		"values" : [{
+				"name" : "value1"
+			}, {
+				"name" : "value2"
+			}
+		]
+	}
+]

@@ -1,0 +1,53 @@
+<div style="padding:0 3px;position:relative;">
+	<table class="table table-striped staticHtml" style="border:1px solid #dddddd;">
+		<tbody>
+			<tr>
+				<td colspan="3" ><a name="SWITCH/RUIJIE">5.5	锐捷</a></td>
+			</tr>
+			<tr>
+				<td colspan="3" >
+					<table class="table table-bordered">
+						<tr>
+							<td>名称</td>
+							<td colspan="2">锐捷交换机</td>
+							<td>类别</td>
+							<td>网络产品</td>
+						</tr>
+						<tr>
+							<td rowspan="2">日志源配置</td>
+							<td>设备类型</td>
+							<td colspan="3">交换机-> 锐捷-> 锐捷交换机</td>
+						</tr>
+						<tr>
+							<td colspan="4"><img src="/data/logDataSource02/image064.jpg" /></td>
+						</tr>
+						<tr>
+							<td>锐捷交换机配置</td>
+							<td colspan="4">
+								<pre>可以使用串口线直接连接，如果交换机配置有管理IP并且允许telnet登陆，则也可以通过telnet进行登陆。
+1、	输入enable命令进入特权模式。
+2、	输入config terminal进行配置模式。
+3、开启syslog服务
+logging on
+4、要将日志记录到指定的Syslog Sever，请在全局配置模式下使用该命令。要删除Syslog server列表中的指定地址的Syslog Server，请使用该命令的no形式。
+logging server 221.176.80.18
+no logging server 221.176.80.18 
+5、设置日志发送级别
+logging trap level
+6、配置发送syslog的主机格式类型
+logging facility facility-type
+使用完配置命令后，均需要执行以下步骤进行保存：
+1、输入end命令退出配置模式。
+2、write memory保存配置文件。</pre>
+							</td>
+						</tr>
+						<tr>
+							<td>备注</td>
+							<td colspan="4">*说明：level的值可以为1.emergencies 2.alerts 3.critical 4.errors 5.warnings 6.notifications 7.informational 8.debugging</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

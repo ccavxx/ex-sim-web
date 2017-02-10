@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			/WEB-INF/spring/applicationContext.xml,
+			/WEB-INF/spring/applicationContext-asset.xml,
+			/WEB-INF/spring/applicationContext-log.xml,
+			/WEB-INF/spring/applicationContext-event.xml,
+			/WEB-INF/spring/applicationContext-newreport.xml,
+			/WEB-INF/spring/applicationContext-sysconfig.xml,
+			/WEB-INF/spring/applicationContext-event-ibatis.xml,
+			/WEB-INF/spring/applicationContext-knowledge.xml,
+			/WEB-INF/spring/node.xml
+		</param-value>
+	</context-param>
+	<context-param>
+		<param-name>initClass</param-name>
+		<param-value>com.topsec.tal.base.util.config.ConfigsReader;</param-value>	
+	</context-param>  
+	
+	<context-param>
+		<param-name>resteasy.servlet.mapping.prefix</param-name>
+		<param-value>/resteasy</param-value>
+	</context-param>
+	<context-param>
+		<param-name>resteasy.scan</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<!-- Encoding Filter -->
+	<filter>
+		<filter-name>EncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>	
+	<filter-mapping>
+		<filter-name>EncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>	
+	<filter>
+		<filter-name>SecurityFilter</filter-name>
+		<filter-class>com.topsec.tsm.sim.auth.security.SecurityFilter</filter-class>
+		<init-param>
+			<param-name>forwardPath</param-name>
+			<param-value>/page/login.jsp</param-value>
+		</init-param>
+		<init-param>
+			<param-name>empty_referer_url</param-name>
+			<param-value>/,/img/skin/datagrid/mid_bg2.png,/page/login.jsp,/page/modifyPwd.jsp,/page/forward.jsp,/page/sysconfig/licensegen.jsp,/sim/node/nodeInfo</param-value>
+		</init-param>		
+	</filter>
+	<filter-mapping>
+		<filter-name>SecurityFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- Auth过滤器 	-->
+  	<filter>
+		<filter-name>Auth filter</filter-name>
+		<filter-class>com.topsec.tsm.sim.auth.security.AuthFilter</filter-class>
+		<init-param>
+			<param-name>forwardPath</param-name>
+			<param-value>/sim/userLogin/logout</param-value>
+		</init-param>
+		<init-param>
+			<param-name>unnecessaryUpdate</param-name>
+			<param-value>
+				/sim/index/serverRealTimeData,/sim/logSearch/queryTodayLogCount,/sim/assetlist/topoAssetStatus,
+				/sim/assetdetail/assetStatus,/sim/eventMonitor/eventdata,/sim/logMonitor/getLogData,
+				/sim/assetdetail/stateList,/sim/userLogin/logout,/keepAlive,/sim/node/getNodesStatus
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>passedURLs</param-name>
+			<param-value>/,/img/skin/datagrid/datagrid_mid_bg2.png,/sim/userLogin/login,/sim/userLogin/checkLogin,/sim/userLogin/logout,/validCode,/sim/authUser/modifyUserPwd,/sim/authUser/checkUserName,/sim/authUser/checkOldPassword</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>Auth filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>	
+	<listener>
+		<listener-class>com.topsec.tal.base.web.SpringContextServlet</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
+	</listener>
+	<listener>
+		<listener-class>com.topsec.tsm.sim.common.web.SimSessionListener</listener-class>
+	</listener>
+	<!-- 
+	设置session超时时间为5分钟(因为页面上一直有请求在发送，所以即使无任何操作session也不会过期，只有用户直接关闭页面以后session超时设置才会生效) 
+	-->
+	<session-config>
+		<session-timeout>5</session-timeout>
+	</session-config>
+	<servlet>
+		<servlet-name>resteasy-servlet</servlet-name>
+		<servlet-class> org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class> 
+	</servlet>
+	<servlet>
+		<servlet-name>spring-mvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/applicationContext-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>validate-code</servlet-name>
+		<servlet-class>com.topsec.tsm.sim.auth.web.ValidateCodeServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<!-- Resteasy Mapping -->	
+	<servlet-mapping>
+		<servlet-name>resteasy-servlet</servlet-name>
+		<url-pattern>/resteasy/*</url-pattern>
+	</servlet-mapping> 
+	<servlet-mapping>
+		<servlet-name>validate-code</servlet-name>
+		<url-pattern>/validCode</url-pattern>
+	</servlet-mapping>	
+	<!-- dwr svg逻辑拓扑中使用-->
+<!-- 
+	<servlet>
+		<servlet-name>dwr-invoker</servlet-name>
+		<servlet-class>uk.ltd.getahead.dwr.DWRServlet</servlet-class>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dwr-invoker</servlet-name>
+		<url-pattern>/exec/*</url-pattern>
+	</servlet-mapping>
+ -->	
+	<servlet-mapping>
+		<servlet-name>spring-mvc</servlet-name>
+		<url-pattern>/sim/*</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>page/login.jsp</welcome-file>
+	</welcome-file-list>
+	
+	<security-constraint>     
+	    <web-resource-collection >   
+	        <web-resource-name >SSL</web-resource-name>   
+	        <url-pattern>/*</url-pattern>   
+	     </web-resource-collection>   
+	     <user-data-constraint>   
+	        <transport-guarantee>CONFIDENTIAL</transport-guarantee>   
+	    </user-data-constraint>   
+	</security-constraint>
+</web-app>

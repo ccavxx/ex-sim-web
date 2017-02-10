@@ -1,0 +1,246 @@
+/**
+ *********************************************
+ * Prototype of styles for horizontal CSS-menu
+ * @data 25.01.2010 Ò»Á÷ËØ²ÄÍøwww.16sucai.com
+ *********************************************
+ * (X)HTML-scheme:
+ *  <div id="menu">
+ *      <ul class="menu">
+ *          <li><a href="#" class="parent"><span>level 1</span></a>
+ *              <div><ul>
+ *                  <li><a href="#" class="parent"><span>level 2</span></a>
+ *                      <div><ul><li><a href="#"><span>level 3</span></a></li></ul></div>
+ *                  </li>
+ *              </ul></div>
+ *          </li>
+ *          <li class="last"><a href="#"><span>level 1</span></a></li>
+ *      </ul>
+ *  </div>
+ *********************************************
+ */
+/** Selectors **/
+
+/* Reset */
+#menu * {
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+  text-decoration: none;
+}
+div#menu {
+position: absolute;
+top:15px;
+left:448px;
+}
+ @media screen and (-webkit-min-device-pixel-ratio:0) {
+   div#menu#menu{
+        top:13px;
+   }
+ 
+ }
+#menu ul.menu {
+  white-space: nowrap;
+}
+
+/* Geometrical arrangement */
+#menu ul.menu li {
+  position: relative;
+}
+
+#menu ul.menu li div {
+  position: absolute;
+  left: 0px;
+}
+
+#menu ul.menu li div div {
+  position: absolute;
+  top: -6px;
+  left: 188px;
+}
+
+/* Escaping style for lower levels */
+#menu ul.menu li div ul li {
+  display: block;
+  float: none;
+  width: auto;
+  height: auto;
+}
+
+/** Graphics **/
+
+/* Horizontal sliding doors */
+
+
+#menu ul.menu li:hover a {
+  background-position: left -54px;
+}
+
+#menu ul.menu li:hover a span {
+  background-position: right -81px;
+}
+
+
+
+#menu ul.menu li.active a span {
+		color: #000000;
+}
+
+/* Escape Horizontal doors */
+#menu ul.menu li div ul li a {
+  display: block;
+  padding: 0px;
+  margin: 0px;
+  background: none;
+}
+
+#menu ul.menu li div ul li a span {
+  display: block;
+  padding: 0px;
+  background: none;
+  height: auto;
+  width: 165px;
+  line-height: 25px;
+  padding: 7px 0 7px 9px;
+  white-space: normal;  
+}
+
+/* Vertical sliding doors */
+#menu ul.menu li div { 
+	
+  width: 200px;
+  padding-top: 6px;
+  background-image: url("images/submenu-top.png");
+  background-repeat: no-repeat;
+  background-position: 0px top;
+  *top:25px;
+}
+
+#menu ul.menu li div ul { 
+  padding: 6px 6px 9px 6px;
+  padding-top: 0;
+  background-image: url("images/submenu-bottom.png");
+  background-repeat: no-repeat;
+  background-position: 0px bottom;
+}
+
+/* Hover Effect on Submenus */
+#menu ul.menu ul li:hover
+{
+
+}
+#menu ul.menu li.active ul li a span {
+	color: #5E5E5E;
+	width: 165px;}
+#menu ul.menu li.active ul li a span:hover {
+	color:#EB2E83;}
+	
+#menu ul.menu ul li a span:hover
+{
+	color:#EB2E83; 
+}
+
+
+/* Main header line */
+#menu {
+  height: 25px;
+}
+
+/* Text shadow */
+#menu span
+{
+  color: #24CCF7;
+}
+
+#menu li:hover>a>span 
+{
+  color: #FFFFFF;
+}
+
+/* Fonts */
+#menu ul.menu li a span
+{ 
+  font-family: Arial;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+#menu ul.menu li div ul li a span
+{ color:#5E5E5E;
+  font-family: Trebuchet MS;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+/* Lines between li */
+#menu ul.menu li div ul
+{
+  padding-bottom: 8px;
+}
+
+#menu ul.menu li div ul li:first-child
+{
+  border-top-width: 0px;
+}
+
+
+/* Menu logic */
+#menu li>div { visibility: hidden; }
+#menu li:hover>div { visibility: visible; }
+/* */
+
+/* Hover Effect on Submenus */
+#menu ul.menu ul li:hover
+{
+  background-color: #fff;
+}
+
+/* Lines between li */
+#menu ul.menu li div ul li
+{
+  background-image:url(images/hr.gif);
+  background-repeat: repeat-x;
+  background-position: left bottom;
+}
+#menu ul.menu ul a.parent {
+  background: url(images/arrow.gif) no-repeat right center;
+  margin-right: -1px;
+}
+
+
+/* ie7 */
+#menu ul.menu li {
+  *zoom: 1;
+
+}
+
+
+
+/* IE6 */
+
+
+#menu ul.menu li div { 
+  _background-image: url("images/submenu-top.gif");
+}
+
+#menu ul.menu li div ul { 
+  _background-image: url("images/submenu-bottom.gif");
+}
+
+#menu ul.menu li a:hover {
+  _background-position: left -54px;
+}
+
+#menu ul.menu li a:hover span {
+  _background-position: right -81px;
+
+}
+#menu ul.menu li li a:hover span {
+  _color:#EB2E83; 
+}
+
+/* Menu logic for IE6 */
+#menu div { _display: none; }
+#menu div li:hover div { _visibility: visible;_display: block; }
+#menu div li:hover li:hover div { _display: block; }
+#menu div li:hover li:hover li:hover div { _display: block; }
+/* */

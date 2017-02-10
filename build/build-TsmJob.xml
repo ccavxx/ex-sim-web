@@ -1,0 +1,6 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<project name="build-collector" default="build">
+	<target name="build">
+		<ant antfile="${basedir}/../../TsmJob/local-build-new.xml" inheritall="false" inheritrefs="false"/>
+	</target>
+</project>

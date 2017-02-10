@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	   http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	   http://www.springframework.org/schema/mvc
+	   http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+	   
+	<bean id="dbMgrUtils" class="com.topsec.tsm.sim.util.DbMgrUtils">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>	
+	
+	<bean id="logFilterRuleDao" class="com.topsec.tsm.sim.sysconfig.dao.LogFilterRuleDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+
+	<bean id="aggregatorRuleDao" class="com.topsec.tsm.sim.sysconfig.dao.AggregatorRuleDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+
+	<bean id="aggregatorRuleService" class="com.topsec.tsm.sim.sysconfig.service.AggregatorRuleServiceImpl">
+		<property name="aggregatorRuleDao" ref="aggregatorRuleDao"></property>
+		<property name="dataSourceDao" ref="dataSourceDao"></property>
+	</bean>
+
+	<bean id="logFilterRuleService" class="com.topsec.tsm.sim.sysconfig.service.LogFilterRuleServiceImpl">
+		<property name="logFilterRuleDao" ref="logFilterRuleDao"></property>
+		<property name="dataSourceDao" ref="dataSourceDao"></property>
+	</bean>
+	
+	<bean id="eventFilterRuleService" class="com.topsec.tsm.sim.sysconfig.service.EventFilterRuleServiceImpl">
+		<property name="eventFilterRuleDao" ref="eventFilterRuleDao"></property>
+		<property name="nodeMgrFacade" ref="nodeMgrFacade"></property>
+	</bean>
+	<bean id="eventFilterRuleDao" class="com.topsec.tsm.sim.sysconfig.dao.EventFilterRuleDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="eventRuleService" class="com.topsec.tsm.sim.sysconfig.service.EventRuleServiceImpl">
+		<property name="eventRuleDao" ref="eventRuleDao"/>
+		<property name="knowledgeAsscoDao" ref="knowledgeAsscoDao"/>
+		<property name="eventRuleGroupDao" ref="eventRuleGroupDao"/>
+		<property name="eventRuleGroupRespDao" ref="eventRuleGroupRespDao"/>
+		<property name="eventRuleDispatchDao" ref="eventRuleDispatchDao"/>
+	</bean>
+
+	<bean id="eventRuleDao" class="com.topsec.tsm.sim.sysconfig.dao.EventRuleDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="eventRuleGroupDao" class="com.topsec.tsm.sim.sysconfig.dao.EventRuleGroupDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="eventRuleDispatchDao" class="com.topsec.tsm.sim.sysconfig.dao.EventRuleDispatchDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="eventRuleGroupRespDao" class="com.topsec.tsm.sim.sysconfig.dao.EventRuleGroupRespDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+    <!-- add by zhou_xiaohu 用户权限 -->
+	<bean  id="userService" class =" com.topsec.tsm.sim.auth.service.UserServiceImpl">
+		<property name="userDao" ref="userDao"/>
+	</bean>
+	<bean  id="userDao" class =" com.topsec.tsm.sim.auth.dao.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean  id="sysAccessService" class ="com.topsec.tsm.sim.access.service.SysAccessServiceImpl">
+		<property name="sysRoleDao" ref="sysRoleDao"/>
+		<property name="sysMenuRoleCorrelationDao" ref="sysMenuRoleCorrelationDao"/>
+		<property name="sysTreeMenuDao" ref="sysTreeMenuDao"/>
+	</bean>
+	<bean  id="sysRoleDao" class ="com.topsec.tsm.sim.access.dao.SysRoleDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean  id="sysMenuRoleCorrelationDao" class ="com.topsec.tsm.sim.access.dao.SysMenuRoleCorrelationDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean  id="sysTreeMenuDao" class ="com.topsec.tsm.sim.access.dao.SysTreeMenuDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="resourceService" class="com.topsec.tsm.sim.sysconfig.service.ResourceServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="propertyFormatterFactory" class="com.topsec.tsm.common.formatter.FormatterFactory" scope="singleton">
+		<property name="formatters">
+			<map>
+				<entry key="d2s"> <bean class="com.topsec.tsm.common.formatter.DatePropertyFormatter"/></entry>
+				<entry key="dt_cn"><bean class="com.topsec.tsm.common.formatter.DeviceTypeFormatter"/></entry>
+				<entry key="dts_cn"><bean class="com.topsec.tsm.common.formatter.DeviceTypeShortKeyFormatter"/></entry>
+				<entry key="itvl"><bean class="com.topsec.tsm.common.formatter.IntervalFormatter"/></entry>
+				<entry key="htmlEscape"><bean class="com.topsec.tsm.common.formatter.HtmlEscapeFormatter"/></entry>
+			</map>
+		</property>
+	</bean>
+</beans>

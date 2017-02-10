@@ -1,0 +1,111 @@
+#asset_listform_Id select,
+#asset_listform_Id input
+{
+	width:150px;
+}
+#asset_listform_Id select,
+#asset_listform_Id input,
+#asset_listform_Id .input-append,
+#asset_listform_Id .input-prepend
+{
+	margin-bottom: 0px;
+}
+#al_asset_form .dialog-button{
+	text-align:center;
+}
+.card-view,.table-view{
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	margin: 5px 3px; 
+}
+.card-view{
+	background:url('../img/skin/other_icon/card_view.png') no-repeat center center;
+}
+.table-view{
+	background:url('../img/skin/other_icon/table_view.png') no-repeat center center;
+}
+.cat_header{
+	background:url('../img/skin/other_icon/card_cat_header.png') no-repeat left bottom;
+	display: inline-block; 
+	line-height: 40px;
+	padding-left:20px;
+	width: 200px;
+	font-size: 18px;
+	color: #000;
+	font-weight: bold;
+}
+.card_line{
+	background-color: #80B0CE ;
+	height: 1px;
+	width: 100%;
+}
+.asset_card{
+	background-color:#CDF5FF;
+	border:  1px solid #89C7DD;
+	height: 160px;
+	width: 180px;
+	float: left;
+	margin: 10px 0px 0px 10px;
+}
+.card_header{
+	background:url('../img/skin/other_icon/card_header.png') repeat;
+}
+.card_modify{
+	background:url('../img/skin/other_icon/card_modify.png') repeat;
+	width: 22px ;
+	height: 22px;
+}
+.card_modify_over{
+	background:url('../img/skin/other_icon/card_modify_over.png') repeat;
+	width: 22px ;
+	height: 22px;
+}
+.card_footer{
+	height: 47px;
+}
+.card_footer > span{
+	padding: 0px 0px;
+	font-weight: bold; 
+	line-height:47px;
+	width: 88px;
+	display:inline-block;
+	float: left ;
+	margin-left:5px;
+	margin-right: -5px; 
+}
+.card_footer > span > i{
+	height: 16px;
+	width: 16px;
+}
+.icon-asset-tool{
+	width: 19px ;
+	height: 19px ;
+}
+.icon-tool{
+	background:url('../img/icons/asset_tools/icon-tool.png') no-repeat;	
+}
+.icon-ping{
+	background:url('../img/icons/asset_tools/icon-ping.png') no-repeat;	
+}
+.icon-http{
+	background:url('../img/icons/asset_tools/icon-http.png') no-repeat;
+}
+.icon-https{
+	background:url('../img/icons/asset_tools/icon-https.png') no-repeat;
+}
+.icon-traceroute{
+	background:url('../img/icons/asset_tools/icon-traceroute.png') no-repeat;
+}
+.icon-mstsc{
+	background:url('../img/icons/asset_tools/icon-mstsc.png') no-repeat;
+}
+.icon-ssh{
+	background:url('../img/icons/asset_tools/icon-ssh.png') no-repeat;
+}
+.icon-telnet{
+	background:url('../img/icons/asset_tools/icon-telnet.png') no-repeat;
+}
+.icon-sftp,.icon-ftp{
+	background:url('../img/icons/asset_tools/icon-sftp.png') no-repeat;
+}

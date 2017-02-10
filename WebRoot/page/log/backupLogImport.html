@@ -1,0 +1,24 @@
+
+<div>
+  
+  <p><b>模板说明：</b>在这里可以导入备份出去的历史日志重新查询，支持导入服务器端的备份日志和下载到本地的日志文件。</p>
+  <br/>
+  导入文件：
+  <p><input type="radio" name="fileLocation" value="ftp" onclick="onSelectLogImport();" checked="checked">备份文件</p>
+   <p><input type="radio" name="fileLocation" value="local" onclick="onSelectLogImport();">自定义文件 </p>
+  <div id="backupFileId">
+	 <ul id="logImportTree" class="easyui-tree" data-options="
+	 url:'/sim/logHistory/getTreeNode',
+	 onlyLeafCheck:true,
+	 checkbox:true
+	 "></ul>
+	 <br/>
+	  <input type="button" value="导入日志" onclick="onLogImportFile();"/>
+  </div>  
+  <div id="customFileId"  style="display:none">
+   <input name="uploadFfile" id="uploadFfile"  type="file"/> 
+   <input type="button" value="应用" onclick="onSubmitFile();"/>
+  </div>
+</div>
+<script type="text/javascript" src="../../js/sim/log/Log_Import.js"></script>
+

@@ -1,0 +1,17 @@
+      <table id="alarm_datagrid" data-options="url:'/sim/sysconfig/event/showAlarmCorrelation',fit:true,fitColumns:true,singleSelect:true,
+		multiple:true,
+		selectOnCheck:false,
+		checkOnSelect:false,
+		scrollbarSize:0,
+		onLoadSuccess:simMainHandler.onLoadSuccess"
+		class="easyui-datagrid">
+       <thead>
+          <tr>
+          <th data-options="field:'id',checkbox:true"></th>
+           <th data-options="field:'name',width:200">名称</th>
+           <th data-options="field:'cfgKey',width:100">响应方式</th>
+           <th data-options="field:'creater',width:50">创建者</th>
+           <th data-options="field:'start',width:50,formatter:function(value,row,index){return value ? '启用' : '禁用';}">状态</th>
+          </tr>
+       </thead>
+      </table>   

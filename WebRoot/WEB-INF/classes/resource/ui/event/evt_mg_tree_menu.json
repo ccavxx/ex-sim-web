@@ -1,0 +1,22 @@
+[{
+	"id":0,
+	"text":"事件管理",
+	"children":[{
+		"id":1,
+		"text":"本周事件",
+		"ms":"this_week",
+		"selected":true
+	},{
+		"id":2,
+		"text":"上周事件",
+		"ms":"last_week"
+	},{
+		"id":3,
+		"text":"本月事件",
+		"ms":"this_month"
+	},{
+		"id":4,
+		"text":"全部事件",
+		"ms":"all"
+	}]
+}]

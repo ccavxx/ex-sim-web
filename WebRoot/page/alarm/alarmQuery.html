@@ -1,0 +1,152 @@
+<div id="alarm_query_main_div_id" class="easyui-layout" data-options="fit:true">
+ 	<style>
+		#alarm_queryform_Id select,
+		#alarm_queryform_Id input
+		{
+			margin-bottom:0px;
+		}
+		#alarm_queryform_Id .input-append,
+		#alarm_queryform_Id .input-prepend
+		{
+			margin-bottom: 0px;
+		}
+	</style>
+ 	<div data-options="region:'center',title:'告警查询列表',headerCls:'sim-panel-header',bodyCls:'sim-panel-body'"> 
+	    <div id="alarmToolBar">
+			<!-- <a class="easyui-linkbutton" onclick="showAlarmEvent()">查询</a>
+			<a class="easyui-linkbutton" onclick="doAlarmExport()">导出</a> -->
+			 <form id="alarm_queryform_Id" method="post" style="margin: 0 auto;display: block;font-size:12px;" name="_alarmQueryForm">
+				 <table style="height:30px;vertical-align: middle;text-align: center;">
+					<tr>
+						<td style="width:60px;">时间:</td>
+						<td style="width:290px;">
+							<div class="input-prepend input-append">
+								<input class="input-medium cursorHand" id="startTimeId" name="startTime" style="width:117px;" type="text" onclick="simHandler.showDaterangepickerWin('alarm_queryform_start_end_time_Id');" readonly="readonly">
+								<span class="add-on">-</span>
+								<input class="input-medium cursorHand" id="endTimeId" name="endTime" style="width:117px;" type="text" onclick="simHandler.showDaterangepickerWin('alarm_queryform_start_end_time_Id');" readonly="readonly">
+								<a class="btn" id="alarm_queryform_start_end_time_Id"><i class="icon-calendar"></i></a>
+							</div>
+						</td>
+						<td style="width:60px;">分类:</td>
+						<td style="width:100px;">
+							<select name="category" style="width: 100px;">
+								<option value="">全部</option>
+								<option value="system">系统告警</option>
+								<option value="status">状态告警</option>
+								<option value="event">事件告警</option>
+							</select>
+						</td>
+						<td style="width:60px;">名称:</td>
+						<td style="width:102px;">
+							<input name="eventName" type="text" style="width:100px;"/>
+						</td>
+						<td style="width:40px;">等级:</td>
+						<td style="width:102px;">
+							<select name="level" style="width:100px" >
+								<option value ="">全部</option>
+								<option value ="4">非常高</option>
+								<option value ="3">高</option>
+								<option value ="2">中</option>
+								<option value ="1">低</option>
+								<option value ="0">非常低</option>
+							</select>
+						</td>
+						<td style="width:60px;">地址包含:</td>
+						<td style="width:102px;">
+							<input name="ip" type="text" style="width:100px;"/>
+						</td>
+						<td style="width:50px;"><a href="javascript:void(0);" title="更多" onclick="more(this);" style="background:none" class="easyui-linkbutton" data-options="plain:true,iconCls:'easyui-accordion-expand'"></a></td>
+						<!-- showQueryEvent(); -->
+						<td style="width:100px;"><a href="javascript:void(0);" class="easyui-linkbutton" onclick="alarmQuery.doAlarmQuery();" data-options="iconCls:'icon-search'">查询</a></td>
+						<td style="width:100px;"><a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-export'">导出</a></td>
+					</tr>
+				</table>
+				<div id="moreSearchInfoId" style="display:none;">
+					<table style="height:30px;vertical-align: middle;text-align: center;">
+						<tr>
+							<td style="width:60px;">源地址:</td>
+							<td style="width:102px;padding-left: 2px;">
+								<input name="srcIp" type="text" style="width:100px;"/>
+							</td>
+							<td style="width:60px;">目的地址:</td>
+							<td style="width:102px;">
+								<input name="destIp" type="text" style="width:100px;"/>
+							</td>
+							<td style="width:60px;">设备地址:</td>
+							<td style="width:102px;">
+								<input name="deviceIp" type="text" style="width:100px;"/>
+							</td>
+						</tr>
+					</table>
+				</div>
+			 </form>
+		</div> 
+		<div class="easyui-panel"  data-options="border:false,fit:true">
+			<table id="alarm_query_table_id" class="easyui-datagrid" 
+			       data-options="fit:true,fitColumns:true,scrollbarSize:0,border:false,noheader:true,url:'/sim/alarm/queryAlarm',
+			                     pagination:true" toolbar="#alarmToolBar">
+				<thead>
+					<tr>
+						<th data-options="field:'END_TIME',width:12">时间</th>
+						<th data-options="field:'NAME',width:15">名称</th>
+						<th data-options="field:'PRIORITY',width:8,formatter:simHandler.levelFormatter">等级</th>
+						<th data-options="field:'DVC_ADDRESS',width:10">设备地址</th>
+						<th data-options="field:'SRC_ADDRESS',width:10">源地址</th>
+						<th data-options="field:'DEST_ADDRESS',width:10">目的地址</th>
+						<th data-options="field:'DESC',width:35">描述</th>
+					</tr>  
+				</thead>  
+			</table>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="/js/sim/alarm/alarm_amquery.js"></script>
+
+
+<!-- wq对时间范围组件的js代码 -->
+<script>
+	$(function() {
+		var servertime = simHandler.serverTime;
+		//日期范围选择器回调函数
+		var cb = function(start, end) {
+		    $('#startTimeId').val(start.format('YYYY-MM-DD HH:mm:ss'));
+		    $('#endTimeId').val(end.format('YYYY-MM-DD HH:mm:ss'));
+		};
+	  	//日期范围选择器初始化参数
+		var optionSet = {
+		    startDate: moment(servertime).subtract('day',1),
+		    endDate: moment(servertime),
+		    maxDate: false,
+		    minDate: false,
+		    timePicker: false,//显示时间选择器
+		    locale: locales['zh-CN'],
+		    format: 'YYYY-MM-DD HH:mm:ss',
+		    opens: 'right',
+		    ranges: {
+		       '最近一天': [moment(servertime).subtract('days',1), moment(servertime)],
+		       '最近一周': [moment(servertime).subtract('days',7), moment(servertime)],
+		       '最近一月': [moment(servertime).subtract('month',1), moment(servertime)],
+		       '今天': [moment(servertime).startOf('day'), moment(servertime)],
+		       '昨天': [moment(servertime).subtract('days', 1).startOf('day'), moment(servertime).subtract('day', 1).endOf('day')]
+		    }
+		};
+		//初始化日期范围选择器
+		$('#alarm_queryform_start_end_time_Id').daterangepicker(optionSet, cb);
+	});
+	
+	function more(it){
+		var disp = $("#moreSearchInfoId").css("display");
+		if(disp=='none'){
+			$("#moreSearchInfoId").css("display","block");
+			$(it).attr("title","隐藏");
+			$(it).find(".l-btn-left>.l-btn-text>.l-btn-empty").removeClass("easyui-accordion-expand");
+			$(it).find(".l-btn-left>.l-btn-text>.l-btn-empty").addClass("easyui-accordion-collapse");
+			$("#moreSearchInfoId input").val("");
+		}else{
+			$("#moreSearchInfoId").css("display","none");
+			$(it).attr("title","更多");
+			$(it).find(".l-btn-left>.l-btn-text>.l-btn-empty").removeClass("easyui-accordion-collapse");
+			$(it).find(".l-btn-left>.l-btn-text>.l-btn-empty").addClass("easyui-accordion-expand");
+		}
+	}
+</script>

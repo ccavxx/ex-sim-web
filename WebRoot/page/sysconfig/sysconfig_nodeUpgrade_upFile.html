@@ -1,0 +1,25 @@
+<form id="theNodeUpgradeFileForm" class="form-horizontal" style="font-size:15px;margin-top:20px;" enctype="multipart/form-data" method="post">
+	<fieldset>
+		<div class="control-group">
+			<label class="control-label"><span style="color:red;">*</span>上传升级包：</label>
+			<div class="controls">
+				<input class="input-file horizon-fileupload" type="file" name="theFile" id="theNodeUpgradeFile" style="height:24px;" />
+			</div>
+		</div>
+		<div class="control-group" style="font-size: 12px">
+			<label class="control-label">描述信息：</label>
+			<div class="controls"><textarea rows="5" id="theNodeUpgradeDisc" name="description" ></textarea></div>
+		</div>
+		<div class="control-group">
+			<label class="control-label"></label>
+			<div class="controls"><a class="easyui-linkbutton" iconCls="icon-import" onclick="nodeUpgradeUpFile.saveUpFile()">上传</a>　
+			<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="simSysConfNodeUpgrade.closeUploadFileDialog()">取消</a></div>
+		</div>
+	</fieldset>
+</form>
+<script src="/js/sim/sysconfig/sysconfig_nodeUpgradeUpFile.js"></script>
+<script type="text/javascript" >
+	$(function(){
+		$("#theNodeUpgradeFile").cnfileupload();
+	});
+</script>

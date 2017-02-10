@@ -1,0 +1,157 @@
+<!-- 以上是添加用户弹出框end -->
+
+<style type="text/css">
+.cancel-icon {
+	background-image: url(../../js/validator/images/validator_simple.png);
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+	overflow: hidden;
+	margin-left: 6px;
+	display: inline-block;
+}
+
+.ok-icon {
+	background-image: url(../../js/validator/images/validator_simple.png);
+	background-position: -16px 0px;
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+	overflow: hidden;
+	margin-left: 6px;
+	display: inline-block;
+}
+
+.msg {
+	vertical-align: top;
+	line-height: 16px;
+	color: #c33;
+}
+</style>
+<!-- 以下是添加用户弹出框start -->
+<div style="font-weight: bold;width: 500px; padding:10px 0 0 10px; ">
+	新建用户
+</div>
+<div style="padding: 20px 0px 0px 50px;">
+	<form method="post" id="addUserForm">
+		<table>
+			<tr>
+				<td align="right" width="70px">用户名：</td>
+				<td><input type="text" id="username" name="userName"
+					onblur="validateUserName()" style="width:190px;" />
+				</td>
+				<td id="userNameText"></td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td>IP地址范围：</td>
+				<td><input type="text" style="width:190px;" name="minIp" onblur="validateFirstIp('ipText');"><span style="padding:3px;font-weight:bolder;">至</span><input style="width:190px;" type="text"
+					name="maxIp" onblur="validateIP('ipText');">
+				</td>
+				<td id="ipText"></td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td width="70" align="right">有效期：</td>
+				<td><input id="expireTime" type="text" name="expireTime"
+					class="Wdate cursorHand" style="height:20px;width:188px;" readonly="readonly" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:CurentTime()})">
+				</td>
+				<td id="expireTimeText"></td>
+			</tr>
+			<tr>
+				<td width="70" align="right">状态：</td>
+				<td><input type="checkbox" name="status" value="1">启用</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td width="70" align="right">密码：</td>
+				<td><input style="width:190px;" type="password" name="password" maxlength="20" onblur="validatePwd('passwordText');">
+				</td>
+				<td id="passwordText"></td>
+			</tr>
+			<tr>
+				<td width="70" align="right">确认密码：</td>
+				<td><input style="width:190px;" type="password" name="passwordAgain" maxlength="20" onblur="validatePwdAgain('passwordAgainText');">
+				</td>
+				<td id="passwordAgainText"></td>
+			</tr>
+			<tr>
+				<td width="70" align="right">所属角色：</td>
+				<td><input type="hidden" id="roleid" name="roleid" /> 
+				    <select style="width:192px;" onchange="showHidePermission()" id="rolename">
+				      <option value="51">账号管理员</option>
+				      <option value="52">审计管理员</option>
+				      <option value="53">操作管理员</option>
+				    </select>
+				</td>
+				<td id="roleText"></td>
+			</tr>
+	    </table>
+		<table style="display: none;" id="add_user_perid">
+			 <tr>
+			    <td width="70" align="right">选择权限：</td>
+	            <td>
+	             <select multiple="multiple" id="assetContent"  style="width:220px;height:100px;" ></select>
+	            </td>
+	             <td>
+	             <input type="hidden" id="userDevices" name="userDevices"/>
+	             <input type="hidden" id="dataSource"/>
+	             <input type="hidden" id="selectDataSource"/>
+	             <a onclick="selectAsset();" href="javascript:void(0);" iconCls="icon-add" class="easyui-linkbutton">添加</a><br/><br/>
+	             <a onclick="deleteAsset();" href="javascript:void(0);" iconCls="icon-remove" class="easyui-linkbutton">删除</a>
+	             </td>
+	             <td id="permissionText"></td>
+	          </tr>
+	          <tr id="device_group">
+			    <td width="70" align="right">选择列集：</td>
+	            <td>
+	             <select multiple="multiple" id="groupContent"  style="width:220px;height:100px;" ></select>
+	            </td>
+	             <td>
+	             <input type="hidden" id="deviceGroup" name="deviceGroup"/>
+	             <a onclick="selectGroup();" href="javascript:void(0);" iconCls="icon-add" class="easyui-linkbutton">添加</a><br/><br/>
+	             <a onclick="deleteGroup();" href="javascript:void(0);" iconCls="icon-remove" class="easyui-linkbutton">删除</a>
+	             </td>
+	             <td></td>
+	          </tr>
+		</table>
+		<table>
+			<tr>
+				<td width="70" align="right">描述：</td>
+				<td><textarea rows="4" cols="20" id="description" name="description"
+						draggable="false"></textarea>
+				</td>
+				<td id="descText"></td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+			    <td width="70" >&nbsp;</td>
+				<td align="center"><a href="javascript:void(0)" data-options="iconCls:'icon-save'"
+					class="easyui-linkbutton" id="saveButton" onclick="validateUserName('submit')">保存</a>
+					&nbsp;&nbsp;&nbsp;&nbsp; <a href="javascript:void(0)" data-options="iconCls:'icon-cancel'" class="easyui-linkbutton" onclick="closeUserDialog()">取消</a></td>
+			</tr>
+		</table>
+	</form>
+	
+	 <div id="assetTree_Dialog" class="easyui-dialog" title="选择权限" closed="true" style="width:400px;height:450px;"  
+                data-options="iconCls:'icon-save',resizable:true,modal:true,buttons:'#dlg-butons'">  
+             <ul id="asset_tree" class="easyui-tree"></ul> 
+       </div>
+       <div id="dlg-butons">
+             <a  href="javascript:void(0);" class="easyui-linkbutton"  onclick="selectPermission();">确定</a>
+             <a  href="javascript:void(0);" class="easyui-linkbutton"  onclick="closeAssetDialog();">关闭</a>
+       </div>
+       
+       <div id="deviceTypeTree_Dialog" class="easyui-dialog" title="选择列集" closed="true" style="width:400px;height:450px;"  
+                data-options="iconCls:'icon-save',resizable:true,modal:true,buttons:'#deviceType-butons'">  
+             <ul id="deviceType_tree" ></ul> 
+       </div>
+       <div id="deviceType-butons">
+             <a href="javascript:void(0);" class="easyui-linkbutton"  onclick="selectDeviceGroup();">确定</a>
+             <a href="javascript:void(0);" class="easyui-linkbutton"   onclick="closeDeviceTypeDialog();">关闭</a>
+       </div>
+</div>

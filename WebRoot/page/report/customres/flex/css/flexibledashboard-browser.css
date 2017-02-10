@@ -1,0 +1,100 @@
+
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace s "library://ns.adobe.com/flex/spark";
+
+/* flexibledashboard+browser specific styles */
+
+s|Application
+{
+	background-color: #666666;
+}
+mx|ToolTip{
+	font-size:14;
+	color:blue;
+	background-color:white;	
+}
+global
+{
+	font-size: 12;
+	/*font-family:黑粗;*/
+	font-family: 微软雅黑,Tahoma, Geneva, sans-serif;
+	/*color:#1234E1;*/
+	color:black;
+}
+mx|DataGrid {
+	header-background-skin: ClassReference( 'com.topsec.skins.datagrid.DataGridHeaderBgSkin' );
+	roll-over-color: #c0def8;
+	selection-color: #90cafa;
+	font-size: 12;
+	horizontal-grid-lines: true;
+	horizontal-grid-line-color: #aab5bd;
+	vertical-grid-lines:true;
+	vertical-grid-line-color: #aab5bd;
+	border-style:outset;
+	border-color:#a7c8dd;
+	alternating-item-colors: #ffffff, #f2f7fd;
+}
+mx|AdvancedDataGrid{
+	header-background-skin: ClassReference( 'com.topsec.skins.datagrid.DataGridHeaderBgSkin' );
+	roll-over-color: #c0def8;
+	selection-color: #90cafa;
+	font-size: 12;
+	horizontal-grid-lines: true;
+	horizontal-grid-line-color: #aab5bd;
+	vertical-grid-lines:true;
+	vertical-grid-line-color: #aab5bd;
+	border-style:outset;
+	border-color:#a7c8dd;
+	alternating-item-colors: #ffffff, #f2f7fd;
+}
+s|Button {
+	skin-class: ClassReference( 'com.topsec.skins.button.BlueButtonSkin' );
+}
+.titleTextStyle {
+	font-weight:bold;
+	color:#ffffff;
+}
+mx|Alert {
+	border-color: #b7e1f0;
+	border-style: solid;
+	title-background-skin: ClassReference( 'com.topsec.skins.titlewindow.TitleStyle' );
+	title-style-name: 'titleTextStyle';
+	button-style-name: mxBlueButtonSytle;
+}
+s|Panel{
+	skin-class: ClassReference( 'com.topsec.skins.Panel' );
+}
+
+s|TabBar {
+	skin-class: ClassReference( 'com.topsec.skins.TabNavigator.TabBarSkin' );
+}
+s|TitleWindow {
+	skin-class: ClassReference( 'com.topsec.skins.titlewindow.TitleWindowSkin' );	
+}
+mx|Tree{
+	content-background-color:#F1F7FB;
+	border-style:none;
+	border-alpha:0;
+	font-family:微软雅黑;
+	text-selected-color:#f40404;
+	selection-color:#90cafa;
+}
+.mxBlueButtonSytle {
+	skin: ClassReference( 'com.topsec.skins.button.MxBlueButtonSkin' );
+	focus-skin: ClassReference( 'com.topsec.skins.button.MxBlueButtonSkin' );
+	over-skin: ClassReference(  'com.topsec.skins.button.MxBlueButtonSkin' );
+	selected-up-skin: ClassReference(  'com.topsec.skins.button.MxBlueButtonSkin' );
+	selected-down-skin: ClassReference( 'com.topsec.skins.button.MxBlueButtonSkin' );
+	selected-over-skin: ClassReference(  'com.topsec.skins.button.MxBlueButtonSkin' );
+	up-skin: ClassReference(  'com.topsec.skins.button.MxBlueButtonSkin' );
+	down-skin: ClassReference( 'com.topsec.skins.button.MxBlueButtonSkin' );
+	color: #ffffff;
+}
+
+s|DropDownList {
+	skin-class: ClassReference( 'com.topsec.skins.dropdownlist.DropdownlistSkin' );
+}
+.titleS{
+	color:#e40f0f;
+	font-weight:bold;
+}

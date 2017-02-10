@@ -1,0 +1,26 @@
+[{
+	collectMethod : "SNMPGet",
+	displayControl : [{
+			name : "version",
+			value : ["1", "2"],
+			hide : ["username", "securitylevel", "authenticationmethod", "password", "privacykey", "privacymethod"]
+		}, {
+			name : "version",
+			value : ["3"],
+			show : ["username", "securitylevel"]
+		}, {
+			name : "securitylevel",
+			value : ["1"],
+			hide : ["authenticationmethod", "password", "privacykey", "privacymethod"]
+		}, {
+			name : "securitylevel",
+			value : ["2"],
+			show : ["authenticationmethod", "password"],
+			hide : ["privacykey", "privacymethod"]
+		}, {
+			name : "securitylevel",
+			value : ["3"],
+			hide : ["privacykey", "privacymethod"]
+		}
+	]
+}]

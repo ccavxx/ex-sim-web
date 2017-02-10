@@ -1,0 +1,197 @@
+<style type="text/css">
+.btn{
+    padding: 2px 10px;
+    background-color: none;
+}
+#floatDiv{
+           position:fixed;
+           top:165px;
+           right:20px;
+}
+#logFieldStatic_test .datagrid-wrap.panel-body {
+    border-color:#B0CDDF;
+}
+#tbodyContent tr,
+#tbodyContent td{
+	border-bottom:1px dotted #ccc;
+	padding:5px 0;
+}
+#log_query_layout .panel-tool{
+	height: 20px;
+	margin-top: -10px;
+}
+/*#e6e6e6 #A9A9AA #E0E0E0  #B2B2B2 #DCDCDC #D3D3D3 D4D4D4*/
+div.box_wrap{position:fixed;z-index:100;top:265px;right:2px;}
+div.box_main{background:#ffffff;float:right;border:solid 1px #CDECFD;width:210px;height:340px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;display:none;}
+/* #box_img{height:16px;width:16px;background: url('/img/right.png') no-repeat;} */
+ #box_btn{cursor:pointer;height:30px;width:30px;border-radius:5px 0px 0px 5px;background-color:#CDECFD;float: right;text-align:center;} 
+</style>
+<link href="/css/flag_small.css" rel="stylesheet" media="screen"/>
+<div id="log_query_layout" class="easyui-layout" data-options="fit:true">  
+	<div data-options="region:'north',title:'时间轴',border:true,headerCls:'sim-panel-header',bodyCls:'sim-panel-body'" style="height:80px;">
+		<div id="log_timeline_chart">
+		  
+		</div>
+		<div id="floatDiv" style="display:none;"> 
+		  <a style="font-size:12px;" class="btn" href="javascript:backSearch();" >返回</a>
+		</div>
+	</div>
+	<div data-options="region:'west',title:'查询规则',split:true,headerCls:'layoutWHeader',bodyCls:'layoutWBody'" style="width:200px;overflow-x:hidden;">
+		<ul id="log_query_tree"></ul>
+	</div>  
+	<div data-options="region:'center',tools:'#queryResultTools',title:'查询结果',headerCls:'sim-panel-header',bodyCls:'sim-panel-body',onResize:function(width, height){
+			if(simHandler.log_statistics_dialog){
+				simHandler.log_statistics_dialog.dialog('resize',{width:width,height:height});
+			}
+		}
+	" style="position: relative;">
+		<div id="log_searchDiv" class="easyui-layout" data-options="fit:true">
+			<div data-options="region:'center',border:false">
+				<div id="log_query_table_layout" class="easyui-layout" data-options="fit:true">
+					<div data-options="region:'north',border:false,height:68" style="background-color:#F0F7F9">
+						<div id="log_query_table_pager" style="margin: 2px 0px 3px 0px;"></div>
+						<form class="form-inline" style="margin: 0px 7px 3px;">
+							<div class="input-prepend input-append" >
+								<span class="add-on">设备</span>
+								<select id="log_source_sel" class="input-medium">
+									<option value="">全部</option>
+								</select>
+							</div>
+							<div class="input-prepend input-append" style="margin-left: 10px;">
+								<span class="add-on">日志时间</span>
+								<input class="input-medium cursorHand" style="width: 120px;" id="begin_time" type="text" onclick="simHandler.showDaterangepickerWin('receipt_time');" readonly="readonly">
+								<span class="add-on">-</span>
+								<input class="input-medium cursorHand" style="width: 120px;" id="end_time" type="text" onclick="simHandler.showDaterangepickerWin('receipt_time');" readonly="readonly">
+								<a class="btn" id="receipt_time"><i class="icon-calendar"></i></a>
+							</div>
+							<a class="easyui-linkbutton" title='保存查询条件' data-options="iconCls:'icon-save',plain:true" onclick="openQueryCondition()">保存</a>
+							<a class="easyui-linkbutton" title='统计' data-options="iconCls:'icon-bar',plain:true" onclick="dialogPanel()">统计</a>
+							<a class="easyui-linkbutton" title='列配置' data-options="iconCls:'icon-config',plain:true"  onclick="showColumnConfig(event,-10,10)">配置列</a>
+							<a class="easyui-menubutton" title='导出' data-options="menu:'#log_exp',iconCls:'icon-export',plain:true" >导出</a>
+							<div id="log_exp" style="width:140px;padding:5px;" data-options="onClick:expLog">
+								<div id="curFormatLog" data-options="name:'0',iconCls:'icon-ul'">导出当前格式化日志</div>
+								<div id="allFormatLog" data-options="name:'1',iconCls:'icon-ul'">导出所有格式化日志</div>
+								<div id="curLog" data-options="name:'2',iconCls:'icon-ul'">导出当前原始日志</div>
+								<div id="allLog" data-options="name:'3',iconCls:'icon-ul'">导出所有原始日志</div>
+							</div>
+							<a class="easyui-menubutton" title='更多'  data-options="menu:'#log_toolbar',iconCls:'icon-expand',plain:true" ></a>
+							<div id="log_toolbar" style="width:120px;padding:5px;" data-options="onClick:logToolbar">
+								<div data-options="name:'traceTree',iconCls:'icon-ul'">IP跟踪树</div>
+								<div data-options="name:'wanTraceTree',iconCls:'icon-ul'">外网访问跟踪树</div>
+								<div  data-options="name:'relationTree',iconCls:'icon-ul'">IP关系图</div>
+								<div  data-options="name:'timeLine',iconCls:'icon-ul'">时间线</div>
+							</div>	
+						</form>
+						<table id="log_query_condition_table" style="width:100%;border:none;">
+							<tr><td style="padding:0;"><div id="log_query_condition" style="border:none;overflow:auto;"></div></td></tr>
+						</table>
+					</div>
+					<div id="log_query_table_center" data-options="region:'center',border:false">
+						<table id="log_query_table" ></table>
+					</div>
+				</div>
+			</div>
+			<div data-options="region:'south'" style="height:100px;overflow:hidden;border-left:none;border-right:none;border-bottom:none;">
+			  <span class="label label-info">原始日志:</span><p class="muted alert" id="raw_log_content" style="height:55px;overflow:auto;"></p>
+			</div>
+		</div>
+		
+	</div>  
+</div>
+<div id="logFieldStatic_test" style="width:460px;height:410px;background-color:#fff" class="easyui-dialog" data-options="modal: true,onBeforeClose:closeFieldDialog"  closed="true">
+	 	<div id="field_pie" style="height:374px;"></div>
+</div>
+<div id="queryCondition" closed="true" style="width:490px;height:350px;background-color:#fff" class="easyui-dialog" data-options="modal: true">
+	 	<div class="form-horizontal" style="padding-top:20px;">
+	 	  <div class="control-group">
+		      <label class="control-label" style="width:80px;">名称</label>
+		      <div class="controls" style="margin-left:90px;">
+			    <input type="text" name="title" id="title"/><span id="titleText" style="color:red"></span>
+		     </div>
+	     </div>
+	      <div class="control-group">
+		      <label class="control-label"  style="width:80px;">日志时间</label>
+		      <div class="controls" style="margin-left:90px;">
+			    <select  name="interval" id="interval" onchange="hideUserDefindedTime(this.value)"></select>
+		     </div><span id="titleText" style="color:red"></span>
+	     </div>
+	 	   <div class="control-group" id="starttime" style="display:none;">
+		      <label class="control-label"  style="width:80px;">起始时间</label>
+		      <div class="controls" style="margin-left:90px;">
+					<input readonly="readonly" id="startdate" name="startTime" type="text" style="width:200px;height:23px;" class="Wdate cursorHand" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"><span id="startText" style="color:red"></span>
+			  </div>
+	     </div>
+	 	 <div class="control-group" id="endtime" style="display: none;">
+		      <label class="control-label"  style="width:80px;">结束时间</label>
+		      <div class="controls" style="margin-left:90px;">
+					<input readonly="readonly" id="enddate" name="endTime" type="text" style="width:200px;height:23px;" class="Wdate cursorHand" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'startdate\')}'})"><span id="endText" style="color:red"></span>
+			  </div>
+	     </div>
+	 </div>
+	 	<div style="width:464px;text-align: center;margin-top:55px;">
+	      	<a class="easyui-linkbutton"   onclick="saveQueryCondition();">保存</a>
+	    	<a class="easyui-linkbutton"   onclick="closeQueryCondition();">取消</a>
+	    </div>
+</div>
+<div id="log_query_table_column_tips"></div>
+<div class="box_wrap" id="tbodyContent">
+	<div class="box_main">
+		<table style="width:210px;">
+		 <tr><td style="padding-left:10px; "><b>名称</b></td><td><b>操作</b></td></tr>
+		 <tbody id="t_querycondition_body"></tbody></table>
+	</div>
+    <div id="box_btn">
+        <div id="box_img" style = "margin-top:7px;margin-left:7px;background:url('/img/layout_button_left.png') no-repeat;width:16px;height:16px;"></div>
+    </div>
+</div>
+<div id="logRightMenu" class="easyui-menu" data-options="onClick:onRowMenuClick" style="width:150px;">
+	<div data-options="iconCls:'icon-location'" supportFieldTypes='ip'>
+		<span>做为源地址查询</span>
+		<div style="width:200px;height:240px;overflow-y:auto;" class="menu-content">
+			 <ul id="src_menuTree" class="easyui-tree"></ul>
+		</div>
+	</div>
+	<div data-options="iconCls:'icon-location'" supportFieldTypes='ip'>
+		<span>做为目的地址查询</span>
+		<div style="width:200px;height:240px;overflow-y:auto;" class="menu-content">
+			<ul id="dest_menuTree" class="easyui-tree"></ul>
+		</div>
+	</div>
+	<div data-options="name:'traceTreeMenu',iconCls:'icon-tree'" supportFieldTypes='ip'>跟踪树</div>
+	<div data-options="name:'timeLineMenu',iconCls:'icon-timer-green'">时间线</div>
+</div>
+<div id="queryResultTools" style="margin-top:-5px; ">
+	<span>显示上限：</span>
+	<select id="displayLimit" onchange="changeLimit()" class="panel_tool_select" 
+			style="margin-top: -0px;direction: rtl;width:65px;" title="此参数在本系统重启后会失效">
+		<option value="10000">1万</option>
+		<option value="50000">5万</option>
+		<option value="100000">10万</option>
+		<option value="500000">50万</option>
+		<option value="1000000">100万</option>
+	</select>
+	<span>查询上限：</span>
+	<select id="searchLimit" onchange="changeLimit()" class="panel_tool_select" 
+			style="margin-top: -0px;direction: rtl;width:65px" title="此参数在本系统重启会失效">
+		<option value="10000">1万</option>
+		<option value="50000">5万</option>
+		<option value="100000">10万</option>
+		<option value="500000">50万</option>
+		<option value="1000000">100万</option>
+		<option value="10000000">1000万</option>
+	</select>
+</div>
+<script src="/js/sim/log/log_query2.js"></script>
+<script>
+      $(function(){
+	        $("#box_btn").toggle(function(){
+				$(".box_main").show("slow");
+				$("#box_img").css("background", " url('/img/skin/layout/layout_button_right.png') no-repeat");
+			}
+			,function(){
+				$(".box_main").hide("slow");
+				$("#box_img").css("background", " url('/img/layout_button_left.png') no-repeat");
+			}
+		);
+      });
+ </script>

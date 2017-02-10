@@ -1,0 +1,106 @@
+<div class="easyui-panel" style="padding: 5px;" data-options="fit:true,title:'日志备份策略配置',headerCls:'sim-panel-header',bodyCls:'sim-panel-body'">
+	<div class="alert alert-info">
+		<strong>描述 </strong>
+		日志备份配置，专业人员使用。
+	</div>
+
+	<div class="row-fluid">
+		<div class="span7">
+			<form class="form-horizontal" id="sysconfig_logbackup_form">
+				<div class="control-group">
+					<label class="control-label">备份方式</label>
+					<div class="controls">
+						<label class="radio inline" id="local_radio">
+							<input type="radio" id="backup_local" name="backup" value="local" checked>本地备份
+						</label>
+						<label class="radio inline">
+							<input type="radio" id="backup_ftp" name="backup" value="ftp">FTP备份
+						</label>
+					</div>
+				</div>
+				<div class="control-group local">
+					<label class="control-label"><span style="color:red;">*</span>本地备份路径</label>
+					<div class="controls">
+						<select id="sysconfig_logbackup_localpath" ></select>
+						<input type="hidden" id="local_path" name="local_path">
+					</div>
+				</div>
+				<div class="control-group ftp">
+					<label class="control-label"><span style="color:red;">*</span>服务器IP地址</label>
+					<div class="controls">
+						<input type="text" name="serverip" />
+					</div>
+				</div>
+				<div class="control-group ftp">
+					<label class="control-label"><span style="color:red;">*</span>用户名</label>
+					<div class="controls">
+						<input type="text" name="user" />
+					</div>
+				</div>
+				<div class="control-group ftp">
+					<label class="control-label"><span style="color:red;">*</span>口令</label>
+					<div class="controls">
+						<input type="password" name="password" />
+					</div>
+				</div>	
+				<div class="control-group ftp">
+					<label class="control-label">编码</label>
+					<div class="controls">
+						<select name="encoding">
+						    <option value="UTF-8">UTF-8</option>
+						    <option value="GB2312" selected>GB2312</option>
+						</select>			
+					</div>
+				</div>	
+				<div class="control-group">
+					<label class="control-label">自动备份</label>
+					<div class="controls">
+			            <label class="checkbox">
+			              <input type="checkbox" name="enable" value="true">启用
+			            </label>
+					</div>
+				</div>
+				<div id="backupLogRange" class="control-group">
+					<label class="control-label">备份范围</label>
+					<div class="controls">
+						<select name="autobackManner">
+							<option value="1m">1个月前</option>
+							<option value="2m">2个月前</option>
+							<option value="3m" selected>3个月前</option>
+							<option value="4m">4个月前</option>
+							<option value="5m">5个月前</option>
+							<option value="6m">6个月前</option>
+							<option value="1y">1年前</option>
+						</select>
+					</div>
+				</div>
+				<div id="backupEventRange" class="control-group">
+					<label class="control-label">保留事件天数</label>
+					<div class="controls">
+						<select name="partitionCount">
+						    <option value="1m">1个月</option>
+						    <option value="2m">2个月</option>
+						    <option value="3m">3个月</option>
+						    <option value="6m" selected>6个月</option>
+						    <option value="1y">1年</option>
+						</select>			
+					</div>
+				</div>
+			
+				<div class="control-group">
+					<div class="controls">
+						<button class="btn btn-small" type="button" id="sysconfig_logbackup_form_submit_button" style="margin:2px;"><i class="icon-apply" style="width:16px;height:16px;margin-right:8px;"></i>应用</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="span5 well">
+			<p class="text-info" id="local_remark"><strong>本地备份路径：</strong>备份路径不能与日志存储路径在同一磁盘分区上。</p>		
+			<p class="text-info"><strong>备份范围：</strong>支持备份1-6个月前的日志和事件,1年前的日志和事件。所有的备份都是指从备份开始时间向前推算。</p>		
+			<p class="text-info"><strong>是否启用：</strong>设置是否启用该自动备份策略。</p>		
+			<p class="text-info"><strong>保留事件天数：</strong>设置安全事件在服务器中保留的天数。默认保留6个月。</p>		
+		</div>
+	</div>
+	<div id="sysconf_logbackup_res_msg"></div>
+</div>
+<script src="/js/sim/sysconfig/sysconfig_logbackup.js" type="text/javascript"></script>

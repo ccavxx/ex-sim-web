@@ -1,0 +1,65 @@
+<div id="sysconfigsuperiorlogPanelId" >
+	<div id="log_query_layout" class="easyui-layout" data-options="fit:true">  
+		<div data-options="region:'north',title:'时间轴',border:true,headerCls:'sim-panel-header',bodyCls:'sim-panel-body'" style="height:80px;overflow: hidden;">
+			<div id="log_timeline_chart"></div>
+			<div id="superiorlog_div" style="display:none;"> 
+		     <a style="font-size:12px;" class="btn" href="javascript:superiorlog_backSearch();" >返回</a>
+		    </div>
+		</div>
+		<div data-options="region:'west',title:'查询规则',split:true,headerCls:'layoutWHeader',bodyCls:'layoutWBody'" style="width:200px;overflow-x:hidden;">
+			<ul id="log_query_tree"></ul>
+		</div>  
+		<div data-options="region:'center',title:'查询结果',headerCls:'sim-panel-header',bodyCls:'sim-panel-body'" style="position: relative;">
+			<div id="super_log_searchDiv" class="easyui-layout" data-options="fit:true">
+				<div data-options="region:'center',border:false">
+					<div id="log_query_table_layout" class="easyui-layout" data-options="fit:true">
+						<div data-options="region:'north',border:false,height:68" style="background-color:#F0F7F9">
+							<div id="log_query_table_pager" style="margin: 2px 0px 3px 0px;"></div>
+							<form class="form-inline" style="margin: 0px 7px 3px;">
+								<div class="input-prepend input-append" >
+									<span class="add-on">设备</span>
+									<select id="log_source_sel" class="input-medium">
+										<option value="">全部</option>
+									</select>
+								</div>
+								<div class="input-prepend input-append" style="margin-left: 10px;">
+									<span class="add-on">接收时间</span>
+									<input class="input-medium" id="begin_time" type="text" onclick="simHandler.showDaterangepickerWin('receipt_time');" readonly="readonly">
+									<span class="add-on">-</span>
+									<input class="input-medium" id="end_time" type="text" onclick="simHandler.showDaterangepickerWin('receipt_time');" readonly="readonly">
+									<a class="btn" id="receipt_time"><i class="icon-calendar"></i></a>
+								</div>
+<!-- 								<div class="input-prepend input-append" style="margin-left: 10px;">
+									<a class="easyui-linkbutton" href="javascript:void(0);" onclick="simsuperiorLogQueryHandler.goSuperiorListBack(event);">返回</a>
+								</div> -->
+							</form>
+							<table id="log_query_condition_table" style="width:100%;border:none;">
+								<tr><td style="padding:0;"><div id="log_query_condition" style="border:none;overflow:auto;"></div></td></tr>
+							</table>
+						</div>
+						<div id="log_query_table_center" data-options="region:'center',border:false">
+							<table id="log_query_table" data-options="scrollbarSize:0"></table>
+						</div>
+					</div>
+				</div>
+				<div data-options="region:'south'" style="height:100px;overflow:hidden;border-left:none;border-right:none;border-bottom:none;">
+				  <span class="label label-info">原始日志:</span><p class="muted alert" id="raw_log_content" style="height:55px;overflow:auto;"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="log_query_table_column_tips"></div>
+	<div id="raw_log_tooltip_container"></div>
+</div>
+<script src="/js/sim/sysconfig/sysconfig_superiorlog.js"></script>
+<style type="text/css">
+.btn{
+    padding: 2px 10px;
+    background-color: none;
+}
+#superiorlog_div{
+           position:fixed;
+           top:163px;
+           right:60px;
+}
+</style>

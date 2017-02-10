@@ -1,0 +1,62 @@
+[{
+	"type":"常用",
+	"options":[
+		{"text":"名称","id":"NAME"},	
+		{"text":"一级分类","id":"CAT1_ID"},
+		{"text":"二级分类","id":"CAT2_ID"},
+		{"text":"日志源类型","id":"DVC_TYPE"},
+		{"text":"级别","id":"PRIORITY"},
+		{"text":"传输协议","id":"TRANS_PROTOCOL"},
+		{"text":"用户","id":"SRC_USER_NAME"},
+		{"text":"时间","id":"START_TIME"},
+		{"text":"事件ID","id":"MSG_ID"},
+		{"text":"操作","id":"OP"},
+		{"text":"结果","id":"RESULT"},
+		{"text":"对象ID","id":"OBJECT_ID"}
+	]
+},{
+	"type":"地址端口",
+	"options":[
+		{"text":"源地址","id":"SRC_ADDRESS"},
+		{"text":"目的地址","id":"DEST_ADDRESS"},
+		{"text":"设备地址","id":"DVC_ADDRESS"},
+		{"text":"源端口","id":"SRC_PORT"},
+		{"text":"目的端口","id":"DEST_PORT"},
+		{"text":"URL","id":"REQUEST_URL"}
+	]
+},{
+	"type":"设备参数",
+	"options":[
+		{"text":"CPU使用率","id":"CPU_USED_PERCENT"},
+		{"text":"内存使用率","id":"MEM_USED_PERCENT"},
+		{"text":"磁盘名称","id":"DISK_NAME"},
+		{"text":"磁盘使用率","id":"DISK_USED_PERCENT"},
+		{"text":"背板使用率","id":"SYS_BACKBOARDLOAD"},
+		{"text":"CPU温度","id":"SYS_CPUTEMPORATURE"},
+		{"text":"主板温度","id":"SYS_BOARDTEMPORATURE"},
+		{"text":"会话连接数","id":"SESSION_COUNT"}
+	]
+},{
+	"type":"接口",
+	"options":[
+		{"text":"接口名称","id":"INTERFACE_NAME"},
+		{"text":"接口IP","id":"INTERFACE_IP"},
+		{"text":"接口状态","id":"INTERFACE_STATUS"},
+		{"text":"接口入速度","id":"INTERFACE_INSPEED"},
+		{"text":"接口出速度","id":"INTERFACE_OUTSPEED"}
+	]
+},{
+	"type":"其它",
+	"options":[
+		{"text":"EventLog类型","id":"FILE_NAME"},
+		{"text":"规则","id":"FWRULE"},
+		{"text":"模块","id":"DVC_PROCESS_NAME"},
+		{"text":"应用协议","id":"APP_PROTOCOL"},
+		{"text":"请求方法","id":"REQUEST_METHOD"},
+		{"text":"请求参数","id":"OBJECT_PARAM"},
+		{"text":"分类4","id":"CAT4_ID"},
+		{"text":"处理方式","id":"NAV_PRIMARY_ACTION"},
+		{"text":"事件类型","id":"DVC_EVENT_CATEGORY"},
+		{"text":"事件描述","id":"MESSAGE"}
+	]
+}]

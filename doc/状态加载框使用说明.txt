@@ -1,0 +1,37 @@
+1. openLoadingModal:function(panel, [loadMsg])
+概述
+开启状态加载框
+这个函数会为窗口容器panel添加一个加载状态遮罩层
+参数
+panel 要添加遮罩层的容器
+loaMsg 提示语言，可选填写，默认是"努力加载中，请稍等......"
+
+实例
+simHandler.openLoadingModal($("#test"));
+描述，为id为test的dom节点添加遮罩层
+
+2. closeLoadingModal:function(panel)
+概述
+关闭状态加载框
+这个函数会关闭窗口容器panel添加的加载状态遮罩层
+参数
+panel 要添加遮罩层的容器
+实例
+setTimeout(function(){
+	simHandler.closeLoadingModal($("#test"));
+},5000);
+描述，5秒钟之后关闭为id为test的dom节点添加的遮罩层
+
+3. cancelDefaultLoadingModal:function(panel)
+概述
+取消easyui中datagrid原有的状态加载框
+这个函数取消easyui中datagrid原有的状态加载框
+参数
+panel 需要取消状态加载框datagrid对象
+
+4. openBodyLoadingModal:function(loadMsg)
+概述
+开启body状态加载框
+这个函数会为body窗口容器添加一个加载状态遮罩层
+参数
+loaMsg 提示语言，可选填写，默认是"努力加载中，请稍等......"

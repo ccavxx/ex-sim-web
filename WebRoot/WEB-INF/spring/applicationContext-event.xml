@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="
+     http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+   
+	<bean id="eventResponseService" class="com.topsec.tsm.tal.response.serviceimp.EventResponseServiceImp">
+		<property name="sessionFactory" ref="sessionFactory"/>		
+	</bean>  
+	
+	<bean id="sceneUserService" class="com.topsec.tsm.sim.event.service.SceneUserServiceImpl">
+		<property name="sceneUserDao" ref="sceneUserDao"/>
+	</bean>
+	<bean id="sceneUserDao" class="com.topsec.tsm.sim.event.dao.SceneUserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="eventService" class="com.topsec.tsm.sim.event.service.EventServiceImpl">
+		<property name="eventDao" ref="eventDao"></property>
+	</bean>
+	
+	<bean id="eventCategoryDao" class="com.topsec.tsm.sim.event.dao.EventCategoryDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="eventCategoryService" class="com.topsec.tsm.sim.event.service.EventCategoryServiceImpl">
+		<property name="eventCategoryDao" ref="eventCategoryDao"/>
+	</bean>
+	
+	<bean id="eventDao" class="com.topsec.tsm.sim.event.dao.EventDaoImpl">
+		<property name="sqlMapClient" ref="sqlMap_mysql"/>
+	</bean>
+	
+    <bean id="alarmService" class="com.topsec.tsm.sim.alarm.service.AlarmServiceImpl">
+    	<property name="alarmDao" ref="alarmDao"></property>
+    </bean>
+    <bean id="alarmDao" class="com.topsec.tsm.sim.alarm.dao.AlarmDaoImpl">
+     	<property name="sessionFactory" ref="sessionFactory"/>
+     	<property name="sqlMapClient" ref="sqlMap_mysql"/>
+    </bean>	
+    
+    <bean id="eventFilterRuleService" class="com.topsec.tsm.sim.sysconfig.service.EventFilterRuleServiceImpl">
+    	<property name="eventFilterRuleDao" ref="eventFilterRuleDao"/>
+    </bean>
+    <bean id="eventFilterRuleDao" class="com.topsec.tsm.sim.sysconfig.dao.EventFilterRuleDaoImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+</beans>

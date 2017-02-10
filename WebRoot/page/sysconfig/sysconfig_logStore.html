@@ -1,0 +1,88 @@
+<div class="easyui-panel" style="padding: 5px;" data-options="fit:true,title:'日志存储策略的配置',headerCls:'sim-panel-header',bodyCls:'sim-panel-body'">
+	<div class="alert alert-info">
+		<strong>描述 </strong>
+		日志存储策略的配置
+	</div>
+	<div class="row-fluid">
+		<div class="span7">
+			<form class="form-horizontal" id="sysconfig_logstore_form">
+			<!-- 自审计日志目前长期保存
+			<div class="control-group">
+					<label class="control-label">审计系统日志保存时间</label>
+					<div class="controls">
+						<select name="systemlongevity">
+						    <option value="1m">1个月</option>
+						    <option value="2m">2个月</option>
+						    <option value="3m">3个月</option>
+						    <option value="6m" selected="">6个月</option>
+						    <option value="1y">1年</option>
+						    <option value="0m">永远保存</option>
+						</select>
+					</div>
+				</div>
+ 			  -->
+ 			  <div class="control-group local">
+ 			    <label class="control-label">日志存储路径</label>
+ 			    <div class="controls">
+ 			        <div id="show_storePath" style="float: left;"></div>
+ 			        <a class="easyui-linkbutton" id="storePath" style="margin:5px;">选择路径</a>
+ 			     </div>
+ 			  </div>
+				<div class="control-group local">
+					<label class="control-label"><span style="color:red;">*</span>当前存储路径</label>
+					<div class="controls">
+						<select id="archive_path" name="archive_path"/>
+						<!-- <input type="hidden" id="archive_path" name="archive_path"> -->
+						<input type="hidden" id="archive_path_list" name="archive_path_list">
+						<input type="hidden" id="isWindows">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label"><span style="color:red;">*</span>磁盘使用率(%)</label>
+					<div class="controls">
+						<input type="text" name="override" placeholder="80">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label"><span style="color:red;">*</span>磁盘使用率告警上限(%)</label>
+					<div class="controls">
+						<input type="text" name="alert" placeholder="70">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">启用保护</label>
+					<div class="controls">
+			            <label class="checkbox">
+			              <input id="enable_log_protection" type="checkbox" name="enable_log_protection">　启用
+			            </label>
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<a class="easyui-linkbutton" id="sysconfig_logstore_form_submit_button"  
+							onclick="$('#sysconfig_logstore_form').submit()" data-options="iconCls:'icon-apply'">应用</a>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="span5 well">
+			<!-- 
+			<p class="text-info"><strong>审计系统日志保存时间：</strong>为了避免自审计日志在系统中保存时间过久而造成占用系统大量磁盘空间的问题，该选项将只保留指定时间范围内的日志文件，超过时间范围内的日志如果没有在使用将会被系统自动删除，请谨慎操作。</p>		
+			-->
+			<p class="text-info"><strong>日志存储路径：</strong>设置日志的存储路径，可以选择多个分区，同一分区下只允许选择一个路径。日志存储路径不能与备份路径在同一磁盘分区上。</p>		
+			<p class="text-info"><strong>当前存储路径：</strong>设置日志当前存储路径，由于存储日志需要大量磁盘空间，所以需要配置到大容量硬盘分区上，请谨慎操作。</p>
+			<p class="text-info"><strong>磁盘使用率(%)：</strong>设置存储路径所在的磁盘使用率。超过此阀值时，将会删除最早的外部日志，请慎重操作。</p>
+			<p class="text-info"><strong>磁盘使用率告警上限(%)：</strong>设置存储路径所在的磁盘使用率的告警上限。超过此使用率时，会产生告警。</p>
+			<p class="text-info"><strong>启用保护：</strong>启用保护后，设置的所有存储路径被保护起来，存储路径下的文件不允许被服务器进程以外的其他进程删除和修改。</p>
+		</div>
+	</div>
+	 <div id="storePath_Dialog" class="easyui-dialog" title="选择路径" closed="true" style="width:400px;height:450px;"  
+                data-options="iconCls:'icon-save',resizable:true,modal:true,buttons:'#dlg-butons'">  
+             <ul id="storePath_tree" class="easyui-tree"></ul> 
+       </div>
+       <div id="dlg-butons">
+             <a  href="javascript:void(0);" class="easyui-linkbutton"  onclick="simSysConfLogStore.addStorePath();">确定</a>
+             <a  href="javascript:void(0);" class="easyui-linkbutton"  onclick="simSysConfLogStore.closeStorePath();">关闭</a>
+       </div>
+</div>
+<script src="/js/sim/sysconfig/sysconfig_logStore.js" type="text/javascript"></script>

@@ -1,0 +1,9 @@
+[
+ [
+	{field:"NAME",title:"事件名称",width:200},
+	{field:"END_TIME",title:"时间",width:200},
+	{field:"PRIORITY",title:"优先级",width:200},
+	{field:"CAT1_ID",title:"事件分类",width:200},
+	{field:"LOG_COUNT",title:"关联日志",width:60}
+  ]
+]

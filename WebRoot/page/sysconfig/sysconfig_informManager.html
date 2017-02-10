@@ -1,0 +1,83 @@
+<style>
+.informDiv form table tr td {
+	padding-right: 20px;
+}
+.informDiv form table tr td.first{
+	width:101px;
+}
+.informDiv form table tr td.second{
+	width:300px;
+}
+.informDiv form table tr td.select{
+	height:45px;
+}
+#resp_inform_show_div .datagrid-view2 {
+	background-color: #F1F8FB;
+}
+#resp_inform_show_div .datagrid-header,
+#resp_inform_show_div .datagrid-header td,
+#resp_inform_show_div .datagrid-body td,
+#resp_inform_show_div .datagrid-footer td {
+  border: 0;
+}
+#resp_inform_show_div .datagrid-row-over{
+  background: none;
+}
+</style>
+<div class="easyui-layout sim" data-options="fit:true" id="sysconf_inform_panel">
+	<div data-options="region:'center',border:false,title:'告警方式管理',headerCls:'sim-panel-header',bodyCls:'sim-panel-body'">
+		<div id="sysconf_inform_table_panel" class="easyui-panel" data-options="fit:true,border:0">
+			<!-- 日志过滤规则列表 -->
+			<table id="sysconf_inform_table" data-options="border:false,scrollbarSize:0"></table>
+			<div id="sysconf_inform_table_toolbar" style="padding:2px 0 2px 5px">
+				<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="javascript:sysInformp.addSysInform();">新建</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-enabled'" onclick="javascript:sysInformp.changeState('true');">启用</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-disable'" onclick="javascript:sysInformp.changeState('false');">禁用</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="javascript:sysInformp.removeSysInform();">删除</a>
+			</div>
+		</div>
+	</div>
+    <div id="sysconf_inform_dialog"  buttons="#respInformButton" style="display:none;" >
+				<div class="informDiv"
+					style="overflow:auto;margin:20px;padding:20px;">
+					<form name="event_resp_add_form" id="event_resp_add_form_id">
+						<table>
+							<tr>
+								<td class="first" align="right"><span style="color:red;">*</span>名称</td>
+								<td  class="second"><input type="text" id="resp_name"name="resp_name"
+									style="height:24px;width:218px;" data-rule="required;length[1~30];"/></td>
+							</tr>
+							<tr>
+								<td align="right" ><span style="color:red;">*</span>告警节点<span></span></td>
+								<td><input id="actionNode" data-options="url:'/sim/node/getActionNodes',valueField:'nodeId',textField:'ip',editable : false" name="resp_nodeId" class="easyui-combobox" style="height:24px;width:220px;" />
+								</td>
+							</tr>
+							
+							<tr>
+								<td class="select" align="right"><span style="color:red;">*</span>响应方式<span id="evt_resp_span_id"></span></td>
+								<td ><input id="eventRespType" name="cfg" class="easyui-combobox" style="height:24px;width:220px;" />
+									<input type="hidden" id="hid_eventRespType" name="cfg0" data-rule="required;"/></td>
+							</tr>
+							<tr>
+								<td align="right" >描述</td>
+								<td><textarea id="resp_desc" name="resp_desc"
+										style="height: 50px;width: 206px;" data-rule="length[~100];contentRule"></textarea></td>
+							</tr>
+						</table>
+						<div style="height:15px;"></div>
+						<div id="resp_inform_show_div" ></div>
+						<div style="height:15px;"></div>
+						<div id="respInformButton" data-options="border:false" style="text-align:left;padding-left:180px;">
+							<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add'"
+									onclick="javascript:evtResp.add_resp();">保存</a>
+							<a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:evtResp.test_resp();">测试</a>
+							<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
+									onclick="evtResp.cancelInformBtn();">返回</a>
+						</div>
+					</form>
+				</div>
+			</div>
+</div>
+		
+<script src="/js/sim/sysconfig/sys_inform.js"></script>
+<script src="/js/sim/report/jsItemToSelect.js"></script>

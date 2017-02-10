@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chart caption='日志全局设备类型报表' xAxisName='设备类型' yAxisName='记录数' showValues='0' decimals='0' formatNumberScale='0'>
+	<set label='审计系统' value='211.0' />
+</chart>

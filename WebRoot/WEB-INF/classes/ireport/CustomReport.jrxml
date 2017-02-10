@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report6" language="groovy" pageWidth="750" pageHeight="900" columnWidth="710" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="0.7320500000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="defaultStyle" isDefault="true" mode="Transparent" hAlign="Left" vAlign="Middle" fontName="宋体" fontSize="12" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+	<style name="subjectTitleStyle" style="defaultStyle" vAlign="Top" isBold="true">
+		<paragraph leftIndent="5"/>
+	</style>
+	<style name="subjectBorder" forecolor="#95C4D9" isBlankWhenNull="false" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+	<parameter name="reportTitle" class="java.lang.String"/>
+	<parameter name="exportDate" class="java.lang.String"/>
+	<parameter name="reportDateRange" class="java.lang.String">
+		<parameterDescription><![CDATA[报表数据日期范围]]></parameterDescription>
+	</parameter>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="90" splitType="Stretch">
+			<textField>
+				<reportElement x="4" y="0" width="706" height="60" forecolor="#FF3333"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="40" isBold="true" pdfFontName="STSong-Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{reportTitle}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="538" y="60" width="120" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{exportDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="60" width="204" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{reportDateRange}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="60" width="66" height="30"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[统计时间：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="454" y="60" width="84" height="30"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[生成时间：]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="850" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

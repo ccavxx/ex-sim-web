@@ -1,0 +1,127 @@
+[{
+	"fields" : {
+			"DVC_ADDRESS":{
+				"alias" : "设备地址",
+				"showItem" : ["EQ","NotEQ"],
+				"type" : "String",
+				"validate" : "IP",
+				"order" : 1
+			},
+			"SRC_ADDRESS":{
+				"alias" : "源地址",
+				"showItem" : ["EQ","NotEQ"],
+				"type" : "String",
+				"validate" : "IP",
+				"order" : 5
+			},
+			"DEST_ADDRESS":{
+				"alias" : "目的地址",
+				"showItem" : ["EQ","NotEQ"],
+				"type" : "String",
+				"validate" : "IP",
+				"order" : 10
+			},
+			"CAT1_ID":{
+				"alias" : "一级分类",
+				"showItem" : ["EQ","NotEQ"],
+				"type" : "String",
+				"validate" : "notNull",
+				"order" : 12
+			},
+			"CAT2_ID":{
+				"alias" : "二级分类",
+				"showItem" : ["EQ","NotEQ"],
+				"type" : "String",
+				"validate" : "notNull",
+				"order" : 14
+			},
+			"SRC_USER_NAME":{
+				"alias" : "用户",
+				"showItem" : ["EQ","NotEQ"],
+				"type" : "String",
+				"validate" : "notNull",
+				"order" : 16
+			},
+			"SRC_PORT":{
+				"alias" : "源端口",
+				"showItem" : ["LT","GT","EQ","NotEQ"],
+				"type" : "Integer",
+				"validate" : "Integer",
+				"validateSize" : [0,65535],
+				"order" : 20
+			},
+			"DEST_PORT":{
+				"alias" : "目的端口",
+				"showItem" : ["LT","GT","EQ","NotEQ"],
+				"type" : "Integer",
+				"validate" : "Integer",
+				"validateSize" : [0,65535],
+				"order" : 25
+			},
+			"DVC_TYPE":{
+				"alias" : "日志源类型",
+				"showItem" : ["EQ","NotEQ"],
+				"type" : "String",
+				"validate" : "notNull",
+				"order" : 30
+			},
+			"MSG_ID":{
+				"alias" : "事件ID",
+				"showItem" : ["LT","GT","EQ","NotEQ"],
+				"type" : "Integer",
+				"validate" : "Integer",
+				"validateSize" : [0,39791394],
+				"order" : 32
+			},
+			"OP":{
+				"alias" : "操作",
+				"showItem" : ["EQ","NotEQ"],
+				"type" : "String",
+				"validate" : "notNull",
+				"order" : 35
+			},
+			"FWRULE":{
+				"alias" : "规则",
+				"showItem" : ["EQ","NotEQ"],
+				"type" : "String",
+				"validate" : "notNull"
+			},
+			"DVC_PROCESS_NAME":{
+				"alias" : "模块",
+				"showItem" : ["EQ","NotEQ"],
+				"type" : "String",
+				"validate" : "notNull"
+			},
+			"TRANS_PROTOCOL":{
+				"alias" : "传输协议",
+				"showItem" : ["EQ","NotEQ"],
+				"type" : "String",
+				"validate" : "notNull"
+			},
+			 "APP_PROTOCOL":{
+				"alias" : "应用协议",
+				"showItem" : ["EQ","NotEQ"],
+				"type" : "String",
+				"validate" : "notNull"
+			},
+			"NAV_PRIMARY_ACTION":{
+				"alias" : "处理方式",
+				"showItem" : ["StrReg"],
+				"type" : "String",
+				"validate" : "notNull"
+			}
+			
+		},
+	"ops" : {
+		"StrCT" : "包含",
+		"StrNotCT" : "不包含",
+		"LT" : "小于",
+		"GT" : "大于",
+		"EQ" : "相等",
+		"NotEQ" : "不相等",
+		"NotNULL" : "非空",
+		"same" : "相同",
+		"diff" : "不同",
+		"StrReg" : "正则"
+	}
+}]

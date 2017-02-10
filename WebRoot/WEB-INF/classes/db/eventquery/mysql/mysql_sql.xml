@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="sim">
+
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+
+	<!-- Result maps describe the mapping between the columns returned
+		from a query, and the class properties.  A result map isn't
+		necessary if the columns (or aliases) match to the properties 
+		exactly. 
+	<resultMap id="EventListResult"
+		class="com.topsec.tsm.framework.service.result.EventList">
+	</resultMap>
+	-->
+	<!-- Select with no parameters using the result map for Account class. -->
+	
+	<select id="selectListByCondition" parameterClass="com.topsec.tsm.sim.event.bean.Condition"
+		resultClass="java.util.HashMap" remapResults="true">
+			SELECT $columnsSet$ FROM SIM_EVENT EVENT
+			<dynamic prepend="WHERE">
+				<isNotEmpty property="start_time" prepend="and">
+					<isNotEmpty property="end_time">
+						END_TIME BETWEEN STR_TO_DATE(#start_time#,'%Y-%m-%d %H:%i:%s') AND STR_TO_DATE(#end_time#,'%Y-%m-%d %H:%i:%s')
+					</isNotEmpty>
+				</isNotEmpty>
+				<isNotEmpty property="eve_types" prepend="and">
+					$eve_types$
+				</isNotEmpty>
+				<isNotEmpty property="priori" prepend="and">
+					$priori$
+				</isNotEmpty>
+				<isNotEmpty property="device_types">
+					<iterate prepend="and" property="device_types" open="(" close=")" conjunction="or">
+        				DVC_TYPE =( #device_types[]# )
+       				</iterate>
+				</isNotEmpty>
+				<isNotEmpty property="dest_pts">
+					<iterate prepend="and" property="dest_pts" open="(" close=")" conjunction="or">
+        				DEST_PORT =( #dest_pts[]# )
+       				</iterate>
+				</isNotEmpty>
+				<isNotEmpty property="src_pts">
+					<iterate prepend="and" property="src_pts" open="(" close=")" conjunction="or">
+        				SRC_PORT =( #src_pts[]# )
+       				</iterate>
+				</isNotEmpty>
+				<isNotEmpty property="dvc_ips">
+					<iterate prepend="and" property="dvc_ips" open="(" close=")" conjunction="or">
+        				DVC_ADDRESS =( #dvc_ips[]# )
+       				</iterate>
+				</isNotEmpty>
+				<isNotEmpty property="dest_ips">
+					<iterate prepend="and" property="dest_ips" open="(" close=")" conjunction="or">
+        				DEST_ADDRESS =( #dest_ips[]# )
+       				</iterate>
+				</isNotEmpty>
+				<isNotEmpty property="src_ips">
+					<iterate prepend="and" property="src_ips" open="(" close=")" conjunction="or">
+        				SRC_ADDRESS =( #src_ips[]# )
+       				</iterate>
+				</isNotEmpty>
+				<isNotEmpty property="alarmState" prepend="and">
+						ALARM_STATE=#alarmState#
+				</isNotEmpty>
+			</dynamic>
+            order by END_TIME DESC
+			<![CDATA[ LIMIT $totalLimit$]]>
+	</select>
+	
+	<select id="selectListByAdvanced" parameterClass="com.topsec.tsm.sim.event.bean.Condition"
+		resultClass="java.util.HashMap" remapResults="true">
+		SELECT  $columnsSet$  FROM SIM_EVENT EVENT $adWhereSql$
+		
+		order by END_TIME DESC
+		
+		<![CDATA[ LIMIT $totalLimit$]]>
+	</select>
+	
+	<select id="selectEventForPie" parameterClass="com.topsec.tsm.sim.event.bean.Condition"
+		resultClass="java.util.HashMap" remapResults="true">
+		<!-- 
+		<![CDATA[
+		select name,count(name) as value
+		from SIM_EVENT EVENT 
+		where end_time BETWEEN STR_TO_DATE(#start_time#,'%Y-%m-%d %H:%i:%s') AND STR_TO_DATE(#end_time#,'%Y-%m-%d %H:%i:%s')
+		group by name
+		order by end_time
+		]]>
+		-->
+		<![CDATA[
+		select name,sum(opcount) as value
+		from SIM_EVENT_HOUR EVENT 
+		where start_time BETWEEN STR_TO_DATE(#start_time#,'%Y-%m-%d %H:%i:%s') AND STR_TO_DATE(#end_time#,'%Y-%m-%d %H:%i:%s')
+		 and name is not null
+		group by name
+		]]>
+		
+	</select>
+
+	<select id="selectEventByConditionForFlex" parameterClass="com.topsec.tsm.sim.event.bean.Condition"
+		    resultClass="java.util.HashMap" remapResults="true">
+		SELECT $columnsSet$ FROM SIM_EVENT WHERE 1=1 
+		<dynamic>
+			<isNotEmpty property="confirm" prepend="and">
+   				CONFIRM = #confirm#
+			</isNotEmpty>
+			<isNotEmpty property="confirm_person" prepend="and">
+   				CONFIRM_PERSON = #confirm_person#
+			</isNotEmpty>
+			<isNotEmpty property="start_time" prepend="and">
+				<![CDATA[ END_TIME >= STR_TO_DATE(#start_time#,'%Y-%m-%d %H:%i:%s') ]]>
+			</isNotEmpty>
+			<isNotEmpty property="end_time" prepend="and">
+				<![CDATA[ END_TIME <= STR_TO_DATE(#end_time#,'%Y-%m-%d %H:%i:%s') ]]>
+			</isNotEmpty>
+			<isNotEmpty property="priori" prepend="and">
+				PRIORITY = $priori$
+			</isNotEmpty>
+			<isNotEmpty property="priority">
+				<iterate prepend="and" property="priority" open="(" close=")" conjunction="or">
+        			PRIORITY =( #priority[]# )
+       			</iterate>
+			</isNotEmpty>
+			<isNotEmpty property="ip" prepend="and">
+				(SRC_ADDRESS LIKE CONCAT('%',#ip#,'%') OR DEST_ADDRESS LIKE CONCAT('%',#ip#,'%') OR DVC_ADDRESS LIKE CONCAT('%',#ip#,'%'))
+			</isNotEmpty>			
+			<isNotEmpty property="dvc_address" prepend="and">
+   				DVC_ADDRESS = #dvc_address#
+			</isNotEmpty>
+			<isNotEmpty property="dest_address" prepend="and">
+   				DEST_ADDRESS = #dest_address#
+			</isNotEmpty>
+			<isNotEmpty property="src_address" prepend="and">
+       			SRC_ADDRESS = #src_address#
+			</isNotEmpty>
+			<isNotEmpty property="dvc_ips">
+				<iterate prepend="and" property="dvc_ips" open="(" close=")" conjunction="or">
+        				DVC_ADDRESS =( #dvc_ips[]# )
+       			</iterate>
+			</isNotEmpty>
+			<isNotEmpty property="dest_ips">
+				<iterate prepend="and" property="dest_ips" open="(" close=")" conjunction="or">
+        				DEST_ADDRESS =( #dest_ips[]# )
+       			</iterate>
+			</isNotEmpty>
+			<isNotEmpty property="src_ips">
+				<iterate prepend="and" property="src_ips" open="(" close=")" conjunction="or">
+        			SRC_ADDRESS =( #src_ips[]# )
+       			</iterate>
+			</isNotEmpty>
+			
+			<isNotEmpty property="cat1_id" prepend="and">
+       				CAT1_ID =#cat1_id#
+			</isNotEmpty>
+			<isNotEmpty property="cat2_id" prepend="and">
+       				CAT2_ID =#cat2_id#
+			</isNotEmpty>
+			<isNotEmpty property="cat3_id" prepend="and">
+       				CAT3_ID =#cat3_id#
+			</isNotEmpty>
+			<isNotEmpty property="category1" >
+       			<iterate prepend="and" property="category1" open="(" close=")" conjunction="or">
+        			CAT1_ID =( #category1[]# )
+       			</iterate>
+			</isNotEmpty>
+			<isNotEmpty property="category2" >
+       			<iterate prepend="and" property="category2" open="(" close=")" conjunction="or">
+        			CAT2_ID =( #category2[]# )
+       			</iterate>
+			</isNotEmpty>
+			<isNotEmpty property="name" prepend="and">
+       				NAME like CONCAT('%',TRIM(#name#),'%')
+			</isNotEmpty>
+			<isNotEmpty property="query_event_Name">
+				<iterate prepend="and" property="query_event_Name" open="(" close=")" conjunction="or">
+        			NAME =( #query_event_Name[]# )
+       			</iterate>
+			</isNotEmpty>
+			<isNotEmpty property="eventName" prepend="and">
+       				NAME=#eventName#
+			</isNotEmpty>
+			<isNotEmpty property="alarmState" prepend="and">
+       				ALARM_STATE =#alarmState#
+			</isNotEmpty>
+		</dynamic>
+           order by END_TIME DESC 
+		<![CDATA[ LIMIT $sizeStart$,$pageSize$]]>
+	</select>
+
+	<select id="selectEventTotalByConditionForFlex" parameterClass="com.topsec.tsm.sim.event.bean.Condition"
+		resultClass="java.lang.Integer">
+		SELECT count(*) as value FROM SIM_EVENT WHERE 1=1 
+		<dynamic>
+			<isNotEmpty property="confirm" prepend="and">
+   				CONFIRM = #confirm#
+			</isNotEmpty>
+			<isNotEmpty property="confirm_person" prepend="and">
+   				CONFIRM_PERSON = #confirm_person#
+			</isNotEmpty>
+			<isNotEmpty property="start_time" prepend="and">
+				<![CDATA[ END_TIME >= STR_TO_DATE(#start_time#,'%Y-%m-%d %H:%i:%s') ]]>
+			</isNotEmpty>
+			<isNotEmpty property="end_time" prepend="and">
+				<![CDATA[ END_TIME <= STR_TO_DATE(#end_time#,'%Y-%m-%d %H:%i:%s') ]]>
+			</isNotEmpty>
+			<isNotEmpty property="priori" prepend="and">
+				PRIORITY = $priori$
+			</isNotEmpty>
+			<isNotEmpty property="priority">
+				<iterate prepend="and" property="priority" open="(" close=")" conjunction="or">
+        			PRIORITY =( #priority[]# )
+       			</iterate>
+			</isNotEmpty>
+			<isNotEmpty property="ip" prepend="and">
+				(SRC_ADDRESS LIKE CONCAT('%',#ip#,'%') OR DEST_ADDRESS LIKE CONCAT('%',#ip#,'%') OR DVC_ADDRESS LIKE CONCAT('%',#ip#,'%'))
+			</isNotEmpty>			
+			<isNotEmpty property="dvc_address" prepend="and">
+   				DVC_ADDRESS = #dvc_address#
+			</isNotEmpty>
+			<isNotEmpty property="dest_address" prepend="and">
+   				DEST_ADDRESS = #dest_address#
+			</isNotEmpty>
+			<isNotEmpty property="src_address" prepend="and">
+       			SRC_ADDRESS = #src_address#
+			</isNotEmpty>
+			<isNotEmpty property="dvc_ips">
+				<iterate prepend="and" property="dvc_ips" open="(" close=")" conjunction="or">
+        				DVC_ADDRESS =( #dvc_ips[]# )
+       			</iterate>
+			</isNotEmpty>
+			<isNotEmpty property="dest_ips">
+				<iterate prepend="and" property="dest_ips" open="(" close=")" conjunction="or">
+        				DEST_ADDRESS =( #dest_ips[]# )
+       			</iterate>
+			</isNotEmpty>
+			<isNotEmpty property="src_ips">
+				<iterate prepend="and" property="src_ips" open="(" close=")" conjunction="or">
+        			SRC_ADDRESS =( #src_ips[]# )
+       			</iterate>
+			</isNotEmpty>
+			
+			<isNotEmpty property="cat1_id" prepend="and">
+       				CAT1_ID =#cat1_id#
+			</isNotEmpty>
+			<isNotEmpty property="cat2_id" prepend="and">
+       				CAT2_ID =#cat2_id#
+			</isNotEmpty>
+			<isNotEmpty property="cat3_id" prepend="and">
+       				CAT3_ID =#cat3_id#
+			</isNotEmpty>
+			<isNotEmpty property="category1" >
+       			<iterate prepend="and" property="category1" open="(" close=")" conjunction="or">
+        			CAT1_ID =( #category1[]# )
+       			</iterate>
+			</isNotEmpty>
+			<isNotEmpty property="category2" >
+       			<iterate prepend="and" property="category2" open="(" close=")" conjunction="or">
+        			CAT2_ID =( #category2[]# )
+       			</iterate>
+			</isNotEmpty>
+			<isNotEmpty property="name" prepend="and">
+       				NAME like CONCAT('%',TRIM(#name#),'%')
+			</isNotEmpty>
+			<isNotEmpty property="query_event_Name">
+				<iterate prepend="and" property="query_event_Name" open="(" close=")" conjunction="or">
+        			NAME =( #query_event_Name[]# )
+       			</iterate>
+			</isNotEmpty>
+			<isNotEmpty property="eventName" prepend="and">
+       				NAME=#eventName#
+			</isNotEmpty>
+			<isNotEmpty property="alarmState" prepend="and">
+       				ALARM_STATE =#alarmState#
+			</isNotEmpty>
+			
+		</dynamic>
+	</select>
+	<select id="selectEventTotalByConditionForMoreResult" parameterClass="com.topsec.tsm.sim.event.bean.Condition"
+		resultClass="java.util.HashMap" remapResults="true">
+		SELECT count(*) as value,min(END_TIME)as start_time,max(END_TIME) as end_time FROM SIM_EVENT EVENT
+		
+		<dynamic prepend="WHERE">
+			<isNotEmpty property="start_time" prepend="and">
+				<isNotEmpty property="end_time">
+					END_TIME BETWEEN STR_TO_DATE(#start_time#,'%Y-%m-%d %H:%i:%s') AND STR_TO_DATE(#end_time#,'%Y-%m-%d %H:%i:%s')
+				</isNotEmpty>
+			</isNotEmpty>
+			<isNotEmpty property="priori" prepend="and">
+				PRIORITY = $priori$
+			</isNotEmpty>
+			<isNotEmpty property="ip" prepend="and">
+				(SRC_ADDRESS LIKE '%$ip$%' OR DEST_ADDRESS LIKE '%$ip$%' OR DVC_ADDRESS LIKE '%$ip$%')
+			</isNotEmpty>			
+			<isNotEmpty property="dvc_address" prepend="and">
+   				DVC_ADDRESS = #dvc_address#
+			</isNotEmpty>
+			<isNotEmpty property="dest_address" prepend="and">
+   				DEST_ADDRESS = #dest_address#
+			</isNotEmpty>
+			<isNotEmpty property="src_address" prepend="and">
+       			SRC_ADDRESS = #src_address#
+			</isNotEmpty>
+			<isNotEmpty property="cat1_id" prepend="and">
+       			CAT1_ID =#cat1_id#
+			</isNotEmpty>
+			<isNotEmpty property="cat2_id" prepend="and">
+       			CAT2_ID =#cat2_id#
+			</isNotEmpty>
+			<isNotEmpty property="cat3_id" prepend="and">
+       			CAT3_ID =#cat3_id#
+			</isNotEmpty>
+			<isNotEmpty property="name" prepend="and">
+       			NAME =#name#
+			</isNotEmpty>
+			<isNotEmpty property="alarmState" prepend="and">
+       			ALARM_STATE =#alarmState#
+			</isNotEmpty>
+			
+		</dynamic>
+	</select>
+	<select id="getEventStatistics" parameterClass="com.topsec.tsm.sim.event.bean.Condition"
+		resultClass="java.util.HashMap" remapResults="true">
+		
+		<![CDATA[
+        SELECT t.`name`, t.priority,COUNT(t.`name`) AS opCount FROM sim_event t GROUP BY 1,2 ORDER BY 2 DESC,3 DESC;
+		]]>
+		
+	</select>
+	
+	<select id="getEventLevelStatisticsByTime" parameterClass="com.topsec.tsm.sim.event.bean.Condition"
+		resultClass="java.util.HashMap" remapResults="true">
+		<![CDATA[ 
+        	select s.priority,count(1) as opCount from sim_event s
+        		where s.end_time BETWEEN STR_TO_DATE(#start_time#,'%Y-%m-%d %H:%i:%s') AND STR_TO_DATE(#end_time#,'%Y-%m-%d %H:%i:%s')
+        		group by s.priority; 
+		]]>
+	</select>
+	<select id="getEventRiverDataByTime" parameterClass="map"
+		resultClass="java.util.HashMap" remapResults="true">
+		<![CDATA[
+        	select s.name, s.priority, s.end_time, s.DESCR from sim_event s
+        		where s.end_time BETWEEN STR_TO_DATE(#start_time#,'%Y-%m-%d %H:%i:%s') 
+        		AND STR_TO_DATE(#end_time#,'%Y-%m-%d %H:%i:%s')
+        		order by s.end_time;
+		]]>
+	</select>
+	
+	
+	<select id="getEventCategoryStatisticsByTime" parameterClass="com.topsec.tsm.sim.event.bean.Condition"
+		resultClass="java.util.HashMap" remapResults="true">
+		<![CDATA[
+        	select s.cat1_id as cat1id,count(1) as opCount from sim_event s
+        		where s.end_time BETWEEN STR_TO_DATE(#start_time#,'%Y-%m-%d %H:%i:%s') AND STR_TO_DATE(#end_time#,'%Y-%m-%d %H:%i:%s')
+        		group by s.cat1_id;
+		]]>
+		
+	</select>
+	<select id="nameStatistics" parameterClass="com.topsec.tsm.sim.event.bean.Condition"
+		resultClass="java.util.HashMap" remapResults="true">
+		<![CDATA[
+        	SELECT name,count(1) as opCount from sim_event s
+       		WHERE s.end_time BETWEEN STR_TO_DATE(#start_time#,'%Y-%m-%d %H:%i:%s') AND STR_TO_DATE(#end_time#,'%Y-%m-%d %H:%i:%s')
+       		GROUP BY s.name;
+		]]>
+	</select>	
+	<select id="getByIP" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT EVENT_ID,NAME,DVC_ADDRESS,SRC_ADDRESS,DEST_ADDRESS,PRIORITY,END_TIME,CAT1_ID,CAT2_ID,CAT3_ID,CAT4_ID,DESCR FROM SIM_EVENT EVENT
+       	WHERE (dvc_address = #dvc_address# or src_address = #dvc_address# or dest_address = #dvc_address#)  
+		<dynamic>
+			<isNotEmpty property="startTime" prepend="AND">
+				end_time >= #startTime#
+			</isNotEmpty>
+			<isNotEmpty property="endTime" prepend="AND">
+				<![CDATA[
+					end_time <= #endTime#
+				]]>
+			</isNotEmpty>
+		</dynamic>
+       	ORDER BY end_time DESC
+       	LIMIT $beginIndex$,$pageSize$
+	</select>
+	<select id="getTotalByIP" parameterClass="map" 
+			resultClass="java.lang.Integer" remapResults="true">
+		SELECT count(1) as counts FROM SIM_EVENT EVENT
+       	WHERE (dvc_address = #dvc_address# or src_address = #dvc_address# or dest_address = #dvc_address#)  
+		<dynamic>
+			<isNotEmpty property="startTime" prepend="AND">
+				end_time >= #startTime#
+			</isNotEmpty>
+			<isNotEmpty property="endTime" prepend="AND">
+				<![CDATA[
+					end_time <= #endTime#
+				]]>
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<select id="getEventKnowledgeByEvtId" parameterClass="java.util.HashMap" resultClass="java.util.HashMap" remapResults="true">
+		<![CDATA[
+        	select  kb.Id as id,
+					kb.Name as name,
+					kb.CAT1_ID as cat1id,
+					kb.CAT2_ID as cat2id,
+					kb.PRIORITY as priority,
+					kb.DESCRIPTION as description,
+					kb.SOLUTION as solution,
+					kb.CREATETIME as createTime,
+					kb.CREATER as creater 
+					from   kb_event kb,
+							event_assoc_kb assc,
+							sim_event evt 
+					where kb.Id=assc.kn_id and 
+					assc.event=evt.name and 
+					evt.event_id=#event_id# and
+					evt.end_time=#end_time#
+		]]>
+	</select>
+	
+	<select id="getEventStatisticsByCategory" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+       	 select count(evt.event_id) as value from sim_event evt  
+       	 <dynamic prepend="WHERE">
+        	 <isNotEmpty property="cat1id" prepend="and">
+       				evt.cat1_id =#cat1id#
+			 </isNotEmpty>
+			 <isNotEmpty property="cat2id" prepend="and">
+       				evt.cat2_id =#cat2id#
+			 </isNotEmpty>
+			 <isNotEmpty property="name" prepend="and">
+       				evt.name =#name#
+			 </isNotEmpty>
+			 <isNotEmpty property="alarmState" prepend="and">
+       				evt.ALARM_STATE =#alarmState#
+			 </isNotEmpty>
+       	 </dynamic>
+	</select>
+	
+	<select id="getEventMoreStatisticsByCategory" parameterClass="java.util.HashMap" resultClass="java.util.HashMap" remapResults="true">
+       	 select count(evt.event_id) as value,min(evt.end_time) as start_time,max(evt.end_time) as end_time from sim_event evt  
+       	 <dynamic prepend="WHERE">
+        	 <isNotEmpty property="cat1id" prepend="and">
+       				evt.cat1_id =#cat1id#
+			 </isNotEmpty>
+			 <isNotEmpty property="cat2id" prepend="and">
+       				evt.cat2_id =#cat2id#
+			 </isNotEmpty>
+			 <isNotEmpty property="name" prepend="and">
+       				evt.name =#name#
+			 </isNotEmpty>
+			 <isNotEmpty property="alarmState" prepend="and">
+       				evt.ALARM_STATE =#alarmState#
+			 </isNotEmpty>
+       	 </dynamic>
+	</select>
+	
+	<select id="getAllEventStatistics"   resultClass="java.util.HashMap" >
+		select e.name as name,min(e.end_time) as start_time,max(e.end_time) as end_time,count(e.event_id) as count 
+			from sim_event e group by e.name ORDER BY null;
+	</select>
+	
+	
+	<select id="getExistedEvents" parameterClass="java.util.HashMap" resultClass="java.util.HashMap" remapResults="true">
+        	 select evt.name as name,count(1) as counts from sim_event evt
+        	 <dynamic prepend="WHERE">
+	        	 <isNotEmpty property="cat1id" prepend="and">
+	       				evt.cat1_id =#cat1id#
+				 </isNotEmpty>
+				 <isNotEmpty property="cat2id" prepend="and">
+	       				evt.cat2_id =#cat2id#
+				 </isNotEmpty>
+				<isNotEmpty property="alarmState" prepend="and">
+	       				evt.ALARM_STATE =#alarmState#
+				 </isNotEmpty>
+       		 </dynamic>
+       		 group by name
+       		 
+	</select>
+	<select id="getEventRelaLogs" parameterClass="java.util.HashMap" resultClass="java.util.HashMap" remapResults="true">
+        	  select custom8 from sim_event evt where evt.event_id=#event_id#
+	</select>
+	<select id="getLogsByUUID" parameterClass="java.lang.String" resultClass="java.util.HashMap" remapResults="true">
+        	  select custom8 from sim_event evt where evt.uuid=#uuid#
+	</select>
+	<!-- 告警统计 -->
+	
+	<select id="getAlarmLevelStatisticByTime" parameterClass="java.util.HashMap" resultClass="java.util.HashMap" remapResults="true">
+		<![CDATA[
+			SELECT count(1) as opCount,s.priority as priority 
+			FROM sim_event s
+			WHERE s.end_time between STR_TO_DATE(#start_time#,'%Y-%m-%d %H:%i:%s') and 
+			  	  STR_TO_DATE(#end_time#,'%Y-%m-%d %H:%i:%s') and 
+			  	  s.alarm_state=1
+			GROUP BY s.priority;
+			]]>
+	</select>
+	<select id="getDevAlarmStatisticByTime" parameterClass="java.util.HashMap" resultClass="java.util.HashMap" remapResults="true">
+		<![CDATA[
+			SELECT s.dvc_address,s.src_address,s.dest_address,count(1) as total,s.src_address as src 
+			FROM sim_event s
+			WHERE s.end_time between STR_TO_DATE(#start_time#,'%Y-%m-%d %H:%i:%s') and 
+			      STR_TO_DATE(#end_time#,'%Y-%m-%d %H:%i:%s') and 
+			      s.alarm_state=1
+			GROUP BY s.dvc_address,s.src_address,s.dest_address
+			]]>
+	</select>
+	<select id="getDayEventStatistic" parameterClass="java.util.HashMap" resultClass="java.util.HashMap" remapResults="true">
+		<![CDATA[
+			SELECT dvc_address,src_address,dest_address,count(1) as total 
+			FROM sim_event s 
+			WHERE s.end_time between #start_time# and #end_time# 
+			GROUP BY dvc_address,src_address,dest_address
+			]]>
+	</select>	
+	<select id="getDayAlarmStatisticByTime" parameterClass="java.util.HashMap" resultClass="java.util.HashMap" remapResults="true">
+		<![CDATA[
+			select DATE_FORMAT(s.end_time,'%Y-%m-%d') as time,count(1) as total 
+			FROM sim_event s 
+			WHERE s.end_time between STR_TO_DATE(#start_time#,'%Y-%m-%d %H:%i:%s') and 
+			      STR_TO_DATE(#end_time#,'%Y-%m-%d %H:%i:%s') and 
+			      s.alarm_state=1
+			GROUP BY DATE_FORMAT(s.end_time,'%Y-%m-%d')
+			]]>
+	</select>
+	<select id="getEventAlarmCount" parameterClass="com.topsec.tsm.sim.event.bean.Condition"
+		resultClass="java.util.HashMap" remapResults="true">
+		<![CDATA[
+			SELECT COUNT(1) AS event 
+			FROM sim_event 
+			WHERE 1=1 
+		]]>
+		<dynamic>
+			<isNotEmpty property="confirm" prepend="and">
+   				CONFIRM = #confirm#
+			</isNotEmpty>
+			<isNotEmpty property="start_time" prepend="and">
+				<![CDATA[ END_TIME >= STR_TO_DATE(#start_time#,'%Y-%m-%d %H:%i:%s') ]]>
+			</isNotEmpty>
+			<isNotEmpty property="end_time" prepend="and">
+				<![CDATA[ END_TIME <= STR_TO_DATE(#end_time#,'%Y-%m-%d %H:%i:%s') ]]>
+			</isNotEmpty>
+			<isNotEmpty property="dvc_address" prepend="and">
+				(dvc_address= #dvc_address# or src_address = #dvc_address# or dest_address = #dvc_address#)
+			</isNotEmpty>
+		</dynamic>
+	</select>	
+	<select id="getAlarmCount" parameterClass="com.topsec.tsm.sim.event.bean.Condition"
+		resultClass="java.util.HashMap" remapResults="true">
+		<![CDATA[
+			SELECT priority as priority,count(1) AS counts 
+			FROM sim_event 
+			WHERE (src_address = #dvc_address# or dest_address = #dvc_address# or dvc_address = #dvc_address#) and alarm_state = 1
+			GROUP BY 1 ORDER BY 2 DESC
+		]]>
+	</select>
+	
+	<select id="getEventCount" parameterClass="com.topsec.tsm.sim.event.bean.Condition"
+		resultClass="java.util.HashMap" remapResults="true">
+		<![CDATA[
+			SELECT priority as priority,COUNT(1) AS counts 
+			FROM sim_event 
+			WHERE (dvc_address= #dvc_address# or src_address = #dvc_address# or dest_address = #dvc_address#)
+			GROUP BY 1 ORDER BY 2 DESC
+		]]>
+	</select>
+	<select id="selectEventTimeChart" parameterClass="com.topsec.tsm.sim.event.bean.Condition"
+			resultClass="java.util.HashMap" remapResults="true">
+		SELECT $columnsSet$ as eTime,count(*) FROM SIM_EVENT EVENT
+		<dynamic prepend="WHERE">
+			<isNotEmpty property="start_time" prepend="and">
+				<isNotEmpty property="end_time">
+					END_TIME BETWEEN STR_TO_DATE(#start_time#,'%Y-%m-%d %H:%i:%s') AND STR_TO_DATE(#end_time#,'%Y-%m-%d %H:%i:%s')
+				</isNotEmpty>
+			</isNotEmpty>
+			<isNotEmpty property="eve_types" prepend="and">
+				$eve_types$
+			</isNotEmpty>
+			<isNotEmpty property="ip" prepend="and">
+				(SRC_ADDRESS LIKE '%$ip$%' OR DEST_ADDRESS LIKE '%$ip$%' OR DVC_ADDRESS LIKE '%$ip$%')
+			</isNotEmpty>			
+			<isNotEmpty property="priori" prepend="and">
+				PRIORITY = #priori#
+			</isNotEmpty>
+			<isNotEmpty property="priority">
+				<iterate prepend="and" property="priority" open="(" close=")" conjunction="or">
+        			PRIORITY =( #priority[]# )
+       			</iterate>
+			</isNotEmpty>
+			<isNotEmpty property="device_types">
+				<iterate prepend="and" property="device_types" open="(" close=")" conjunction="or">
+       				DVC_TYPE =( #device_types[]# )
+      				</iterate>
+			</isNotEmpty>
+			<isNotEmpty property="dest_pts">
+				<iterate prepend="and" property="dest_pts" open="(" close=")" conjunction="or">
+       				DEST_PORT =( #dest_pts[]# )
+      				</iterate>
+			</isNotEmpty>
+			<isNotEmpty property="src_pts">
+				<iterate prepend="and" property="src_pts" open="(" close=")" conjunction="or">
+       				SRC_PORT =( #src_pts[]# )
+      				</iterate>
+			</isNotEmpty>
+			<isNotEmpty property="dvc_ips">
+				<iterate prepend="and" property="dvc_ips" open="(" close=")" conjunction="or">
+       				DVC_ADDRESS =( #dvc_ips[]# )
+      				</iterate>
+			</isNotEmpty>
+			<isNotEmpty property="dest_ips">
+				<iterate prepend="and" property="dest_ips" open="(" close=")" conjunction="or">
+       				DEST_ADDRESS =( #dest_ips[]# )
+      				</iterate>
+			</isNotEmpty>
+			<isNotEmpty property="src_ips">
+				<iterate prepend="and" property="src_ips" open="(" close=")" conjunction="or">
+       				SRC_ADDRESS =( #src_ips[]# )
+      				</iterate>
+			</isNotEmpty>
+			<isNotEmpty property="cat1_id" prepend="and">
+       				CAT1_ID =#cat1_id#
+			</isNotEmpty>
+			<isNotEmpty property="cat2_id" prepend="and">
+       				CAT2_ID =#cat2_id#
+			</isNotEmpty>
+			<isNotEmpty property="cat3_id" prepend="and">
+       				CAT3_ID =#cat3_id#
+			</isNotEmpty>
+				<isNotEmpty property="category1" >
+       			<iterate prepend="and" property="category1" open="(" close=")" conjunction="or">
+        			CAT1_ID =( #category1[]# )
+       			</iterate>
+			</isNotEmpty>
+			<isNotEmpty property="category2" >
+       			<iterate prepend="and" property="category2" open="(" close=")" conjunction="or">
+        			CAT2_ID =( #category2[]# )
+       			</iterate>
+			</isNotEmpty>
+			<isNotEmpty property="trans_protocol" prepend="and">
+       				TRANS_PROTOCOL =#trans_protocol#
+			</isNotEmpty>
+			<isNotEmpty property="name" prepend="and">
+       				NAME like CONCAT('%',TRIM(#name#),'%')
+			</isNotEmpty>
+			<isNotEmpty property="query_event_Name">
+				<iterate prepend="and" property="query_event_Name" open="(" close=")" conjunction="or">
+        			NAME =( #query_event_Name[]# )
+       			</iterate>
+			</isNotEmpty>
+			<isNotEmpty property="eventName" prepend="and">
+       				NAME=#eventName#
+			</isNotEmpty>
+		</dynamic>
+          group by eTime order by END_TIME DESC 
+	</select>
+	<select id="cat1Statistic" resultClass="java.util.HashMap" remapResults="true">
+		SELECT cat1_id as cat,count(*) as counts FROM SIM_EVENT GROUP BY cat1_id 
+	</select>	
+	<select id="cat2Statistic" parameterClass="com.topsec.tsm.sim.event.bean.Condition" resultClass="java.util.HashMap" remapResults="true">
+		SELECT cat2_id as cat,count(*) as counts FROM SIM_EVENT 
+		<dynamic>
+			<isNotEmpty property="cat1_id">
+				WHERE cat1_id = #cat1_id#
+			</isNotEmpty>
+		</dynamic>
+		GROUP BY cat2_id 
+	</select>	
+	<select id="nameStatBaseOnCat" parameterClass="com.topsec.tsm.sim.event.bean.Condition" resultClass="java.util.HashMap" remapResults="true">
+		SELECT name as cat,count(*) as counts FROM SIM_EVENT 
+		WHERE cat1_id = #cat1_id# and cat2_id = #cat2_id#
+		GROUP BY name
+	</select>	
+	<update id="updateEvent" parameterClass="java.util.Map">
+		update sim_event set confirm=#confirm#,confirm_person=#confirm_person# where event_id = #event_id#
+	</update>
+</sqlMap>

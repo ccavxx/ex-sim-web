@@ -1,0 +1,320 @@
+<style>
+	.control-group > .controls > select{
+		width:90px;
+	}
+	.control-group > .controls > input{
+		width:180px;
+	}
+</style>
+<div class="text-center">
+	<textarea id="sysconf_filter_text" style="width: 570px; max-width:570px;height:60px;max-height: 60px;"></textarea>
+</div>
+<div class="text-center" style="margin-bottom: 10px;">
+	<div class="btn-group">
+	  <button class="btn" id="sysconfig_filter_btn_and">AND</button>
+	  <button class="btn" id="sysconfig_filter_btn_or">OR</button>
+	  <button class="btn" id="sysconfig_filter_btn_not">NOT</button>
+	  <button class="btn" id="sysconfig_filter_btn_clear">清除</button>
+	  <button class="btn" id="sysconfig_filter_btn_insert">插入</button>
+	  <!-- <button class="btn" id="sysconfig_filter_btn_validation">验证</button> -->
+	  <button class="btn" id="sysconfig_filter_btn_finish">完成</button>
+	</div>
+</div>
+
+<form class="form-horizontal" id="sysconfig_filter_form">
+  <div class="control-group" style="margin-bottom: 5px;">
+    <label class="control-label">设备类型</label>
+    <div class="controls">
+		<select class="input-small" name="DVC_TYPE_exp" >
+		    <option value="=">=</option>
+		    <option value="&lt;&gt;">&lt;&gt;</option>
+		    <option value="&gt;">&gt;</option>
+		    <option value="&lt;">&lt;</option>
+		    <option value="&gt;=">&gt;=</option>
+		    <option value="&lt;=">&lt;=</option>
+		    <option value="BETWEEN">BETWEEN</option>
+		    <option value="IN">IN</option>
+		    <option value="IS">IS</option>
+		    <option value="LIKE">like</option>
+		</select>
+      	<input type="text" class="span2" name="DVC_TYPE" id="DVC_TYPE">
+    </div>
+  </div>
+  
+  <div class="control-group" style="margin-bottom: 5px;">
+    <label class="control-label">设备地址</label>
+    <div class="controls">
+		<select class="input-small" name="DVC_ADDRESS_exp" >
+		    <option value="=">=</option>
+		    <option value="&lt;&gt;">&lt;&gt;</option>
+		    <option value="&gt;">&gt;</option>
+		    <option value="&lt;">&lt;</option>
+		    <option value="&gt;=">&gt;=</option>
+		    <option value="&lt;=">&lt;=</option>
+		    <option value="BETWEEN">BETWEEN</option>
+		    <option value="IN">IN</option>
+		    <option value="IS">IS</option>
+		    <option value="LIKE">like</option>
+		</select>
+      	<input type="text" class="span2" name="DVC_ADDRESS" id="DVC_ADDRESS">
+    </div>
+  </div>
+  
+  <div class="control-group" style="margin-bottom: 5px;">
+    <label class="control-label">优先级</label>
+    <div class="controls">
+		<select class="input-small" name="PRIORITY_exp" >
+		    <option value="=">=</option>
+		    <option value="&lt;&gt;">&lt;&gt;</option>
+		    <option value="&gt;">&gt;</option>
+		    <option value="&lt;">&lt;</option>
+		    <option value="&gt;=">&gt;=</option>
+		    <option value="&lt;=">&lt;=</option>
+		</select>
+		<select style="width:181px;" name="PRIORITY" id="PRIORITY">
+		    <option value=""></option>
+		    <option value="0">非常低</option>
+		    <option value="1">低</option>
+		    <option value="2">中</option>
+		    <option value="3">高</option>
+		    <option value="4">非常高</option>
+		</select>
+    </div>
+  </div>
+  
+  <div class="control-group" style="margin-bottom: 5px;">
+    <label class="control-label">传输协议</label>
+    <div class="controls">
+		<select class="input-small" name="TRANS_PROTOCOL_exp" >
+		    <option value="=">=</option>
+		    <option value="&lt;&gt;">&lt;&gt;</option>
+		    <option value="&gt;">&gt;</option>
+		    <option value="&lt;">&lt;</option>
+		    <option value="&gt;=">&gt;=</option>
+		    <option value="&lt;=">&lt;=</option>
+		    <option value="BETWEEN">BETWEEN</option>
+		    <option value="IN">IN</option>
+		    <option value="IS">IS</option>
+		    <option value="LIKE">like</option>		    
+		</select>
+      	<input type="text" class="span2" name="TRANS_PROTOCOL" id="TRANS_PROTOCOL">
+    </div>
+  </div>
+  
+  <div class="control-group" style="margin-bottom: 5px;">
+    <label class="control-label">应用协议</label>
+    <div class="controls">
+		<select class="input-small" name="APP_PROTOCOL_exp" >
+		    <option value="=">=</option>
+		    <option value="&lt;&gt;">&lt;&gt;</option>
+		    <option value="&gt;">&gt;</option>
+		    <option value="&lt;">&lt;</option>
+		    <option value="&gt;=">&gt;=</option>
+		    <option value="&lt;=">&lt;=</option>
+		    <option value="BETWEEN">BETWEEN</option>
+		    <option value="IN">IN</option>
+		    <option value="IS">IS</option>
+		    <option value="LIKE">like</option>		    
+		</select>
+      	<input type="text" class="span2" name="APP_PROTOCOL" id="APP_PROTOCOL">
+    </div>
+  </div>
+  
+  <div class="control-group" style="margin-bottom: 5px;">
+    <label class="control-label">事件名</label>
+    <div class="controls">
+		<select class="input-small" name="NAME_exp" >
+		    <option value="=">=</option>
+		    <option value="&lt;&gt;">&lt;&gt;</option>
+		    <option value="&gt;">&gt;</option>
+		    <option value="&lt;">&lt;</option>
+		    <option value="&gt;=">&gt;=</option>
+		    <option value="&lt;=">&lt;=</option>
+		    <option value="BETWEEN">BETWEEN</option>
+		    <option value="IN">IN</option>
+		    <option value="IS">IS</option>
+		    <option value="LIKE">like</option>		    
+		</select>
+      	<input type="text" class="span2" name="NAME" id="NAME">
+    </div>
+  </div>
+  
+  <div class="control-group" style="margin-bottom: 5px;">
+    <label class="control-label">事件类型</label>
+    <div class="controls">
+		<select class="input-small" name="EVENT_TYPE_exp" >
+		    <option value="=">=</option>
+		    <option value="&lt;&gt;">&lt;&gt;</option>
+		    <option value="&gt;">&gt;</option>
+		    <option value="&lt;">&lt;</option>
+		    <option value="&gt;=">&gt;=</option>
+		    <option value="&lt;=">&lt;=</option>
+		    <option value="BETWEEN">BETWEEN</option>
+		    <option value="IN">IN</option>
+		    <option value="IS">IS</option>
+		    <option value="LIKE">like</option>		    
+		</select>
+      	<input type="text" class="span2" name="EVENT_TYPE" id="EVENT_TYPE">
+    </div>
+  </div>
+  
+  <div class="control-group" style="margin-bottom: 5px;">
+    <label class="control-label">事件分类1</label>
+    <div class="controls">
+		<select class="input-small" name="CAT1_ID_exp" >
+		    <option value="=">=</option>
+		    <option value="&lt;&gt;">&lt;&gt;</option>
+		    <option value="&gt;">&gt;</option>
+		    <option value="&lt;">&lt;</option>
+		    <option value="&gt;=">&gt;=</option>
+		    <option value="&lt;=">&lt;=</option>
+		    <option value="IS">IS</option>
+		    <option value="LIKE">like</option>
+		</select>
+		<select style="width:181px;" name="CAT1_ID" id="CAT1_ID">
+		    <option value=""></option>
+		    <option value="NULL">NULL</option>
+		    <option value="未定义">未定义</option>
+		    <option value="TopAnalyzer">TopAnalyzer</option>
+		    <option value="系统审核">系统审核</option>
+		    <option value="设备故障">设备故障</option>
+		    <option value="有害程序">有害程序</option>
+		    <option value="网络攻击">网络攻击</option>
+		    <option value="信息破坏">信息破坏</option>
+		    <option value="内容安全">内容安全</option>
+		    <option value="可疑异常">可疑异常</option>
+		    <option value="计费">计费</option>
+		    <option value="网络审计">网络审计</option>	    
+		</select>
+      	
+    </div>
+  </div>
+  
+  <div class="control-group" style="margin-bottom: 5px;">
+    <label class="control-label">源地址</label>
+    <div class="controls">
+		<select class="input-small" name="SRC_ADDRESS_exp" >
+		    <option value="=">=</option>
+		    <option value="&lt;&gt;">&lt;&gt;</option>
+		    <option value="&gt;">&gt;</option>
+		    <option value="&lt;">&lt;</option>
+		    <option value="&gt;=">&gt;=</option>
+		    <option value="&lt;=">&lt;=</option>
+		    <option value="BETWEEN">BETWEEN</option>
+		    <option value="IN">IN</option>
+		    <option value="IS">IS</option>
+		    <option value="LIKE">like</option>		    
+		</select>
+      	<input type="text" class="span2" name="SRC_ADDRESS" id="SRC_ADDRESS">
+    </div>
+  </div>
+  
+  <div class="control-group" style="margin-bottom: 5px;">
+    <label class="control-label">源端口</label>
+    <div class="controls">
+		<select class="input-small" name="SRC_PORT_exp" >
+		    <option value="=">=</option>
+		    <option value="&lt;&gt;">&lt;&gt;</option>
+		    <option value="&gt;">&gt;</option>
+		    <option value="&lt;">&lt;</option>
+		    <option value="&gt;=">&gt;=</option>
+		    <option value="&lt;=">&lt;=</option>
+		    <option value="BETWEEN">BETWEEN</option>
+		    <option value="IN">IN</option>	    
+		</select>
+      	<input type="text" class="span2" name="SRC_PORT" id="SRC_PORT">
+    </div>
+  </div>
+  
+  <div class="control-group" style="margin-bottom: 5px;">
+    <label class="control-label">目的地址</label>
+    <div class="controls">
+		<select class="input-small" name="DEST_ADDRESS_exp" >
+		    <option value="=">=</option>
+		    <option value="&lt;&gt;">&lt;&gt;</option>
+		    <option value="&gt;">&gt;</option>
+		    <option value="&lt;">&lt;</option>
+		    <option value="&gt;=">&gt;=</option>
+		    <option value="&lt;=">&lt;=</option>
+		    <option value="BETWEEN">BETWEEN</option>
+		    <option value="IN">IN</option>	   
+		    <option value="IS">IS</option>
+		    <option value="LIKE">like</option>	 
+		</select>
+      	<input type="text" class="span2" name="DEST_ADDRESS" id="DEST_ADDRESS">
+    </div>
+  </div>
+  
+  <div class="control-group" style="margin-bottom: 5px;">
+    <label class="control-label">目的端口</label>
+    <div class="controls">
+		<select class="input-small" name="DEST_PORT_exp" >
+		    <option value="=">=</option>
+		    <option value="&lt;&gt;">&lt;&gt;</option>
+		    <option value="&gt;">&gt;</option>
+		    <option value="&lt;">&lt;</option>
+		    <option value="&gt;=">&gt;=</option>
+		    <option value="&lt;=">&lt;=</option>
+		    <option value="BETWEEN">BETWEEN</option>
+		    <option value="IN">IN</option>	    
+		</select>
+      	<input type="text" class="span2" name="DEST_PORT" id="DEST_PORT">
+    </div>
+  </div>
+  
+  <div class="control-group" style="margin-bottom: 5px;">
+    <label class="control-label">EVENTLOG类型</label>
+    <div class="controls">
+		<select class="input-small" name="FILE_NAME_exp" >
+		    <option value="=">=</option>
+		    <option value="&lt;&gt;">&lt;&gt;</option>
+		    <option value="&gt;">&gt;</option>
+		    <option value="&lt;">&lt;</option>
+		    <option value="&gt;=">&gt;=</option>
+		    <option value="&lt;=">&lt;=</option>
+		    <option value="BETWEEN">BETWEEN</option>
+		    <option value="IN">IN</option>
+		    <option value="IS">IS</option>
+		    <option value="LIKE">like</option>	 	    
+		</select>
+      	<input type="text" class="span2" name="FILE_NAME" id="FILE_NAME">
+    </div>
+  </div>
+  
+  <div class="control-group" style="margin-bottom: 5px;">
+    <label class="control-label">事件ID</label>
+    <div class="controls">
+		<select class="input-small" name="MSG_ID_exp" >
+		    <option value="=">=</option>
+		    <option value="&lt;&gt;">&lt;&gt;</option>
+		    <option value="&gt;">&gt;</option>
+		    <option value="&lt;">&lt;</option>
+		    <option value="&gt;=">&gt;=</option>
+		    <option value="&lt;=">&lt;=</option>
+		    <option value="BETWEEN">BETWEEN</option>
+		    <option value="IN">IN</option>	    
+		</select>
+      	<input type="text" class="span2" name="MSG_ID" id="MSG_ID">
+    </div>
+  </div>
+  
+  <div class="control-group" style="margin-bottom: 5px;">
+    <label class="control-label">原始日志</label>
+    <div class="controls">
+		<select class="input-small" name="ORIGINAL_DATA_exp" >
+		    <option value="=">=</option>
+		    <option value="&lt;&gt;">&lt;&gt;</option>
+		    <option value="&gt;">&gt;</option>
+		    <option value="&lt;">&lt;</option>
+		    <option value="&gt;=">&gt;=</option>
+		    <option value="&lt;=">&lt;=</option>
+		    <option value="BETWEEN">BETWEEN</option>
+		    <option value="IN">IN</option>
+		    <option value="IS">IS</option>
+		    <option value="LIKE">like</option>	 	    
+		</select>
+      	<input type="text" class="span2" name="ORIGINAL_DATA" id="ORIGINAL_DATA">
+    </div>
+  </div>  
+</form>
+<script src="/js/sim/sysconfig/sysconfig_filter.js" type="text/javascript"></script>

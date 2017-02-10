@@ -1,0 +1,15 @@
+//资产页id命名规则
+/*
+assetList al
+assetDiscover ad
+assetDetail adt
+assetImport ai
+assetDetailLog adl
+assetAdd aa
+assetEdit ae
+assetForm af
+dataSource ds
+dataSourceAdd dsa
+monitor mn
+monitorAdd ma
+*/

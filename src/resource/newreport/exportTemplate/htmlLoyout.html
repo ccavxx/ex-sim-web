@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>天融信HTML文档</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+    <style type="text/css">
+    	.loyout{
+    		width: 1200px;
+    	}
+    	.loyout div{
+    		width:95%;
+    		margin-left: 30px;
+    		margin-top: 40px;
+    	}
+    	#loyoutHeader div{
+    		margin-top: 30px;
+    		margin-bottom: 50px;
+    	}
+    	#loyoutHeader .headline,.loyoutBody{
+    		text-align: center;
+    	}
+		.loyout .header-summary{
+			width:85%;
+			margin-left:10%;
+		}
+		.header-summary p{
+			line-height:28px;
+		}
+		#loyoutHeader td{
+			font-size: 20px;
+			margin: 5px;
+			padding:5px;
+		}
+		.loyout .subchartdiv-sm{
+			width:47%;
+			height:380px;
+			float:left;
+			margin-top: 20px;
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+		.loyout .subchartdiv{
+			width:90%;
+			height:420px;
+			margin-top: 20px;
+			margin-left: 10px;
+		}
+		.aorange {
+		  color: orange;
+		}
+		.ared {
+		  color: red;
+		}
+		.dataview-table{
+			width:95%;
+			margin: 1px;
+		}
+		.parent-title{
+			line-height: 0px;
+			color:#333;
+		}
+		.sub-tabletdborder{
+			border: dashed #eee 1px;
+			text-align: left;
+			padding-left:5px; 
+		}
+		.sub-title{
+			color:#AAA;
+		}
+		.echarts-dataview button{
+			margin-right:30px;
+		}
+    </style>
+	<script src="./js/jquery-1.8.3.js" type="text/javascript"></script>
+	<script src="./js/echarts.js"></script>
+	<script src="./js/echartshow.js" type="text/javascript"></script>
+  </head>
+  
+  <body>
+  
+    <div id="loyout" class="loyout">
+    	<div id="loyoutHeader">
+    		<div class="headline">
+    			<h1>$EXPORT_HEADLINE</h1>
+    		</div>
+    		<div class="header-explain">
+    			<table align="center">
+    				<tr>
+    					<td>报表类型：</td>
+    					<td><b>$EXPORT_CATEGORY</b></td>
+    				</tr>
+    				<tr>
+    					<td>制 作 人：</td>
+    					<td><b>$AUTHOR</b></td>
+    				</tr>
+    				<tr>
+    					<td>制作时间：</td>
+    					<td><b>$EXECUTE_TIME</b></td>
+    				</tr>
+    				<tr>
+    					<td>日志时间：</td>
+    					<td><b>$START_TIME 至 $END_TIME</b></td>
+    				</tr>
+    			</table>
+    		</div>
+			<div class="header-summary">
+				<p>$REPORT_SUMMARY</p>
+			</div>
+    	</div>
+    	<div id="loyoutBody" class="loyoutBody">
+    		
+    	</div>
+    	<div id="loyoutFooter">
+    	
+    	</div>
+    </div>
+    
+  </body>
+  <script type="text/javascript">
+	var dataResult=$RESULT_DATA_AND_STRUCTURE;
+	
+  	new_report={};
+  	new_report.loadDat=function(dat){
+  		var len=dat.length;
+  		var isj=1==(len%2);
+  		for(var i=0;i<len;i++){
+  			if(i>0){
+  				dat[i].queryConditionsObj=dat[0].queryConditionsObj;
+  			}
+  			var isbig=(isj && i==len-1);
+  			new_report.loadSubDat(i,dat[i],isbig);
+  		}
+  	};
+  	new_report.loadSubDat=function(i,subjson,isbig){
+  		var loyoutBody=$("#loyoutBody");
+  		var divid="main"+i;
+  		var divsub=null;
+  		if(isbig){
+  			divsub=$("<div id='"+ divid +"' class='subchartdiv'/>");
+  		}else{
+  			divsub=$("<div id='"+ divid +"' class='subchartdiv-sm'/>");
+  		}
+  			
+  		loyoutBody.append(divsub);
+  		new_report.filldiv(divid,subjson);
+  	};
+  	
+  	new_report.filldiv=function(divid,subjson){
+  		var subReportName=subjson.subReportName;
+  		var topn=subjson.queryConditionsObj.topn;
+    	var showType=subjson.showType;
+    	var colon=showType.indexOf(':');
+    	var recommend=null;
+    	if(colon>-1){
+    		recommend=showType.substring(showType.indexOf('(')+1, showType.indexOf(')') );
+    		showType=showType.substring(0,colon);
+    	}
+    	var option=null;
+    	if('TREND' == showType){
+    		recommend=(recommend==null)?'line':recommend;
+    		option=echartshow.standardOption(subReportName,subjson,subjson.data[0].length+1,'line');
+    	}else if('NOT_TREND' == showType){
+    		recommend=(recommend==null)?'bar':recommend;
+    		switch(recommend){
+    		case 'standardbar':
+    			option=echartshow.standardOption(subReportName,subjson,topn,'bar');
+    			break;
+    		case 'standardline':
+    			option=echartshow.standardOption(subReportName,subjson,topn,'line');
+    			break;
+    		case 'pie':
+    			option=echartshow.pieOption(subReportName,subjson,topn);
+    			break;
+    		case 'rainbow':
+    			option=echartshow.rainbowOption(subReportName,subjson,topn,'bar');
+    			break;
+    		case 'eventRiver':
+    			option=echartshow.standardOption(subReportName,subjson,topn,'line');
+    			break;
+    		default:
+    			recommend=recommend.replace('standard', '');
+    			recommend=recommend.replace('rainbow', '');
+    			option=echartshow.rainbowOption(subReportName,subjson,topn,recommend);
+    		}
+    		
+    	}else{
+    		option=echartshow.rainbowOption(subReportName,subjson,topn,'bar');
+    	}
+    	
+    	echartshow.init(divid,option);
+    };
+    $(function(){
+    	new_report.loadDat(dataResult);
+    });
+  </script>
+</html>

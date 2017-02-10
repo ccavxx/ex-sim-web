@@ -1,0 +1,56 @@
+<div class="easyui-panel sim" fit="true" border="false" id="event_main_div_id">
+	<div id="panelTools">
+         <a href="javascript:void(0)" onclick="doChangeCgyCartByScope('day');simHandler.showEventIconAct(this);" title='最近1天'>天</a>
+         <a href="javascript:void(0)" onclick="doChangeCgyCartByScope('week');simHandler.showEventIconAct(this);" title='最近1周'>周</a>
+         <a href="javascript:void(0)" onclick="doChangeCgyCartByScope('month');simHandler.showEventIconAct(this);" title='最近1月'>月</a>
+		 <a href="javascript:void(0)" class="icon-pie" onclick="doChangeCgyCart(0);simHandler.showEventIconAct(this);"></a>
+		 <a href="javascript:void(0)" id="panelTools_bar" class="icon-bar" onclick="doChangeCgyCart(1);simHandler.showEventIconAct(this);"></a>
+	     <a href="javascript:void(0)" class="icon-table" onclick="doChangeCgyCart(2);simHandler.showEventIconAct(this);"></a>
+	</div>
+	<div id="panelTools1">
+	   	 <a href="javascript:void(0)" onclick="doChangePryCartScope('day');simHandler.showEventIconAct(this);" title='最近1天'>天</a>
+         <a href="javascript:void(0)" onclick="doChangePryCartScope('week');simHandler.showEventIconAct(this);" title='最近1周'>周</a>
+         <a href="javascript:void(0)" onclick="doChangePryCartScope('month');simHandler.showEventIconAct(this);" title='最近1月'>月</a>
+		 <a href="javascript:void(0)" class="icon-pie" onclick="doChangePryCart(0);simHandler.showEventIconAct(this);"></a>
+		 <a href="javascript:void(0)" id="panelTools1_bar" class="icon-bar" onclick="doChangePryCart(1);simHandler.showEventIconAct(this);"></a>
+	     <a href="javascript:void(0)" class="icon-table" onclick="doChangePryCart(2);simHandler.showEventIconAct(this);"></a>
+	</div>
+	<div id="panelTools2">
+		 <a href="javascript:void(0)" onclick="doChangeTrdCartScope('day');simHandler.showEventIconAct(this);" title='最近1天'>天</a>
+         <a href="javascript:void(0)" onclick="doChangeTrdCartScope('week');simHandler.showEventIconAct(this);" title='最近1周'>周</a>
+         <a href="javascript:void(0)" onclick="doChangeTrdCartScope('month');simHandler.showEventIconAct(this);" title='最近1月'>月</a>
+		 <a href="javascript:void(0)" id="panelTools2_line" class="icon-pie" onclick="doChangeTrdCart(0);simHandler.showEventIconAct(this);"></a>
+		 <a href="javascript:void(0)" class="icon-line" onclick="doChangeTrdCart(1);simHandler.showEventIconAct(this);"></a>
+	     <a href="javascript:void(0)" class="icon-table" onclick="doChangeTrdCart(2);simHandler.showEventIconAct(this);"></a>
+	</div>
+	<div id="main_layout_id" class="easyui-layout" fit="true">
+		 <div data-options="region:'north',border:false,height:335,onExpand:onMainLayoutExpand">
+		 	<table class="main_panel_bgc_table" style="height:100%;width:100%;border:none;margin:0px;padding:0px;">
+		 		<tbody>
+		 			<tr style="height:330px;">
+		 				<td style="width:25%"><div id="_event_category_id" title="事件分类（天）" class="easyui-panel" data-options="fit:true,collapsible:false,tools:'#panelTools',iconCls:'icon-grid',headerCls:'sim-panel-header',bodyCls:'sim-panel-body'"></div></td>
+		 				<td style="width:2px;"></td>
+		 				<td style="width:25%;"><div id="_event_level_id" title="事件级别（天）" class="easyui-panel" data-options="fit:true,collapsible:false,tools:'#panelTools1',iconCls:'icon-grid',headerCls:'sim-panel-header',bodyCls:'sim-panel-body'"></div></td>
+		 				<td style="width:2px;"></td>
+		 				<td style="width:auto;"><div id="_event_trend_id" title="事件趋势（天）" class="easyui-panel"  data-options="fit:true,collapsible:false,tools:'#panelTools2',iconCls:'icon-grid',headerCls:'sim-panel-header',bodyCls:'sim-panel-body'" ></div></td>
+		 			</tr>
+		 			<tr style="height:auto;"><td colspan="5"></tr>
+		 		</tbody>
+		 	</table>
+		 </div>  
+		<div class="main_panel_bgc_datagrid" data-options="region:'center',border:false" >
+			 <div id="event_div_id" class="sim" >
+				<table id="event_table_id" data-options="scrollbarSize:0"></table>
+			 </div>
+		</div>
+	</div>
+	
+</div>
+<script type="text/javascript" src="/js/sim/extends/dateformat.js"></script>
+<script type="text/javascript" src="/js/sim/event/event_evtquery_base.js"></script>
+<script type="text/javascript" src="/js/sim/event/event_evtquery_colformat.js"></script>
+<script type="text/javascript" src="/js/sim/event/event_summary_evtlevel.js"></script>
+<script type="text/javascript" src="/js/sim/event/event_summary_evtcategory.js"></script>
+<script type="text/javascript" src="/js/sim/event/event_summary_evttrend.js"></script>
+<script type="text/javascript" src="/js/sim/event/event_summary_cartogram.js"></script>
+<script type="text/javascript" src="/js/sim/event/event_summary.js"></script>

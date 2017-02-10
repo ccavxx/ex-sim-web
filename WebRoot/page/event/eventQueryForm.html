@@ -1,0 +1,107 @@
+<div>
+	<!--  border-style: solid;border-color: black;border-width: thin; -->
+	<form id="event_queryform_Id" action="ssasa" method="post"
+		style="margin: 0 auto;width: 300px;display: block;" name="evtQueryForm">
+		<input name="startTime" type="hidden" /> 
+		<input name="endTime" type="hidden" />
+		<table style="width: 300px;">
+			<tr>
+				<td rowspan="2" style="width:60px;">时间:</td>
+				<td>
+					 <input type="radio" name="timeType" value="1" checked="checked" /><input id="event_hour_select_id" class="easyui-combobox" data-options="height:24,width:185,valueField:'id',textField:'text'" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table>
+						<tr>
+							<td rowspan="2" valign="middle" style="vertical-align: middle;"><input type="radio" name="timeType" value="2" /></td>
+							<td>	
+								<div class="input-append date form_datetime_1">
+								    <input name="ssdt" size="16" type="text" value="" readonly style="width: 161px;">
+								    <span class="add-on"><i class="icon-th"></i></span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td >
+								<div class="input-append date form_datetime_2">
+								    <input name="sedt" size="16" type="text" value="" readonly style="width: 161px;">
+								    <span class="add-on"><i class="icon-th"></i></span>
+								</div>
+							</td>
+							
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>等级:</td>
+				<td>非常高<input type="checkbox" name="level" value="4" /> 
+						高<input type="checkbox" name="level" value="3" /> 
+						中<input type="checkbox" name="level" value="2" /> 
+						低<input type="checkbox" name="level" value="1" /> 
+					非常低<input type="checkbox" name="level" value="0" />
+				</td>
+			</tr>
+			<tr>
+				<td>事件名:</td>
+				<td><input name="eventName" type="text"></input>
+				</td>
+			</tr>
+			<tr>
+				<td>源IP:</td>
+				<td><input name="srcIp" type="text"></input>
+				</td>
+			</tr>
+			<tr>
+			<tr>
+				<td>目的 IP:</td>
+				<td><input name="destIp" type="text"></input>
+				</td>
+			</tr>
+			<tr>
+				<td>设备 IP:</td>
+				<td><input name="deviceIp" type="text"></input>
+				</td>
+			</tr>
+			<tr>
+				<td>源端口:</td>
+				<td><input name="srcPort" type="text"></input>
+				</td>
+			</tr>
+			<tr>
+				<td>目的 端口:</td>
+				<td><input name="destPort" type="text"></input>
+				</td>
+			</tr>
+			<tr>
+				<td>事件类型:</td>
+				<td><input name="eventType" type="text"></input>
+				</td>
+			</tr>
+			<tr>
+				<td>事件分类:</td>
+				<td><input name="eventCategory" type="text"></input>
+				</td>
+			</tr>
+			<tr>
+				<td>传输协议:</td>
+				<td><input name="transProtocol" type="text"></input>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><a class="easyui-linkbutton" onclick="doEventQuery();">查询</a>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script type="text/javascript">
+(function(){
+	eventQueryForm.init();
+	$(".form_datetime_1").datetimepicker({format: 'yyyy-mm-dd hh:ii:ss',language:'zh-CN'});
+	$(".form_datetime_2").datetimepicker({format: 'yyyy-mm-dd hh:ii:ss',language:'zh-CN'});
+})();
+</script>

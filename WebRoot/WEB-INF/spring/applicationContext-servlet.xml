@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+	   http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	   http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	   http://www.springframework.org/schema/mvc
+	   http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+	<bean class="com.topsec.tsm.sim.common.web.MyPostProcessor"/>
+	
+	<bean id="org.springframework.http.converter.ByteArrayHttpMessageConverter" class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
+	<bean id="org.springframework.http.converter.StringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter"/>
+	<bean id="org.springframework.http.converter.FormHttpMessageConverter" class="org.springframework.http.converter.FormHttpMessageConverter"/>
+	<bean id="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>text/javascript;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
+	<context:annotation-config />
+	<context:component-scan base-package="com.topsec.tsm.sim">
+		<context:include-filter type="regex" expression="com.topsec.tsm.sim..web.*Controller" />
+	</context:component-scan>
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean id="SecurityInterceptor" class="com.topsec.tsm.sim.auth.security.SecurityInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>	
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="false">
+			<ref bean="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
+			<ref bean="org.springframework.http.converter.StringHttpMessageConverter"/>
+			<ref bean="org.springframework.http.converter.FormHttpMessageConverter"/>
+			<ref bean="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+		</mvc:message-converters>
+		<mvc:argument-resolvers>
+			<bean class="com.topsec.tsm.sim.common.web.SecurityRequestBodyResolver">
+				<constructor-arg>
+					<list>
+						<ref bean="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
+						<ref bean="org.springframework.http.converter.StringHttpMessageConverter"/>
+						<ref bean="org.springframework.http.converter.FormHttpMessageConverter"/>
+						<ref bean="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+					</list>
+				</constructor-arg>
+			</bean>
+			<bean class="com.topsec.tsm.sim.common.web.SecurityModelAttributeResolver"/>
+			<bean class="com.topsec.tsm.sim.common.web.JSONArgumentResolver"/>
+			<bean class="com.topsec.tsm.sim.common.web.SIDArgumentResolver"/>
+		</mvc:argument-resolvers>
+	</mvc:annotation-driven>
+	
+	<bean id="viewResolver"	class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">  
+	    <!-- 定义异常处理页面用来获取异常信息的变量名，默认名为exception -->  
+	    <property name="exceptionAttribute" value="ex"></property>  
+	    <!-- 定义需要特殊处理的异常，用类名或完全路径名作为key，异常也页名作为值 -->  
+	    <property name="warnLogCategory" value="HandlerExecuteException"/>
+	    <property name="excludedExceptions">
+	    	<array>
+	    		<bean class="java.lang.Class" factory-method="forName">
+	    			<constructor-arg value="org.apache.catalina.connector.ClientAbortException"/>
+	    		</bean>
+	    	</array>
+	    </property>
+	    <property name="exceptionMappings">  
+	        <props>
+	        	<prop key="org.apache.catalina.connector.ClientAbortException"/>  
+	        </props>  
+	    </property>  
+	</bean>	
+	<bean id="multipartResolver"
+	      class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+	      p:defaultEncoding="UTF-8"
+	      p:maxUploadSize="524288000" 
+	      p:uploadTempDir="upload/temp" />
+	      
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		  <property name="basenames">
+		    <list>
+		      <value>resource/application</value>
+		    </list>
+		  </property>
+	</bean>
+
+
+</beans>

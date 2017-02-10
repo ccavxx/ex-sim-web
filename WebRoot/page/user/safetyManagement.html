@@ -1,0 +1,87 @@
+<style>
+<!--
+#savaForm table tr td:first-child{
+	width: 300px;
+}
+#savaForm table{
+	margin-left: 200px;
+}
+-->
+</style>
+<div style="overflow: auto;height: 100%;">
+	<div style="border-bottom: 1px  solid #ccc;margin-left: 280px;width:500px;">
+		<b>密码安全</b>
+	</div>
+	<br />
+	<form id="savaForm" method="post">
+		<table class="horizon-toolbar" cellpadding="5" cellspacing="5">
+			<tr>
+				<td align="right">最少字符数：</td>
+				<td><input id="minCount" name="minCount" type="text"
+					class="easyui-validatebox"
+					data-options="prompt:'设置用户登录密码的最小长度，范围8-20。'" /></td>
+				<td id="minCountText"></td>
+			</tr>
+			<tr>
+				<td align="right">最少包含大写字母数：</td>
+				<td><input id="minUpperCount" name="minUpperCount" type="text"
+					class="easyui-validatebox"
+					data-options="prompt:'设置用户密码中最少需要包含的大写字母。'" /></td>
+				<td id="minUpperCountText"></td>
+			</tr>
+			<tr>
+				<td align="right">最少包含小写字母数：</td>
+				<td><input id="minLowerCount" name="minLowerCount" type="text"
+					class="easyui-validatebox"
+					data-options="prompt:'设置用户密码中最少需要包含的小写字母。'" /></td>
+				<td id="minLowerCountText"></td>
+			</tr>
+			<tr>
+				<td align="right">最少包含多少数字：</td>
+				<td><input id="minNumCount" name="minNumCount"
+					class="easyui-validatebox" type="text"
+					data-options="prompt:'设置用户密码中最少需要包含多少个数字。'" /></td>
+				<td id="minNumCountText"></td>
+			</tr>
+			<tr>
+				<td align="right">密码更新周期：</td>
+				<td><input id="pwdModifyCycle" name="pwdModifyCycle" data-options="width:200,prompt:'设置用户密码更新周期，默认为30天，最小为1天'"/>（天）</td>
+				<td id="pwdModifyCycleText"></td>
+			</tr>
+		</table>
+		<div style="border-bottom: 1px  solid #ccc;margin-left: 280px;width:500px;">
+			<b>登录安全</b>
+		</div>
+		<br />
+		<table class="horizon-toolbar" cellpadding="5" cellspacing="5">
+			<tr>
+				<td align="right">登录失败几次后锁定账号或IP：</td>
+				<td><input id="failCount" name="failCount"
+					class="easyui-validatebox" type="text"
+					data-options="width:200,prompt:'设置某个IP最多尝试登录的次数，超过设定次数后该IP将被系统锁定，锁定时间为3分钟。范围3-20。' " />
+				</td>
+				<td id="failCountText"></td>
+			</tr>
+			<tr>
+				<td align="right">多长时间不操作自动退出登录：</td>
+				<td><input id="lostTime" name="lostTime" class="easyui-validatebox" type="text" 
+					data-options="width:200,prompt:'设置账号登录后的空闲时间。若该账号在此设定时间内容未对系统做任何操作，将自动退出系统。取值范围1-1440'" />（分钟）
+				</td>
+				<td id="lostTimeText"></td>
+			</tr>
+		</table>
+		<div style="border-bottom: 1px  solid #ccc;margin-left: 280px;width:500px;">
+			<b>系统配置</b>
+		</div>
+		<br/>
+		<table class="horizon-toolbar" cellpadding="5" cellspacing="5">
+			<tr>
+				<td align="right">安全检测：</td>
+				<td><input type="checkbox" name="securityCheck" value="true"> 启用</td>
+			</tr>
+		</table>
+		<br/>
+		<a href="javascript:void(0);" style="margin-left:490px; " class="easyui-linkbutton" data-options="iconCls:'icon-apply'" onclick="submitSafetyInfo();">应用</a>
+	</form>
+</div>
+<script src="../../js/sim/user/safety_management.js"></script>

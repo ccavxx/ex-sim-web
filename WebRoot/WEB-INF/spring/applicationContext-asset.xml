@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="
+     http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+    
+    <bean id="assetService" class="com.topsec.tsm.sim.asset.service.AssetServiceImpl" scope="singleton">
+		<property name="deviceDao" ref="deviceDao"/>
+		<property name="userDao" ref="userDao"/>
+		<property name="dataSourceService" ref="dataSourceService"/>
+		<property name="monitorService" ref="monitorService"/>
+	</bean> 
+    <bean id="deviceService" class="com.topsec.tsm.ass.service.DeviceServiceImpl" scope="singleton">
+		<property name="deviceDao" ref="deviceDao"/>
+	</bean>
+	<bean id="deviceDao" class="com.topsec.tsm.ass.dao.DeviceDaoImpl">
+		<property name="sessionFactory" ref="annotationSessionFactory"/>
+	</bean>
+	<bean id="dataSourceService" class="com.topsec.tsm.sim.asset.service.DataSourceServiceImpl" scope="singleton">
+		<property name="dataSourceDao" ref="dataSourceDao"/>
+		<property name="logFilterRuleDao" ref="logFilterRuleDao"/>
+		<property name="aggregatorRuleDao" ref="aggregatorRuleDao"/>
+		<property name="deployService" ref="nodeDeployService"/>
+		<property name="userDao" ref="userDao"/>
+	</bean>
+	<bean id="dataSourceDao" class="com.topsec.tsm.sim.asset.dao.DataSourceDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="ownerGroup" value="log"/>
+	</bean>
+	<bean id="monitorService" class="com.topsec.tsm.sim.asset.service.DataSourceServiceImpl" scope="singleton">
+		<property name="dataSourceDao" ref="monitorDao"/>
+		<property name="deployService" ref="nodeDeployService"/>
+	</bean>
+	<bean id="monitorDao" class="com.topsec.tsm.sim.asset.dao.DataSourceDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="ownerGroup" value="monitor"/>
+	</bean>
+	<bean id="assetGroupService" class="com.topsec.tsm.ass.service.AssGroupServiceImpl">
+		<property name="assGroupDao" ref="assetGroupDao"/>
+		<property name="deviceDao" ref="deviceDao"/>
+	</bean>
+	<bean id="assetGroupDao" class="com.topsec.tsm.ass.dao.AssGroupDaoImpl">
+		<property name="sessionFactory" ref="annotationSessionFactory"/>
+	</bean>
+     <bean id="topoMgrService" class="com.topsec.tsm.sim.asset.service.TopoMgrServiceImpl">
+     	<property name="topoMgrDao" ref="topoMgrDao"></property>
+     </bean>
+     <bean id="topoMgrDao" class="com.topsec.tsm.sim.asset.dao.TopoMgrDaoImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+     </bean>	
+     <bean id="topoService" class="com.topsec.tsm.sim.asset.service.TopoServiceImpl">
+     	<property name="topoDao" ref="topoDao"></property>
+     </bean>
+     <bean id="topoDao" class="com.topsec.tsm.sim.asset.dao.TopoDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="alarmMonitorService" class="com.topsec.tsm.sim.asset.service.AlarmMonitorServiceImpl">
+		<property name="alarmMonitorDao" ref="alarmMonitorDao"/>
+	</bean>
+	<bean id="alarmMonitorDao" class="com.topsec.tsm.sim.asset.dao.AlarmMonitorDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<!-- 支持上传文件 -->  
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    	<!-- 设置上传文件的最大尺寸为1MB -->  
+	    <property name="maxUploadSize">  
+	        <value>1048576</value>  
+	    </property>  
+    </bean> 
+</beans>

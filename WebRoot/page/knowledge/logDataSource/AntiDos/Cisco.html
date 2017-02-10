@@ -1,0 +1,45 @@
+<div style="padding:0 3px;position:relative;">
+	<table class="table table-striped staticHtml" style="border:1px solid #dddddd;">
+		<tbody>
+			<tr>
+				<td colspan="3" ><a name="AntiDos/思科">9.2 思科Guard系统</a></td>
+			</tr>
+			<tr>
+				<td colspan="3" >
+					<table class="table table-bordered">
+						<tr>
+							<td>名称</td>
+							<td colspan="2">思科Guard系统</td>
+							<td>类别</td>
+							<td>安全产品</td>
+						</tr>
+						<tr>
+							<td rowspan="2">日志源配置</td>
+							<td>设备类型</td>
+							<td colspan="3">AntiDos->思科->Guard</td>
+						</tr>
+						<tr>
+							<td colspan="4"><img src="/data/logDataSource02/image007.png" /></td>
+						</tr>
+						<tr>
+							<td rowspan="2">思科Guard系统cli配置</td>
+							<td>系统菜单</td>
+							<td colspan="3"></td>
+						</tr>
+						<tr>
+							<td colspan="4"><pre>Guard-conf# loggin timestamp           ------定义包含时间戳
+Guard-conf # logging host 192.168.8.30    -------设置安全管理系统的IP
+Guard-conf # logging trap 6              -------设置日志等级info
+Guard-conf #log logging on              -------启用syslog服务</pre>
+</td>
+						</tr>
+						<tr>
+							<td>备注</td>
+							<td colspan="4"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

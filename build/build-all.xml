@@ -1,0 +1,19 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<project default="build-all">    
+	<target name="build-all">
+		<ant antfile="${basedir}/../../SyslogCollector/build-collector-new.xml" inheritall="false" inheritrefs="false"/>
+		<ant antfile="${basedir}/../../ArchiveHandler/build-handler-new.xml" inheritall="false" inheritrefs="false"/>
+		<ant antfile="${basedir}/../../IndexService/build-service-new.xml" inheritall="false" inheritrefs="false"/>
+		<ant antfile="${basedir}/../../TsmFlexer/build-new.xml" inheritall="false" inheritrefs="false"/>
+		<ant antfile="${basedir}/../../TsmNode/local-build-new.xml" inheritall="false" inheritrefs="false"/>
+		<ant antfile="${basedir}/../../TalBase/local-build-new.xml" inheritall="false" inheritrefs="false"/>
+		<ant antfile="${basedir}/../../TsmBase/local-build-new.xml" inheritall="false" inheritrefs="false"/>
+		<ant antfile="${basedir}/../../TsmAss/local-build-new.xml" inheritall="false" inheritrefs="false"/>
+		<ant antfile="${basedir}/../../TsmJob/local-build-new.xml" inheritall="false" inheritrefs="false"/>
+		<ant antfile="${basedir}/../../Hibernate/build-jboss4_new.xml" inheritall="false" inheritrefs="false"/>
+		<ant antfile="${basedir}/../../Statisticor/build-new.xml" inheritall="false" inheritrefs="false"/>
+		<ant antfile="${basedir}/../../TalEventResponse/local-build-new.xml" inheritall="false" inheritrefs="false"/>
+		<ant antfile="${basedir}/../../TsmResource/local-build-new.xml" inheritall="false" inheritrefs="false"/>
+		<ant antfile="${basedir}/../../TsmUIBase/local-build-new.xml" inheritall="false" inheritrefs="false"/>
+	</target>
+</project>      

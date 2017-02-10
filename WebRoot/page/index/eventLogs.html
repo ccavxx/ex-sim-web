@@ -1,0 +1,16 @@
+<div id="elt_tabs" data-options='border:true' fit='true' class='easyui-tabs sim'>
+</div>
+<script type="text/javascript" src="/js/sim/event_log_trace.js"/>
+<script>
+	$(function(){
+		var elt = new EventLogTrace() ;
+		//某一模块回溯时需要将simHandler中的eventId赋值，当前页面会直接从simHandler获取要回溯的事件的id
+		if(simHandler.eventUUID){
+			elt.doTraceByUUID(simHandler.eventUUID) ;		
+			simHandler.eventUUID = null ;
+		}else{
+			elt.doTrace(simHandler.eventId) ;
+			simHandler.eventId = null ;
+		}
+	}) ;
+</script>

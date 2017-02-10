@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC
+    "-//GetAhead Limited//DTD Direct Web Remoting 1.0//EN"
+    "http://www.getahead.ltd.uk/dwr/dwr10.dtd">
+
+<dwr>
+  <allow>
+    <convert converter="bean" match="com.topsec.tsm.ui.topo.svg.elements.Rect"/>
+    <convert converter="bean" match="com.topsec.tsm.ui.topo.svg.elements.Text"/>
+    <convert converter="bean" match="com.topsec.tsm.ui.topo.svg.elements.Line"/>
+    <convert converter="bean" match="com.topsec.tsm.ui.topo.svg.elements.Image"/>
+    <convert converter="bean" match="com.topsec.tsm.ui.topo.svg.elements.PolyLine"/>
+    <convert converter="bean" match="com.topsec.tsm.ui.topo.svg.elements.Tspan"/>
+    <convert converter="bean" match="com.topsec.tsm.ui.topo.svg.elements.Circle"/>
+    <convert converter="bean" match="com.topsec.tsm.ui.topo.vo.NetworkToolVo"/>
+    <convert converter="bean" match="com.topsec.tsm.ui.topo.vo.TreeVo"/>
+    <convert converter="array" match="[LString"/>
+    <convert converter="map" match="java.util.Map"/>
+    <convert converter="list" match="java.util.List"/>
+  	<create creator="new" javascript="TopoMgr" scope="session">
+  		<param name="class" value="com.topsec.tsm.ui.topo.bean.TopoMgrBean"/>
+  	</create>
+  </allow> 
+</dwr>

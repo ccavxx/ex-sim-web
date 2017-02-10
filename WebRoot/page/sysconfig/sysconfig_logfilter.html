@@ -1,0 +1,49 @@
+<div class="alert alert-info" style="padding: 5px;">
+	<strong>描述 </strong>
+	日志源关联此规则后，符合过滤规则的日志才会参与关联分析，如果日志源不关联任何过滤规则，则所有的日志都会参与关联分析。
+</div>
+<form class="form-horizontal" id="sysconfig_logfilter_form" style="padding-top: 20px;">
+	<input type="hidden" name="id">
+	<input type="hidden" name="discard" value="false">
+	<div class="control-group">
+		<label class="control-label"><span style="color:red;">*</span>过滤器名称</label>
+		<div class="controls">
+			<input type="text" name="name" placeholder="过滤器名称">
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label"><span style="color:red;">*</span>日志源类型</label>
+		<div class="controls">
+			<select id="sysconfig_logfilter_logsourcetype" class="easyui-combotree" data-options="height:24,width:200,url:'/sim/datasource/categoryTree',onBeforeSelect:simSysConfLogFilter.onBeforeSelect,onClick:simSysConfLogFilter.onClick,onLoadSuccess:simSysConfLogFilter.onLoadSuccess"></select>
+			<input type="hidden" name="securityObjectType"> 
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label">是否启用</label>
+		<div class="controls">
+			<label class="checkbox">
+			  <input type="checkbox" name="available" value="1">　启用
+			</label>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label"><span style="color:red;">*</span>过滤器</label>
+		<div class="controls">
+			<div class="input-append">
+			    <textarea readonly="readonly" rows="5" name="filterSql">SELECTOR(TRUE)</textarea>
+				<div class="btn-group btn-group-vertical" style="margin-left: 5px;">
+					<button class="btn" type="button" id="sysconfig_logfilter_form_filter_default_btn">默认</button>
+					<button class="btn" type="button" id="sysconfig_logfilter_form_filter_edit_btn">编辑</button>
+				</div>
+			</div>	
+			<span class="msg-box" for="filterSql"></span>						
+		</div>
+	</div>
+	<div class="control-group">
+		<div class="controls">
+			<button type="submit" id="sysconfig_logfilter_form_submit_button" class="btn btn-small" style="margin:2px;"><i class="icon-apply" style="width:16px;height:16px;margin-right:8px;"></i>保存</button>
+			<button id="sysconfig_logfilter_form_cancel_button" class="btn btn-small" style="margin:2px;"><i class="icon-cancel" style="width:16px;height:16px;margin-right:8px;"></i>返回</button>
+		</div>
+	</div>
+</form>
+<script src="/js/sim/sysconfig/sysconfig_logfilter.js" type="text/javascript"></script>

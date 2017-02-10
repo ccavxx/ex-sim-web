@@ -1,0 +1,77 @@
+<!-- 本页面组件id命名全部使用前辍aa(add asset)统一命名 -->
+<form id="aa_assetForm" class="form-horizontal hgap5" style="margin-top: 5px;">
+  <div class="control-group">
+    <label class="control-label" for="aa_ip">IP地址</label>
+    <div class="controls">
+      <input id="aa_ip" name="ip" type="text" placeholder="IP地址">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="name">资产名称</label>
+    <div class="controls">
+      <input type="text" id="aa_name" name="name" placeholder="资产名称">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="deviceType">资产类型</label>
+    <div class="controls">
+      <input type="hidden" id="aa_deviceTypeName" name="deviceTypeName">
+      <select id="aa_deviceType" name="deviceType" 
+      		  class="easyui-combotree"
+      		  data-options="height:24,width:200,url:'/sim/asset/assetCategories',onBeforeSelect:al.beforeDeviceTypeSelect"/>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="deviceType">扫描节点</label>
+    <div class="controls">
+      <select id="aa_scanNodes" name="nodeId" 
+      		  class="easyui-combobox"
+      		  data-options="height:24,width:200,url:'/sim/node/allNode',textField:'ip',valueField:'nodeId'"/>
+    </div>
+  </div>  
+  <div class="control-group">
+    <label class="control-label" for="os">操作系统</label>
+    <div class="controls">
+      <select id="aa_os" name="osName" class="easyui-combobox" 
+    		data-options="height:24,width:200,url:'/sim/asset/osList',valueField:'value',textField:'value'"></select>
+    </div>
+  </div> 
+  <div class="control-group">
+    <label class="control-label" for="aa_hostName">主机名</label>
+    <div class="controls">
+      <input type="text" id="aa_hostName" name="hostName" placeholder="主机名">
+    </div>
+  </div>      
+  <div class="control-group">
+    <label class="control-label" for="safeRank">安全等级</label>
+    <div class="controls">
+      <select id="aa_safeRank" name="safeRank" class="easyui-combobox" 
+      		  data-options="height:24,width:200,url:'/sim/asset/safeRankList',valueField:'value',textField:'value',panelHeight:80"></select>
+    </div>
+  </div>
+  <div class="control-group">
+  	<label class="control-label" for="aa_group">业务组</label>
+    <div class="controls">
+	    <select id="aa_group" name="group" class="easyui-combobox" 
+	    		data-options="height:24,width:200,url:'/sim/asset/groups',valueField:'groupId',textField:'groupName',panelHeight:120"></select>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="aa_services">运行服务</label>
+    <div class="controls">
+      <input type="text" id="aa_services" name="services" placeholder="运行服务">
+    </div>
+  </div>  
+  <div class="control-group">
+    <label class="control-label" for="aa_manufacturer">厂商</label>
+    <div class="controls">
+      <input type="text" id="aa_manufacturer" name="manufacturer" placeholder="厂商">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="aa_linkman">联系人</label>
+    <div class="controls">
+      <input type="text" id="aa_linkman" name="linkman" placeholder="联系人">
+    </div>
+  </div>  
+</form>

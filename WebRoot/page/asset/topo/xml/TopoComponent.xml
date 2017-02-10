@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<graph>
+	<Images>
+		<Image source="img/topo/bus.png" text="线路" type="image" showLabel="false"/>
+		<Image source="img/topo/call.png" text="call" type="image" showLabel="false"/>
+		<Image source="img/topo/cloud.gif" text="cloud" type="image" showLabel="false"/>
+		<Image source="img/topo/IBM-Server.png" text="IBM-Server" type="image" showLabel="false"/>
+		<Image source="img/topo/pc.png" text="PC" type="image" showLabel="false"/>
+		<Image source="img/topo/phone.png" text="Phone" type="image" showLabel="false"/>
+		<Image source="img/topo/internet.png" text="Internet" type="image" showLabel="false"/>
+		<Image source="img/topo/satelite.png" text="Satelite" type="image" showLabel="false"/>
+		<Image source="img/topo/wireless.png" text="Wireless" type="image" showLabel="false"/>
+		<Image source="img/topo/database.png" text="Database" type="image" showLabel="false"/>
+	</Images>
+</graph>

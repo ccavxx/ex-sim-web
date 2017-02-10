@@ -1,0 +1,353 @@
+<meta name="renderer" content="webkit">
+<style type="text/css">
+   	#newPlantaskTable td,#newPlantaskTypeTable td{
+	  font-size:12px;
+	  padding:1px 60px 1px 10px;
+	  margin: 1px 2px 1px 1px;
+	}
+	#newPlantaskTypeTable tr{
+	  padding:2px 0px 3px 0px;
+	}
+   	#date,#hour,#min{
+   		width: 14px; 
+   		margin: 0px;
+   	}
+   	.pull-left select{
+   		padding-top:2px;
+   		padding-bottom:3px;
+   	}
+   	.pull-left .add-on{
+   		padding-top:2px;
+   		padding-bottom:0px;
+   	}
+   	
+   	#runTime,#month,#day{
+   		width: 40px;
+   		margin: 0px;
+   	}
+   	   	
+   	.showAllEmail{
+   		display:none;
+   		width:100px;
+   		height:60px;
+   		border:solid 1px #000;
+   	}
+   	input[disabled], select[disabled], textarea[disabled] {
+	cursor: not-allowed;
+	background-color: #eeeeee;
+	}
+	input[readonly], select[readonly], textarea[readonly] {
+	cursor: not-allowed;
+	background-color: #fff;
+	}
+</style>
+<div id="report_email_tips"></div>
+<div class="easyui-layout" data-options="fit:true" id="plan_report_panel" >
+   <div data-options="region:'west',split:true,iconCls:'icon-layout-log',headerCls:'layoutWHeader',bodyCls:'layoutWBody',title:'计划导航'" style="width:200px;">
+      <ul class="easyui-tree" id="planreport_period_execute_tree_id"></ul>
+   </div>
+   <div id="scanResultTabId" data-options="title:'计划报表',region:'center',headerCls:'sim-panel-header',bodyCls:'sim-panel-body',onResize:resizeDialog">
+      	   <table class="easyui-datagrid" id="asset_table" 
+				data-options="toolbar:'#toolbar',scrollbarSize:0,url:'/sim/mgrPlanReport/getPlanBySubType?subType=config.schedule.report&cfgType=config.schedule&scheduleType=',
+			      fitColumns:true,fit:true,pagination: 'true',striped:true,singleSelect:false,border:false,onClickCell:showEmailList,onCheck:checkRowEvent,onUncheck:uncheckRowEvent,
+			      onDblClickRow:showReportResultdiv,onLoadSuccess:reportHandler.planLoadSuccess">
+						<thead>
+							<tr>
+								<th data-options="field:'ck',align:'center',styler: function(value,row,index){
+                                    return 'vertical-align:middle;';},checkbox:true">选择</th>
+								<th data-options="field:'name',width:100">名称</th>
+								<th data-options="field:'type',width:60">类型</th>
+								<th data-options="field:'creater',width:60">创建人</th>
+								<th data-options="field:'reportFileType',width:60">导出格式</th>
+								<th data-options="field:'reportMailList',width:150,
+									formatter: emailFarmat">收件人邮箱</th>
+								<th data-options="field:'reportType',width:50,
+									formatter: function(value, row) {
+				                        if (value === 'DAY') {
+				                            return '日报表';
+				                        } else if (value === 'WEEK') {
+				                            return '周报表';
+				                        } else if (value === 'MONTH') {
+				                            return '月报表';
+				                        } else if (value === 'YEAR') {
+				                            return '年报表';
+				                        } else {
+				                            return '';
+				                        }
+				                    }">报表类型</th>
+								<th data-options="field:'nextExeTime',width:100">下次执行时间</th>
+								<th data-options="field:'createTime',width:100">创建时间</th>
+								<th data-options="field:'successResultCount',width:50">成功次数</th>
+								<th data-options="field:'failedResultCount',width:50">失败次数</th>
+								<th data-options="field:'status',width:50,
+									formatter: function(value, row) {
+				                        if (value === 'true') {
+				                            return '启用';
+				                        } else if (value === 'false') {
+				                            return '禁用';
+				                        } else {
+				                            return '';
+				                        }
+				                    }">状态</th>
+								<th data-options="field:'operation',width:50,align:'center',
+									formatter: function(value,row,index){
+										return '<a id=\'editPlan\' title=\'编辑\' style=\'width:16px;height:16px;cursor: pointer;\' class=\'icon-edit\' onclick=\'editPlanReport('+index+')\'></a>';
+									}">操作</th>
+							</tr>
+						</thead>
+					</table>
+					<div id="toolbar" data-options="border:false" style="padding:3px;">
+						<a id="createPlan" class="easyui-linkbutton"
+							data-options="iconCls:'icon-add'" onclick="newPlanReport();">新建</a>
+						<a id="deletePlan"
+							href="javascript:void(0)" class="easyui-linkbutton"
+							data-options="iconCls:'icon-remove'" onclick="removeBatchPlanReport();">删除</a>
+						<a id="noUsePlan" class="easyui-linkbutton" data-options="iconCls:'icon-enabled'" onclick="changeBatchStates('true');">启用</a>
+						<a id="noUsePlan" class="easyui-linkbutton" data-options="iconCls:'icon-disable'" onclick="changeBatchStates('false');">禁用</a>
+						<a id="showPlanResult"
+							href="javascript:void(0)" class="easyui-linkbutton"
+							data-options="iconCls:'icon-search'" onclick="showReportResultdiv();">执行结果</a>
+						<a id="emailServer" class="easyui-linkbutton" data-options="iconCls:'icon-server'" onclick="planReportFunc.setEmailServer();">邮件服务器</a>
+					</div>
+							<!--预览执行结果 开始-->
+					<div id="showPlanReportResult" title="计划报表邮件执行结果" class="easyui-panel" data-options="border:false,closable:false,fit:true" >
+					<div id="resultbutt" data-options="border:false">
+						<a id="planresulttablebu0" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-clear-all'" onclick="deleteAllResult();">清空</a>
+						<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" onclick="javascript:simHandler.onClickMenuTp('planReport_menu','/page/report/planReport.html')">返回</a>
+					</div>
+					<table class="easyui-datagrid" id="planresulttable" data-options="pagination:'true',rownumbers:'true',fitColumns:true,border:false,striped:true,fit:true,toolbar:'#resultbutt',scrollbarSize:0">
+						<thead>
+							<tr>
+								<th data-options="field:'ck',checkbox:true">全选</th>
+								<th data-options="field:'name',width:100">任务名称</th>
+								<th data-options="field:'result',width:60,
+									formatter: function(value, row) {
+				                        if (value === 'true') {
+				                            return '成功';
+				                        } else if (value === 'false') {
+				                            return '失败';
+				                        } else {
+				                            return '';
+				                        }
+				                    }">结果</th>
+								<th data-options="field:'resultDesc',width:245">描述</th>
+								<th data-options="field:'respTime',width:135">发生时间</th>
+								<th data-options="field:'useTime',width:60,formatter:function(value, row) {
+																                        return value/1000.0+'秒';
+																                     }">执行时长</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+					<!-- 预览执行结果结束 -->
+
+     </div>
+      	
+      	<!-- 新建计划报表开始 -->
+					   <div id="showPlanReport" buttons="#planReportButton"  style="display:none;">
+			<form id="planReportFrom" method="post" data-options="border:false">
+				<table id="newPlantaskTable" style="margin-left: 60px;">
+					<tr>
+						<td><div style="visibility: hidden; height=50px;">&nbsp;</div></td>
+					</tr>
+					<tr>
+						<td ><span style="color:red;">*</span>名称：</td>
+						<td ><input id="planname" name="name" type="text" style="width:215px;" /></td>
+					</tr>
+                    <tr style="display:none;">
+	                    <td>描述</td>
+	                    <td><textarea id="plandesc" name="desc" rows="2" ></textarea></td>
+                    </tr>
+					<tr style="display: none">
+					    <td align="right" width="30%">
+					      <input name="intervalType" type="radio" value="USER_DEFINE" onclick="changeIntervalType()" />自定义（时间） &nbsp;
+					    </td>
+					    <td>
+					      <input id="expression" name="expression" value="" onblur="checkExpression(this,'USER_DEFINE','cfgType');" disabled />
+					      <span id="ddd"></span>
+					    </td>
+					</tr>
+					<tr>
+						<td><span style="color:red;">*</span>执行时间：</td>
+						<td colspan="3">
+							<div id="planTimeTypeTd" class="pull-left input-prepend" style="display:inline;">
+							    <span class="add-on">每</span>
+								<select name="scheduleType" id="runTime" >
+									<option value="EVERY_DAY">天</option>
+									<option value="EVERY_WEEK">周</option>
+									<option value="EVERY_MONTH">月</option>
+									<option value="EVERY_YEAR">年</option>
+								</select>
+							</div>	
+							<div id="monthdiv" class="pull-left input-append" style="display:none;">
+								<select id="month" name="month" style="width:40px;">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+								</select>
+								<span class="add-on">月</span>
+							</div>
+							<div id="daydiv" class="pull-left input-prepend" style="display:none;">
+							    <span class="add-on">周</span>
+								<select id="day" name="day" style="width:40px;">
+									<option value="1">日</option>
+									<option value="2">一</option>
+									<option value="3">二</option>
+									<option value="4">三</option>
+									<option value="5">四</option>
+									<option value="6">五</option>
+									<option value="7">六</option>
+								</select>
+							</div>	
+							<div id="datediv" class="pull-left input-append" style="display:none;">
+							    <input type="text" id="date" name="date" class="easyui-numberbox" value="1" style="width:18px;" />
+							    <span class="add-on">日</span>
+							</div>
+							<div id="pollTime_hourInput" class="pull-left input-append" style="display:inline;">
+							    <input type="text" id="hour" name="hour" class="easyui-numberbox" value="1" style="width:18px;" />
+							    <span class="add-on">时</span>
+							</div>
+							<div id="pollTime_minInput" class="input-append pull-left" style="display:inline;">
+							    <input type="text" id="min" name="min" class="easyui-numberbox" value="1" style="width:18px;" />
+							    <span class="add-on">分</span>
+							</div>
+							<input type="hidden" id="hid_timeGroup" />
+							<span class="msg-box n-right" style="position:static;" for="hid_timeGroup"></span>
+						</td>
+								</tr>
+
+								<tr>
+									<td><span style="color:red;">*</span>计划报表类型：</td>
+									<td>
+										<input id="reportType" name="cfgKey" class="easyui-combobox" data-options="editable:false" style="height:24px;width:220px;"/>
+										<span class="msg-box n-right" style="position:static;" for="reportType"></span>
+									</td>
+								</tr>
+							</table>
+							<div style="visibility: hidden; height=0px;">&nbsp;</div>
+							<div id="showReportdiv" style="display:none;" data-options="border:false">
+								<fieldset style="width=410px;"><legend></legend> 
+					                <table id="newPlantaskTypeTable"  style="margin-left: 60px;">
+							<!-- deprecated - start -->
+							<tr style="display:none">
+								<td><span id="reportTypeCNname"></span></td>
+								<td><input name="type" id="type" type="text" class="easyui-validatebox" readonly="readonly"/></td>
+								<td><a id="btn" href="javascript:void(0)" class="easyui-linkbutton"	data-options="iconCls:'icon-add'" onclick="changeConfig();">选择</a></td>
+							</tr>
+							<!-- deprecated - end -->
+										<tr>
+											<td><div id="planReportTypediv" style="display:none;"><span style="color:red;">*</span>主题类型：</div></td>
+											<td>
+											<div id="planReportTypediv2" style="display:none;">
+												<input id="planReportType" name="planReportType" class="easyui-combobox" data-options="editable:false" style="height: 24px;width: 220px;">
+												<span class="msg-box n-right" style="position:static;" for="planReportType"></span>
+											</div>
+											</td>
+										</tr>
+										
+										<tr><!--  style="display: none" -->
+											<td><div id="deviceTypeTd" style="display:none;"><span style="color:red;">*</span>设备类型：</div></td>
+											<td>
+												<div id="deviceTypeTd1" style="display:none;">
+													<input id="deviceTypeName" name="deviceTypeName" class="easyui-combobox" data-options="editable:false" style="height: 24px;width: 220px;">
+													<span class="msg-box n-right" style="position:static;" for="deviceTypeName"></span>
+												</div>
+											</td>
+										</tr>
+										<tr><!--  style="display: none" -->
+											<td><div id="selectIPTd" style="display:none;"><span style="color:red;">*</span>日志源：</div></td>
+											<td>
+												<div id="selectIPTd1" style="display:none;">
+													<input id="selectIPName" name="selectIPName" class="easyui-combobox" data-options="editable:false" style="height: 24px;width: 220px;">
+													<span class="msg-box n-right" style="position:static;" for="selectIPName"></span>
+												</div>
+											</td>
+										</tr>
+										<tr><!--  style="display: none" -->
+											<td><div id="planReportTd" style="display:none;"><span style="color:red;">*</span>报表主题：</div></td>
+											<td>
+												<div id="planReportTd1" style="display:none;">
+													<input id="planReportTypeName" name="planReportTypeName" class="easyui-combobox" data-options="editable:false" style="height: 24px;width: 220px;">
+													<span class="msg-box n-right" style="position:static;" for="planReportTypeName"></span>
+												</div>
+											</td>
+										</tr>
+										
+										<tr id="report_type_tr" style="visibility: visible;">
+											<td><span style="color:red;">*</span>时间类型：</td>
+											<td>
+												<input id="report_type" name="reportType" class="easyui-combobox" data-options="editable:false" style="height: 24px;width: 220px;"/>
+												<span class="msg-box n-right" style="position:static;" for="report_type"></span>
+											</td>
+										</tr>
+										<tr id="configIdTr">
+											
+										</tr>
+										<tr id="report_topn_tr" style="visibility: visible;">
+											<td><span style="color:red;">*</span>数据Top(N)：</td>
+											<td>
+												<input id="report_topn" name="reportTopn" class="easyui-combobox" data-options="editable:false" style="height: 24px;width: 220px;"/>
+												<span class="msg-box n-right" style="position:static;" for="report_topn"></span>
+											</td>
+										</tr>
+										<tr>
+											<td><span style="color:red;">*</span>导出文件格式：</td>
+											<td>
+												<input id="report_filetype" name="reportFileType" class="easyui-combobox" data-options="editable:false" style="height: 24px;width: 220px;"/>
+												<span class="msg-box n-right" style="position:static;" for="report_filetype"></span>
+											</td>
+										</tr>
+										<tr>
+											<td>邮件地址：</td>
+											<td>
+												<div class="input-append">
+												  	<input id="report_mail" name="report_mail" type="text" />
+												 	<span class="add-on" style="cursor:pointer;" onclick="jsAddItemToSelect(document.getElementById('report_maillist'), $('#report_mail')[0].value,$('#report_mail')[0].value,'report_mail',this);">
+														<i class="icon-plus"></i>
+													</span>
+													<span class="msg-box n-right" style="position:static;" for="report_mail"></span>
+												</div>
+											</td>
+											<td></td>
+										</tr>
+										<tr>
+											<td><span style="color:red;">*</span>已选邮件地址：</td>
+											<td>
+												<div class="input-append">
+													<select id="report_maillist" name="reportMailList" multiple="multiple" style="height:60px;width:200px;" ></select>
+													<span class="add-on" style="vertical-align:middle; cursor: pointer;margin-top:15px;" onclick="jsRemoveSelectedItemFromSelect(document.getElementById('report_maillist'));" >
+														<i class="icon-minus"></i>
+													</span>
+													<span class="msg-box n-right" style="position:static;" for="report_maillist"></span>
+												</div>
+											</td>
+											<td></td>
+										</tr>
+										<tr>
+											<td>计划人签名：</td>
+											<td><input id="report_user" name="reportUser" type="text" style="width:215px;" /></td>
+										</tr>
+									</table>
+					            </fieldset>
+				            </div>
+						</form>
+						<div id="planReportButton" data-options="border:false">
+							<a id="editPlanReporter" class="easyui-linkbutton" style="visibility:hidden;" data-options="iconCls:'icon-save'" onclick="submitUpdatePlanReport();">更新</a>
+							<a id="createPlanReporter" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="createPlanReport();">保存</a>
+							<a id="btn" class="easyui-linkbutton" href="javascript:void(0);" data-options="iconCls:'icon-cancel'" onclick="planReportFunc.cancelBtn();">取消</a>
+						</div>
+					</div>
+					<!-- 新建计划报表结束 -->
+</div>
+<script type="text/javascript" src="/js/sim/report/planReport.js"></script>
+<script type="text/javascript" src="/js/global/jquery.xml2json.js"></script>
+<script type="text/javascript" src="/js/sim/report/jsItemToSelect.js"></script>

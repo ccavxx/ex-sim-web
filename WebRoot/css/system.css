@@ -1,0 +1,1224 @@
+@import url("sim-icon.css");
+/**被覆盖的bootsteap的样式*/
+/*easyui表格或者panel中tools图标样式*/
+.panel-tool A{
+	text-align:center;
+	line-height:16px;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+.panelToolsAct{
+/*	background-color:#FCE9B6;*/
+	background-color:#6666ff;
+	color:white;
+}
+.combo,.spinner{
+  padding: 0px 0px;
+  margin-bottom: 0px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #555555;
+  vertical-align: middle;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  border-color: #8cb7c8;
+}
+.navbar .nav > .active > a{
+	color:#FFF ;
+}
+.dropdown-menu {
+	border: 1px solid #AFB9C2;
+}
+.dropdown-menu > li {
+	background: url('/img/skin/list/list_bg.png') repeat-x ;
+	color: #4e4f51 ;
+	font-size: 12px;
+	line-height: 31px;
+}
+.dropdown-menu > li > a{
+	display: inline-block;
+	width: 120px;
+	color:#FFF;
+}
+.dropdown-menu > .menu-hover,
+.dropdown-menu > .active {
+  text-decoration: none;
+  background:url('/img/skin/list/list_hover_bg.png') repeat-x;
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus, 
+.dropdown-submenu:hover > a,
+.dropdown-submenu:focus > a {
+  color:#7cd9ff;
+  text-decoration: none;
+  background:url('/img/skin/list/list_arrow_hover.png') no-repeat left center;
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+/*----首页菜单样式----*/
+.sim-header > .sim-sys-state{
+	background: url('/img/skin/top/top_bg.png') repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);/*IE下不使用滤镜*/
+	height: 53px;
+	padding-right: 5px;
+}
+/**首页系统状态栏样式*/
+.sim-sys-state-ctnr{
+	padding:0 5px;
+	background: url('/img/skin/top/top_con_bg.png') repeat-x;
+	height: 53px;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);/*IE下不使用滤镜*/
+}
+.sim-sys-state-ctnr > div,.sim-sys-state-ctnr > a{
+	position: relative;
+	top: 6px;
+}
+.sim-sys-state-ctnr-left{
+	background: url('/img/skin/top/top_con_left.png') repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);/*IE下不使用滤镜*/
+	height: 53px;
+	width: 8px;
+}
+.sim-sys-state-ctnr-right{
+	background: url('/img/skin/top/top_con_right.png') repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);/*IE下不使用滤镜*/
+	height: 53px;
+	width: 8px;
+}
+
+.logo{
+	display:block ;
+	float:left ;
+	width: 500px;
+	line-height: 50px;
+	min-height: 50px;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);/*IE下不使用滤镜*/
+}
+.sim-header > .sim-sys-state .brand{
+	height:24px;
+	line-height: 24px;
+	font-size: 24px;
+	padding: 15px 20px 11px; 
+}
+.sim-header > .sim-menu{
+	min-height: 36px;
+	height: 36px;
+	margin:0px 1px;
+	background: url('/img/skin/dh/dh_left_bg.png') repeat-x 5% 0%;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);/*IE下不使用滤镜*/
+}
+.sim-menu > .navbar-left > .sim-menu-left{
+	background: url('/img/skin/dh/dh_left.png') no-repeat;
+	line-height: 36px;
+	min-height: 36px;
+	width:4px;
+	color:#FFF ;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);/*IE下不使用滤镜*/	
+}
+.sim-menu-join{
+	background: url('/img/skin/dh/dh_pic.png') no-repeat;
+	line-height: 36px;
+	min-height: 36px;
+	width:28px;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);/*IE下不使用滤镜*/	
+}
+.sim-menu > .navbar-right > .sim-menu-right{
+	background: url('/img/skin/dh/dh_right.png') no-repeat;
+	line-height: 36px;
+	min-height: 36px;
+	width:6px;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);/*IE下不使用滤镜*/	
+}
+.sim-menu-right-bg{
+	background: url('/img/skin/dh/dh_right_bg.png') repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);/*IE下不使用滤镜*/	
+}
+.sim-menu > .navbar-left > li{
+	margin: 0px 0px 5px 0px; 
+	background: url('/img/skin/dh/dh_line.png') no-repeat right center;
+}
+.sim-menu > .navbar-left > .first{
+	background: none;
+}
+/*wq 更新鼠标滑过导航样式  */
+.sim-menu > .navbar-left > li > a{
+	padding:8px 15px 7px;
+}
+.sim-menu > .navbar-left > li > a:hover{
+	color:#FFF ;
+	background: url('/img/skin/dh/dh_hover_bg.png') repeat-x ;
+}
+.sim-menu > .navbar-left > li > a > i{
+	margin: 0px 10px 0px 0px;
+	width: 16px;
+	height: 16px;
+	margin-top: 2px;
+}
+.sim-menu > .navbar-left > .active > a,
+.sim-menu > .navbar-left > .active > a:hover,
+.sim-menu > .navbar-left > li > a:focus{
+	color:#FFF ;
+	background: url('/img/skin/dh/dh_active_bg.png') repeat-x ;
+}
+/*wq 导航各种图标样式-start*/
+.sim-menu > .navbar-left > li > a > i.icon-home{
+	background: url("/img/skin/nav/home_pic.png");
+}
+.sim-menu > .navbar-left > li > a:hover > i.icon-home,
+.sim-menu > .navbar-left > .active > a > i.icon-home,
+.sim-menu > .navbar-left > li > a:focus > i.icon-home{
+	background: url("/img/skin/nav/home_pic_hover.png");
+}
+
+.sim-menu > .navbar-left > li > a > i.icon-asset{
+	background: url("/img/skin/nav/asset_pic.png");
+}
+.sim-menu > .navbar-left > li > a:hover > i.icon-asset,
+.sim-menu > .navbar-left > .active > a > i.icon-asset,
+.sim-menu > .navbar-left > li > a:focus > i.icon-asset{
+	background: url("/img/skin/nav/asset_pic_hover.png");
+}
+
+.sim-menu > .navbar-left > li > a > i.icon-event{
+	background: url("/img/skin/nav/event_pic.png");
+}
+.sim-menu > .navbar-left > li > a:hover > i.icon-event,
+.sim-menu > .navbar-left > .active > a > i.icon-event,
+.sim-menu > .navbar-left > li > a:focus > i.icon-event{
+	background: url("/img/skin/nav/event_pic_hover.png");
+}
+
+.sim-menu > .navbar-left > li > a > i.icon-log{
+	background: url("/img/skin/nav/log_pic.png");
+}
+.sim-menu > .navbar-left > li > a:hover > i.icon-log,
+.sim-menu > .navbar-left > .active > a > i.icon-log,
+.sim-menu > .navbar-left > li > a:focus > i.icon-log{
+	background: url("/img/skin/nav/log_pic_hover.png");
+}
+
+.sim-menu > .navbar-left > li > a > i.icon-report{
+	background: url("/img/skin/nav/report_pic.png");
+}
+.sim-menu > .navbar-left > li > a:hover > i.icon-report,
+.sim-menu > .navbar-left > .active > a > i.icon-report,
+.sim-menu > .navbar-left > li > a:focus > i.icon-report{
+	background: url("/img/skin/nav/report_pic_hover.png");
+}
+
+.sim-menu > .navbar-left > li > a > i.icon-knowledge{
+	background: url("/img/skin/nav/knowledge.png");
+}
+.sim-menu > .navbar-left > li > a:hover > i.icon-knowledge,
+.sim-menu > .navbar-left > .active > a > i.icon-knowledge,
+.sim-menu > .navbar-left > li > a:focus > i.icon-knowledge{
+	background: url("/img/skin/nav/knowledge_over.png");
+}
+
+.sim-menu > .navbar-left > li > a > i.icon-config{
+	background: url('/img/skin/nav/sysconfig.png');
+}
+.sim-menu > .navbar-left > li > a:hover > i.icon-config,
+.sim-menu > .navbar-left > .active > a > i.icon-config,
+.sim-menu > .navbar-left > li > a:focus > i.icon-config{
+	background: url("/img/skin/nav/sysconfig_over.png");
+}
+
+.sim-menu > .navbar-left > li > a > i.icon-userm{
+	background: url('/img/skin/nav/userm.png');
+}
+.sim-menu > .navbar-left > li > a:hover > i.icon-userm,
+.sim-menu > .navbar-left > .active > a > i.icon-userm,
+.sim-menu > .navbar-left > li > a:focus > i.icon-userm{
+	background: url("/img/skin/nav/userm_over.png");
+}
+/*wq 导航各种图标样式-end*/
+
+/**菜单栏小图标样式*/
+.sim-menu .navbar-right > li > a{
+	margin: 7px 10px ;
+}
+.sim-menu > .navbar-right > li > a,
+/* .sim-menu > .navbar-right > li > a > .sim-icon-config, */
+.sim-menu > .navbar-right > li > a > .sim-icon-info,
+.sim-menu > .navbar-right > li > a > .sim-icon-help,
+.sim-menu > .navbar-right > li > a > .sim-icon-exit{
+	display:block ;
+	height: 18px;
+	width: 18px ;
+	padding: 0 0px ;
+}
+/* a > .sim-icon-config{
+	background: url('/img/skin/dh/icon/config.png') no-repeat;
+} */
+a > .sim-icon-info{
+	background: url('/img/skin/dh/icon/info.png') no-repeat;
+}
+a > .sim-icon-help{
+	background: url('/img/skin/dh/icon/help.png') no-repeat;
+}
+a > .sim-icon-exit{
+	background: url('/img/skin/dh/icon/exit.png') no-repeat;
+}
+/* a:hover > .sim-icon-config{
+	background: url('/img/skin/dh/icon/config_hover.png') no-repeat;
+} */
+a:hover > .sim-icon-info{
+	background: url('/img/skin/dh/icon/info_hover.png') no-repeat;
+}
+a:hover > .sim-icon-help{
+	background: url('/img/skin/dh/icon/help_hover.png') no-repeat;
+}
+a:hover > .sim-icon-exit{
+	background: url('/img/skin/dh/icon/exit_hover.png') no-repeat;
+}
+.sim-menu-right-bg{
+	height:36px;
+}
+/**菜单栏小图标样式*/
+#server_time{
+	display: inline;
+	line-height:36px;
+	vertical-align:middle;
+	color:#FFF ;
+}
+.icon-grid{
+	background: url('/img/skin/datagrid/grid.png') ;
+}
+/*----wq layout panel header 样式 start----*/
+/**wq layout panel header 样式*/
+.panel-header > .panel-with-icon {
+	padding-left: 25px;
+}
+.layoutWHeader .panel-title{
+	line-height:18px;
+	height:18px;
+	color:#FFF;
+}
+.layoutWHeader{
+	filter: none; /*IE下不使用滤镜*/
+	padding:7px 5px 6px;
+	background:url('/img/skin/layout/header_bg.png') repeat-x;
+}
+.layoutWHeader,
+.layoutWBody{
+  	border-color: #A0CBDB;
+}
+/*wq 更新layout-west的背景颜色*/
+.layoutWBody{
+  	background-color:#eff8fb;
+}
+/*wq main_panel 的背景以及layout的split的背景*/
+#main_panel{
+	padding:5px 2px 0 2px;
+	background-color:#ffffff;
+}
+.main_panel_bgc_table,
+.main_panel_bgc_datagrid{
+	background-color:#ffffff;
+}
+.main_panel_bgc_datagrid{
+	border-top:1px solid #C5DBE8;
+}
+.layout-split-west {
+	border-right: 5px solid #ffffff;
+}
+.layout-split-north {
+  border-bottom: 5px solid #D9EEF5;
+}
+.layout-split-south {
+  border-top: 5px solid #D9EEF5;
+}
+.layout-split-east {
+  border-left: 5px solid #D9EEF5;
+}
+
+.layout-expand {
+  background-color: #F2F2F2;
+}
+.layout-expand-over {
+  background-color: #F2F2F2;
+}
+/*wq layout左侧 header body 背景 */
+.layout > .layout-expand .panel-header,
+.layout > .layout-expand .panel-body {
+	background: url('../img/skin/layout/left_hide_bg.jpg') repeat-y;
+	filter: none;
+	overflow: hidden;
+	border-color: #6BAAC0;
+}
+/*----wq layout panel header 样式 end----*/
+
+/*----wq tab header 样式 start----*/
+/*wq tab 头背景信息设置  */
+div.tabs-header>div.tabs-wrap>ul.tabs>li.tabs-selected>a.tabs-inner {
+  border-top-color: #7CB9D3;
+  border-bottom-color: #CCE1E6;
+  background:url('../img/skin/tab/tab_header_bg.png') repeat-x;
+  color: #0f596b;
+  font-weight: bold;
+  filter:none;
+}
+/*wq tab 头背景信息设置  */
+div.tabs-header>div.tabs-wrap>ul.tabs>li.tabs-selected>a.tabs-inner:before {
+	content: url('../img/skin/tab/tab_header_left.png');
+	position: absolute;
+	top: 0px ;
+	left: 0px ;
+}
+div.tabs-header>div.tabs-wrap>ul.tabs>li.tabs-selected>a.tabs-inner:after {
+	content: url('../img/skin/tab/tab_header_right.png');
+	position: absolute;
+	top: 0px;
+	right: -1px;
+}
+/*----wq tab header 样式 end----*/
+/*----wq panel header 样式 start----*/
+.assertTabs {
+	background:url('../img/skin/tab/tab_panel_header_bg.png') repeat-x;
+	filter: none;
+	border-top-style:none;
+}
+/*----wq panel header 样式 end----*/
+
+/*----首页菜单样式----*/
+/**表格样式*/
+.panel-title {
+  color: #475257;
+}
+.sim > .datagrid > .panel-header > .panel-title{
+	font-size: 13px;
+	color: #295269;
+	font-weight: bold;
+}
+.sim > .datagrid > .panel-header,
+.sim > .panel > .panel-header,
+.sim0 > .panel > .panel-header,
+.sim-panel-header{
+	padding:7px 5px 7px;
+/* 	background:url('/img/skin/accordion/header_bg.jpg') repeat-x ; */
+	background:url('/img/skin/datagrid/mid_bg2.png') repeat-x ;
+	border-left-color:#c5dce8;
+	border-right-color:#c5dce8;
+	border-top:none;
+	border-bottom:none;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);/*IE下不使用滤镜*/	
+}
+/**tabs标题栏样式*/
+.sim > .tabs-container > .tabs-header{
+	padding:2px 5px 0px;
+	border-left:1px #c5dce8 solid;
+	border-right:1px #c5dce8 solid;
+	background:url('/img/skin/datagrid/mid_bg2.png') repeat-x ;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);/*IE下不使用滤镜*/	
+}
+.sim > .tabs-container > .tabs-header > .tabs-tool{
+	background:url('/img/skin/datagrid/mid_bg2.png') repeat-x ;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);/*IE下不使用滤镜*/
+	border-width: 0px;
+}
+/**tabs标题栏样式*/
+/**layout collapse后样式*/
+.sim > .layout-expand .panel-header{
+ 	overflow: hidden;
+  	background:url('/img/skin/datagrid/mid_bg2.png') repeat;
+  	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);/*IE下不使用滤镜*/
+}
+.layout-panel .panel-header{
+	border-top-style:none;
+}
+.easyui-layout > .layout-expand-north .panel-header{
+  	overflow: hidden;
+	background: url('/img/skin/datagrid/mid_bg2.png') repeat-x;
+	border-color:#c5dce8;
+  	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);/*IE下不使用滤镜*/
+}
+.panel-tool a:hover{
+	background-color:none;
+}
+/**layout collapse后样式*/
+.sim > .datagrid > .panel-body,
+.sim > .panel > .panel-body,
+.sim0 > .panel > .panel-body,
+.sim-panel-body,
+.sim > .tabs-container > .tabs-panels,
+.noTopBorder {
+	border-top:none;
+	border-color: #C5DBE8 ;
+}
+.commonBorderColor{
+	border-color: #C5DBE8 ;
+}
+/*主页内容区域样式*/
+#main_content{
+	padding: 10px;
+}
+/*tree相关样式*/
+.sim-high-tree .tree-node {
+  height: 30px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.sim-high-tree .tree-node .tree-hit{
+  margin-top:4px;
+}
+.sim-high-tree .tree-node > .tree-title{
+	padding-top: 6px;
+}
+.sim-high-tree .tree-node > .tree-file{
+	margin-top: 6px;
+}
+/*表格相关样式*/
+.sim-high-table .datagrid-row{
+	padding-top:2px;
+	height: 30px;
+}
+
+.sim-high-table .datagrid-row .tree-title{
+	padding-top:4px ;
+	height: 24px;
+}
+.sim-high-table .datagrid-row .tree-expanded,
+.sim-high-table .datagrid-row .tree-collapsed,
+.sim-high-table .datagrid-row .tree-icon {
+	margin-top:4px ;
+}
+/*表格标题行背景*/
+.datagrid-header td,
+.datagrid-header-row > td,
+.table-header{
+	background: url('/img/skin/datagrid/datagrid_mid_bg2.png') repeat-x ;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);/*IE下不使用滤镜*/	
+}
+.datagrid-footer td{
+	background: url('/img/skin/datagrid/mid_bg2.png') repeat-x ;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);/*IE下不使用滤镜*/	
+}
+.table_column_link{
+  cursor: pointer;
+  color: #0088cc;
+  font-family: "Droid Sans",微软雅黑,"Lucida Grande","Lucida Sans",icomoon,Helvetica,Arial,Sans!important;
+}
+.datagrid-row-over .table_column_link{
+	color: #0088cc;
+}
+.datagrid-row-selected .table_column_link{
+	color: #fff;
+}
+/*表格偶数行背景色*/
+.datagrid-row-alt{
+	background-color: #E5F5FA;
+}
+.datagrid-row-over,
+.datagrid-header td.datagrid-header-over {
+  background: #66B8EE;
+  color: #00438a;
+  cursor: default;
+}
+.datagrid-row-selected {
+  background: #0081c2;
+  color: #fff;
+}
+/*系统配置样式*/
+#sysconfig_menu > .nav-header,
+.-bg{
+	color:#343d3c;
+	font-weight:bold ;
+	background: url('/img/skin/accordion/header_bg.jpg') repeat-x;
+	border-top: solid #C4DBE9 1px
+}
+/*wq  开关按钮 */
+#sysconfig_menu > .nav-header > span.menuCollapsed,
+#sysconfig_menu > .nav-header > span.menuExpanded {
+	float: right;
+	margin-top: 2px;
+	margin-right: 0px;
+	width:16px;
+	height:16px;
+	cursor: pointer;
+}
+#sysconfig_menu > .nav-header > span.menuCollapsed{
+	background: url('../img/skin/bootstrapNav/left_collapsed.png');
+}
+#sysconfig_menu > .nav-header > span.menuCollapsed:hover{
+	background: url('../img/skin/bootstrapNav/left_collapsed_hover.png');
+}
+#sysconfig_menu > .nav-header > span.menuExpanded {
+	background: url('../img/skin/bootstrapNav/left_expanded.png');
+}
+#sysconfig_menu > .nav-header > span.menuExpanded:hover {
+	background: url('../img/skin/bootstrapNav/left_expanded_hover.png');
+}
+.nav-list > li > a {
+  color:#525252 ;
+  padding: 3px 15px 3px 30px;
+  background: url('/img/skin/list/list_arrow.png') no-repeat 14px center;
+}
+.nav-list > .active > a:hover,
+.nav-list > .active > a:focus,
+.nav-list > .active > a,
+.nav-list > li > a:hover{
+	color:#5DB6F1;
+	background: url('/img/skin/list/list_arrow_hover.png') no-repeat 14px center;
+	outline: none;
+	text-shadow: none;
+	font-weight: bold;
+}
+.event-alarm-level-0{
+  background-color: #33CC00;
+  width: 50px;
+}
+.event-alarm-level-1{
+  background-color: #3399FF;
+  width: 50px;
+}
+.event-alarm-level-2{
+  background-color: #FFFF00;
+  width: 50px;
+}
+.event-alarm-level-3{
+  background-color: #FF3333;
+  width: 50px;
+}
+.event-alarm-level-4{
+  background-color: #CC0000;
+  width: 50px;
+}
+.ftp{
+	display: none;
+}
+.onlyLeftBorder{
+	border-right-style: none !important ;
+	border-bottom-style: none !important ;
+	border-top-style: none !important ;
+}
+.onlyRightBorder{
+	border-left-style: none !important 
+	border-bottom-style: none !important ;
+	border-top-style: none !important ;
+}
+.onlyTopBorder{
+	border-left-style: none !important ;
+	border-right-style: none !important ;
+	border-bottom-style: none !important ;
+}
+.onlyBottomBorder{
+	border-left-style: none !important ;
+	border-right-style: none !important ;
+	border-top-style: none !important ;
+}
+
+.query-expression-group-0 {
+  background-color: #2f7ed8;
+  border-color: #bce8f1;
+}
+
+.query-expression-group-0 h4 {
+  color: #3a87ad;
+}
+.priority1,.priority2,.priority3,.priority0,.priority4{
+	text-align:center;
+	display:block;
+	width: 100%;
+	height: 18px;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);/*IE下不使用滤镜*/
+}
+.priority0{
+	/*background-color: #DB240B ;*/
+	/* background: url('/img/icons/priority/priority0.png') no-repeat center center ; */
+	background: url('/img/icons/priority/priority0.png') no-repeat ;
+}
+.priority1{
+	/*background-color: #DB240B ;*/
+	/* background: url('/img/icons/priority/priority1.png') no-repeat center center ; */
+	background: url('/img/icons/priority/priority1.png') no-repeat ;
+}
+.priority2{
+	/*background-color: #DB240B ;*/
+	/* background: url('/img/icons/priority/priority2.png') no-repeat center center ; */
+	background: url('/img/icons/priority/priority2.png') no-repeat ;
+}
+.priority3{
+	/*background-color: #DB240B ;*/
+	/* background: url('/img/icons/priority/priority3.png') no-repeat center center ; */
+	background: url('/img/icons/priority/priority3.png') no-repeat ;
+}
+.priority4{
+	/*background-color: #DB240B ;*/
+	/* background: url('/img/icons/priority/priority4.png') no-repeat center center ; */
+	background: url('/img/icons/priority/priority4.png') no-repeat ;
+}
+/*form相关样式*/
+.asset-baseinfo .control-label{
+  float: left;
+  width: 80px;
+  padding-top:5px;
+  padding-right:10px;
+}
+/*wq form 下table 的td样式进行修改*/
+.asset-baseinfo .table td{
+  font-size:12px;
+  padding:2px;
+  height:26px;
+  vertical-align:middle;
+}
+.datagrid-toolbar{
+	background: url('/img/skin/datagrid/datagrid_toolbar32.png') repeat;
+}
+/*wq 更改按钮背景*/
+.btn:hover,
+.btn:focus {
+	color:black;
+	background-position: 0;
+}
+
+a.l-btn {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+button.btn{
+	font-size:12px;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	color:black;
+	padding:3px 18px 3px 18px;
+	height:26px;
+	border-color:#ABCEDC;
+	background: url('/img/skin/btn/btn_bg.png') repeat-x;
+}
+button.btn:hover{
+	border-color:#F7BD4B;
+	color:black;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	background: url('/img/skin/btn/btn_hover_bg.png') repeat-x;
+}
+.horizonCss-dialog-centerDiv .dialog-button{
+	text-align:center;
+}
+a.easyui-splitbutton{
+	border-color:#ABCEDC;
+  background: url('/img/skin/btn/btn_bg.png') repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);/*IE下不使用滤镜*/
+}
+a:hover.easyui-splitbutton{
+  border-color:#F7BD4B;
+  background: url('/img/skin/btn/btn_hover_bg.png') repeat-x;
+}
+a.easyui-menubutton{
+	border-color:#ABCEDC;
+  background: url('/img/skin/btn/btn_bg.png') repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);/*IE下不使用滤镜*/
+}
+a:hover.easyui-menubutton{
+  border-color:#F7BD4B;
+  background: url('/img/skin/btn/btn_hover_bg.png') repeat-x;
+}
+.dialog-button a.l-btn,
+a.easyui-linkbutton{
+  border-color:#ABCEDC;
+  background: url('/img/skin/btn/btn_bg.png') repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);/*IE下不使用滤镜*/
+}
+.datagrid-toolbar a:hover.l-btn,
+.pagination a:hover.l-btn,
+.dialog-button a:hover.l-btn,
+a:hover.easyui-linkbutton{
+  border-color:#F7BD4B;
+  background: url('/img/skin/btn/btn_hover_bg.png') repeat-x;
+}
+/*wq datagrid的分页部分样式 */
+.datagrid-pager {
+  background: #E6F3F9;
+}
+.pagination-btn-separator {
+  border-left: 1px solid #8BBBCD;
+  border-right: 1px solid #F4F8FA;
+}
+/*wq form 下table 的input样式进行修改*/
+.hgap5 > .control-group{
+	margin-top:5px;
+	margin-bottom: 0px;
+}
+.hgap3 > .control-group{
+	margin-top:3px !important;
+	margin-bottom: 0px !important;
+}
+.asset-baseinfo .table td{
+	vertical-align:middle;
+}
+.asset-baseinfo .table td div.editable,
+.asset-baseinfo .table td div.editable_input{
+	width:160px;
+	height:20px;
+	background-color:white;
+}
+.asset-baseinfo-bg{
+	background: url('/img/skin/list/nav_list_bg.png') repeat;
+	filter:none;
+}
+.daterangepicker .ranges .range_inputs>div:nth-child(2) {
+   padding-left: 0px;
+}
+.daterangepicker .ranges .input-mini{
+	width:128px;
+	margin-bottom:2px;
+}
+.daterangepicker_end_input{
+	margin-bottom:5px;
+	padding-left: 0px;
+}
+.daterangepicker_start_input label,
+.daterangepicker_end_input label {
+	margin-right:5px;
+	display:inline;
+}
+/*wq 更新accordion的展开收起的点击图标*/
+.accordion {
+	border-color:#c5dce8;
+	border-top-style:none;
+}
+.accordion-collapse {
+  	background: url('../img/skin/bootstrapNav/left_expanded.png');
+}
+.accordion-collapse:hover {
+  	background: url('../img/skin/bootstrapNav/left_expanded_hover.png');
+}
+.accordion-expand {
+  	background: url('../img/skin/bootstrapNav/left_collapsed.png');
+}
+.accordion-expand:hover {
+  	background: url('../img/skin/bootstrapNav/left_collapsed_hover.png');
+}
+.easyui-accordion-collapse {
+  	background: url('../js/jquery-easyui/themes/bootstrap/images/accordion_arrows.png') no-repeat 0 0;
+}
+.easyui-accordion-expand {
+  	background: url('../js/jquery-easyui/themes/bootstrap/images/accordion_arrows.png') no-repeat -16px 0;
+}
+.accordion .accordion-header-selected .panel-title {
+  	color: #475257;
+}
+.accordion .accordion-header{
+	background: url('/img/skin/datagrid/mid_bg2.png') repeat-x;
+	/*background: url('/img/skin/accordion/header_bg.jpg') repeat-x;*/
+	border-color:#c5dce8;
+}
+.accordion .panel-header.accordion-header,
+.accordion .panel-body{
+	border-style: none;
+}
+.accordion .accordion-body {
+	border-color:#c5dce8;
+}
+/*wq 统一表单组件样式*/
+textarea,
+.noborderadius,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+	border: 1px solid #8cb7c8;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+}
+/*input-prepend 组合 start*/
+.input-prepend.input-append .add-on:first-child,
+.input-prepend.input-append .btn:first-child,
+.input-prepend.input-append .btn:last-child,
+.form-inline select,
+.input-prepend select,
+.input-append select,
+.form-inline input,
+.input-append input,
+.input-prepend input{
+	-webkit-border-radius:0px;
+	border-radius:0px;
+}
+.input-prepend.input-append button.btn,
+.input-append button.btn{
+	height:24px;
+}
+.datagrid-cell-group{
+	line-height:20px;
+}
+input.pagination-num{
+	line-height: 16px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+.input-append .add-on,
+.input-prepend .add-on {
+	height: 20px;
+	min-width: 16px;
+	padding: 1px 3px 1px 3px;
+	font-size: 12px;
+	line-height:21px;
+	background-color: #f1f9fc;
+	border-color:#8cb7c8;
+	-webkit-border-radius: 0px !important;
+	-moz-border-radius: 0px !important;
+	border-radius: 0px !important;
+}
+.input-prepend .btn,
+.input-append .btn {
+	font-size: 12px;
+	line-height: 20px;
+	padding:1px 5px;
+	background-image:none;
+	background-color: #f1f9fc;
+	border-color:#8cb7c8;
+}
+.control-group > .controls > select,
+form table td select{
+	width:200px;
+}
+.control-group > .controls > select,
+form table td select,
+.form-inline select,
+.input-prepend select,
+.input-append select{
+	height:24px;
+	line-height:24px;
+	font-size:12px;
+	padding:2px 0;
+	border:1px solid #8cb7c8;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+}
+.asset-baseinfo .table span.combo > input.combo-text{
+	padding-right:4px;
+}
+.asset-baseinfo .table td input{
+  	width:118px;
+}
+.control-group > .controls > input,
+form table td input[type="text"],
+form table td input{
+	width:198px;
+}
+form table td input[type="text"],
+form table td input[type="password"],
+.control-group > .controls > input,
+.asset-baseinfo .table td input,
+.form-inline input,
+.input-append input,
+.input-prepend input{
+	height:22px;
+	line-height:22px;
+	font-size:12px;
+	padding:0px;
+}
+/*input-prepend 组合 end*/
+/*win 样式 start*/
+.window>.window-header>.panel-tool>.panel-tool-close{
+	background: url('/img/close.png') no-repeat;
+}
+.window>.window-header>.panel-tool>.panel-tool-close:hover{
+	background: url('/img/close-hover.png') no-repeat;
+}
+.window>.window-header>.panel-tool{
+	margin-right:12px;
+	padding-top:2px;
+}
+.window>.window-header>.panel-title{
+	color:white;
+	line-height:19px;
+}
+.window>.window-body>.panel>.dialog-content{
+	background-color:#f1f8fb;
+}
+.window .window-header{
+	background: url('/img/tc-topbg.png') repeat-x;
+	height:21px;
+	padding:6px 5px;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+	border-bottom-color:rgb(93, 159, 184);
+	background-color:rgb(93, 159, 184);
+	
+}
+.window .window-body {
+  -moz-border-radius:0px 0px 3px 3px;
+  -webkit-border-radius:0px 0px 3px 3px;
+  border-radius:0px 0px 3px 3px;
+}
+.window,
+.window .window-body {
+  border-width:0;
+}
+.window {
+  background:none;
+  background-color:rgb(93, 159, 184);
+  padding:1px 1px;
+  filter:none;
+  -moz-border-radius:3px;
+  -webkit-border-radius:3px;
+  border-radius:3px;
+}
+
+/*win 样式 end*/
+.hand{
+	cursor: pointer;
+}
+.user-info{
+	display: inline-block;
+	height: 32px;
+	line-height: 32px;
+}
+.user-info > i,
+.user-info > span{
+	float: left ;
+	padding-left: 3px;
+	color:#FFFFFF ;
+}
+.user-info > i{
+	position: relative;
+	top: 9px;
+	margin-top: 0px;
+}
+.icon16{
+	width: 16px;
+	height: 16px;
+}
+.right-icon{
+	 width: 16px;
+	 height: 16px;
+	 float: right;
+	 margin: 0px 0px 0px 5px;
+	 padding: 0px;
+	 border: none;"
+}
+/* 消息提示框信息位置·居中 */
+.messager-body{
+	padding:5px;
+	font-size:16px;
+	font-family:"Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,MingLiu;
+}
+/*footer 信息样式*/
+.footer{
+	min-height: 32px;
+	height: 32px;
+	margin:0px 1px;
+	text-align:center;
+	background: url('/img/skin/dh/dh_footer_bg.png') repeat-x 5% 0%;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);/*IE下不使用滤镜*/
+}
+.footer span{
+	line-height: 32px;
+	min-height: 32px;
+}
+.footer-text{
+	font-size:12px;
+	color:white;
+}
+.footer-left{
+	background: url('/img/skin/dh/dh_footer_left.png') no-repeat;
+	float:left;
+	width: 8px;
+}
+.footer-right{
+	background: url('/img/skin/dh/dh_footer_right.png') no-repeat;
+	float:right;
+	width: 8px;
+}
+.query-expression-group,
+.query-expression{
+	background-color:#fff;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	color:#A37338;
+}
+.horizon-toolbar input,
+.horizon-toolbar select,
+.horizon-toolbar textarea{
+	margin-bottom:0;
+}
+textarea{
+	resize:none;
+	font-size:12px;
+}
+.tableBody td{
+	padding-top:4px;
+}
+.tableHead,
+.tableBody{
+	width:100%;
+}
+.tableHead td,
+.tableBody td{
+	vertical-align:middle;
+	padding-top:4px;
+}
+.tableHead td{
+	text-align:center;
+}
+table td.txl{
+	text-align:left;
+}
+table td.txc{
+	text-align:center;
+}
+table td.txr{
+	text-align:right;
+}
+.bordert1{
+	border-top:1px solid #CDEDFD;
+}
+.borderb1{
+	border-bottom:1px solid #CDEDFD;
+}
+.margin0{
+	margin:0;
+}
+.margint5{
+	margin-top:5px;
+}
+.marginl5{
+	margin-left:5px;
+}
+.p0{
+	padding:0;
+}
+.p5{
+	padding:5px;
+}
+.p20{
+	padding:20px;
+}
+.pt5{
+	padding-top:5px;
+}
+.pl200{
+	padding-left:200px;
+}
+.h32{
+	height:32px;
+}
+.h35{
+	height:35px;
+}
+.h40{
+	height:40px;
+}
+.h80{
+	height:80px;
+}
+.h150{
+	height:150px;
+}
+.h200{
+	height:200px;
+}
+.h270{
+	height:270px;
+}
+.w25{
+	width:25px;
+}
+.w50{
+	width:50px;
+}
+.w85{
+	width:85px;
+}
+.w100{
+	width:100px;
+}
+.w120{
+	width:120px;
+}
+.w200{
+	width:200px;
+}
+.w330{
+	width:330px;
+}
+.w360{
+	width:360px;
+}
+.w880{
+	width:880px;
+}
+/*datagrid detailView 内容样式*/
+.horizon_wrappDetailView{
+	margin-top:5px;
+	font-size:12px;
+}
+.horizon_wrappDetailView p{
+	padding:0;
+	border-bottom:1px solid #ccc;
+}
+.horizon_wrappDetailView_pHead{
+	font-size:14px;
+	font-weight:bolder;
+	background-color:#99ccff;
+}
+.horizon_wrappDetailView_p_spHead{
+	display:inline-block;
+	width:100px;
+}
+/* 设备支持页面回到顶部样式-start */
+#totopBox{
+	position:fixed;
+	bottom:35px;
+	right:50px;
+}
+#totop{
+	display:block;
+	background:url("/img/totop.png") no-repeat left top;
+	width:46px;
+	height:46px;
+}
+#totop:hover{
+	background:url("/img/totop.png") no-repeat left -47px;
+}
+/* 设备支持页面回到顶部样式-end */
+/*modal遮罩层透明度*/
+.modal-backdrop,
+.modal-backdrop.fade.in {
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+}
+.panel_tool_select{
+	line-height:20px;
+	height: 20px;
+	width: 75px;
+	font-size: 12px;
+	padding:0px;
+	margin:4px;
+	background:url('/img/skin/datagrid/mid_bg2.png') repeat-x 1px center;
+	border-color: #89C7DD ;
+}
+input[readonly].cursorHand,
+input[disabled].cursorHand{
+  cursor:pointer;
+}
+.disable-selection{
+	moz-user-select: -moz-none;
+	-moz-user-select: none;
+	-o-user-select:none;
+	-khtml-user-select:none;
+	-webkit-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
+}
+.echarts-dataview p{
+	padding: 4px; 
+}

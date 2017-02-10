@@ -1,0 +1,16 @@
+<table id="report2_event_table" 
+       data-options="fitColumns:true,singleSelect:true,fit:true,scrollbarSize:0,striped:true,border:false,
+       				 pagination:true">  
+    <thead>  
+        <tr>  
+            <th data-options="field:'END_TIME',width:130">时间</th>  
+            <th data-options="field:'PRIORITY',width:50,align:'center',formatter:simHandler.levelFormatter">级别</th>
+            <th data-options="field:'NAME',width:170,formatter:simHandler.eventNameFormatter">事件名称</th>
+            <th data-options="field:'DVC_ADDRESS',width:90">设备地址</th>
+            <th data-options="field:'SRC_ADDRESS',width:90">源地址</th>
+            <th data-options="field:'DEST_ADDRESS',width:90">目的地址</th>
+            <th data-options="field:'CAT1_ID',width:110">一级分类</th>
+			<th data-options="field:'CAT2_ID',width:110">二级分类</th>
+        </tr>
+    </thead>
+</table>

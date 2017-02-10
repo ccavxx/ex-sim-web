@@ -1,0 +1,54 @@
+<!-- 本页面组件id命名全部使用前辍ad(asset discover)统一命名 -->
+<div class="easyui-layout" data-options="fit:true,border:false">
+	<div data-options="region:'east',width:180,headerCls:'assertTabs'" title="历史记录">
+		<ul id="ad_scanHistory" class="easyui-tree" data-options="fit:true,border:false,url:'/sim/assetlist/scanHistory',onSelect:ad.showScanHistory,formatter:ad.scanHistoryFormatter"></ul>
+	</div>
+	<div data-options="region:'center',iconCls:'icon-panel-open',headerCls:'assertTabs',border:false" title="资产发现">
+		<table id="ad_discoveredAssets" class="easyui-datagrid" 
+			   toolbar="#ad_assetDiscoverToolbar"
+			   data-options="border:false,fit:true,striped:true,scrollbarSize:0,
+			   				fitColumns:true,rownumbers:true,singleSelect:true,
+			   				idField:'ip',onClickRow:ad.rowClickHandler"
+		       >
+			<thead>  
+				<tr>
+					<th data-options="field:'ip',width:100">IP</th>
+					<th data-options="field:'name',width:150,editor:'text'"><span style="color:red;">*</span>资产名称</th>
+					<th data-options="field:'deviceType',width:150,editor:assetCategoryEditor,formatter:deviceTypeFmt"><span style="color:red;">*</span>资产类型</th>
+					<th data-options="field:'osName',width:150,editor:osEditor">操作系统</th>
+					<th data-options="field:'hostName',width:100,editor:'text'">主机名</th>
+					<th data-options="field:'safeRank',width:80,editor:safeRankEditor">安全等级</th>
+					<th data-options="field:'mac',width:130,editor:'text',hidden:true">MAC</th>
+					<th data-options="field:'services',hidden:true,width:200,editor:'text'">运行服务</th>
+					<th data-options="field:'manufacturer',hidden:true,width:100,editor:'text'">厂商</th>
+					<th data-options="field:'linkman',width:80,editor:'text'">联系人</th>
+					<th data-options="field:'undefined',width:100,align:'center',formatter:ad.operationFmt">操作</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+<div id="ad_assetDiscoverToolbar">
+	<div id="ad_progress" class="progress progress-striped active" style="margin-bottom: 5px;display:none;">
+	  <div class="bar" style="width: 0%;"/>
+	</div>
+	<div class="form-inline" style="height:28px;padding:2px;">
+		  <div class="input-prepend">
+			  <span class="add-on">网络地址：</span>
+			  <input id="ad_networkAddress" type="text" class="input-medium" placeholder="网络地址" >
+		  </div>
+		  <div class="input-prepend">
+			  <span class="add-on">掩码：</span>
+		  	  <input id="ad_netmask" type="text" class="input-mini easyui-numberbox" data-options="min:1,max:30" placeholder="掩码" value="24">
+		  </div>
+		  <div class="input-prepend">
+			  <span class="add-on">扫描结点：</span>
+			  <select id="ad_scanNodes" class="input-medium" name="nodeId"/>
+		  </div>
+		  <!--  a id="ad_startScan" iconCls="icon-panel-open" class="easyui-linkbutton" onclick="ad.scanAsset(false)">开始扫描</a>-->
+		  <a id="ad_rescan" iconCls="icon-reload" class="easyui-linkbutton" onclick="ad.scanAsset(true)">扫描</a>
+		  <a id="ad_stopScan" iconCls="icon-stop-refresh" class="easyui-linkbutton" onclick="ad.stopScan()">停止扫描</a>
+	</div>
+</div>
+
+<script type="text/javascript" src="/js/sim/asset/asset_discover.js"></script>

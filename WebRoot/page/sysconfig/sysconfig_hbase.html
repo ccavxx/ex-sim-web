@@ -1,0 +1,42 @@
+<div class="easyui-panel" style="padding: 5px;" data-options="fit:true,title:'链接配置',headerCls:'sim-panel-header',bodyCls:'sim-panel-body'">
+	<div class="alert alert-info">
+		<strong>描述 </strong>
+		 配置以下信息。
+	</div>
+	<div class="row-fluid">
+		<div class="span7">
+			<form class="form-horizontal" id="sysconfig_hbase_form">
+				<div class="control-group">
+					<label class="control-label"><span style="color:red;">*</span>根节点</label>
+					<div class="controls">
+						<input type="text" name="parent" >
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label"><span style="color:red;">*</span>地址</label>
+					<div class="controls">
+						<input type="text" name="quorum">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label"><span style="color:red;">*</span>节点端口</label>
+					<div class="controls">
+						<input type="text" name="clientPort" >
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label"><span style="color:red;">*</span>Master配置</label>
+					<div class="controls">
+						<input type="text" name="master" >
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<button type="submit" class="btn btn-small" style="margin:2px;"><i class="icon-apply" style="width:16px;height:16px;margin-right:8px;"></i>应用</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div id="sysconf_hbase_res_msg"></div>
+</div>

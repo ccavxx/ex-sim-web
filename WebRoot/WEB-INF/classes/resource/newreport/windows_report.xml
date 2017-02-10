@@ -1,0 +1,2253 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<PredefinedReports>
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows" imp_group_desc="Windows Logon Reports"
+		imp_group_name="Windows Logon Reports" impgroupid="1"
+		impid="ImportantReportsGroup:impgroupid:1" IS_GROUP_SHOW="true">
+
+		<ImportantReports imp_report_desc="Windows Interactive Logon"
+			imp_reportname="Interactive Logon"
+			reportcriteria="(((EVENTID:4624) OR (EVENTID:528) OR (EVENTID:540)) AND (LOGONTYPE:2))"
+			showfields="USERNAME:HOSTNAME:REMOTEIP:TIME" sqltype="lucene"></ImportantReports>
+
+		<ImportantReports imp_report_desc="Windows Remote Interactive Logon"
+			imp_reportname="Remote Interactive Logon"
+			reportcriteria="(((EVENTID:4624) OR (EVENTID:528) OR (EVENTID:540)) AND (LOGONTYPE:10))"
+			showfields="USERNAME:REMOTEIP:HOSTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Windows Network Logon"
+			imp_reportname="Network Logon"
+			reportcriteria="(((EVENTID:4624) OR (EVENTID:528) OR (EVENTID:540)) AND (LOGONTYPE:3))"
+			showfields="USERNAME:REMOTEHOST:REMOTEIP:HOSTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Terminal Server Reconnected"
+			imp_reportname="Terminal Server Reconnected" reportcriteria="((EVENTID:682) OR (EVENTID:4778))"
+			showfields="USERNAME:REMOTEHOST:REMOTEIP:HOSTNAME:SESSIONTYPE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Terminal Server Disconnected"
+			imp_reportname="Terminal Server Disconnected" reportcriteria="((EVENTID:683) OR (EVENTID:4779))"
+			showfields="USERNAME:REMOTEHOST:REMOTEIP:HOSTNAME:SESSIONTYPE:TIME">
+		</ImportantReports>
+
+		<!-- ImportantReports imp_report_desc="Windows Logons Overview"
+			imp_reportname="Logons Overview" reportcriteria="((EVENTID:4624) OR (EVENTID:528) OR (EVENTID:540))"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:REMOTEIP:LOGONTYPE:TIME">
+		</ImportantReports -->
+
+		<ImportantReports imp_report_desc="Privilege Assigned to New Logon"
+			imp_reportname="Privilege Assigned to New Logon" reportcriteria="((EVENTID:4672) OR (EVENTID:576))"
+			showfields="USERNAME:HOSTNAME:ACCESSRIGHT:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Logon Attempt Using explicit Credentials"
+			imp_reportname="Logon Attempt Using explicit Credentials"
+			reportcriteria="((EVENTID:4648) OR (EVENTID:552))"
+			showfields="USERNAME:REMOTEHOST:HOSTNAME:TARGETUSER:TARGETDOMAIN:PROCESSNAME:TIME">
+		</ImportantReports><!--cse -->
+
+		<!-- ImportantReports imp_report_desc="Top Logons by User"
+			imp_reportname="Top Logons by User" reportcriteria="((EVENTID:4624) OR (EVENTID:528) OR (EVENTID:540))"
+			showfields="USERNAME:REMOTEHOST:REMOTEIP:HOSTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Top Logons by Host"
+			imp_reportname="Top Logons by Host" reportcriteria="((EVENTID:4624) OR (EVENTID:528) OR (EVENTID:540))"
+			showfields="USERNAME:REMOTEHOST:REMOTEIP:HOSTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Top Logons by RemoteHost"
+			imp_reportname="Top Logons by RemoteHost" reportcriteria="((EVENTID:4624) OR (EVENTID:528) OR (EVENTID:540))"
+			showfields="USERNAME:REMOTEHOST:REMOTEIP:HOSTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Top Logons by Domain"
+			imp_reportname="Top Logons by Domain" reportcriteria="((EVENTID:4624) OR (EVENTID:528) OR (EVENTID:540))"
+			showfields="USERNAME:REMOTEHOST:REMOTEIP:HOSTNAME:TIME">
+		</ImportantReports -->
+
+		<ImportantReports imp_report_desc="Logons Trend"
+			imp_reportname="Logons Trend" reportcriteria="((EVENTID:4624) OR (EVENTID:528) OR (EVENTID:540))"
+			showfields="USERNAME:REMOTEHOST:REMOTEIP:HOSTNAME:TIME">
+		</ImportantReports>
+
+	</ImportantReportsGroup>
+
+
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows" imp_group_desc="Windows Failed Logon Reports"
+		imp_group_name="Windows Failed Logon Reports" impgroupid="1"
+		impid="ImportantReportsGroup:impgroupid:2" IS_GROUP_SHOW="true">
+
+		<ImportantReports imp_report_desc="Windows Failed Logons due to Bad UserName"
+			imp_reportname="Failed Logons due to Bad UserName"
+			reportcriteria="(((EVENTID:4625) AND ((CATEGORY:0xC0000064) OR (SUBCATEGORY:0xC0000064))) OR (EVENTID:529))"
+			showfields="USERNAME:REMOTEIP:HOSTNAME:REMOTEHOST:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Windows Failed Logons due to Bad Password"
+			imp_reportname="Failed Logons due to Bad Password"
+			reportcriteria="(((EVENTID:4625) AND ((CATEGORY:0xC000006A) OR (SUBCATEGORY:0xC000006A))) OR (EVENTID:529))"
+			showfields="USERNAME:REMOTEIP:HOSTNAME:REMOTEHOST:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Failed logons during non-working hours"
+			imp_reportname="Failed logons during non-working hours"
+			reportcriteria="(((EVENTID:4625) AND ((CATEGORY:0xC000006F) OR (SUBCATEGORY:0xC000006F))) OR (EVENTID:530))"
+			showfields="USERNAME:REMOTEIP:HOSTNAME:REMOTEHOST:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Failed logons due to disabled accounts"
+			imp_reportname="Failed logons due to disabled accounts"
+			reportcriteria="(((EVENTID:4625) AND ((CATEGORY:0xC0000072) OR (SUBCATEGORY:0xC0000072))) OR (EVENTID:531))"
+			showfields="USERNAME:REMOTEIP:HOSTNAME:REMOTEHOST:HOSTNAME:TIME">
+		</ImportantReports>
+
+
+		<ImportantReports imp_report_desc="Failed logons due to account lock outs"
+			imp_reportname="Failed logons due to account lock outs"
+			reportcriteria="(((EVENTID:4625) AND ((SUBCATEGORY:0xC0000234) OR (CATEGORY:0xC0000234))) OR (EVENTID:539))"
+			showfields="USERNAME:REMOTEIP:HOSTNAME:REMOTEHOST:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Failed logons due to account expiry"
+			imp_reportname="Failed logons due to account expiry"
+			reportcriteria="(((EVENTID:4625) AND ((CATEGORY:0xC0000193) OR (SUBCATEGORY:0xC0000193))) OR (EVENTID:532))"
+			showfields="USERNAME:REMOTEHOST:REMOTEIP:HOSTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Failed logons due to password expiry"
+			imp_reportname="Failed logons due to password expiry"
+			reportcriteria="(((EVENTID:4625) AND  ((CATEGORY:0xC0000071) OR (SUBCATEGORY:0xC0000071))) OR (EVENTID:535))"
+			showfields="USERNAME:REMOTEIP:HOSTNAME:REMOTEHOST:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Windows Failed Interactive Logons"
+			imp_reportname="Failed Interactive Logons"
+			reportcriteria="((EVENTID:4625) OR (EVENTID:529) OR (EVENTID:530) OR (EVENTID:531) OR (EVENTID:532) OR (EVENTID:533) OR (EVENTID:534) OR (EVENTID:535) OR (EVENTID:536) OR (EVENTID:537) OR (EVENTID:539)) AND (LOGONTYPE:2)"
+			showfields="USERNAME:HOSTNAME:FAILUREREASON:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Windows Failed Remote Interactive Logons"
+			imp_reportname="Failed Remote Interactive Logons"
+			reportcriteria="((EVENTID:4625) OR (EVENTID:529) OR (EVENTID:530) OR (EVENTID:531) OR (EVENTID:532) OR (EVENTID:533) OR (EVENTID:534) OR (EVENTID:535) OR (EVENTID:536) OR (EVENTID:537) OR (EVENTID:539)) AND (LOGONTYPE:10)"
+			showfields="USERNAME:REMOTEIP:HOSTNAME:FAILUREREASON:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Windows Failed Network Logons"
+			imp_reportname="Failed Network Logons"
+			reportcriteria="((EVENTID:4625) OR (EVENTID:529) OR (EVENTID:530) OR (EVENTID:531) OR (EVENTID:532) OR (EVENTID:533) OR (EVENTID:534) OR (EVENTID:535) OR (EVENTID:536) OR (EVENTID:537) OR (EVENTID:539)) AND (LOGONTYPE:3)"
+			showfields="USERNAME:REMOTEIP:HOSTNAME:REMOTEHOST:FAILUREREASON:TIME">
+		</ImportantReports>
+
+		<!-- ImportantReports imp_report_desc="Windows Failed Logons Overview"
+			imp_reportname="Failed Logons Overview"
+			reportcriteria="((EVENTID:4625) OR (EVENTID:529) OR (EVENTID:530) OR (EVENTID:531) OR (EVENTID:532) OR (EVENTID:533) OR (EVENTID:534) OR (EVENTID:535) OR (EVENTID:536) OR (EVENTID:537) OR (EVENTID:539))"
+			showfields="USERNAME:REMOTEIP:HOSTNAME:REMOTEHOST:FAILUREREASON:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Top Windows Failed Logons by User"
+			imp_reportname="Top Failed Logons by User"
+			reportcriteria="((EVENTID:4625) OR (EVENTID:529) OR (EVENTID:530) OR (EVENTID:531) OR (EVENTID:532) OR (EVENTID:533) OR (EVENTID:534) OR (EVENTID:535) OR (EVENTID:536) OR (EVENTID:537) OR (EVENTID:539))"
+			showfields="USERNAME:REMOTEHOST:REMOTEIP:HOSTNAME:FAILUREREASON:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Top Windows Failed Logons by Host"
+			imp_reportname="Top Failed Logons by Host"
+			reportcriteria="((EVENTID:4625) OR (EVENTID:529) OR (EVENTID:530) OR (EVENTID:531) OR (EVENTID:532) OR (EVENTID:533) OR (EVENTID:534) OR (EVENTID:535) OR (EVENTID:536) OR (EVENTID:537) OR (EVENTID:539))"
+			showfields="USERNAME:REMOTEHOST:REMOTEIP:HOSTNAME:FAILUREREASON:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Top Windows Failed Logons by RemoteHost"
+			imp_reportname="Top Failed Logons by RemoteHost"
+			reportcriteria="((EVENTID:4625) OR (EVENTID:529) OR (EVENTID:530) OR (EVENTID:531) OR (EVENTID:532) OR (EVENTID:533) OR (EVENTID:534) OR (EVENTID:535) OR (EVENTID:536) OR (EVENTID:537) OR (EVENTID:539))"
+			showfields="USERNAME:REMOTEHOST:REMOTEIP:HOSTNAME:FAILUREREASON:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Top Windows Failed Logons by Domain"
+			imp_reportname="Top Failed Logons by Domain"
+			reportcriteria="((EVENTID:4625) OR (EVENTID:529) OR (EVENTID:530) OR (EVENTID:531) OR (EVENTID:532) OR (EVENTID:533) OR (EVENTID:534) OR (EVENTID:535) OR (EVENTID:536) OR (EVENTID:537) OR (EVENTID:539))"
+			showfields="USERNAME:REMOTEHOST:REMOTEIP:HOSTNAME:FAILUREREASON:TIME">
+		</ImportantReports>
+
+
+		<ImportantReports imp_report_desc="Top reasons for windows logon failure"
+			imp_reportname="Top reasons for windows logon failure"
+			reportcriteria="((EVENTID:4625) OR (EVENTID:529) OR (EVENTID:530) OR (EVENTID:531) OR (EVENTID:532) OR (EVENTID:533) OR (EVENTID:534) OR (EVENTID:535) OR (EVENTID:536) OR (EVENTID:537) OR (EVENTID:539))"
+			showfields="USERNAME:REMOTEHOST:REMOTEIP:HOSTNAME:FAILUREREASON:TIME">
+		</ImportantReports -->
+
+		<ImportantReports imp_report_desc="Windows Failed Logons Trend"
+			imp_reportname="Failed Logons Trend"
+			reportcriteria="((EVENTID:4625) OR (EVENTID:529) OR (EVENTID:530) OR (EVENTID:531) OR (EVENTID:532) OR (EVENTID:533) OR (EVENTID:534) OR (EVENTID:535) OR (EVENTID:536) OR (EVENTID:537) OR (EVENTID:539))"
+			showfields="USERNAME:REMOTEHOST:REMOTEIP:HOSTNAME:FAILUREREASON:TIME">
+		</ImportantReports>
+
+	</ImportantReportsGroup>
+
+
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows" imp_group_desc="Windows Logoff Reports"
+		imp_group_name="Windows Logoff Reports" impgroupid="1"
+		impid="ImportantReportsGroup:impgroupid:3" IS_GROUP_SHOW="true">
+
+		<ImportantReports imp_report_desc="Windows Network Logoffs"
+			imp_reportname="Network Logoffs" reportcriteria="((EVENTID:4634) OR (EVENTID:538)) AND (LOGONTYPE:3)"
+			showfields="USERNAME:HOSTNAME:DOMAIN:SEVERITY:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Windows Interactive Logoffs"
+			imp_reportname="Interactive Logoffs" reportcriteria="((EVENTID:4634) OR (EVENTID:538)) AND (LOGONTYPE:2)"
+			showfields="USERNAME:HOSTNAME:DOMAIN:SEVERITY:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Windows Remote Interactive Logoffs"
+			imp_reportname="Remote Interactive Logoffs" reportcriteria="((EVENTID:4634) OR (EVENTID:538)) AND (LOGONTYPE:10)"
+			showfields="USERNAME:HOSTNAME:DOMAIN:SEVERITY:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Windows User Initiated Logoffs"
+			imp_reportname="User Initiated Logoffs" reportcriteria="((EVENTID:4647) OR (EVENTID:551))"
+			showfields="USERNAME:HOSTNAME:DOMAIN:TIME">
+		</ImportantReports>
+
+		<!-- ImportantReports imp_report_desc="Windows Logoff Activity Overview"
+			imp_reportname="Logoff Activity Overview" reportcriteria="((EVENTID:4634) OR (EVENTID:538))"
+			showfields="USERNAME:HOSTNAME:DOMAIN:LOGONTYPE:SEVERITY:TIME">
+		</ImportantReports -->
+	</ImportantReportsGroup>
+
+
+	<!--Process Tracking -->
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows" imp_group_desc="Process Tracking"
+		imp_group_name="Process Tracking" impgroupid="4"
+		impid="ImportantReportsGroup:impgroupid:4" IS_GROUP_SHOW="true">
+
+		<ImportantReports imp_report_desc="Process Created"
+			imp_reportname="Process Created" reportcriteria="((EVENTID:4688) OR (EVENTID:592))"
+			showfields="USERNAME:HOSTNAME:PROCESSNAME:PROCESSID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Process Terminated"
+			imp_reportname="Process Terminated" reportcriteria="((EVENTID:4689) OR (EVENTID:593))"
+			showfields="USERNAME:HOSTNAME:PROCESSNAME:PROCESSID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Scheduled Task Created"
+			imp_reportname="Scheduled Task Created" reportcriteria="(EVENTID:4698)"
+			showfields="USERNAME:HOSTNAME:SERVICENAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Scheduled Task Deleted"
+			imp_reportname="Scheduled Task Deleted" reportcriteria="(EVENTID:4699)"
+			showfields="USERNAME:HOSTNAME:SERVICENAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Scheduled Task Enabled"
+			imp_reportname="Scheduled Task Enabled" reportcriteria="(EVENTID:4700)"
+			showfields="USERNAME:HOSTNAME:SERVICENAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Scheduled Task Disabled"
+			imp_reportname="Scheduled Task Disabled" reportcriteria="(EVENTID:4701)"
+			showfields="USERNAME:HOSTNAME:SERVICENAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Scheduled Task Updated"
+			imp_reportname="Scheduled Task Updated" reportcriteria="(EVENTID:4702)"
+			showfields="USERNAME:HOSTNAME:SERVICENAME:TIME">
+		</ImportantReports>
+
+		<!-- ImportantReports imp_report_desc="Top Process Creation by User"
+			imp_reportname="Top Process Creation by User" reportcriteria="((EVENTID:4688) OR (EVENTID:592))"
+			showfields="USERNAME:HOSTNAME:PROCESSNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Top Process Created"
+			imp_reportname="Top Process Created" reportcriteria="((EVENTID:4688) OR (EVENTID:592))"
+			showfields="USERNAME:HOSTNAME:PROCESSNAME:TIME">
+		</ImportantReports -->
+
+	</ImportantReportsGroup>
+
+
+	<!--Active Directory -->
+	<!--User Account Management -->
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows"
+		imp_group_desc="Active Directory,Domain Controller" imp_group_name="User Account Management"
+		impgroupid="1" impid="ImportantReportsGroup:impgroupid:5"
+		IS_GROUP_SHOW="true">
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="User Account Created" reportcriteria="((EVENTID:4720) OR (EVENTID:624))"
+			showfields="USERNAME:HOSTNAME:TARGETUSER:TARGETDOMAIN:SAMACCOUNTNAME:DISPLAYNAME:USERPRINCIPALNAME:PASSWORDLASTSET:ACCOUNTEXPIRES:USERACCOUNTCONTROL:LOGONHOURS:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="User Account Deleted" reportcriteria="((EVENTID:4726) OR (EVENTID:630))"
+			showfields="USERNAME:HOSTNAME:TARGETUSER:TARGETDOMAIN:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="User Account Enabled" reportcriteria="((EVENTID:4722) OR (EVENTID:626))"
+			showfields="USERNAME:HOSTNAME:TARGETUSER:TARGETDOMAIN:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="User Account Disabled" reportcriteria="((EVENTID:4725) OR (EVENTID:629))"
+			showfields="USERNAME:HOSTNAME:TARGETUSER:TARGETDOMAIN:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="User Account Own Password Changes" reportcriteria="((EVENTID:4723) OR (EVENTID:627)) AND (SEVERITY:3)"
+			showfields="USERNAME:HOSTNAME:TARGETUSER:TARGETDOMAIN:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="User Account Own Password Changes Failure"
+			reportcriteria="((EVENTID:4723) OR (EVENTID:627)) AND (SEVERITY:4)"
+			showfields="USERNAME:HOSTNAME:TARGETUSER:TARGETDOMAIN:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="User Account Password Changes" reportcriteria="((EVENTID:4724) OR (EVENTID:628)) AND (SEVERITY:3)"
+			showfields="USERNAME:HOSTNAME:TARGETUSER:TARGETDOMAIN:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="User Account Password Changes Failure"
+			reportcriteria="((EVENTID:4724) OR (EVENTID:628)) AND (SEVERITY:4)"
+			showfields="USERNAME:HOSTNAME:TARGETUSER:TARGETDOMAIN:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="User Account Modified" reportcriteria="((EVENTID:4738) OR (EVENTID:642))"
+			showfields="USERNAME:HOSTNAME:TARGETUSER:TARGETDOMAIN:SAMACCOUNTNAME:DISPLAYNAME:USERPRINCIPALNAME:PASSWORDLASTSET:ACCOUNTEXPIRES:USERACCOUNTCONTROL:LOGONHOURS:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="User Accounts Created With no password expiry"
+			reportcriteria="((EVENTID:4738) OR (EVENTID:642)) AND (USERACCOUNTCONTROL:&quot;Expire Password&quot;)"
+			showfields="USERNAME:HOSTNAME:TARGETUSER:TARGETDOMAIN:SAMACCOUNTNAME:DISPLAYNAME:USERPRINCIPALNAME:PASSWORDLASTSET:ACCOUNTEXPIRES:USERACCOUNTCONTROL:LOGONHOURS:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="User Account's account expiry changed"
+			reportcriteria="((EVENTID:4738) OR (EVENTID:642)) AND (ACCOUNTEXPIRES:&quot;*&quot;)"
+			showfields="USERNAME:HOSTNAME:TARGETUSER:TARGETDOMAIN:SAMACCOUNTNAME:DISPLAYNAME:USERPRINCIPALNAME:PASSWORDLASTSET:ACCOUNTEXPIRES:USERACCOUNTCONTROL:LOGONHOURS:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="User Account's logon hour changed"
+			reportcriteria="((EVENTID:4738) OR (EVENTID:642)) AND (LOGONHOURS:&quot;*&quot;)"
+			showfields="USERNAME:HOSTNAME:TARGETUSER:TARGETDOMAIN:SAMACCOUNTNAME:DISPLAYNAME:USERPRINCIPALNAME:PASSWORDLASTSET:ACCOUNTEXPIRES:USERACCOUNTCONTROL:LOGONHOURS:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="User Account's logon workstation changed"
+			reportcriteria="((EVENTID:4738) OR (EVENTID:642)) AND (WORKSTATION_NAME:&quot;*&quot;)"
+			showfields="USERNAME:HOSTNAME:TARGETUSER:TARGETDOMAIN:SAMACCOUNTNAME:DISPLAYNAME:USERPRINCIPALNAME:PASSWORDLASTSET:ACCOUNTEXPIRES:USERACCOUNTCONTROL:LOGONHOURS:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="User Account Locked Outs" reportcriteria="((EVENTID:4740) OR (EVENTID:644))"
+			showfields="TARGETUSER:REMOTEHOST:HOSTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Unlocked User Accounts" reportcriteria="((EVENTID:4767) OR (EVENTID:671))"
+			showfields="USERNAME:HOSTNAME:TARGETUSER:TARGETDOMAIN:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Renamed User Accounts" reportcriteria="((EVENTID:4781) OR (EVENTID:685))"
+			showfields="USERNAME:HOSTNAME:PREVVAL:CHANGES:TARGETDOMAIN:TIME">
+		</ImportantReports>
+
+		<!-- ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Top User Account Locked Out by User" reportcriteria="((EVENTID:4740) OR (EVENTID:644))"
+			showfields="USERNAME:HOSTNAME:TARGETUSER:REMOTEHOST:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Top User Account Locked Out by RemoteHost"
+			reportcriteria="((EVENTID:4740) OR (EVENTID:644))" showfields="USERNAME:HOSTNAME:TARGETUSER:REMOTEHOST:TIME">
+		</ImportantReports -->
+
+	</ImportantReportsGroup>
+
+
+	<!--Group Management -->
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows"
+		imp_group_desc="Active Directory,Domain Controller" imp_group_name="Group Management"
+		impgroupid="1" impid="ImportantReportsGroup:impgroupid:6"
+		IS_GROUP_SHOW="true">
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Security Group Created"
+			reportcriteria="((EVENTID:631) OR (EVENTID:635) OR (EVENTID:658) OR (EVENTID:4727) OR (EVENTID:4731) OR (EVENTID:4754))"
+			showfields="USERNAME:HOSTNAME:GROUPNAME:GROUPDOMAIN:SAMACCOUNTNAME:SIDHISTORY:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Security Group Changed"
+			reportcriteria="((EVENTID:4735) OR (EVENTID:639) OR (EVENTID:659) OR (EVENTID:4755) OR (EVENTID:4737) OR (EVENTID:641))"
+			showfields="USERNAME:HOSTNAME:GROUPNAME:GROUPDOMAIN:SAMACCOUNTNAME:SIDHISTORY:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Security Group Deleted"
+			reportcriteria="((EVENTID:634) OR (EVENTID:638) OR (EVENTID:662) OR (EVENTID:4730) OR (EVENTID:4734) OR (EVENTID:4758))"
+			showfields="USERNAME:HOSTNAME:GROUPNAME:GROUPDOMAIN:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Distribution Groups Created"
+			reportcriteria="((EVENTID:648) OR (EVENTID:653) OR (EVENTID:663) OR (EVENTID:4744) OR (EVENTID:4749) OR (EVENTID:4759))"
+			showfields="USERNAME:HOSTNAME:GROUPNAME:GROUPDOMAIN:SAMACCOUNTNAME:SIDHISTORY:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Distribution Group Changed"
+			reportcriteria="((EVENTID:4745) OR (EVENTID:649) OR (EVENTID:654) OR (EVENTID:4750) OR (EVENTID:4760) OR (EVENTID:664))"
+			showfields="USERNAME:HOSTNAME:GROUPNAME:GROUPDOMAIN:SAMACCOUNTNAME:SIDHISTORY:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Distribution Group Deleted"
+			reportcriteria="((EVENTID:652) OR (EVENTID:657) OR (EVENTID:667) OR (EVENTID:4748) OR (EVENTID:4753) OR (EVENTID:4763))"
+			showfields="USERNAME:HOSTNAME:GROUPNAME:GROUPDOMAIN:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Members added to Security group"
+			reportcriteria="((EVENTID:632) OR (EVENTID:636) OR (EVENTID:660) OR (EVENTID:4728) OR (EVENTID:4732) OR (EVENTID:4756))"
+			showfields="USERNAME:HOSTNAME:TARGETUSER:MEMBERSID:GROUPNAME:MEMEBERGROUPSID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Members added to Distribution groups"
+			reportcriteria="((EVENTID:650) OR (EVENTID:655) OR (EVENTID:665) OR (EVENTID:4746) OR (EVENTID:4751) OR (EVENTID:4761))"
+			showfields="USERNAME:HOSTNAME:TARGETUSER:MEMBERSID:GROUPNAME:MEMEBERGROUPSID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Members removed from security groups"
+			reportcriteria="((EVENTID:633) OR (EVENTID:637) OR (EVENTID:661) OR (EVENTID:4729) OR (EVENTID:4733) OR (EVENTID:4757))"
+			showfields="USERNAME:TARGETUSER:MEMBERSID:GROUPNAME:MEMEBERGROUPSID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Members removed from distribution groups"
+			reportcriteria="((EVENTID:651) OR (EVENTID:656) OR (EVENTID:666) OR (EVENTID:4747) OR (EVENTID:4752) OR (EVENTID:4762))"
+			showfields="USERNAME:HOSTNAME:TARGETUSER:MEMBERSID:GROUPNAME:MEMEBERGROUPSID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Group Created"
+			reportcriteria="((EVENTID:631) OR (EVENTID:635) OR (EVENTID:658) OR (EVENTID:4727) OR (EVENTID:4731) OR (EVENTID:4754) OR (EVENTID:648) OR (EVENTID:653) OR (EVENTID:663) OR (EVENTID:4744) OR (EVENTID:4749) OR (EVENTID:4759))"
+			showfields="USERNAME:HOSTNAME:GROUPNAME:GROUPDOMAIN:SAMACCOUNTNAME:SIDHISTORY:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Group Modified"
+			reportcriteria="((EVENTID:4737) OR (EVENTID:4735) OR (EVENTID:4755) OR (EVENTID:4745) OR (EVENTID:4750) OR (EVENTID:4760) OR (EVENTID:641) OR (EVENTID:639) OR (EVENTID:659) OR (EVENTID:649) OR (EVENTID:654) OR (EVENTID:664))"
+			showfields="USERNAME:HOSTNAME:GROUPNAME:GROUPDOMAIN:SAMACCOUNTNAME:SIDHISTORY:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Group Deleted"
+			reportcriteria="((EVENTID:634) OR (EVENTID:638) OR (EVENTID:662) OR (EVENTID:4730) OR (EVENTID:4734) OR (EVENTID:4758) OR (EVENTID:652) OR (EVENTID:657) OR (EVENTID:667) OR (EVENTID:4748) OR (EVENTID:4753) OR (EVENTID:4763))"
+			showfields="USERNAME:HOSTNAME:GROUPNAME:GROUPDOMAIN:SAMACCOUNTNAME:SIDHISTORY:TIME">
+		</ImportantReports>
+
+	</ImportantReportsGroup>
+
+
+	<!--Computer Account Management -->
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows"
+		imp_group_desc="Active Directory,Domain Controller" imp_group_name="Computer Account Management"
+		impgroupid="1" impid="ImportantReportsGroup:impgroupid:7"
+		IS_GROUP_SHOW="true">
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Computer Account Created" reportcriteria="((EVENTID:4741) OR (EVENTID:645))"
+			showfields="USERNAME:HOSTNAME:MACHINENAME:TARGETDOMAIN:SAMACCOUNTNAME:DISPLAYNAME:USERPRINCIPALNAME:PASSWORDLASTSET:ACCOUNTEXPIRES:USERACCOUNTCONTROL:LOGONHOURS:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Computer Account Modified" reportcriteria="((EVENTID:4742) OR (EVENTID:646))"
+			showfields="USERNAME:HOSTNAME:MACHINENAME:TARGETDOMAIN:SAMACCOUNTNAME:DISPLAYNAME:USERPRINCIPALNAME:PASSWORDLASTSET:ACCOUNTEXPIRES:USERACCOUNTCONTROL:LOGONHOURS:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Computer Account Deleted" reportcriteria="((EVENTID:4743) OR (EVENTID:647))"
+			showfields="USERNAME:HOSTNAME:MACHINENAME:TARGETDOMAIN:TIME">
+		</ImportantReports>
+
+	</ImportantReportsGroup>
+
+
+	<!--Domain Controller Logon Events Start -->
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows"
+		imp_group_desc="Active Directory,Domain Controller" imp_group_name="Domain Controller Logon Reports"
+		impgroupid="5" impid="ImportantReportsGroup:impgroupid:8"
+		IS_GROUP_SHOW="true">
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="DC Credentials Validation Success"
+			reportcriteria="(((EVENTID:4776) OR (EVENTID:680) OR (EVENTID:681)) AND (SEVERITY:3))"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:ERRORCODE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="DC Credential Validation Failure due to Bad Username"
+			reportcriteria="(((EVENTID:4776) OR (EVENTID:680) OR (EVENTID:681)) AND (SEVERITY:4)) AND (ERRORCODE:0xC0000064)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:ERRORCODE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="DC Credential Validation Failure due to Bad Password"
+			reportcriteria="(((EVENTID:4776) OR (EVENTID:680) OR (EVENTID:681)) AND (SEVERITY:4)) AND (ERRORCODE:0xC000006A)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:ERRORCODE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="DC Credential Validation Failure due to account lockouts"
+			reportcriteria="(((EVENTID:4776) OR (EVENTID:680) OR (EVENTID:681)) AND (SEVERITY:4)) AND (ERRORCODE:0xC0000234)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:ERRORCODE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="DC Credential validation failure due to disabled account"
+			reportcriteria="(((EVENTID:4776) OR (EVENTID:680) OR (EVENTID:681)) AND (SEVERITY:4)) AND (ERRORCODE:0xC0000072)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:ERRORCODE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="DC Credential validation failure during to non-working hour logons"
+			reportcriteria="(((EVENTID:4776) OR (EVENTID:680) OR (EVENTID:681)) AND (SEVERITY:4)) AND (ERRORCODE:0xC000006F)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:ERRORCODE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="DC Credential validation failure due to account expiry"
+			reportcriteria="(((EVENTID:4776) OR (EVENTID:680) OR (EVENTID:681)) AND (SEVERITY:4)) AND (ERRORCODE:0xC0000193)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:ERRORCODE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="DC Credential validation failure due to password expiry"
+			reportcriteria="(((EVENTID:4776) OR (EVENTID:680) OR (EVENTID:681)) AND (SEVERITY:4)) AND (ERRORCODE:0xC0000071)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:ERRORCODE:TIME">
+		</ImportantReports>
+
+
+		<!-- ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="DC Credential validation failure Overview"
+			reportcriteria="(((EVENTID:4776) OR (EVENTID:680) OR (EVENTID:681)) AND (SEVERITY:4))"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:ERRORCODE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="User wise top successful DC credential validations"
+			reportcriteria="(((EVENTID:4776) OR (EVENTID:680) OR (EVENTID:681)) AND (SEVERITY:3))"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:ERRORCODE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Client wise top successful DC credential validations"
+			reportcriteria="(((EVENTID:4776) OR (EVENTID:680) OR (EVENTID:681)) AND (SEVERITY:3))"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:ERRORCODE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="User wise top failure DC credential validations"
+			reportcriteria="(((EVENTID:4776) OR (EVENTID:680) OR (EVENTID:681)) AND (SEVERITY:4))"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:ERRORCODE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Client wise top failure DC credential validations"
+			reportcriteria="(((EVENTID:4776) OR (EVENTID:680) OR (EVENTID:681)) AND (SEVERITY:4))"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:ERRORCODE:TIME">
+		</ImportantReports -->
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Kerberos authentication ticket (TGT) - Requested"
+			reportcriteria="((EVENTID:4768) OR (EVENTID:672) OR (EVENTID:676))"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:SERVICENAME:ERRORCODE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Kerberos pre-authentication failures" reportcriteria="((EVENTID:4771) OR (EVENTID:675))"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:SERVICENAME:ERRORCODE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Kerberos authentication ticket - failed requests"
+			reportcriteria="((EVENTID:4772) OR (EVENTID:672))"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:SERVICENAME:ERRORCODE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Requested Kerberos service tickets" reportcriteria="((EVENTID:4769) OR (EVENTID:673))"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:SERVICENAME:ENCRYPTIONTYPE:ERRORCODE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Renewed Kerberos service tickets" reportcriteria="((EVENTID:4770) OR (EVENTID:674))"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:SERVICENAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Kerberos service ticket - failed requests"
+			reportcriteria="((EVENTID:4773) OR (EVENTID:673))"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:SERVICENAME:ENCRYPTIONTYPE:ERRORCODE:TIME">
+		</ImportantReports>
+
+	</ImportantReportsGroup>
+
+
+	<!--GPO Changes -->
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows"
+		imp_group_desc="Active Directory,Domain Controller" imp_group_name="GPO Changes"
+		impgroupid="5" impid="ImportantReportsGroup:impgroupid:9"
+		IS_GROUP_SHOW="true">
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="GPO Created"
+			reportcriteria="((EVENTID:5137) AND (OBJECTTYPE:groupPolicyContainer))"
+			showfields="USERNAME:HOSTNAME:DN:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="GPO Modified"
+			reportcriteria="((EVENTID:5136) AND (OBJECTTYPE:groupPolicyContainer))"
+			showfields="USERNAME:HOSTNAME:DN:OBJECTNAME:GUID:DISPLAYNAME:ACCESSES:CHANGES:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="GPO Deleted"
+			reportcriteria="((EVENTID:5141) AND (OBJECTTYPE:groupPolicyContainer))"
+			showfields="USERNAME:HOSTNAME:DN:OBJECTNAME:TIME">
+		</ImportantReports>
+
+	</ImportantReportsGroup>
+
+
+	<!--OU Changes -->
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows"
+		imp_group_desc="Active Directory,Domain Controller" imp_group_name="OU Changes"
+		impgroupid="5" impid="ImportantReportsGroup:impgroupid:10"
+		IS_GROUP_SHOW="true">
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="OU Created" reportcriteria="((EVENTID:5137) AND (OBJECTTYPE:organizationalUnit))"
+			showfields="USERNAME:HOSTNAME:DN:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="OU Modified" reportcriteria="((EVENTID:5136) AND (OBJECTTYPE:organizationalUnit))"
+			showfields="USERNAME:HOSTNAME:DN:OBJECTNAME:GUID:DISPLAYNAME:ACCESSES:CHANGES:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="OU Deleted" reportcriteria="((EVENTID:5141) AND (OBJECTTYPE:organizationalUnit))"
+			showfields="USERNAME:HOSTNAME:DN:OBJECTNAME:TIME">
+		</ImportantReports>
+
+	</ImportantReportsGroup>
+
+	<!--Trust Relationships Changes -->
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows"
+		imp_group_desc="Active Directory,Domain Controller" imp_group_name="Trust Relationships Changes"
+		impgroupid="5" impid="ImportantReportsGroup:impgroupid:11"
+		IS_GROUP_SHOW="true">
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Trusted Domain Created" reportcriteria="((EVENTID:610) OR (EVENTID:4706))"
+			showfields="USERNAME:HOSTNAME:TARGETDOMAIN:TARGETDOMAINID:TRUSTTYPE:TRUSTDIRECTION:TRUSTATTRIBUTES:SIDFILTERING:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Trusted Domain Modified" reportcriteria="((EVENTID:620) OR (EVENTID:4716))"
+			showfields="USERNAME:HOSTNAME:TARGETDOMAIN:TARGETDOMAINID:TRUSTTYPE:TRUSTDIRECTION:TRUSTATTRIBUTES:SIDFILTERING:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Trusted Domain Deleted" reportcriteria="((EVENTID:611) OR (EVENTID:4707))"
+			showfields="USERNAME:HOSTNAME:TARGETDOMAIN:TARGETDOMAINID:TIME">
+		</ImportantReports>
+
+	</ImportantReportsGroup>
+
+
+	<!-- Policy Changes -->
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows"
+		imp_group_desc="Active Directory,Domain Controller" imp_group_name="Policy Changes"
+		impgroupid="2" impid="ImportantReportsGroup:impgroupid:12"
+		IS_GROUP_SHOW="true">
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="User Rights Assigned" reportcriteria="((EVENTID:4704) OR (EVENTID:608))"
+			showfields="USERNAME:HOSTNAME:TARGETUSER:ACCESSRIGHT:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="User Rights Removed" reportcriteria="((EVENTID:4705) OR (EVENTID:609))"
+			showfields="USERNAME:HOSTNAME:TARGETUSER:ACCESSRIGHT:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="System Audit Policy Changes" reportcriteria="((EVENTID:4719) OR (EVENTID:612))"
+			showfields="USERNAME:HOSTNAME:CATEGORY:SUBCATEGORY:CHANGES:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Per User Audit Policy Changes" reportcriteria="((EVENTID:4912) OR (EVENTID:807))"
+			showfields="USERNAME:HOSTNAME:CATEGORY:SUBCATEGORY:CHANGES:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Audit Policy (SACL) on Object Changes"
+			reportcriteria="((EVENTID:4715) OR (EVENTID:4670))" showfields="USERNAME:HOSTNAME:PREVVAL:CHANGES:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Authentication Policy Change(Grant)" reportcriteria="((EVENTID:4717) OR (EVENTID:621))"
+			showfields="USERNAME:HOSTNAME:TARGETUSER:ACCESSRIGHT:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Authentication Policy Change(Revoke)" reportcriteria="((EVENTID:4718) OR (EVENTID:622))"
+			showfields="USERNAME:HOSTNAME:TARGETUSER:ACCESSRIGHT:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Domain Policy Changes" reportcriteria="((EVENTID:4739) OR (EVENTID:643))"
+			showfields="USERNAME:HOSTNAME:TARGETDOMAIN:TARGETDOMAINID:MINPASSWORD:MAXPASSWORD:LOCKOUTTHRESHOLD:LOCKOUTWINDOW:LOCKOUTDURATION:NEWTYPE:TIME">
+		</ImportantReports>
+
+	</ImportantReportsGroup>
+
+	<!--File Monitoring -->
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows" imp_group_desc="File Monitoring"
+		imp_group_name="File Monitoring" impgroupid="2"
+		impid="ImportantReportsGroup:impgroupid:13" IS_GROUP_SHOW="true">
+
+		<ImportantReports imp_report_desc="File Created"
+			imp_reportname="File Created"
+			reportcriteria="(ACCESSES:objectcreated)  AND ((EVENTID:4656) OR (EVENTID:4658) OR (EVENTID:4663)) AND (OBJECTTYPE:File) AND (SEVERITY:3)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:FILETYPE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="File Deleted"
+			imp_reportname="File Deleted"
+			reportcriteria="(ACCESSES:objectdeleted) AND (OBJECTTYPE:File)  AND ((EVENTID:4656) OR (EVENTID:4658) OR (EVENTID:4660)) AND (SEVERITY:3)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:FILETYPE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="File Modified"
+			imp_reportname="File Modified"
+			reportcriteria="(ACCESSES:objectmodified)  AND ((EVENTID:4656) OR (EVENTID:4658) OR (EVENTID:4663)) AND (OBJECTTYPE:File) AND (SEVERITY:3)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:FILETYPE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="File Read"
+			imp_reportname="File Read" reportcriteria="(ACCESSES:objectaccessed) AND (OBJECTTYPE:File)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:FILETYPE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="File Permission Changes"
+			imp_reportname="File Permission Changes" reportcriteria="(EVENTID:4670) AND (OBJECTTYPE:File)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:PREVVAL:CHANGES:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Failed File Creations"
+			imp_reportname="Failed File Creations"
+			reportcriteria="(ACCESSES:objectcreated) AND (EVENTID:4656) AND (OBJECTTYPE:File) AND (SEVERITY:4)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:FILETYPE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Failed File Deletions"
+			imp_reportname="Failed File Deletions"
+			reportcriteria="(ACCESSES:objectdeleted) AND (OBJECTTYPE:File)  AND (EVENTID:4656) AND (SEVERITY:4)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:FILETYPE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Failed File Modifications"
+			imp_reportname="Failed File Modifications"
+			reportcriteria="(ACCESSES:objectmodified) AND (OBJECTTYPE:File) AND (EVENTID:4656) AND (SEVERITY:4)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:FILETYPE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Failed File Accesses"
+			imp_reportname="Failed File Accesses"
+			reportcriteria="(ACCESSES:objectaccessed) AND (OBJECTTYPE:File) AND (SEVERITY:4)  AND (EVENTID:4656)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:FILETYPE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="System File Changes"
+			imp_reportname="System File Changes"
+			reportcriteria="((OBJECTTYPE:File) AND ((OBJECTNAME:&quot;System32&quot;) OR (OBJECTNAME:&quot;SysWOW64&quot;)) AND ((ACCESSES:objectaccessed) OR (ACCESSES:objectmodified)))  AND ((EVENTID:4656) OR (EVENTID:4658) OR (EVENTID:4663) OR (EVENTID:4660))"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:FILETYPE:ACCESSES:TIME">
+		</ImportantReports>
+
+		<!-- ImportantReports imp_report_desc="Top FileType Changes"
+			imp_reportname="Top FileType Changes"
+			reportcriteria="(OBJECTTYPE:File) AND ((ACCESSES:objectdeleted) OR (ACCESSES:objectcreated) OR (ACCESSES:objectaccessed) OR (ACCESSES:objectmodified))  AND ((EVENTID:4656) OR (EVENTID:4658) OR (EVENTID:4663) OR (EVENTID:4660))"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:ACCESSES:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Top File Operations by User"
+			imp_reportname="Top operations - user wise report"
+			reportcriteria="(OBJECTTYPE:File) AND ((ACCESSES:objectdeleted) OR (ACCESSES:objectcreated) OR (ACCESSES:objectaccessed) OR (ACCESSES:objectmodified)) AND ((EVENTID:4656) OR (EVENTID:4658) OR (EVENTID:4663) OR (EVENTID:4660))"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:ACCESSES:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Top File Operations by Host"
+			imp_reportname="Top operations - host wise report"
+			reportcriteria="(OBJECTTYPE:File) AND ((ACCESSES:objectdeleted) OR (ACCESSES:objectcreated) OR (ACCESSES:objectaccessed) OR (ACCESSES:objectmodified)) AND ((EVENTID:4656) OR (EVENTID:4658) OR (EVENTID:4663) OR (EVENTID:4660))"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:ACCESSES:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Top File Operations by Files"
+			imp_reportname="Top operations - file wise report"
+			reportcriteria="(OBJECTTYPE:File) AND ((ACCESSES:objectdeleted) OR (ACCESSES:objectcreated) OR (ACCESSES:objectaccessed) OR (ACCESSES:objectmodified)) AND ((EVENTID:4656) OR (EVENTID:4658) OR (EVENTID:4663) OR (EVENTID:4660))"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:ACCESSES:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="File Monitoring Overview"
+			imp_reportname="File Monitoring Overview"
+			reportcriteria="(OBJECTTYPE:File) AND ((ACCESSES:objectdeleted) OR (ACCESSES:objectcreated) OR (ACCESSES:objectaccessed) OR (ACCESSES:objectmodified)) AND ((EVENTID:4656) OR (EVENTID:4658) OR (EVENTID:4663) OR (EVENTID:4660))"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:ACCESSES:TIME">
+		</ImportantReports -->
+
+		<ImportantReports imp_report_desc="File Monitoring Trend"
+			imp_reportname="File Monitoring Trend"
+			reportcriteria="(OBJECTTYPE:File) AND ((ACCESSES:objectdeleted) OR (ACCESSES:objectcreated) OR (ACCESSES:objectaccessed) OR (ACCESSES:objectmodified)) AND ((EVENTID:4656) OR (EVENTID:4658) OR (EVENTID:4663) OR (EVENTID:4660))"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:ACCESSES:TIME">
+		</ImportantReports>
+
+	</ImportantReportsGroup>
+
+
+	<!-- Removable Disk Auditing -->
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows" imp_group_desc="Removable Disk Auditing"
+		imp_group_name="Removable Disk Auditing" impgroupid="3"
+		impid="ImportantReportsGroup:impgroupid:14" IS_GROUP_SHOW="false">
+
+		<ImportantReports imp_report_desc="USB Plugged In"
+			imp_reportname="USB Plugged In" reportcriteria="(IENAME:&quot;USB Plugged In&quot;)"
+			showfields="HOSTNAME:OBJECTNAME:VENDORNAME:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="USB Plugged Out"
+			imp_reportname="USB Plugged Out" reportcriteria="(IENAME:&quot;USB Plugged Out&quot;)"
+			showfields="HOSTNAME:OBJECTNAME:VENDORNAME:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Removable Disk Reads"
+			imp_reportname="Removable Disk Reads"
+			reportcriteria="(ACCESSES:objectaccessed) AND (OBJECTTYPE:removable) AND (SEVERITY:3)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Removable Disk Reads Failed"
+			imp_reportname="Removable Disk Failed Reads"
+			reportcriteria="(ACCESSES:objectaccessed) AND (OBJECTTYPE:removable) AND (SEVERITY:4)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Removable Disk Creates"
+			imp_reportname="Removable Disk Creates"
+			reportcriteria="(ACCESSES:objectcreated) AND (OBJECTTYPE:removable) AND (SEVERITY:3)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Removable Disk Creates Failed"
+			imp_reportname="Removable Disk Failed Creates"
+			reportcriteria="(ACCESSES:objectcreated) AND (OBJECTTYPE:removable) AND (SEVERITY:4)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Removable Disk Modifications"
+			imp_reportname="Removable Disk Modifications"
+			reportcriteria="(ACCESSES:objectmodified) AND (OBJECTTYPE:removable) AND (SEVERITY:3)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Removable Disk Modifications Failed"
+			imp_reportname="Removable Disk Failed Modifications"
+			reportcriteria="(ACCESSES:objectmodified) AND (OBJECTTYPE:removable) AND (SEVERITY:4)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Removable Disk Deletes"
+			imp_reportname="Removable Disk Deletes"
+			reportcriteria="(ACCESSES:objectdeleted) AND (OBJECTTYPE:removable) AND (SEVERITY:3)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Removable Disk Deletes Failed"
+			imp_reportname="Removable Disk Failed Deletes"
+			reportcriteria="(ACCESSES:objectdeleted) AND (OBJECTTYPE:removable) AND (SEVERITY:4)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Host Based Removable Disk Changes"
+			imp_reportname="Host Based Removable Disk Changes"
+			reportcriteria="(OBJECTTYPE:removable) AND ((ACCESSES:objectdeleted) OR (ACCESSES:objectcreated) OR (ACCESSES:objectaccessed) OR (ACCESSES:objectmodified))"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<!-- ImportantReports imp_report_desc="Top Successful Users on Removable Disk Auditing"
+			imp_reportname="Top Successful Users on Removable Disk Auditing"
+			reportcriteria="(OBJECTTYPE:removable) AND ((ACCESSES:objectdeleted) OR (ACCESSES:objectcreated) OR (ACCESSES:objectaccessed) OR (ACCESSES:objectmodified)) AND (SEVERITY:3)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Top Failed Users on Removable Disk Auditing"
+			imp_reportname="Top Failed Users on Removable Disk Auditing"
+			reportcriteria="(OBJECTTYPE:removable) AND ((ACCESSES:objectdeleted) OR (ACCESSES:objectcreated) OR (ACCESSES:objectaccessed) OR (ACCESSES:objectmodified)) AND (SEVERITY:4)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:TIME">
+		</ImportantReports -->
+
+		<ImportantReports imp_report_desc="Removable Disk Changes Trend"
+			imp_reportname="Removable Disk Changes Trend"
+			reportcriteria="(OBJECTTYPE:removable) AND ((ACCESSES:objectdeleted) OR (ACCESSES:objectcreated) OR (ACCESSES:objectaccessed) OR (ACCESSES:objectmodified))"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:TIME">
+		</ImportantReports>
+
+	</ImportantReportsGroup>
+
+	<!--Network Share -->
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows" imp_group_desc="Network Share"
+		imp_group_name="Network Share" impgroupid="2"
+		impid="ImportantReportsGroup:impgroupid:15" IS_GROUP_SHOW="true">
+
+		<ImportantReports imp_report_desc="Network Share Object Read"
+			imp_reportname="Share Object Read"
+			reportcriteria="(ACCESSES:objectaccessed) AND (IENAME:&quot;Network File Share Object&quot;) AND (SEVERITY:3)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:OBJECTNAME:SHARENAME:SHAREPATH:RELATIVETARGETNAME:OBJECTTYPE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Failed Share Object Reads"
+			imp_reportname="Network Share Object Read Failed"
+			reportcriteria="(ACCESSES:objectaccessed) AND (IENAME:&quot;Network File Share Object&quot;)  AND (SEVERITY:4)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:OBJECTNAME:SHARENAME:SHAREPATH:RELATIVETARGETNAME:OBJECTTYPE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Network Share Object Created"
+			imp_reportname="Share Object Created"
+			reportcriteria="(ACCESSES:objectcreated) AND (IENAME:&quot;Network File Share Object&quot;) AND (SEVERITY:3)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:OBJECTNAME:SHARENAME:SHAREPATH:RELATIVETARGETNAME:OBJECTTYPE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Network Share Object Creation Failed"
+			imp_reportname="Failed Share Object Creations"
+			reportcriteria="(ACCESSES:objectcreated) AND (IENAME:&quot;Network File Share Object&quot;) AND (SEVERITY:4)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:OBJECTNAME:SHARENAME:SHAREPATH:RELATIVETARGETNAME:OBJECTTYPE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Network Share Object Modified"
+			imp_reportname="Share Object Modified"
+			reportcriteria="(ACCESSES:objectmodified) AND (IENAME:&quot;Network File Share Object&quot;)  AND (SEVERITY:3)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:OBJECTNAME:SHARENAME:SHAREPATH:RELATIVETARGETNAME:OBJECTTYPE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Network Share Object Modification Failed"
+			imp_reportname="Failed Share Object Modifications"
+			reportcriteria="(ACCESSES:objectmodified) AND (IENAME:&quot;Network File Share Object&quot;) AND (SEVERITY:4)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:OBJECTNAME:SHARENAME:SHAREPATH:RELATIVETARGETNAME:OBJECTTYPE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Network Share Object Deleted"
+			imp_reportname="Share Object Deleted"
+			reportcriteria="(ACCESSES:objectdeleted) AND (IENAME:&quot;Network File Share Object&quot;)  AND (SEVERITY:3)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:OBJECTNAME:SHARENAME:SHAREPATH:RELATIVETARGETNAME:OBJECTTYPE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Network Share Object Deletion Failed"
+			imp_reportname="Failed Share Object Deletions"
+			reportcriteria="(ACCESSES:objectdeleted) AND (IENAME:&quot;Network File Share Object&quot;) AND (SEVERITY:4)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:OBJECTNAME:SHARENAME:SHAREPATH:RELATIVETARGETNAME:OBJECTTYPE:TIME">
+		</ImportantReports>
+
+		<!-- ImportantReports imp_report_desc="Network Share Changes Overview"
+			imp_reportname="Share Changes Overview"
+			reportcriteria="((ACCESSES:objectdeleted) OR (ACCESSES:objectcreated) OR (ACCESSES:objectmodified) OR (ACCESSES:objectaccessed))  AND (IENAME:&quot;Network File Share Object&quot;)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:OBJECTNAME:SHARENAME:SHAREPATH:RELATIVETARGETNAME:OBJECTTYPE:ACCESSES:TIME">
+		</ImportantReports -->
+
+		<ImportantReports imp_report_desc="Network Share Object Permission Added"
+			imp_reportname="Network Share Object Permission Added"
+			reportcriteria="(EVENTID:5142) AND (SEVERITY:3)" showfields="USERNAME:HOSTNAME:OBJECTNAME:SHAREPATH:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Network Share Object Permission Modified"
+			imp_reportname="Share Object Permission Modified" reportcriteria="(EVENTID:5143) AND (SEVERITY:3)"
+			showfields="USERNAME:HOSTNAME:OBJECTTYPE:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Network Share Object Permission Deleted"
+			imp_reportname="Share Object Permission Deleted" reportcriteria="(EVENTID:5144) AND (SEVERITY:3)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:TIME">
+		</ImportantReports>
+
+
+		<!-- ImportantReports imp_report_desc="Top Network Share Success by User"
+			imp_reportname="User wise top successful network shares"
+			reportcriteria="((ACCESSES:objectdeleted) OR (ACCESSES:objectcreated) OR (ACCESSES:objectmodified) OR (ACCESSES:objectaccessed))  AND (IENAME:&quot;Network File Share Object&quot;) AND (SEVERITY:3)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:OBJECTNAME:TIME">
+		</ImportantReports>
+
+
+		<ImportantReports imp_report_desc="Top Network Share Failed by Users"
+			imp_reportname="User wise top failed network shares"
+			reportcriteria="((ACCESSES:objectdeleted) OR (ACCESSES:objectcreated) OR (ACCESSES:objectmodified) OR (ACCESSES:objectaccessed))  AND (IENAME:&quot;Network File Share Object&quot;) AND (SEVERITY:4)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:OBJECTNAME:TIME">
+		</ImportantReports>
+
+
+		<ImportantReports imp_report_desc="Top Network Share Access by RemoteHost"
+			imp_reportname="Remote host wise top network share access"
+			reportcriteria="(ACCESSES:objectaccessed)  AND (IENAME:&quot;Network File Share Object&quot;) AND (SEVERITY:3)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Top Network Share Access Failed by RemoteHost"
+			imp_reportname="Remote host wise top failed network share access"
+			reportcriteria="(ACCESSES:objectaccessed) AND (IENAME:&quot;Network File Share Object&quot;) AND (SEVERITY:4)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Top network share creations by remote host"
+			imp_reportname="Top network share creations by remote host"
+			reportcriteria="(ACCESSES:objectcreated) AND (IENAME:&quot;Network File Share Object&quot;) AND (SEVERITY:3)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Top failed network share creations by remote host"
+			imp_reportname="Top failed network share creations by remote host"
+			reportcriteria="(ACCESSES:objectcreated) AND (SEVERITY:4)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Top network share modifications by remote host"
+			imp_reportname="Top network share modifications by remote host"
+			reportcriteria="(ACCESSES:objectmodified) AND (IENAME:&quot;Network File Share Object&quot;) AND (SEVERITY:3)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports
+			imp_report_desc="Top failed network share modifications by remote host"
+			imp_reportname="Top failed network share modifications by remote host"
+			reportcriteria="(ACCESSES:objectmodified) AND (IENAME:&quot;Network File Share Object&quot;) AND (SEVERITY:4)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_reportname="Top network share deletions by remote host"
+			reportcriteria="(ACCESSES:objectdeleted) AND (IENAME:&quot;Network File Share Object&quot;) AND (SEVERITY:3)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Top failed network share deletions by remote host"
+			imp_reportname="Top failed network share deletions by remote host"
+			reportcriteria="(ACCESSES:objectdeleted) AND (IENAME:&quot;Network File Share Object&quot;) AND (SEVERITY:4)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:OBJECTNAME:TIME">
+		</ImportantReports -->
+
+	</ImportantReportsGroup>
+
+
+	<!--Registry Changes -->
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows" imp_group_desc="Registry Changes"
+		imp_group_name="Registry Changes" impgroupid="2"
+		impid="ImportantReportsGroup:impgroupid:16" IS_GROUP_SHOW="false">
+
+		<ImportantReports imp_report_desc="Registry Accessed"
+			imp_reportname="Registry Accessed"
+			reportcriteria="(ACCESSES:objectaccessed) AND (OBJECTTYPE:Registry) AND (SEVERITY:3)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Registry Access Failed"
+			imp_reportname="Failed Registry Access"
+			reportcriteria="(ACCESSES:objectaccessed) AND (OBJECTTYPE:Registry) AND (SEVERITY:4)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Registry Created"
+			imp_reportname="Registry Created"
+			reportcriteria="(ACCESSES:objectcreated) AND (OBJECTTYPE:Registry) AND (SEVERITY:3)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Registry Creation Failed"
+			imp_reportname="Failed Registry Creations"
+			reportcriteria="(ACCESSES:objectcreated) AND (OBJECTTYPE:Registry) AND (SEVERITY:4)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Registry Value Modified"
+			imp_reportname="Registry Value Modified"
+			reportcriteria="(ACCESSES:objectmodified) AND (OBJECTTYPE:Registry) AND (SEVERITY:3)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:OBJECTVALUENAME:OLDTYPE:PREVVAL:NEWTYPE:CHANGES:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Registry Modification Failed"
+			imp_reportname="Failed Registry Modifications"
+			reportcriteria="(ACCESSES:objectmodified) AND (OBJECTTYPE:Registry) AND (SEVERITY:4)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:OBJECTVALUENAME:OLDTYPE:PREVVAL:NEWTYPE:CHANGES:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Registry Deleted"
+			imp_reportname="Registry Deleted"
+			reportcriteria="(ACCESSES:objectdeleted) AND (OBJECTTYPE:Registry) AND (SEVERITY:3)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Registry Deletion Failed"
+			imp_reportname="Failed Registry Deletions"
+			reportcriteria="(ACCESSES:objectdeleted) AND (OBJECTTYPE:Registry) AND (SEVERITY:4)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Registry Permission Changes"
+			imp_reportname="Registry Permission Changes" reportcriteria="(EVENTID:4670) AND (OBJECTTYPE:Key)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:PREVVAL:CHANGES:TIME">
+		</ImportantReports>
+
+		<!-- ImportantReports imp_report_desc="Top Users on Registry"
+			imp_reportname="Top Users on Registry"
+			reportcriteria="(OBJECTTYPE:Registry) AND ((ACCESSES:objectdeleted) OR (ACCESSES:objectcreated) OR (ACCESSES:objectaccessed) OR (ACCESSES:objectmodified))"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:TIME">
+		</ImportantReports -->
+
+	</ImportantReportsGroup>
+
+
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows" imp_group_desc="Network Policy Server"
+		imp_group_name="Network Policy Server" impgroupid="2"
+		impid="ImportantReportsGroup:impgroupid:17" IS_GROUP_SHOW="false">
+
+		<ImportantReports imp_report_desc="Access granted to users"
+			imp_reportname="Access granted to users" reportcriteria="(EVENTID:6272)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:REMOTEIP:WORKSTATION_NAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Access denied to users"
+			imp_reportname="Access denied to users" reportcriteria="(EVENTID:6273)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:REMOTEIP:WORKSTATION_NAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Discarded requests for users"
+			imp_reportname="Discarded requests for users" reportcriteria="(EVENTID:6274)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:REMOTEIP:WORKSTATION_NAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Discarded accounting requests for users"
+			imp_reportname="Discarded accounting requests for users"
+			reportcriteria="(EVENTID:6275)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:REMOTEIP:WORKSTATION_NAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Locked users due to repeated logon failures"
+			imp_reportname="Locked users due to repeated logon failures"
+			reportcriteria="(EVENTID:6279)" showfields="USERNAME:HOSTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="NPS unlocked user accounts"
+			imp_reportname="NPS Unlocked user accounts" reportcriteria="(EVENTID:6280)"
+			showfields="USERNAME:HOSTNAME:TIME">
+		</ImportantReports>
+
+	</ImportantReportsGroup>
+
+
+	<!--Windows Firewall Changes -->
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows" imp_group_desc="Windows Firewall Auditing"
+		imp_group_name="Windows Firewall Auditing" impgroupid="3"
+		impid="ImportantReportsGroup:impgroupid:18" IS_GROUP_SHOW="false">
+
+		<ImportantReports imp_report_desc="Security Audit Windows Firewall Rule Added"
+			imp_reportname="Windows Firewall Rule Added" reportcriteria="(EVENTID:4946)"
+			showfields="HOSTNAME:PROFILENAME:RULEID:RULENAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Security Audit Windows Firewall Rule Modified"
+			imp_reportname="Windows Firewall Rule Modified" reportcriteria="(EVENTID:4947)"
+			showfields="HOSTNAME:PROFILENAME:RULEID:RULENAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Security Audit Windows Firewall Rule Deleted"
+			imp_reportname="Windows Firewall Rule Deleted" reportcriteria="(EVENTID:4948)"
+			showfields="HOSTNAME:PROFILENAME:RULEID:RULENAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Security Audit Windows Firewall Settings Restored"
+			imp_reportname="Windows Firewall Settings Restored" reportcriteria="(EVENTID:4949)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Security Audit Windows Firewall Settings Changed"
+			imp_reportname="Windows Firewall Settings Changed" reportcriteria="(EVENTID:4950)"
+			showfields="HOSTNAME:PROFILENAME:PROFILETYPE:PROFILEVAL:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports
+			imp_report_desc="Security Audit Windows Firewall Group Policy Changes"
+			imp_reportname="Windows Firewall Group Policy Changes"
+			reportcriteria="(EVENTID:4954)" showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+	</ImportantReportsGroup>
+
+
+	<!--Windows OS Events -->
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows"
+		imp_group_desc="Active Directory,Domain Controller" imp_group_name="Domain Events"
+		impgroupid="5" impid="ImportantReportsGroup:impgroupid:19"
+		IS_GROUP_SHOW="false">
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Special groups assigned to new logon" reportcriteria="(EVENTID:4964)"
+			showfields="USERNAME:HOSTNAME:TARGETUSER:TARGETDOMAIN:PRIVILEGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="SID History added to account" reportcriteria="(EVENTID:4765)"
+			showfields="USERNAME:HOSTNAME:TARGETUSER:TARGETDOMAIN:PRIVILEGE:SERVICEACCOUNT:SECURITYID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="SID History added to account failed" reportcriteria="(EVENTID:4766)"
+			showfields="USERNAME:HOSTNAME:TARGETUSER:TARGETDOMAIN:PRIVILEGE:SERVICEACCOUNT:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Kerberos policy changes" reportcriteria="((EVENTID:4713) OR (EVENTID:617))"
+			showfields="USERNAME:HOSTNAME:CHANGES:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Group Type Changes" reportcriteria="((EVENTID:4764) OR (EVENTID:668))"
+			showfields="USERNAME:HOSTNAME:GROUPNAME:GROUPDOMAIN:PRIVILEGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory,Domain Controller"
+			imp_reportname="Special Groups Logon table modifications"
+			reportcriteria="(EVENTID:4908)" showfields="HOSTNAME:GROUPNAME:SEVERITY:TIME">
+		</ImportantReports>
+
+	</ImportantReportsGroup>
+
+
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows" imp_group_desc="Windows System Events"
+		imp_group_name="Windows System Events" impgroupid="4"
+		impid="ImportantReportsGroup:impgroupid:20" IS_GROUP_SHOW="false">
+
+		<ImportantReports imp_report_desc="Windows Startup"
+			imp_reportname="Windows Startup" reportcriteria="((EVENTID:512) OR (EVENTID:4608))"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Windows ShutDown"
+			imp_reportname="Windows ShutDown"
+			reportcriteria="(((EVENTID:513) OR (EVENTID:4609)) AND (SOURCE:&quot;Microsoft-Windows-Security-Auditing&quot;)) OR ((EVENTID:1074) AND (STATE:&quot;power off&quot;) AND (SOURCE:&quot;User32&quot;))"
+			showfields="HOSTNAME:EVENTID:USERNAME:REASON:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Windows Startup and Windows ShutDown"
+			imp_reportname="Windows Startup and Windows ShutDown"
+			reportcriteria="(((EVENTID:512) OR (EVENTID:4608) OR (EVENTID:513) OR (EVENTID:4609)) AND (SOURCE:&quot;Microsoft-Windows-Security-Auditing&quot;)) OR ((EVENTID:1074) AND (STATE:&quot;power off&quot;) AND (SOURCE:&quot;User32&quot;))"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Windows Restarts"
+			imp_reportname="Windows Restarts" reportcriteria="(EVENTID:1074) AND (STATE:&quot;restart&quot;)"
+			showfields="HOSTNAME:USERNAME:REASON:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="New Service Installed"
+			imp_reportname="New Service Installed" reportcriteria="((EVENTID:601) OR (EVENTID:4697))"
+			showfields="USERNAME:HOSTNAME:SERVICENAME:OBJECTNAME:SERVICETYPE:SERVICESTARTUPTYPE:SERIVICEACCOUNT:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Software Installed"
+			imp_reportname="Software Installed" reportcriteria="(EVENTID:1033) AND (SOURCE:MsiInstaller)"
+			showfields="HOSTNAME:USERNAME:SERVICENAME:VENDORNAME:VERSION:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Software Updated"
+			imp_reportname="Software Updated" reportcriteria="(EVENTID:1036) AND (SOURCE:MsiInstaller)"
+			showfields="HOSTNAME:USERNAME:SERVICENAME:VENDORNAME:VERSION:UPDATENAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Failed software installations"
+			imp_reportname="Failed software installations" reportcriteria="(EVENTID:11708)  AND (SOURCE:MsiInstaller)"
+			showfields="HOSTNAME:USERNAME:OBJECTNAME:TIME">
+		</ImportantReports> <!-- cse -->
+
+		<ImportantReports
+			imp_report_desc="Failed software installations due to privilege mismatches"
+			imp_reportname="Failed software installations due to privilege mismatches"
+			reportcriteria="(EVENTID:11923) AND (SOURCE:MsiInstaller)"
+			showfields="HOSTNAME:USERNAME:OBJECTNAME:TIME">
+		</ImportantReports> <!-- cse -->
+
+		<ImportantReports imp_report_desc="Software Uninstalled"
+			imp_reportname="Software Uninstalled" reportcriteria="(EVENTID:1034) AND (SOURCE:MsiInstaller)"
+			showfields="HOSTNAME:USERNAME:SERVICENAME:VENDORNAME:VERSION:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Service Started"
+			imp_reportname="Service Started"
+			reportcriteria="(EVENTID:7035) AND (SOURCE:&quot;Service Control Manager&quot;)"
+			showfields="HOSTNAME:SERVICENAME:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Service Stopped"
+			imp_reportname="Service Stopped"
+			reportcriteria="(EVENTID:7036) AND (SOURCE:&quot;Service Control Manager&quot;)"
+			showfields="HOSTNAME:SERVICENAME:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Service Failed"
+			imp_reportname="Service Failed"
+			reportcriteria="(((EVENTID:7000) OR (EVENTID:7034)) AND (SOURCE:&quot;Service Control Manager&quot;))"
+			showfields="HOSTNAME:SERVICENAME:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Windows Time Change"
+			imp_reportname="Windows Time Change" reportcriteria="((EVENTID:520) OR (EVENTID:4616))"
+			showfields="USERNAME:HOSTNAME:PREVVAL:CHANGES:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Windows updates - Installed"
+			imp_reportname="Windows Updates - Installed"
+			reportcriteria="(((EVENTID:19) OR (EVENTID:4377)) AND ((SOURCE:&quot;Windows Update Agent&quot;) OR (SOURCE:&quot;Microsoft-Windows-WindowsUpdateClient&quot;) OR (SOURCE:&quot;NtServicePack&quot;)))"
+			showfields="HOSTNAME:SERVICENAME:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Windows update process failed"
+			imp_reportname="Windows update process failed"
+			reportcriteria="(((EVENTID:20) OR (EVENTID: 24) OR (EVENTID:25) OR (EVENTID:31) OR (EVENTID:34) OR (EVENTID:35)) AND ((SOURCE:&quot;Windows Update Agent&quot;) OR (SOURCE:&quot;Microsoft-Windows-WindowsUpdateClient&quot;) OR (SOURCE:NtServicePack)))"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Failed hotpatching"
+			imp_reportname="Failed hotpatching"
+			reportcriteria="(EVENTID:1009) AND (SOURCE:&quot;Microsoft-Windows-Servicing&quot;)"
+			showfields="HOSTNAME:SEVERITY:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Update Packages Installed"
+			imp_reportname="Update Packages Installed"
+			reportcriteria="(EVENTID:2) AND (SOURCE:&quot;Microsoft-Windows-Servicing&quot;)"
+			showfields="HOSTNAME:SEVERITY:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="New Kernel Filter Driver"
+			imp_reportname="New Kernel Filter Driver"
+			reportcriteria="(EVENTID:6) AND (SOURCE:&quot;Microsoft-Windows-FilterManager&quot;)"
+			showfields="HOSTNAME:SEVERITY:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Windows AD Backup Error"
+			imp_reportname="AD Backup Error"
+			reportcriteria="((EVENTID:1913) AND (SOURCE:&quot;NTDS Backup&quot;))"
+			showfields="HOSTNAME:LOGONHOURS:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="System Uptime"
+			imp_reportname="System Uptime" reportcriteria="((EVENTID:6013) AND (SOURCE:Eventlog))"
+			showfields="HOSTNAME:LOGONHOURS:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="GPO Queries - Failed"
+			imp_reportname="GPO Queries - Failed"
+			reportcriteria="((EVENTID:1030) AND (SOURCE:&quot;Microsoft-Windows-GroupPolicy&quot;))"
+			showfields="HOSTNAME:UPTIME:EVENTID:TIME">
+		</ImportantReports>
+
+
+		<ImportantReports imp_report_desc="Non valid Windows license"
+			imp_reportname="Non valid Windows license"
+			reportcriteria="(EVENTID:4102) AND (SOURCE:&quot;Microsoft-Windows-Winlogon&quot;)"
+			showfields="HOSTNAME:ERRORCODE:PROFILENAME:EVENTID:TIME">
+		</ImportantReports>
+
+
+		<ImportantReports imp_report_desc="Windows License Activation Failed"
+			imp_reportname="Failed Windows license activations"
+			reportcriteria="(EVENTID:4103) AND (SOURCE:&quot;Microsoft-Windows-Winlogon&quot;)"
+			showfields="HOSTNAME:ERRORCODE:PROFILENAME:EVENTID:TIME">
+		</ImportantReports>
+
+
+		<ImportantReports imp_report_desc="Windows Product Not Activated"
+			imp_reportname="Non activated windows products"
+			reportcriteria="(EVENTID:1005) AND (SOURCE:&quot;Windows Product Activation&quot;)"
+			showfields="HOSTNAME:LOGONHOURS:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="UnExpected Shutdown"
+			imp_reportname="UnExpected Shutdown" reportcriteria="(IENAME:&quot;Unexpected Shutdown&quot;)"
+			showfields="HOSTNAME:LOGONHOURS:FAULTMODULE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Active Directory database corruptions"
+			imp_reportname="Active Directory database corruptions"
+			reportcriteria="(EVENTID:467) AND (SOURCE:&quot;NTDS ISAM&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Bad disk block"
+			imp_reportname="Bad disk block" reportcriteria="(EVENTID:7) AND (SOURCE:Disk)"
+			showfields="HOSTNAME:OBJECTNAME:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Failed loadings of Kernel driver"
+			imp_reportname="Failed loadings of Kernel driver"
+			reportcriteria="(EVENTID:219) AND (SOURCE:&quot;Microsoft-Windows-Kernel-PnP&quot;)"
+			showfields="HOSTNAME:SEVERITY:SOURCE:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Code Integrity Check"
+			imp_reportname="Code Integrity Check"
+			reportcriteria="((EVENTID:3001) OR (EVENTID:3002) OR (EVENTID:3003) OR (EVENTID:3004) OR (EVENTID:3010) OR (EVENTID:3023)) AND (SOURCE:&quot;Microsoft-Windows-CodeIntegrity&quot;)"
+			showfields="HOSTNAME:SEVERITY:SOURCE:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Invalid image hash file"
+			imp_reportname="Invalid image hash file" reportcriteria="(EVENTID:5038)"
+			showfields="HOSTNAME:SEVERITY:SOURCE:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Invalid page hash image file"
+			imp_reportname="Invalid page hash image file" reportcriteria="(EVENTID:6281)"
+			showfields="HOSTNAME:SEVERITY:SOURCE:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Hardisk failures"
+			imp_reportname="Hardisk failures" reportcriteria="(EVENTID:52) AND (SOURCE:Disk)"
+			showfields="HOSTNAME:OBJECTNAME:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="System Restored"
+			imp_reportname="System Restored" reportcriteria="(EVENTID:110) AND (SOURCE:SRService)"
+			showfields="HOSTNAME:REMOTEHOST:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Security Log Full"
+			imp_reportname="Security Log Full" reportcriteria="(EVENTID:1104)"
+			showfields="HOSTNAME:SEVERITY:SOURCE:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Audit Events Dropped"
+			imp_reportname="Audit Events Dropped" reportcriteria="(EVENTID:1101)"
+			showfields="HOSTNAME:SEVERITY:SOURCE:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Error in EventLog Service"
+			imp_reportname="Error in EventLog Service" reportcriteria="(EVENTID:1108)"
+			showfields="HOSTNAME:SEVERITY:SOURCE:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc=" Event log automatic backup"
+			imp_reportname="Event log automatic backup" reportcriteria="(EVENTID:1105)"
+			showfields="HOSTNAME:SEVERITY:SOURCE:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Wireless Network Authentication"
+			imp_reportname="Wireless Network Authentication" reportcriteria="(EVENTID:5632)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:OBJECTNAME:GUID:TARGETIP:REASON:ERRORCODE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Wired Network Authentication"
+			imp_reportname="Wired Network Authentication" reportcriteria="(EVENTID:5633)"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:REASON:ERRORCODE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Wired Network Connected"
+			imp_reportname="Wired Network Connected" reportcriteria="(EVENTID:10000) AND (SOURCE:NetworkProfile)"
+			showfields="USERNAME:HOSTNAME:NAME:DESC:TYPE:STATE:CATEGORY:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Wired Network Disconnected"
+			imp_reportname="Wired Network Disconnected" reportcriteria="(EVENTID:10001) AND (SOURCE:NetworkProfile)"
+			showfields="USERNAME:HOSTNAME:NAME:DESC:TYPE:STATE:CATEGORY:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Wireless Network Connected"
+			imp_reportname="Wireless Network Connected"
+			reportcriteria="(EVENTID:8001) AND (SOURCE:&quot;Microsoft-Windows-WLAN-AutoConfig&quot;)"
+			showfields="USERNAME:HOSTNAME:PROFILENAME:RULEID:PHYTYPE:SERVICETYPE:AUTHENTICATION:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Wireless Network Disconnected"
+			imp_reportname="Wireless Network Disconnected"
+			reportcriteria="(EVENTID:8003) AND (SOURCE:&quot;Microsoft-Windows-WLAN-AutoConfig&quot;)"
+			showfields="USERNAME:HOSTNAME:PROFILENAME:RULEID:SERVICETYPE:TIME">
+		</ImportantReports>
+
+	</ImportantReportsGroup>
+
+
+	<!-- ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows" imp_group_desc="Application Whitelisting"
+		imp_group_name="Application Whitelisting" impgroupid="4"
+		impid="ImportantReportsGroup:impgroupid:21" IS_GROUP_SHOW="false">
+
+		<ImportantReports imp_report_desc="Exe/Dll File Allowed to Run"
+			imp_reportname="Exe/Dll File Allowed to Run"
+			reportcriteria="((EVENTID:8002) AND (SOURCE:&quot;Microsoft-Windows-AppLocker&quot;))"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports
+			imp_report_desc="Exe/Dll Files Not Allowed to Run due to Enforced rules"
+			imp_reportname="Exe/Dll Files Not Allowed to Run due to Enforced rules"
+			reportcriteria="((EVENTID:8003) AND (SOURCE:&quot;Microsoft-Windows-AppLocker&quot;))"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Exe/Dll File Not Allowed to Run"
+			imp_reportname="Exe/Dll File Not Allowed to Run"
+			reportcriteria="((EVENTID:8004) AND (SOURCE:&quot;Microsoft-Windows-AppLocker&quot;))"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="MSI/Script File Allowed to Run"
+			imp_reportname="MSI/Script File Allowed to Run"
+			reportcriteria="((EVENTID:8005) AND (SOURCE:&quot;Microsoft-Windows-AppLocker&quot;))"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports
+			imp_report_desc="MSI/Script File Not Allowed to Run due to Enforce rules"
+			imp_reportname="MSI/Script Files Not Allowed to Run due to Enforced rules"
+			reportcriteria="((EVENTID:8006) AND (SOURCE:&quot;Microsoft-Windows-AppLocker&quot;))"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="MSI/Script File Not Allowed to Run"
+			imp_reportname="MSI/Script File Not Allowed to Run"
+			reportcriteria="((EVENTID:8007) AND (SOURCE:&quot;Microsoft-Windows-AppLocker&quot;))"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Software Restricted to Access Program"
+			imp_reportname="Software Restricted to Access Program"
+			reportcriteria="(((EVENTID:865) OR (EVENTID:866) OR (EVENTID:867) OR (EVENTID:868) OR (EVENTID:882)) AND (SOURCE:&quot;Microsoft-Windows-SoftwareRestrictionPolicies&quot;))"
+			showfields="USERNAME:HOSTNAME:OBJECTNAME:TIME">
+		</ImportantReports>
+
+	</ImportantReportsGroup -->
+
+
+	<!--Threat Detection -->
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows" imp_group_desc="Threat Detection"
+		imp_group_name="Threat Detection" impgroupid="3"
+		impid="ImportantReportsGroup:impgroupid:22" IS_GROUP_SHOW="false">
+
+		<ImportantReports imp_report_desc="Security Logs Cleared"
+			imp_reportname="Security Logs Cleared"
+			reportcriteria="((EVENTID:1102) OR (EVENTID:517)) AND (SOURCE:&quot;Microsoft-Windows-Eventlog&quot;)"
+			showfields="USERNAME:HOSTNAME:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Event Logs Cleared"
+			imp_reportname="Event Logs Cleared"
+			reportcriteria="(EVENTID:104) AND (SOURCE:&quot;Microsoft-Windows-Eventlog&quot;)"
+			showfields="HOSTNAME:USERNAME:DOMAIN:OBJECTNAME:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Event Logging Service Shutdown"
+			imp_reportname="Event Logging Service Shutdown"
+			reportcriteria="(EVENTID:1100) AND (SOURCE:&quot;Microsoft-Windows-Eventlog&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="DoS Attack Subsided"
+			imp_reportname="DoS Attack Subsided" reportcriteria="(EVENTID:5149)"
+			showfields="HOSTNAME:OBJECTTYPE:PACKETSDISCARDED:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="DoS Attack Entered Defensive Mode"
+			imp_reportname="DoS Attack Entered Defensive Mode" reportcriteria="(EVENTID:5148)"
+			showfields="HOSTNAME:OBJECTTYPE:EVENTID:TIME">
+		</ImportantReports><!-- cse -->
+
+		<ImportantReports imp_report_desc="Windows DoS Attack"
+			imp_reportname="DoS Attacks" reportcriteria="(EVENTID:2025) AND (SOURCE:srv)"
+			showfields="HOSTNAME:REMOTEHOST:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Downgrade Attack"
+			imp_reportname="Downgrade Attacks"
+			reportcriteria="(((EVENTID:40960) OR (EVENTID:40961)) AND (SOURCE:LSASRV))"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Replay Attack"
+			imp_reportname="Replay Attack" reportcriteria="((EVENTID:4649) OR (EVENTID:553))"
+			showfields="HOSTNAME:TARGETUSER:TARGETDOMAIN:WORKSTATION_NAME:PROCESSNAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Windows Defender Malware Detection"
+			imp_reportname="Defender Malware Detection"
+			reportcriteria="(EVENTID:1006) AND (SOURCE:&quot;Microsoft-Windows-Windows Defender&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Windows Defender Real Time Protection Detection"
+			imp_reportname="Defender Real Time Protection Detection"
+			reportcriteria="(EVENTID:3004) AND (SOURCE:&quot;Microsoft-Windows-Windows Defender&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Terminal Server Attack"
+			imp_reportname="Terminal Server Attacks"
+			reportcriteria="(EVENTID:1006) AND (SOURCE:&quot;Microsoft-Windows-TerminalServices-RemoteConnectionManager&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Terminal Server Exceeds Max LogOn Attempt"
+			imp_reportname="Terminal Server Exceeds Maximum Logon Attempts"
+			reportcriteria="(EVENTID:1012) AND (SOURCE:&quot;Microsoft-Windows-TerminalServices-RemoteConnectionManager&quot;)"
+			showfields="HOSTNAME:REMOTEHOST:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="IP Conflicts"
+			imp_reportname="IP Conflicts"
+			reportcriteria="(((EVENTID:4198) OR (EVENTID:4199)) AND (SOURCE:tcpip))"
+			showfields="HOSTNAME:REMOTEHOST:WORKSTATION_NAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="User Account Locked Out Error"
+			imp_reportname="User Account Locked Out Error" reportcriteria="(EVENTID:12294) AND (SOURCE:SAM)"
+			showfields="USERNAME:HOSTNAME:EVENTID:TIME">
+		</ImportantReports><!-- cse -->
+		<ImportantReports imp_report_desc="Threats Detection by ESET Endpoint Antivirus"
+			imp_reportname="Threats Detections by ESET Endpoint Antivirus"
+			reportcriteria="(EVENTID:261) AND (SOURCE:&quot;ESET Endpoint Antivirus&quot;) AND (MESSAGE:Threat)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Threats Detection by Kaspersky"
+			imp_reportname="Threats Detections by Kaspersky"
+			reportcriteria="(EVENTID:4660) AND (IENAME:&quot;Kaspersky Threat&quot;) AND (MESSAGE:&quot;Threats have been detected&quot;)"
+			showfields="HOSTNAME:OBJECTNAME:OBJECTTYPE:MALWARENAME:MALWARETYPE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Threats Detections by Microsoft Antimalware"
+			imp_reportname="Threats Detection by Microsoft Antimalware"
+			reportcriteria="(EVENTID:1116) AND (SOURCE:&quot;Microsoft Antimalware&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Threats Detection by Sophos Anti-Virus"
+			imp_reportname="Threats Detection by Sophos Anti-Virus"
+			reportcriteria="(EVENTID:32) AND (SOURCE:&quot;Sophos Anti-Virus&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Threats Detection by Norton AntiVirus"
+			imp_reportname="Threats Detection by Norton AntiVirus"
+			reportcriteria="(EVENTID:5) AND (SOURCE:&quot;Norton AntiVirus&quot;)"
+			showfields="HOSTNAME:FILENAME:MALWARENAME:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports
+			imp_report_desc="Infected File Found by Symantec Endpoint Protection"
+			imp_reportname="Infected files detected by Symantec Endpoint Protection"
+			reportcriteria="(EVENTID:51) AND (SOURCE:&quot;Symantec Endpoint Protection&quot;)"
+			showfields="HOSTNAME:NTYPE:DISCARDPACK:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Threat Detection by Mcafee"
+			imp_reportname="Threat Detections by Mcafee"
+			reportcriteria="(EVENTID:1024) AND (SOURCE:&quot;McAfee ePolicy Orchestrator&quot;)"
+			showfields="HOSTNAME:FILENAME:MALWARENAME:MALWARETYPE:EVENTID:TIME">
+		</ImportantReports>
+	</ImportantReportsGroup>
+
+	<!--Application Crashes -->
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows" imp_group_desc="Application Crashes"
+		imp_group_name="Application Crashes" impgroupid="4"
+		impid="ImportantReportsGroup:impgroupid:24" IS_GROUP_SHOW="false">
+
+		<ImportantReports imp_report_desc="Application Error"
+			imp_reportname="Application Errors"
+			reportcriteria="((EVENTID:1000) OR (EVENTID:1001) OR (EVENTID:1004)) AND (SOURCE:&quot;Application Error&quot;)"
+			showfields="HOSTNAME:SERVICENAME:FAULTMODULE:EVENTID:TIME">
+		</ImportantReports><!-- cse -->
+
+		<ImportantReports imp_report_desc="Application Hang"
+			imp_reportname="Application Hanged"
+			reportcriteria="(EVENTID:1002) AND (SOURCE:&quot;Application Hang&quot;)"
+			showfields="HOSTNAME:OBJECTNAME:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Reports on Windows errors"
+			imp_reportname="Error Reporting"
+			reportcriteria="(EVENTID:1001) AND (SOURCE:&quot;Windows Error Reporting&quot;)"
+			showfields="HOSTNAME:OBJECTTYPE:SERVICENAME:OBJECTNAME:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Blue Screen Error(BSOD)"
+			imp_reportname="Blue Screen Error(BSOD)"
+			reportcriteria="(EVENTID:1001) AND (SOURCE:&quot;Microsoft-Windows-WER-SystemErrorReporting&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="System Error"
+			imp_reportname="System Errors" reportcriteria="(EVENTID:1003) AND (SOURCE:&quot;System Error&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+		<!-- cse -->
+
+		<ImportantReports imp_report_desc="EMET Logs"
+			imp_reportname="EMET Logs" reportcriteria="(EVENTID:2) AND (SOURCE:EMET)"
+			showfields="HOSTNAME:APPLICATIONNAME:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Windows File Protection"
+			imp_reportname="File Protection"
+			reportcriteria="(EVENTID:64004) AND (SOURCE:&quot;Windows File Protection&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+	</ImportantReportsGroup>
+
+
+	<!-- Backup and Restore -->
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows" imp_group_desc="Windows Backup and Restore"
+		imp_group_name="Windows Backup and Restore" impgroupid="4"
+		impid="ImportantReportsGroup:impgroupid:25" IS_GROUP_SHOW="false">
+
+		<ImportantReports imp_report_desc="Failed Windows backup"
+			imp_reportname="Failed Windows backup"
+			reportcriteria="(((EVENTID:49) OR (EVENTID:19)) AND (SOURCE:&quot;Microsoft-Windows-Backup&quot;))"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Successful windows backup"
+			imp_reportname="Successful windows backup"
+			reportcriteria="(EVENTID:4) AND (SOURCE:&quot;Microsoft-Windows-Backup&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Windows Restore Failed"
+			imp_reportname="Failed Windows restores"
+			reportcriteria="(((EVENTID:195) OR (EVENTID:196) OR (EVENTID:198) OR (EVENTID:199)) AND (SOURCE:&quot;Microsoft-Windows-Backup&quot;))"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Windows Restore Successful"
+			imp_reportname="Successful Windows restores"
+			reportcriteria="(EVENTID:194) AND (SOURCE:&quot;Microsoft-Windows-Backup&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+	</ImportantReportsGroup>
+
+
+	<!--System -->
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows" imp_group_desc="Program Inventory"
+		imp_group_name="Program Inventory" impgroupid="4"
+		impid="ImportantReportsGroup:impgroupid:26" IS_GROUP_SHOW="false">
+
+		<ImportantReports imp_report_desc="New application installations"
+			imp_reportname="New application installations"
+			reportcriteria="(((EVENTID:903) OR (EVENTID:904)) AND ((SOURCE:&quot;Microsoft-Windows-Application-Experience&quot;)))"
+			showfields="HOSTNAME:SERVICENAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Updated Application"
+			imp_reportname="Updated Applications"
+			reportcriteria="(((EVENTID:905) OR (EVENTID:906)) AND ((SOURCE:&quot;Microsoft-Windows-Application-Experience&quot;)))"
+			showfields="HOSTNAME:SERVICENAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Removed Application"
+			imp_reportname="Removed Applications"
+			reportcriteria="(((EVENTID:907) OR (EVENTID:908)) AND ((SOURCE:&quot;Microsoft-Windows-Application-Experience&quot;)))"
+			showfields="HOSTNAME:SERVICENAME:TIME">
+		</ImportantReports>
+
+
+		<ImportantReports imp_report_desc="New Internet Explorer AddOn"
+			imp_reportname="New Internet Explorer addons"
+			reportcriteria="(((EVENTID:900) OR (EVENTID:901)) AND ((SOURCE:&quot;Microsoft-Windows-Application-Experience&quot;)))"
+			showfields="HOSTNAME:SERVICENAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Software Activities"
+			imp_reportname="Software Activities"
+			reportcriteria="(EVENTID:800) AND (SOURCE:&quot;Microsoft-Windows-Application-Experience&quot;)"
+			showfields="HOSTNAME:MESSAGE:TIME">
+		</ImportantReports>
+
+	</ImportantReportsGroup>
+
+	<!-- DNS Server -->
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows" imp_group_desc="DNS Server"
+		imp_group_name="DNS Server" impgroupid="5"
+		impid="ImportantReportsGroup:impgroupid:28" IS_GROUP_SHOW="true">
+
+		<ImportantReports imp_report_desc="DNS Server Started"
+			imp_reportname="DNS Server Started"
+			reportcriteria="(EVENTID:2) AND (SOURCE:&quot;Microsoft-Windows-DNS-Server-Service&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="DNS Server Shutdown"
+			imp_reportname="DNS Server Shutdown"
+			reportcriteria="(EVENTID:3) AND (SOURCE:&quot;Microsoft-Windows-DNS-Server-Service&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="DNS Server Zone Transfer Refused"
+			imp_reportname="DNS Server Zone Transfer Refused"
+			reportcriteria="(EVENTID:6525) AND (SOURCE:&quot;Microsoft-Windows-DNS-Server-Service&quot;)"
+			showfields="HOSTNAME:REMOTEHOST:WORKSTATION_NAME:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="DNS Server Zone transfer bad responses"
+			imp_reportname="DNS Server Zone transfer bad responses"
+			reportcriteria="(EVENTID:6524) AND (SOURCE:&quot;Microsoft-Windows-DNS-Server-Service&quot;)"
+			showfields="HOSTNAME:REMOTEHOST:WORKSTATION_NAME:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Failed DNS Server Zone Transfers"
+			imp_reportname="Failed DNS Server Zone Transfers"
+			reportcriteria="(EVENTID:6534) AND (SOURCE:&quot;Microsoft-Windows-DNS-Server-Service&quot;)"
+			showfields="HOSTNAME:REMOTEHOST:WORKSTATION_NAME:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="DNS Bad Zone Transfer Request"
+			imp_reportname="DNS Bad Zone Transfer Request"
+			reportcriteria="(EVENTID:6004) AND (SOURCE:&quot;Microsoft-Windows-DNS-Server-Service&quot;)"
+			showfields="HOSTNAME:REMOTEHOST:WORKSTATION_NAME:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Invalid Domain Name in Packet"
+			imp_reportname="Invalid Domain Name in Packet" reportcriteria="(EVENTID:5504) AND (SOURCE:DNS)"
+			showfields="HOSTNAME:REMOTEHOST:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="DNS Server encountred a packet addressed to itself"
+			imp_reportname="DNS Server encountred a packet addressed to itself"
+			reportcriteria="(EVENTID:7062) AND (SOURCE:DNS)" showfields="HOSTNAME:REMOTEHOST:DNSNAME:EVENTID:TIME">
+		</ImportantReports>
+		<ImportantReports imp_report_desc="DNS Server Error from AD"
+			imp_reportname="DNS Server Error from AD"
+			reportcriteria="(EVENTID:4015) AND (SOURCE:&quot;Microsoft-Windows-DNS-Server-Service&quot;)"
+			showfields="HOSTNAME:ERRORCODE:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="DNS Server Waiting for AD"
+			imp_reportname="DNS Server Waiting for AD"
+			reportcriteria="(EVENTID:4013) AND (SOURCE:&quot;Microsoft-Windows-DNS-Server-Service&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="DNS Server unable to open AD"
+			imp_reportname="DNS Server unable to open AD"
+			reportcriteria="(EVENTID:4000) AND (SOURCE:&quot;Microsoft-Windows-DNS-Server-Service&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="DNS Server DS Zone Open Failed"
+			imp_reportname="Failed DNS Server DS Zone Open"
+			reportcriteria="(EVENTID:4001) AND (SOURCE:&quot;Microsoft-Windows-DNS-Server-Service&quot;)"
+			showfields="HOSTNAME:ERRORCODE:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="DNS Server DS Record Load Failed"
+			imp_reportname="Failed DNS Server DS Record Loads"
+			reportcriteria="(EVENTID:4010) AND (SOURCE:&quot;Microsoft-Windows-DNS-Server-Service&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+	</ImportantReportsGroup>
+
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows" imp_group_desc="VMWare"
+		imp_group_name="Hyper-V Server Events" impgroupid="5"
+		impid="ImportantReportsGroup:impgroupid:29" IS_GROUP_SHOW="false">
+
+		<ImportantReports imp_report_desc="VMWare"
+			imp_reportname="Partitions Created"
+			reportcriteria="(EVENTID:16641) AND (SOURCE:&quot;Microsoft-Windows-Hyper-V-Hypervisor&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="VMWare"
+			imp_reportname="Partitions Deleted"
+			reportcriteria="(EVENTID:16642) AND (SOURCE:&quot;Microsoft-Windows-Hyper-V-Hypervisor&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="VMWare"
+			imp_reportname="Failed Partition Creations"
+			reportcriteria="(EVENTID:8451) AND (SOURCE:&quot;Microsoft-Windows-Hyper-V-Hypervisor&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="VMWare"
+			imp_reportname="Hyper-V Start Events"
+			reportcriteria="(EVENTID:1) AND (SOURCE:&quot;Microsoft-Windows-Hyper-V-Hypervisor&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="VMWare"
+			imp_reportname="Failed Hyper -V Launch"
+			reportcriteria="((EVENTID:17) OR (EVENTID:18) OR (EVENTID:19) OR (EVENTID:20) OR (EVENTID:26) OR (EVENTID:27) OR (EVENTID:28) OR (EVENTID:29) OR (EVENTID:30) OR (EVENTID:31) OR (EVENTID:32) OR (EVENTID:33) OR (EVENTID:34) OR (EVENTID:35) OR (EVENTID:36) OR (EVENTID:37) OR (EVENTID:38) OR (EVENTID:40) OR (EVENTID:41) OR (EVENTID:42) OR (EVENTID:43) OR (EVENTID:44) OR (EVENTID:45) OR (EVENTID:46) OR (EVENTID:47) OR (EVENTID:48) OR (EVENTID:49) OR (EVENTID:50) OR (EVENTID:51) OR (EVENTID:52))  AND (SOURCE:&quot;Microsoft-Windows-Hyper-V-Hypervisor&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="VMWare"
+			imp_reportname="Hyper-V Switch Creations"
+			reportcriteria="(EVENTID:14004) AND (SOURCE:&quot;Microsoft-Windows-Hyper-V-Network&quot;)"
+			showfields="HOSTNAME:SERVICENAME:PREVVAL:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="VMWare"
+			imp_reportname="Hyper-V Switch Deletions"
+			reportcriteria="(EVENTID:14006) AND (SOURCE:&quot;Microsoft-Windows-Hyper-V-Network&quot;)"
+			showfields="HOSTNAME:SERVICENAME:PREVVAL:EVENTID:TIME">
+		</ImportantReports>
+
+	</ImportantReportsGroup>
+
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows" imp_group_desc="VMWare"
+		imp_group_name="Hyper-V VM Management" impgroupid="5"
+		impid="ImportantReportsGroup:impgroupid:30" IS_GROUP_SHOW="false">
+
+		<ImportantReports imp_report_desc="VMWare"
+			imp_reportname="VM Management Service Started"
+			reportcriteria="((EVENTID:14094) OR (EVENTID:14095)) AND (SOURCE:&quot;Microsoft-Windows-Hyper-V-VMMS&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="VMWare"
+			imp_reportname="Failed Starts of VM Management Service"
+			reportcriteria="((EVENTID:14096) OR (EVENTID:14097)) AND (SOURCE:&quot;Microsoft-Windows-Hyper-V-VMMS&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="VMWare"
+			imp_reportname="VM Management Service ShutDown"
+			reportcriteria="((EVENTID:14092) OR (EVENTID:14093)) AND (SOURCE:&quot;Microsoft-Windows-Hyper-V-VMMS&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="VMWare"
+			imp_reportname="Failed VM Creations"
+			reportcriteria="((EVENTID:15010) OR (EVENTID:15011)) AND (SOURCE:&quot;Microsoft-Windows-Hyper-V-VMMS&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="VMWare"
+			imp_reportname="Failed VM imports"
+			reportcriteria="((EVENTID:15040) OR (EVENTID:15041)) AND (SOURCE:&quot;Microsoft-Windows-Hyper-V-VMMS&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="VMWare"
+			imp_reportname="Failed VM exports"
+			reportcriteria="((EVENTID:18350) OR (EVENTID:18351)) AND (SOURCE:&quot;Microsoft-Windows-Hyper-V-VMMS&quot;)"
+			showfields="HOSTNAME:MACHINENAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="VMWare"
+			imp_reportname="Hyper-V Disk Out of Space"
+			reportcriteria="((EVENTID:16050) OR (EVENTID:16051)) AND (SOURCE:&quot;Microsoft-Windows-Hyper-V-VMMS&quot;)"
+			showfields="HOSTNAME:NAME:MACHINENAME:EVENTID:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="VMWare"
+			imp_reportname="Failed Hyper-V Worker operation"
+			reportcriteria="((EVENTID:3060) OR (EVENTID:3061)) AND (SOURCE:&quot;Microsoft-Windows-Hyper-V-Worker&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+	</ImportantReportsGroup>
+
+	<!-- new -->
+	<!--Windows Firewall Threats -->
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows" imp_group_desc="Windows Firewall Threats"
+		imp_group_name="Windows Firewall Threats" impgroupid="3"
+		impid="ImportantReportsGroup:impgroupid:31" IS_GROUP_SHOW="false">
+
+		<ImportantReports imp_report_desc="Spoof attacks"
+			imp_reportname="Firewall Spoof Attack"
+			reportcriteria="(EVENTID:15108) AND (SOURCE:&quot;Microsoft Firewall&quot;)"
+			showfields="HOSTNAME:REMOTEHOST:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Internet protocol half-scan attack"
+			imp_reportname="Firewall Internet Protocol half-scan attack"
+			reportcriteria="(EVENTID:15102) AND (SOURCE:&quot;Microsoft Firewall&quot;)"
+			showfields="HOSTNAME:REMOTEHOST:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Flood attacks"
+			imp_reportname="Firewall Flood Attack"
+			reportcriteria="(EVENTID:15113) AND (SOURCE:&quot;Microsoft Firewall&quot;)"
+			showfields="HOSTNAME:REMOTEHOST:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Ping of death attacks"
+			imp_reportname="Firewall Ping of Death Attack"
+			reportcriteria="(EVENTID:15007) AND (SOURCE:&quot;Microsoft Firewall&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="SYN attacks"
+			imp_reportname="Firewall SYN Attack"
+			reportcriteria="(EVENTID:15009) AND (SOURCE:&quot;Microsoft Firewall&quot;)"
+			showfields="HOSTNAME:EVENTID:MESSAGE:TIME">
+		</ImportantReports>
+
+	</ImportantReportsGroup>
+
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows" imp_group_desc="Infrastructure Reports"
+		imp_group_name="Infrastructure Reports" impgroupid="1"
+		impid="ImportantReportsGroup:impgroupid:32" IS_GROUP_SHOW="false">
+
+		<ImportantReports imp_report_desc="Self logon reports"
+			imp_reportname="Self logon reports" reportcriteria="(IENAME:&quot;Self Logon&quot;)"
+			showfields="USERNAME:HOSTNAME:TARGETUSER:WORKSTATION_NAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Non-self logon reports"
+			imp_reportname="Non-self logon reports" reportcriteria="(IENAME:&quot;Non-self Logon&quot;)"
+			showfields="USERNAME:HOSTNAME:WORKSTATION_NAME:TIME">
+		</ImportantReports>
+
+		<!-- ImportantReports imp_report_desc="Top Self logons by User"
+			imp_reportname="Top Self logon reports by User" reportcriteria="(IENAME:&quot;Self Logon&quot;)"
+			showfields="USERNAME:HOSTNAME:TARGETUSER:WORKSTATION_NAME:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Top Non-self logons by User"
+			imp_reportname="Top Non-self logon reports by User" reportcriteria="(IENAME:&quot;Non-self Logon&quot;)"
+			showfields="USERNAME:HOSTNAME:WORKSTATION_NAME:TIME">
+		</ImportantReports -->
+
+	</ImportantReportsGroup>
+
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows" imp_group_desc="Windows Severity Reports"
+		imp_group_name="Windows Severity Reports" impgroupid="3"
+		impid="ImportantReportsGroup:impgroupid:33" IS_GROUP_SHOW="false">
+
+		<ImportantReports imp_report_desc="Windows Success Events"
+			imp_reportname="Success Events" reportcriteria="(SEVERITY:3)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:DOMAIN:SOURCE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Windows Information Events"
+			imp_reportname="Information Events" reportcriteria="(SEVERITY:2)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:DOMAIN:SOURCE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Windows Failure Events"
+			imp_reportname="Failure Events" reportcriteria="(SEVERITY:4)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:DOMAIN:SOURCE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Windows Warning Events"
+			imp_reportname="Warning Events" reportcriteria="(SEVERITY:1)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:DOMAIN:SOURCE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Windows Error Events"
+			imp_reportname="Error Events" reportcriteria="(SEVERITY:0)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:DOMAIN:SOURCE:TIME">
+		</ImportantReports>
+
+	</ImportantReportsGroup>
+
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="Windows" group_type="Windows" imp_group_desc="Windows Risk Reports"
+		imp_group_name="Windows Risk Reports" impgroupid="ImportantReportsGroup:impgroupid:34"
+		impid="ImportantReportsGroup:impgroupid:34" IS_GROUP_SHOW="false">
+
+		<ImportantReports imp_report_desc="Windows Risk Level"
+			imp_reportname="Risk Level"
+			reportcriteria="((RISK_LEVEL:High) OR (RISK_LEVEL:Medium) OR (RISK_LEVEL:Low))"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:DOMAIN:SOURCE:TIME">
+		</ImportantReports>
+
+		<!-- ImportantReports imp_report_desc="Windows Top Risk by Events"
+			imp_reportname="Top Risk by Events" reportcriteria="(RISK_LEVEL:High)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:DOMAIN:SOURCE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Windows Top Risk by Host"
+			imp_reportname="Top Risk by Host" reportcriteria="(RISK_LEVEL:High)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:DOMAIN:SOURCE:TIME">
+		</ImportantReports>
+
+		<ImportantReports imp_report_desc="Windows Top Risk by RemoteHost"
+			imp_reportname="Top Risk by RemoteHost" reportcriteria="(RISK_LEVEL:High)"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:DOMAIN:SOURCE:TIME">
+		</ImportantReports -->
+
+		<ImportantReports imp_report_desc="Windows Risks Trend"
+			imp_reportname="Risks Trend"
+			reportcriteria="((RISK_LEVEL:High) OR (RISK_LEVEL:Medium) OR (RISK_LEVEL:Low))"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:DOMAIN:SOURCE:TIME">
+		</ImportantReports>
+
+		<!-- ImportantReports imp_report_desc="Windows Risks Overview"
+			imp_reportname="Risks Overview"
+			reportcriteria="((RISK_LEVEL:High) OR (RISK_LEVEL:Medium) OR (RISK_LEVEL:Low))"
+			showfields="USERNAME:HOSTNAME:REMOTEHOST:IENAME:SEVERITY:TIME">
+		</ImportantReports -->
+
+	</ImportantReportsGroup>
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="apache_logs" group_type="Applications"
+		imp_group_desc="Apache WebServer Error Reports" imp_group_name="Apache WebServer Error Reports"
+		impgroupid="ImportantReportsGroup:impgroupid:61" impid="ImportantReportsGroup:impgroupid:61"
+		IS_GROUP_SHOW="false">
+		<ImportantReports imp_report_desc="Apache HTTP Status Success"
+			imp_reportname="Apache HTTP Status Success" reportcriteria="(apache_statuscode:200)"
+			showfields="ip_address:username:apache_statuscode:useragent:referrer:bytes_transferred:customer_request:TIME"
+			sqltype="lucene"></ImportantReports>
+		<ImportantReports imp_report_desc="Apache HTTP Bad Gateway"
+			imp_reportname="Apache HTTP Bad Gateway" reportcriteria="(apache_statuscode:502)"
+			showfields="ip_address:username:apache_statuscode:useragent:referrer:bytes_transferred:customer_request:TIME"
+			sqltype="lucene"></ImportantReports>
+		<ImportantReports imp_report_desc="Apache HTTP Internal Server Error"
+			imp_reportname="Apache HTTP Internal Server Error" reportcriteria="(apache_statuscode:500)"
+			showfields="ip_address:username:apache_statuscode:useragent:referrer:bytes_transferred:customer_request:TIME"
+			sqltype="lucene"></ImportantReports>
+		<ImportantReports imp_report_desc="Apache HTTP Gateway Timeout"
+			imp_reportname="Apache HTTP Gateway Timeout" reportcriteria="(apache_statuscode:504)"
+			showfields="ip_address:username:apache_statuscode:useragent:referrer:bytes_transferred:customer_request:TIME"
+			sqltype="lucene"></ImportantReports>
+		<ImportantReports imp_report_desc="Apache HTTP Request URI Too Large"
+			imp_reportname="Apache HTTP Request URI Too Large" reportcriteria="(apache_statuscode:414)"
+			showfields="ip_address:username:apache_statuscode:useragent:referrer:bytes_transferred:customer_request:TIME"
+			sqltype="lucene"></ImportantReports>
+		<ImportantReports imp_report_desc="Apache HTTP Unsupported Media Type"
+			imp_reportname="Apache HTTP Unsupported Media Type" reportcriteria="(apache_statuscode:415)"
+			showfields="ip_address:username:apache_statuscode:useragent:referrer:bytes_transferred:customer_request:TIME"
+			sqltype="lucene"></ImportantReports>
+		<ImportantReports imp_report_desc="Apache HTTP Request Entity Too Large"
+			imp_reportname="Apache HTTP Request Entity Too Large" reportcriteria="(apache_statuscode:413)"
+			showfields="ip_address:username:apache_statuscode:useragent:referrer:bytes_transferred:customer_request:TIME"
+			sqltype="lucene"></ImportantReports>
+		<ImportantReports imp_report_desc="Apache HTTP Forbidden"
+			imp_reportname="Apache HTTP Forbidden" reportcriteria="(apache_statuscode:403)"
+			showfields="ip_address:username:apache_statuscode:useragent:referrer:bytes_transferred:customer_request:TIME"
+			sqltype="lucene"></ImportantReports>
+		<ImportantReports imp_report_desc="Apache HTTP Server Not Found"
+			imp_reportname="Apache HTTP Server Not Found" reportcriteria="(apache_statuscode:404)"
+			showfields="ip_address:username:apache_statuscode:useragent:referrer:bytes_transferred:customer_request:TIME"
+			sqltype="lucene"></ImportantReports>
+		<ImportantReports imp_report_desc="Apache HTTP Request Timeout"
+			imp_reportname="Apache HTTP Request Timeout" reportcriteria="(apache_statuscode:408)"
+			showfields="ip_address:username:apache_statuscode:useragent:referrer:bytes_transferred:customer_request:TIME"
+			sqltype="lucene"></ImportantReports>
+		<ImportantReports imp_report_desc="Apache HTTP Bad Request"
+			imp_reportname="Apache HTTP Bad Request" reportcriteria="(apache_statuscode:400)"
+			showfields="ip_address:username:apache_statuscode:useragent:referrer:bytes_transferred:customer_request:TIME"
+			sqltype="lucene"></ImportantReports>
+		<ImportantReports imp_report_desc="Apache HTTP Unauthorized"
+			imp_reportname="Apache HTTP Unauthorized" reportcriteria="(apache_statuscode:401)"
+			showfields="ip_address:username:apache_statuscode:useragent:referrer:bytes_transferred:customer_request:TIME"
+			sqltype="lucene"></ImportantReports>
+		<ImportantReports imp_report_desc="Apache Information Reports"
+			imp_reportname="Apache Information Reports" reportcriteria="((apache_statuscode:100) OR (apache_statuscode:101))"
+			showfields="ip_address:username:apache_statuscode:useragent:referrer:bytes_transferred:customer_request:TIME"
+			sqltype="lucene"></ImportantReports>
+		<ImportantReports imp_report_desc="Apache Success Reports"
+			imp_reportname="Apache Success Reports"
+			reportcriteria="((apache_statuscode:200) OR (apache_statuscode:201) OR (apache_statuscode:202) OR (apache_statuscode:203) OR (apache_statuscode:204) OR (apache_statuscode:205) OR (apache_statuscode:206))"
+			showfields="ip_address:username:apache_statuscode:useragent:referrer:bytes_transferred:customer_request:TIME"
+			sqltype="lucene"></ImportantReports>
+		<ImportantReports imp_report_desc="Apache Redirection Reports"
+			imp_reportname="Apache Redirection Reports"
+			reportcriteria="((apache_statuscode:300) OR (apache_statuscode:301) OR (apache_statuscode:302) OR (apache_statuscode:303) OR (apache_statuscode:304) OR (apache_statuscode:305) OR (apache_statuscode:306) OR (apache_statuscode:307))"
+			showfields="ip_address:username:apache_statuscode:useragent:referrer:bytes_transferred:customer_request:TIME"
+			sqltype="lucene"></ImportantReports>
+		<ImportantReports imp_report_desc="Apache Client Error Reports"
+			imp_reportname="Apache Client Error Reports"
+			reportcriteria="((apache_statuscode:400) OR (apache_statuscode:401) OR (apache_statuscode:402) OR (apache_statuscode:403) OR (apache_statuscode:404) OR (apache_statuscode:405) OR (apache_statuscode:406) OR (apache_statuscode:407) OR (apache_statuscode:408) OR (apache_statuscode:409) OR (apache_statuscode:410) OR (apache_statuscode:411) OR (apache_statuscode:412) OR (apache_statuscode:413) OR (apache_statuscode:414) OR (apache_statuscode:415) OR (apache_statuscode:416) OR (apache_statuscode:417))"
+			showfields="ip_address:username:apache_statuscode:useragent:referrer:bytes_transferred:customer_request:TIME"
+			sqltype="lucene"></ImportantReports>
+		<ImportantReports imp_report_desc="Apache Server Error Reports"
+			imp_reportname="Apache Server Error Reports"
+			reportcriteria="((apache_statuscode:500) OR (apache_statuscode:501) OR (apache_statuscode:502) OR (apache_statuscode:503) OR (apache_statuscode:504) OR (apache_statuscode:505))"
+			showfields="ip_address:username:apache_statuscode:useragent:referrer:bytes_transferred:customer_request:TIME"
+			sqltype="lucene"></ImportantReports>
+	</ImportantReportsGroup>
+	
+	<ImportantReportsGroup group_created_by="SYSTEM"
+		group_logtype="apache_logs" group_type="Applications"
+		imp_group_desc="Apache WebServer Attack Reports" imp_group_name="Apache WebServer Attack Reports"
+		impgroupid="ImportantReportsGroup:impgroupid:63" impid="ImportantReportsGroup:impgroupid:63"
+		IS_GROUP_SHOW="false">
+		<ImportantReports imp_report_desc="Apache SQL Injection"
+			imp_reportname="Apache SQL Injection" reportcriteria="(MATCHING_REPORTS:&quot;*SQL Injection*&quot;)"
+			showfields="ip_address:username:apache_statuscode:useragent:referrer:bytes_transferred:customer_request:TIME"
+			sqltype="lucene"></ImportantReports>
+		<ImportantReports imp_report_desc="Apache Cross Site Scripting"
+			imp_reportname="Apache Cross Site Scripting"
+			reportcriteria="(MATCHING_REPORTS:&quot;*Cross Site Scripting*&quot;)"
+			showfields="ip_address:username:apache_statuscode:useragent:referrer:bytes_transferred:customer_request:TIME"
+			sqltype="lucene"></ImportantReports>
+		<ImportantReports imp_report_desc="Apache Directory Traversal"
+			imp_reportname="Apache Directory Traversal" reportcriteria="(MATCHING_REPORTS:&quot;*Directory Traversal*&quot;)"
+			showfields="ip_address:username:apache_statuscode:useragent:referrer:bytes_transferred:customer_request:TIME"
+			sqltype="lucene"></ImportantReports>
+		<ImportantReports imp_report_desc="Apache Malicious URL Request"
+			imp_reportname="Apache Malicious URL Request" reportcriteria="(MATCHING_REPORTS:&quot;*Malicious URL*&quot;)"
+			showfields="ip_address:username:apache_statuscode:useragent:referrer:bytes_transferred:customer_request:TIME"
+			sqltype="lucene"></ImportantReports>
+	</ImportantReportsGroup>
+	
+	<ImpReportsConstants imp_reportname="计算机管理" impgroupid="1" />
+  	<ImpReportsConstants imp_reportname="策略管理" impgroupid="2" />
+ 	<ImpReportsConstants imp_reportname="威胁检测" impgroupid="3" />
+ 	<ImpReportsConstants imp_reportname="Window事件" impgroupid="4" />
+  	<ImpReportsConstants imp_reportname="其它" impgroupid="5" />
+  	
+</PredefinedReports>

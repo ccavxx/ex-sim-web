@@ -1,0 +1,92 @@
+<div style="padding:0 3px;position:relative;">
+	<table class="table table-striped staticHtml" style="border:1px solid #dddddd;">
+		<tbody>
+			<tr>
+				<td colspan="3" ><a name="入侵防御/绿盟IPS">4.2.1	绿盟IPS</a></td>
+			</tr>
+			
+			<tr>
+				<td colspan="3" >
+					<table class="table table-bordered">
+						<tr>
+							<td>名称</td>
+							<td colspan="2">绿盟IPS系统</td>
+							<td>类别</td>
+							<td>安全产品</td>
+						</tr>
+						<tr>
+							<td rowspan="2">日志源配置</td>
+							<td>设备类型</td>
+							<td colspan="3">入侵防御 -> 绿盟 -> 绿盟冰之眼IPS</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<img src="/data/logDataSource02/image0085.png" />
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="3" >
+					<pre>（1）打开浏览器 IE ，用 HTTPS 方式连接冰之眼的 IP 地址，如 https://10.78.173.136。 
+（2）回车后出现安全警报框，如下图所示，单击【是】，接受冰之眼证书加密的通道。</pre>
+					<div style="margin:auto;width:500px;text-align:center;"><img src="/data/logDataSource/image017.jpg" /></div>
+					<pre>（3）在如图所示的冰之眼登录界面中，输入正确的用户名和密码，并单击【登录】。</pre>
+					<div style="margin:auto;width:500px;text-align:center;"><img src="/data/logDataSource/image018.jpg" /></div>
+					<pre>（4）成功登录后，进入系统当前运行状态的界面，如图所示。 </pre>
+					<div style="margin:auto;width:500px;text-align:center;"><img src="/data/logDataSource/image019.jpg" /></div>
+					<pre>（5）点击【系统】－【证书与附加设置】。</pre>
+					<div style="margin:auto;width:500px;text-align:center;"><img src="/data/logDataSource/image020.jpg" /></div>
+					<div style="margin:auto;width:500px;text-align:center;"><img src="/data/logDataSource/image021.jpg" /></div>
+					<pre>（6）打开 Snmp Trap 开头，设置 Snmp Trap 主机：10.78.239.46。 
+（7）配置完成后，点击应用配置按钮使配置生效。</pre>
+					<div style="margin:auto;width:500px;text-align:center;"><img src="/data/logDataSource/image022.jpg" /></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="background-color:#99ccff;"></td>
+			</tr>
+			<tr>
+				<td colspan="3" ><a name="入侵防御/绿盟WAF">4.2.2 绿盟WAF系统</a></td>
+			</tr>
+			<tr>
+				<td colspan="3" >
+					<table class="table table-bordered">
+						<tr>
+							<td>名称</td>
+							<td colspan="2">绿盟WAF系统</td>
+							<td>类别</td>
+							<td>安全产品</td>
+						</tr>
+						<tr>
+							<td rowspan="2">日志源配置</td>
+							<td>设备类型</td>
+							<td colspan="3">入侵防御 -> 绿盟 -> 绿盟WAF</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<img src="/data/logDataSource02/image085.png" />
+							</td>
+						</tr>
+						<tr>
+							<td rowspan="2">绿盟WAF系统WEB页面配置</td>
+							<td>系统菜单</td>
+							<td colspan="3">配置 -> 日志配置 -> 日志服务器</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<img src="/data/logDataSource02/image086.jpg" />
+							</td>
+						</tr>
+						<tr>
+							<td>备注</td>
+							<td colspan="4">“服务器IP”填入安全管理系统的IP地址，端口填入514。</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,340 @@
+<!--资产类型文件-->
+<AssetCategories>
+  <!--Attribute定义资产的属性,
+	  id属性标识，如果在下级分类中定义了与上级分类相同id的属性，上级属性会被覆盖
+      name表示属性取值的字段,
+	  label表示显示的名称,
+	  visible表示是否在页面上显示该字段,
+	  type定义属性的类型,static:表示从资产对象的field中取值,dynamic:资产状态属性，需要从auditor中获取状态值
+	  stateKey:状态属性(dynamic)所有，表示获取状态(通常为map)值使用的key，如果没有定义，则返回完整的状态信息
+  -->
+  <Attribute id="ip" name="ip" label="IP" type="static"/>
+  <Attribute id="name" name="name" label="名称" type="static"/>
+  <Attribute id="deviceTypeName" name="deviceTypeName" label="类型" type="static"/>
+  <Attribute id="osName" name="os.osName" label="操作系统" type="static"/>
+  <Attribute id="hostName" name="hostName" label="主机名" type="static"/>
+  <Attribute id="safeRank" name="safeRank" label="安全等级" type="static"/>
+  <Attribute id="group" name="assGroup.groupName" label="业务组" type="static"/>
+  <Attribute id="services" name="services" label="运行服务" type="static"/>
+  <Attribute id="manufacturer" name="manufacturer" label="厂商" type="static"/>
+  <Attribute id="linkman" name="linkman" label="联系人" type="static"/>
+  <AssetCategory id="AntiDos">
+    <Vender id="Cisco">
+      <DataSource group="log" securityObjectType="AntiDos/Cisco/Guard"/>
+    </Vender>
+    <Vender id="NSFOCUS">
+      <DataSource group="log" securityObjectType="AntiDos/NSFOCUS/Defender"/>
+    </Vender>
+  </AssetCategory>
+  <AssetCategory id="AntiVirus">
+    <Vender id="Intel">
+      <DataSource group="log" securityObjectType="Antivirus/Intel/McAfee VirusScan"/>
+    </Vender>
+    <Vender id="Rising">
+      <DataSource group="log" securityObjectType="Antivirus/Rising/RSW"/>
+    </Vender>
+    <Vender id="Symantec">
+      <DataSource group="log" securityObjectType="Antivirus/Symantec/Norton/V9"/>
+    </Vender>
+  </AssetCategory>
+  <AssetCategory id="Audit">
+    <Vender id="NETENTSEC">
+      <DataSource group="log" securityObjectType="Audit/NETENTSEC/NS-ICG"/>
+    </Vender>
+    <Vender id="TOPSEC">
+      <DataSource group="log" securityObjectType="Audit/TOPSEC/TA-dbgateway"/>
+      <DataSource group="log" securityObjectType="Audit/TOPSEC/TA-L HTTP"/>
+      <DataSource group="log" securityObjectType="Audit/TOPSEC/Topsec TAW"/>
+      <DataSource group="log" securityObjectType="Audit/TOPSEC/TAW V3.1"/>
+	  <DataSource group="monitor" securityObjectType="Audit/TOPSEC/TAW V3.1"/>
+    </Vender>
+  </AssetCategory>
+  <AssetCategory id="AVG">
+    <Vender id="Intel">
+      <DataSource group="log" securityObjectType="AVG/Intel/McAfee Webshield"/>
+    </Vender>
+    <Vender id="ServGate">
+      <DataSource group="log" securityObjectType="AVG/ServGate/ServGate"/>
+    </Vender>
+    <Vender id="Symentac">
+      <DataSource group="log" securityObjectType="AVG/Symentac/EndpointProtectionManager/V11"/>
+    </Vender>
+    <Vender id="TOPSEC">
+      <DataSource group="log" securityObjectType="AVG/TOPSEC/TopFilter"/>
+    </Vender>
+  </AssetCategory>
+  <AssetCategory id="Common">
+    <Vender id="Unknown">
+      <DataSource group="log" securityObjectType="Common/Unknown/Syslog"/>
+    </Vender>
+  </AssetCategory>
+  <AssetCategory id="Firewall">
+    <Attribute id="cpu" name="cpu" stateKey="CPU_USED_PERCENT" visible="false" type="dynamic"/>
+	<Attribute id="memory" name="used" stateKey="MEM_USED_PERCENT" visible="false" type="dynamic"/>
+	<Attribute id="sessions" name="sessions" stateKey="SESSION_COUNT" visible="false" type="dynamic"/>
+	<Attribute id="interface" name="ciscInterface" visible="false" type="dynamic"/>
+    <Vender id="SECWORLD">
+      <DataSource group="log" securityObjectType="Firewall/SECWORLD"/>
+    </Vender>
+    <Vender id="Cisco">
+      <DataSource group="log" securityObjectType="Firewall/Cisco/Pix"/>
+    </Vender>
+    <Vender id="Fortinet">
+      <DataSource group="log" securityObjectType="Firewall/Fortinet/FortiGate 800F"/>
+    </Vender>
+    <Vender id="H3C">
+      <DataSource group="log" securityObjectType="Firewall/H3C/Dptech"/>
+    </Vender>
+    <Vender id="Hillstone">
+      <DataSource group="log" securityObjectType="Firewall/Hillstone/SG-6000"/>
+    </Vender>
+    <Vender id="HUAWEI">
+      <DataSource group="log" securityObjectType="Firewall/HUAWEI/Quidway FW"/>
+    </Vender>
+    <Vender id="Juniper">
+      <DataSource group="log" securityObjectType="Firewall/Juniper/ISG"/>
+      <DataSource group="log" securityObjectType="Firewall/Juniper/NetSreen-208"/>
+      <DataSource group="log" securityObjectType="Firewall/Juniper/SRX_1400"/>
+      <DataSource group="log" securityObjectType="Firewall/Juniper/SSG5 Serial"/>
+    </Vender>
+    <Vender id="Lenovo">
+      <DataSource group="log" securityObjectType="Firewall/Lenovo/power5v-2000utm"/>
+      <DataSource group="log" securityObjectType="Firewall/Lenovo/PowerV-P4"/>
+      <DataSource group="log" securityObjectType="Firewall/Lenovo/SuperV"/>
+    </Vender>
+    <Vender id="LOTWAN">
+      <DataSource group="log" securityObjectType="Firewall/LOTWAN/4220"/>
+    </Vender>
+    <Vender id="NeuSoft">
+      <DataSource group="log" securityObjectType="Firewall/NeuSoft/NetEye 4000"/>
+    </Vender>
+    <Vender id="SECWORLD">
+      <DataSource group="log" securityObjectType="Firewall/SECWORLD/SecGate 3600"/>
+    </Vender>
+    <Vender id="SUGON">
+      <DataSource group="log" securityObjectType="Firewall/SUGON/TLFW"/>
+    </Vender>
+    <Vender id="TOPSEC">
+      <DataSource group="log" securityObjectType="Firewall/TOPSEC/TOS/V005"/>
+      <DataSource group="monitor" securityObjectType="Firewall/TOPSEC/TOS/V005"/>
+    </Vender>
+    <Vender id="WatchGuard">
+      <DataSource group="log" securityObjectType="Firewall/WatchGuard/WatchGuard FW"/>
+    </Vender>
+  </AssetCategory>
+  <AssetCategory id="Flow">
+    <Vender id="TOPSEC">
+      <DataSource group="log" securityObjectType="Flow/TOPSEC/TA-W/NetflowV5"/>
+      <DataSource group="log" securityObjectType="Flow/TOPSEC/TA-W/NetflowV9"/>
+    </Vender>
+  </AssetCategory>
+  <AssetCategory id="FlowSec">
+    <Vender id="Arbor">
+      <DataSource group="log" securityObjectType="FlowSec/Arbor/Peakflow"/>
+    </Vender>
+    <Vender id="Genie">
+      <DataSource group="log" securityObjectType="FlowSec/Genie/GenieATM"/>
+    </Vender>
+    <Vender id="Topsec">
+      <DataSource group="log" securityObjectType="FlowSec/Topsec/TopFlow"/>
+    </Vender>
+  </AssetCategory>
+  <AssetCategory id="GAP">
+    <Vender id="Lenovo">
+      <DataSource group="log" securityObjectType="GAP/Lenovo/NetGap"/>
+    </Vender>
+    <Vender id="Topsec">
+      <DataSource group="log" securityObjectType="GAP/Topsec/Anti Gap"/>
+    </Vender>
+  </AssetCategory>
+  <AssetCategory id="Gate">
+    <Vender id="Topsec">
+      <DataSource group="log" securityObjectType="Gate/Topsec/Application apply"/>
+    </Vender>
+  </AssetCategory>
+  <AssetCategory id="IDS">
+    <Vender id="Fortinet">
+      <DataSource group="log" securityObjectType="IDS/Fortinet/FortiGate IDS"/>
+    </Vender>
+    <Vender id="HuaweiSymantec">
+      <DataSource group="log" securityObjectType="IDS/HuaweiSymantec/NIP1000"/>
+    </Vender>
+    <Vender id="Isone">
+      <DataSource group="log" securityObjectType="IDS/Isone/LinkTrust IDS"/>
+    </Vender>
+    <Vender id="Lenovo">
+      <DataSource group="log" securityObjectType="IDS/Lenovo/IDS120"/>
+    </Vender>
+    <Vender id="NeuSoft">
+      <DataSource group="log" securityObjectType="IDS/NeuSoft/NetEye IDS"/>
+    </Vender>
+    <Vender id="NSFOCUS">
+      <DataSource group="log" securityObjectType="IDS/NSFOCUS/IceEye"/>
+      <DataSource group="log" securityObjectType="IDS/NSFOCUS/NSFOCUS SG"/>
+    </Vender>
+    <Vender id="TOPSEC">
+      <DataSource group="log" securityObjectType="IDS/TOPSEC/NGIDS/V1.0"/>
+    </Vender>
+    <Vender id="Venus">
+      <DataSource group="log" securityObjectType="IDS/Venus/NIDS/V5.5"/>
+      <DataSource group="log" securityObjectType="IDS/Venus/NIDS/V6.0"/>
+    </Vender>
+  </AssetCategory>
+  <AssetCategory id="IPS">
+    <Vender id="H3C">
+      <DataSource group="log" securityObjectType="IPS/H3C/H3C IPS"/>
+    </Vender>
+    <Vender id="Juniper">
+      <DataSource group="log" securityObjectType="IPS/Juniper/Juniper IDP 1100f"/>
+    </Vender>
+    <Vender id="NSFOCUS">
+      <DataSource group="log" securityObjectType="IPS/NSFOCUS/IceEye"/>
+      <DataSource group="log" securityObjectType="IPS/NSFOCUS/WAF P6000"/>
+    </Vender>
+    <Vender id="TOPSEC">
+      <DataSource group="log" securityObjectType="IPS/TOPSEC/TopIDP"/>
+      <DataSource group="log" securityObjectType="IPS/TOPSEC/WAF"/>
+    </Vender>
+    <Vender id="Venus">
+      <DataSource group="log" securityObjectType="IPS/Venus/IPS"/>
+    </Vender>
+  </AssetCategory>
+  <AssetCategory id="LoadBalance">
+    <Vender id="F5">
+      <DataSource group="log" securityObjectType="LoadBalance/F5/BIG-IP"/>
+    </Vender>
+    <Vender id="H3C">
+      <DataSource group="log" securityObjectType="LoadBalance/H3C/SecBlade"/>
+    </Vender>
+  </AssetCategory>
+  <AssetCategory id="OS">
+    <DataSource group="log" securityObjectType="DB/IBM/Informix Log"/>
+    <DataSource group="log" securityObjectType="DB/Mysql/Mysql Error"/>
+    <DataSource group="log" securityObjectType="DB/Oracle/Oracle Alert"/>
+    <DataSource group="log" securityObjectType="ERP/UFIDA/NC"/>
+    <DataSource group="log" securityObjectType="OA/WEAVER/E-COLOGY"/>
+    <DataSource group="log" securityObjectType="Web/Apache/Apache Error"/>
+    <DataSource group="log" securityObjectType="Web/Apache/Apache Access"/>
+    <DataSource group="log" securityObjectType="Web/Apache/Apache/V2.0.47"/>
+    <DataSource group="log" securityObjectType="Web/Apache/Apache/Forwarder"/>
+    <DataSource group="log" securityObjectType="Web/Apache/Tomcat"/>
+    <DataSource group="log" securityObjectType="Web/Apache/Tomcat/V5.0"/>
+    <DataSource group="log" securityObjectType="AppServer/Oracle/Weblogic/V8.1"/>
+    <DataSource group="log" securityObjectType="AppServer/Oracle/Weblogic/V10"/>
+    <DataSource group="log" securityObjectType="AppServer/IBM/WebSphere Access"/>
+    <DataSource group="log" securityObjectType="AppServer/IBM/WebSphere System"/>
+    <DataSource group="log" securityObjectType="AppServer/IBM/WebSphere Error"/>
+    <Attribute id="cpu" name="oscpu" stateKey="FLEX_NUMBER1" visible="false" type="dynamic"/>
+    <Attribute id="memory" name="osmemory" stateKey="DVC_CUSTOM_NUMBER3" visible="false" type="dynamic"/>
+    <Attribute id="disk" name="osdisk" visible="false" type="dynamic"/>
+    <Attribute id="info" name="osInfo" visible="false" type="dynamic"/>
+    <Attribute id="process" name="osprocess" visible="false" type="dynamic"/>
+	<Vender id="HP">
+      <DataSource group="log" securityObjectType="OS/HP/HP UNIX"/>
+    </Vender>
+    <Vender id="IBM">
+      <DataSource group="log" securityObjectType="OS/IBM/AIX"/>
+    </Vender>
+    <Vender id="Intel">
+      <DataSource group="log" securityObjectType="OS/Intel/SUN Solaris"/>
+    </Vender>
+    <Vender id="Microsoft">
+      <DataSource group="log" securityObjectType="Web/Microsoft/IIS"/>
+      <DataSource group="log" securityObjectType="OS/Microsoft/WindowsEventLog"/>
+      <DataSource group="monitor" securityObjectType="OS/Microsoft/WindowsStatus"/>
+    </Vender>
+    <Vender id="RedHat">
+      <DataSource group="log" securityObjectType="OS/RedHat/RedHat"/>
+      <DataSource group="monitor" securityObjectType="OS/RedHat/RedHat"/>
+    </Vender>
+    <Vender id="UNIX">
+      <DataSource group="log" securityObjectType="OS/UNIX/UNIX"/>
+    </Vender>
+  </AssetCategory>
+  <AssetCategory id="Router">
+    <Vender id="Cisco">
+      <DataSource group="log" securityObjectType="Router/Cisco/Cisco Router"/>
+    </Vender>
+    <Vender id="Foundry">
+      <DataSource group="log" securityObjectType="Router/Foundry/Foundry Router"/>
+    </Vender>
+    <Vender id="H3C">
+      <DataSource group="log" securityObjectType="Router/H3C/H3C Router"/>
+    </Vender>
+    <Vender id="HUAWEI">
+      <DataSource group="log" securityObjectType="Router/HUAWEI/Quidway Router"/>
+    </Vender>
+    <Vender id="Juniper">
+      <DataSource group="log" securityObjectType="Router/Juniper/Router"/>
+    </Vender>
+  </AssetCategory>
+  <AssetCategory id="Switch">
+    <Attribute id="cpu" name="cpu" visible="false" type="dynamic"/>
+	<Attribute id="memory" name="used" visible="false" type="dynamic"/>
+	<Attribute id="sessions" name="sessions" visible="false" type="dynamic"/>
+	<Attribute id="interface" name="ciscInterface" visible="false" type="dynamic"/>
+	<Attribute id="backboard" name="backboard" visible="false" type="dynamic"/>
+    <Vender id="Cisco">
+      <DataSource group="log" securityObjectType="Switch/Cisco/Cisco Switch"/>
+      <DataSource group="monitor" securityObjectType="Switch/Cisco/Cisco Switch"/>
+    </Vender>
+    <Vender id="Foundry">
+      <DataSource group="log" securityObjectType="Switch/Foundry/Foundry Switch"/>
+    </Vender>
+    <Vender id="H3C">
+      <DataSource group="log" securityObjectType="Switch/H3C/H3C Switch"/>
+      <DataSource group="monitor" securityObjectType="Switch/H3C/H3C Switch S3600"/>
+      <DataSource group="monitor" securityObjectType="Switch/H3C/H3C Switch S5120"/>
+    </Vender>
+    <Vender id="HUAWEI">
+      <DataSource group="log" securityObjectType="Switch/HUAWEI/Quidway Switch"/>
+    </Vender>
+    <Vender id="Nortel">
+      <DataSource group="log" securityObjectType="Switch/Nortel/Passport"/>
+    </Vender>
+    <Vender id="Ruijie">
+      <DataSource group="log" securityObjectType="Switch/RuiJie/RuiJie Switch"/>
+    </Vender>
+    <Vender id="ZTE">
+      <DataSource group="log" securityObjectType="Switch/ZTE/R10 switch"/>
+    </Vender>
+    <Vender id="Topsec">
+      <DataSource group="log" securityObjectType="Switch/Topsec/Topsec Switch"/>
+      <DataSource group="monitor" securityObjectType="Switch/Topsec/Topsec Switch"/>
+    </Vender>    
+  </AssetCategory>
+  <AssetCategory id="UTM">
+    <Vender id="Fortinet">
+      <DataSource group="log" securityObjectType="UTM/Fortinet/FortiGate"/>
+    </Vender>
+    <Vender id="Hillstone">
+      <DataSource group="log" securityObjectType="UTM/Hillstone/SG-6000"/>
+    </Vender>
+    <Vender id="NeuSoft">
+      <DataSource group="log" securityObjectType="UTM/NeuSoft/NetEye-NISG6K"/>
+    </Vender>
+    <Vender id="NSFOCUS">
+      <DataSource group="log" securityObjectType="UTM/NSFOCUS/SG"/>
+    </Vender>
+    <Vender id="Topsec">
+      <DataSource group="log" securityObjectType="UTM/Topsec/TopGate"/>
+    </Vender>
+    <Vender id="Venus">
+      <DataSource group="log" securityObjectType="UTM/Venus/VSOS"/>
+    </Vender>
+  </AssetCategory>
+  <AssetCategory id="VPN">
+    <Vender id="Checkpoint">
+      <DataSource group="log" securityObjectType="VPN/Checkpoint/Checkpoint VPN-1 pro"/>
+    </Vender>
+    <Vender id="Juniper">
+      <DataSource group="log" securityObjectType="VPN/Juniper/SA4500"/>
+    </Vender>
+    <Vender id="Lenovo">
+      <DataSource group="log" securityObjectType="VPN/Lenovo/SAG800"/>
+    </Vender>
+    <Vender id="Topsec">
+      <DataSource group="log" securityObjectType="VPN/Topsec/sslvpn"/>
+    </Vender>
+  </AssetCategory>
+</AssetCategories>

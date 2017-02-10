@@ -1,0 +1,52 @@
+<script type="text/javascript" src="/js/sim/asset/import_asset.js"> </script>
+<div class="easyui-layout" data-options="fit:true,border:false">
+	<div data-options="region:'center',title:'设备excel上传',iconCls:'icon-ok'">
+	    <div style="margin: 10px 100px 10px 50px;">
+	        <div id="#DivUp">
+	            <div class="rowdiv" style="margin: 10px;">
+                    <form id = "uploadfileform" method="post" enctype="multipart/form-data">
+			    		<label class="control-label" for="file"></label>
+	                    <span>文件上传:</span>
+	                    <input type="file" class="horizon-fileupload" name="fileToUpload" id="fileToUpload" multiple="multiple" onchange="fileSelected();" />
+	                    <a id="uploadFile" style=" display:none" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="uploadFile()">上传并导入</a>
+                    </form>
+	           </div>
+<script type="text/javascript" >
+	$(function(){
+		$("#fileToUpload").cnfileupload();
+	});
+</script>
+	           <div id="fileName" style="padding: 10px">
+	           </div>
+	           <!--div id="fileSize" style="padding: 10px">
+	           </div>
+	           <div id="fileType" style="padding: 10px">
+	           </div--> 
+	             
+	           <div id="progressNumber" class="easyui-progressbar" style="width: 400px;margin: 5px;display:none;">
+	           </div>
+	           
+	           <div id="importResult"  style="width: 650px; margin: 10px;">
+	           		<div id="totalCount" style="padding: 0px 0px 10px 0px"></div>
+	           		<div id="successCount" style="padding: 0px 0px 10px 0px"></div>
+	           		<div id="errorMessagesum" style="padding: 0px 0px 20px 0px"></div>
+	           		<!--div id="errorMessagepar" style="padding: 10px 0px 10px 0px;display:none;"></div-->
+	           		<div id="error_datagrid_div" class="sim panel" data-options="border:false,closable:false,fit:'true'" style="height:320px;display:none;">
+	           			<table id="inport_asset_errorTable"  class="easyui-datagrid" data-options="fitColumns:true,fit:true,striped:true,singleSelect:true,
+            		rownumbers: 'true',pagination: 'true'">
+							<thead>
+								<tr>
+									<!--th data-options="field:'id',checkbox:true">选择</th-->
+									<!--th data-options="field:'serialId',width:80">行序号</th-->
+									<th data-options="field:'deviceIp',width:150,formatter:al.ipFormatter">IP地址</th>
+									<!--th data-options="field:'deviceName',width:150">资产名称</th-->
+									<th data-options="field:'errorContent',width:220">错误内容</th>
+								</tr>  
+							</thead>  
+						</table> 	
+	           		</div>
+	           </div>
+	        </div>
+	    </div>
+	</div>
+</div>

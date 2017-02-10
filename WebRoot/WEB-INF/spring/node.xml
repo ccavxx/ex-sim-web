@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+	<bean id="nodeMgrDao" class="com.topsec.tsm.sim.node.dao.NodeMgrDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+
+	<bean id="resourceDao" class="com.topsec.tsm.sim.node.dao.ResourceDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="systemConfigService" class="com.topsec.tsm.sim.node.service.SystemConfigServiceImpl">
+		<property name="nodeMgrDao" ref="nodeMgrDao"/>
+		<property name="eventResponseService" ref="eventResponseService"/>
+	</bean>
+
+	<bean id="nodeMgrFacade" class="com.topsec.tsm.sim.node.service.NodeMgrFacadeImpl" scope="singleton">
+		<property name="dao" ref="nodeMgrDao"/>
+		<property name="dataSourceDao" ref="dataSourceDao"/>
+		<property name="resourceDao" ref="resourceDao"/>
+		<property name="systemConfigService" ref="systemConfigService"/>
+	</bean>
+	
+	<bean id="simNodeUpgradeService" class="com.topsec.tsm.sim.node.service.SimNodeUpgradeServiceImpl">
+		<property name="simNodeUpgradeDao">
+			<bean class="com.topsec.tsm.sim.node.dao.SimNodeUpgradeDaoImpl">
+				<property name="sessionFactory" ref="sessionFactory"/>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="simRuleUpgradeService" class="com.topsec.tsm.sim.node.service.SimRuleUpgradeServiceImpl">
+		<property name="simRuleUpgradeDao">
+			<bean class="com.topsec.tsm.sim.node.dao.SimRuleUpgradeDaoImpl">
+				<property name="sessionFactory" ref="sessionFactory"/>
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- SysConfImport 确保在 nodeMgrFacade 之后 -->
+	<bean id="SysConfImport" class="com.topsec.tsm.common.sysmgr.SysConfImport" init-method="runImport">
+		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="nodeMgrFacade" ref="nodeMgrFacade" />
+	</bean>
+	<bean class="com.topsec.tsm.sim.node.util.SystemDaemonTask" init-method="init">
+		<property name="assetService" ref="assetService"></property>
+		<property name="systemConfigService" ref="systemConfigService"></property>
+		<property name="nodeMgrFacade" ref="nodeMgrFacade" />
+	</bean>
+	<!-- 策略管理 -->
+<!-- 	<bean id="configPolicyDAO" class="com.topsec.tsm.sim.scene.dao.ConfigPolicyDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean> 
+
+	<bean id="configPolicyMgrFacade" class="com.topsec.tsm.sim.scene.service.ConfigPolicyMgrFacadeImpl">
+		<property name="dao" ref="configPolicyDAO"/>
+	</bean>
+-->
+	<!-- 数据源发布的相关接口 -->
+	<bean id="nodeDeployService" class="com.topsec.tsm.sim.node.service.NodeDeployServiceImpl">
+		<property name="nodeMgrDao" ref="nodeMgrDao"/>
+		<property name="dataSourceDao" ref="dataSourceDao"></property>
+	</bean>
+	
+	<!-- command listener register -->
+	<bean id="CommandListenerSimulator" class="com.topsec.tsm.common.message.CommandListenerSimulator">
+		<property name="nodeMgrFacade" ref="nodeMgrFacade" />
+	</bean>
+	
+	<bean id="SurviveListenerSimulator" class="com.topsec.tsm.common.message.SurviveListenerSimulator" lazy-init="false" init-method="init"/>
+	
+	<!-- 当天事件记数器-->
+<!-- 	<bean id="TodayEventCounter" class="com.topsec.tsm.common.message.EventCounter" scope="singleton"/> -->
+	
+	<bean id="EventListenerSimulator" class="com.topsec.tsm.sim.event.EventListenerSimulator" lazy-init="false" init-method="init">
+		<property name="listeners">
+			<list>
+				<bean class="com.topsec.tsm.sim.event.CacheEventListener"/>
+				<bean class="com.topsec.tsm.sim.event.SessionEventListener"/>
+<!-- 				<ref local="TodayEventCounter"/> -->
+				<ref local="AssetEventListener"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="LogListenerSimulator" class="com.topsec.tsm.sim.log.LogListenerSimulator" lazy-init="false" init-method="init"/>
+	
+	<bean id="CompressEventListenerSimulator" class="com.topsec.tsm.sim.event.CompressEventListenerSimulator" lazy-init="false" init-method="init"/>
+	
+	<bean id="TransactionCommandListenerSimulator" class="com.topsec.tsm.common.message.TransactionCommandListenerSimulator" lazy-init="false" init-method="init">
+		<property name="nodeMgrFacade" ref="nodeMgrFacade" />
+		<property name="dataSourceService" ref="dataSourceService" />
+		<property name="monitorService" ref="monitorService"/>
+		<property name="simNodeUpgradeService" ref="simNodeUpgradeService" />
+<!--  		<property name="simRuleUpgradeService" ref="simRuleUpgradeService" /> -->
+<!-- 		<property name="auditNodeService" ref="com.topsec.tsm.sim.auditnode.service.AuditNodeService" /> -->
+		<property name="eventResponseService" ref="eventResponseService" />
+		<property name="eventRuleService" ref="eventRuleService" />
+		<property name="logReportTaskService" ref="logReportTaskService"/>
+		<property name="scheduleStatTaskService" ref="scheduleStatTaskService"/>
+		<!-- <property name="assetStatisticService" ref="assetStatisticService"/> -->
+	</bean>
+	<!-- 当天告警事件记数器 -->
+<!-- 	<bean id="TodayAlarmCounter" class="com.topsec.tsm.common.message.EventCounter" scope="singleton"/> -->
+	<!-- 资产告警listener -->
+<!-- 	<bean id="AssetAlarmListener" class="com.topsec.tsm.sim.alarm.AssetAlarmListener" scope="singleton"/> -->
+	<bean id="AssetEventListener" class="com.topsec.tsm.sim.alarm.AssetEventListener" scope="singleton"/>
+<!-- 	
+	<bean id="AlarmEventListenerSimulator" class="com.topsec.tsm.sim.alarm.AlarmEventListenerSimulator" lazy-init="false" init-method="init">
+		<property name="listeners">
+			<list>
+				<bean class="com.topsec.tsm.sim.alarm.AlarmEventListener" />
+ 				<ref local="TodayAlarmCounter"/>
+ 				<ref local="AssetAlarmListener"/>
+			</list>
+		</property>
+	</bean>
+ -->	
+	<bean id="CommandListenerRegister" class="com.topsec.tsm.common.message.CommandListenerRegister" lazy-init="false" init-method="init">
+		<property name="listeners">
+			<list>
+				<ref bean="CommandListenerSimulator" />
+				<!-- <ref bean="UpgradePlanListenerSimulator"/> -->
+			</list>
+		</property>
+		<property name="commands">
+			<list>
+				<value>get.reg.conf</value>
+				<value>reg.conf</value>
+				<value>#check.comm</value>
+				<value>#node.get.pl</value>
+				<value>#node.back.state</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="auditNodeDao" class="com.topsec.tsm.sim.node.dao.AuditNodeDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="planReportSchedule" class="com.topsec.tsm.sim.report.web.PlanReportSchedule">
+		<property name="eventResponseService" ref="eventResponseService" />
+	</bean>	
+	<bean id="auditNodeService" class="com.topsec.tsm.sim.node.service.AuditNodeServiceImpl">
+		<property name="auditNodeDao" ref="auditNodeDao"/>
+	</bean>
+	<!-- Web端路径获取工具类 (需要重构)-->
+	<bean class="com.topsec.tsm.sim.util.RouteUtils">
+		<property name="nodeMgrFacade" ref="nodeMgrFacade"/>
+	</bean>
+	<bean id="logCountStatTask" class="com.topsec.tsm.sim.log.LogCountStatTask" scope="singleton">
+		<property name="nodeMgr" ref="nodeMgrFacade"/>
+	</bean>
+	<bean id="ticker" class="com.topsec.tsm.common.message.MyTicker" init-method="start" scope="singleton">
+		<property name="tickerInterval" value="10000"/>
+		<property name="tickers">
+			<list>
+<!-- 				<ref local="TodayAlarmCounter"/> -->
+<!-- 				<ref local="TodayEventCounter"/> -->
+<!-- 				<ref local="AssetAlarmListener"/> -->
+				<ref local="AssetEventListener"/>
+				<ref local="logCountStatTask"/>
+				<bean class="com.topsec.tsm.sim.auth.util.LoginUserCache" factory-method="getInstance"/>
+				<bean class="com.topsec.tsm.sim.asset.web.vtclient.ConnectionProxyFactory"/>
+				<bean class="com.topsec.tsm.sim.newreport.model.HistoryDataManageTask">
+					<property name="nodeMgrFacade" ref="nodeMgrFacade" />
+					<property name="dataSourceService" ref="dataSourceService" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:/SIM_DS"/>
+	</bean>
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	<bean class="com.topsec.tsm.base.type.IpLocationUtil" factory-method="setJdbcTemplate">
+		<constructor-arg index="0" ref="jdbcTemplate"/>
+	</bean>
+</beans>

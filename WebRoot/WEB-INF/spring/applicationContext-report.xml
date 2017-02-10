@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="
+     http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+   
+	<bean id="rptMaster" class="com.topsec.tal.base.report.service.RptMasterTbImp">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="expMailReport" class="com.topsec.tsm.sim.newreport.mail.EmailReport">
+		<property name="reportQuery" ref="reportQuery" />
+		<property name="eventResponseService" ref="eventResponseService" />
+	</bean>
+	<bean id="reportDao" class="com.topsec.tsm.sim.report.dao.ReportDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="reportService" class="com.topsec.tsm.sim.report.service.ReportServiceImpl">
+		<property name="reportDao" ref="reportDao"></property>
+	</bean>
+	<bean id="protocolTypeDao" class="com.topsec.tal.base.hibernate.ProtocolTypeDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>	
+	<bean id="reportNewDao" class="com.topsec.tsm.sim.newreport.dao.ReportNewDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="queryConditionsFormat" class="com.topsec.tsm.sim.newreport.handler.QueryByResourceMysqlFormatImpl">
+	</bean>
+	<bean id="queryResultFormat" class="com.topsec.tsm.sim.newreport.handler.QueryResultFormatImpl">
+	</bean>
+	<bean id="reportQuery" class="com.topsec.tsm.sim.newreport.model.ReportQueryMySqlImpl">
+		<property name="reportNewDao" ref="reportNewDao"></property>
+		<property name="queryConditionsFormat" ref="queryConditionsFormat"></property>
+		<property name="queryResultFormat" ref="queryResultFormat"></property>
+	</bean>
+	<bean id="commondDispatchThreadPool" class="com.topsec.tsm.sim.util.SimReportThreadPoolExecutor">
+  	</bean>
+	
+</beans>

@@ -1,0 +1,68 @@
+.horizon-comboPanel-ul,
+.horizon-comboPanel-ul-li{
+	padding:0;
+	margin:0;
+}
+.horizon-comboPanel-ul-li{
+	height:30px;
+	line-height:30px;
+	width:100px;
+}
+.horizon-comboPanel-ul-li-a{
+	display:inline-block;
+	text-decoration:none;
+	font-size:12px;
+	bblr:expression(this.onFocus=this.blur());
+	outline-style:none;
+}
+.horizon-comboPanel-ul-li{
+	float:left;
+	text-align:center;
+	display:inline-block;
+	list-style-type:none;
+	margin-top:15px;
+	margin-left:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+}
+.horizon-comboPanel-ul-li_hover,
+.horizon-comboPanel-ul-li_selected{
+	background:#D7E2F4;
+}
+.horizon-comboPanel-foot{
+	background:#fafafa;
+	height:34px;
+}
+.horizon-comboPanel-foot-sp_right{
+	float:right;
+	padding-right:10px;
+	padding-top:4px;
+}
+.horizon-comboPanel-body{
+	height:218px;
+	width:498px;
+}
+/* 重新定制tab样式 */
+.horizon-comboPanel-body .tabs li a.tabs-inner,
+.horizon-comboPanel-body .tabs-header-plain{
+	background:#D7E2F4;
+	filter:none;
+}
+.horizon-comboPanel-body .tabs li.tabs-selected a.tabs-inner{
+	background:rgb(188, 196, 234);
+	filter:none;
+}
+.horizon-comboPanel-body .tabs-header,
+.horizon-comboPanel-body .tabs-scroller-left,
+.horizon-comboPanel-body .tabs-scroller-right,
+.horizon-comboPanel-body .tabs-tool,
+.horizon-comboPanel-body .tabs,
+.horizon-comboPanel-body .tabs-panels,
+.horizon-comboPanel-body .tabs li a.tabs-inner,
+.horizon-comboPanel-body .tabs li.tabs-selected a.tabs-inner,
+.horizon-comboPanel-body .tabs-header-bottom .tabs li.tabs-selected a.tabs-inner,
+.horizon-comboPanel-body .tabs-header-left .tabs li.tabs-selected a.tabs-inner,
+.horizon-comboPanel-body .tabs-header-right .tabs li.tabs-selected a.tabs-inner {
+	border-color:#D7E2F4;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>天融信安全管理系统</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/css/bootstrap.css" rel="stylesheet" media="screen">
+<link href="/js/jquery-easyui/themes/bootstrap/easyui.css" rel="stylesheet" type="text/css">
+<link href="/js/jquery-easyui/themes/icon.css" rel="stylesheet" type="text/css">
+<link href="/css/system.css" rel="stylesheet">
+<style>
+.staticHtml a{
+	font-size:16px;
+	font-weight:bolder;
+	color:rgb(84, 120, 233);
+}
+a:hover{
+	text-decoration: none;
+}
+</style>
+</head>
+<div class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'west',iconCls:'icon-reload',title:'目录'" class="w330">
+    	<ul id="logDataSourceDirIndexTree"></ul>
+    </div>
+    <div data-options="region:'center'" >
+    	<div class="easyui-panel p5" id="logDataSourceId" data-options="title:'指导手册',fit:true,border:false,href:'/page/knowledge/logDataSource/welcome.html'"></div>
+    </div>
+</div>
+<script src="/js/global/jquery-1.8.3.js"></script>
+<script src="/js/jquery-easyui/jquery.easyui.js"></script>
+<script>
+	$(function(){
+		$("#logDataSourceDirIndexTree").tree({
+			lines : true,
+			url : "/data/logDataSource/dirIndexTree.json",
+			onSelect : function(node){
+				var $it = $(this);
+				var urlTemp = node.url;
+				if(urlTemp) {
+					var pText = node.pText;
+					if(!pText) {
+						var parent = $it.tree("getParent", node.target);
+						pText = parent.pText;
+					}
+					$("#logDataSourceId").panel("setTitle", pText).panel("refresh", "/page/knowledge/logDataSource" + urlTemp);
+				} else {
+					var stateTemp = node.state;
+					if(stateTemp == "closed") {
+						$it.tree("expand", node.target);
+					} else {
+						$it.tree("collapse", node.target);
+					}
+				}
+			}
+		});
+	});
+</script>

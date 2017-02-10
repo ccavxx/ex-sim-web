@@ -1,0 +1,141 @@
+<style type="text/css">
+/*.sim > .panel > .panel-header,*/
+.dymicReport-panel-header{
+	padding:5px 3px 5px;
+	background:url('/img/skin/datagrid/mid_bg.png') repeat-x ;
+	border-left-color:#c5dce8;
+	border-right-color:#c5dce8;
+	border-top-color:#c5dce8;
+	border-top:blue;
+	border-bottom:none;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);/*IE下不使用滤镜*/	
+}
+.aorange {
+  color: orange;
+}
+#chartContainer > table{
+	margin-left: 15px;
+}
+</style>
+<div id="report_asset_tips"></div>
+<div id="asset_report-main" class="easyui-layout" fit="true">
+	<div
+		data-options="region:'west',split:true,iconCls:'icon-layout-log',headerCls:'layoutWHeader',bodyCls:'layoutWBody',title:'业务报表'"
+		style="width:200px;">
+		<ul class="easyui-tree" id="assetevt_tree_id"
+			data-options="url:'/sim/topoReport/topoTree',onSelect:assReport.onClickHandler"></ul>
+	</div>
+
+	<div id="report-right"
+		data-options="region:'center',border:false"
+		style="border: none;"><!-- ,
+		href: '/sim/topoReport/comprehensiveInformReport?dvctype=DynamicComprehensiveReport&reportType=comprehensiveReportIndex&screenWidth='+screen.availWidth -->
+		<div title="报表" class="easyui-panel"
+			data-options="fit:true,headerCls:'sim-panel-header',bodyCls:'sim-panel-body' ">
+			<div class="alert">
+				业务报表，根据逻辑（业务）拓扑形成的报表。可以点击分组（树干）查看业务组相关信息，点击具体设备（叶子）查看设备特色报表详情。</div>
+			<div id="ass_evt_ba_div" style="display: none;">
+				<img title='?' src='/page/report/image/1.jpg'
+					style="margin-left: 10px;">
+			</div>
+			<div id="ass_evt_leaf_div" style="display: none;">
+				<img title='?' src='/page/report/image/2.jpg'
+					style="margin-left: 10px;">
+			</div>
+			<div id="ass_monit_ba_div" style="display: none;">
+				<img title='?' src='/page/report/image/3.jpg'
+					style="margin-left: 10px;">
+			</div>
+			<div id="ass_monit_leaf_div" style="display: none;">
+				<img title='?' src='/page/report/image/4.jpg'
+					style="margin-left: 10px;">
+			</div>
+		</div>
+	</div>
+
+	<div id="nodeTypeShowsdiv" buttons="#nodeTypeShowsbutt" data-options="border:false" style="visibility:hidden;">
+		<!--<table class="easyui-datagrid" id="reportshow_table"
+			data-options="scrollbarSize:0,fitColumns:true,rownumbers:true,border:false,striped:true"
+			toolbar="#toolbar">
+			<thead>
+				<tr>
+					<th
+						data-options="field:'ck',checkbox:true">
+						选择</th>
+					<th data-options="field:'showName',width:100">名称</th>-->
+					<!-- th data-options="field:'nodeType',width:90">类型</th -->
+					<!--<th data-options="field:'userName',width:60">用户</th>
+
+					<th data-options="field:'createTime',width:80,
+							formatter: function(value, row) {
+								return highcharts.getFormatDateByLong(value,'yyyy-MM-dd hh:mm:ss');
+							}">创建时间</th>
+					<th
+						data-options="field:'isShow',width:50,
+							formatter: function(value, row) {
+						      if (value === 'true' || value === true) {
+						 return '<font color=\'green\'>是</font>';
+						      } else if (value === 'false' || value === false) {
+						 return '<font color=\'orange\'>否</font>';
+						      } else {
+						 return '';
+						      }
+						  }">显示</th>
+					<th data-options="field:'operation',width:50,align:'center',formatter: function(value,row,index){return '<a id=\'editreportShow\' title=\'改变\' style=\'width:16px;height:16px;cursor: pointer;\' onclick=\'assReport.editreportShow('+index+')\'><img src=\'/img/report/aqua-switch-user.png\' width=\'20px\'/></a>';}">
+						改变显示</th>
+				</tr>
+			</thead>
+		</table>-->
+		<div id="toolbar" data-options="border:false" style="padding:3px;">
+			<!--<a id="createReportShow" class="easyui-linkbutton"
+				data-options="iconCls:'icon-add'" onclick="assReport.createShowReport();">新建</a>-->
+			<a id="showReport" class="easyui-linkbutton"
+				data-options="iconCls:'icon-ok'" onclick="assReport.changeShowreportState(true);">显示</a>
+			<a id="noshowReport" class="easyui-linkbutton"
+				data-options="iconCls:'icon-no'" onclick="assReport.changeShowreportState(false);">不显示</a>
+			<!--a id="cancelnodeTypeShows" href="javascript:void(0);"
+				class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
+				onclick="assReport.cancelfunc('nodeTypeShowsdiv');">关闭</a-->
+		</div>
+		<div id="nodeTypeShowsbutt" data-options="border:false">
+			
+		</div>
+	</div>
+
+	<!--<div id="choosereportshowdiv" buttons="#choosereportbutt"
+		data-options="border:false">
+		<form id="choosereportform" method="post" data-options="border:false">
+			<table style="margin-left: 80px; margin-top: 50px;">
+				<tr>
+					<td style="width:120px;">
+						<div>
+							<span style="color:red;">*</span>选择日志源类型：
+						</div>
+					</td>
+					<td style="width:230px;">
+						<div>
+							<input id="nodeType" name="nodeType"
+								data-options="editable:false" style="height: 24px;width: 220px;">
+							<span class="msg-box n-right" style="position:static;"
+								for="nodeType"></span>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<div id="choosereportbutt" data-options="border:false">
+			<a id="savechoosereport" href="javascript:void(0)"
+				class="easyui-linkbutton" data-options="iconCls:'icon-save'"
+				onclick="assReport.chooseAndSaveShowReport();">保存</a> <a
+				id="cancelchoosereport" href="javascript:void(0);"
+				class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
+				onclick="assReport.cancelfunc('choosereportshowdiv');">取消</a>
+		</div>
+	</div>
+	
+	<div id="assConfshowdiv" buttons="#assConfbutt"	data-options="border:false">
+		
+	</div>-->
+
+</div>
+<script type="text/javascript" src="/js/sim/report/assetStatusEvt.js"></script>

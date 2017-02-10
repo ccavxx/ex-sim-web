@@ -1,0 +1,226 @@
+<!-- wq 仅仅针对该页面toolbar样式 -->
+<style>
+.btn{padding: 2px 10px;background-color: none;}
+#event_floatDiv{position:fixed;top:135px;right:20px;}
+#event_queryform_Id select,
+#event_queryform_Id input{margin-bottom:0px;}
+#event_queryform_Id .input-append,
+#event_queryform_Id .input-prepend{margin-bottom: 0px;}
+</style>
+<link href="/css/sim-asset.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="../../css/logTimeLine.css">
+<div  class="easyui-layout" data-options="fit:true">
+ 	<div data-options="region:'north',title:'时间轴',border:true,headerCls:'sim-panel-header',bodyCls:'sim-panel-body'" style="height:80px;">
+		<div id="event_timeline_chart"></div>
+		<div id="event_floatDiv" style="display:none;"> 
+		  <a style="font-size:12px;" class="btn" href="javascript:backSearch();" >返回</a>
+		</div>
+	</div>
+ 	<div data-options="region:'west',split:true,title:'事件查询',iconCls:'icon-layout-log',headerCls:'layoutWHeader',bodyCls:'layoutWBody'" style="width:150px;">
+	 	<div class="easyui-accordion" data-options="border:false,fit:true" style="background-color:#eff8fb">
+		 	<div title="规则分类" data-options="iconCls:'icon-event-style'" style="padding:10px;background-color:#eff8fb">	
+		 		<ul id="tt"></ul> 
+		 	</div>
+		 	<div title="规则名称" data-options="iconCls:'icon-rule-name'" style="padding:10px;background-color:#eff8fb">
+				 <ul id="tt1"></ul>
+			</div>
+	 	</div>
+ 	</div>
+ 	<div  data-options="region:'center',title:'事件查询列表',headerCls:'sim-panel-header',bodyCls:'sim-panel-body'" >
+		<div class="easyui-layout sim" id="event_query_main_div_id" data-options="border:false,fit:true" >
+			<div data-options="region:'north',height:350,collapsible:false,border:false" >
+				<table id="event_query_table_id" data-options="border:false,fit:true,scrollbarSize:0,toolbar:'#event_query_table_id_toolbar'"></table>
+			</div>
+			<div id="menu" class="easyui-menu" style="width:105px; display:none;">
+				<!--放置一个隐藏的菜单Div -->
+				<div onClick="view()" data-options="iconCls:'icon-search'">查看详细信息</div>
+				<div onClick="reload()" data-options="iconCls:'icon-reload'">刷新</div>
+			</div>
+			<div id="event_correl_id" data-options="region:'center',border:false">
+				<!-- 日志回溯显示 -->
+			</div>
+		</div>
+	</div>
+</div>
+<div id="event_detail_dialog" style="display:none;">
+	<div id="event_detail_tab" class="easyui-tabs"  style="width:798px; height:300px;">
+		<div title="关联资产" style="padding:10px;">
+			<table id="event_asset_table" data-options="scrollbarSize:0"></table>
+			<!-- div id="asset_card_container"/-->
+		</div>
+		<div title="日志源" style="padding:10px;">
+			<table id="event_logSrc_table" data-options="scrollbarSize:0"></table>
+		</div>
+		<div title="告警方式" style="padding:10px;">
+			<table id="event_alarm_table" data-options="scrollbarSize:0"></table>
+		</div>
+		<div title="解决方案" style="padding:10px;">
+			<table id="event_solution_table" data-options="scrollbarSize:0"></table>
+		</div>
+		<!--  div title="关联业务" style="padding:10px;">
+			<table id="event_topo_table" data-options="scrollbarSize:0"></table>
+		</div>-->
+	</div>
+	<div id="logTimeLine_panel" class="easyui-panel"  title="关联日志时间轴" style="width:798px; height:190px;padding:0px;">
+			
+		<div id="GameModuleTimeline">
+			<i id="GametimelinePointer"></i>
+			<ul id="GametimelineHandler" style="margin-left: 50px; margin-right: 50px;">
+			</ul>
+			<div id="GameModuleTimelineContainer" style="margin-left: 50px;">
+			</div>
+		</div>
+			
+	</div>
+</div>
+<div id="event_query_table_id_toolbar">
+	<form id="event_queryform_Id" method="post" onkeydown="enterEventHandler(event,function(){doEventQuery();})" style="margin:0 auto;display: block;font-size:12px;" name="evtQueryForm">
+			<table style="height:30px;vertical-align: middle;text-align: center;">
+				<tr>
+					<td style="width:30px;">时间:</td>
+					<td style="width:290px;">
+						<div class="input-prepend input-append">
+							<input class="input-medium cursorHand" id="startTimeId" name="startTime" style="width:117px;" type="text" onclick="simHandler.showDaterangepickerWin('event_queryform_start_end_time_Id');" readonly="readonly">
+							<span class="add-on">-</span>
+							<input class="input-medium cursorHand" id="endTimeId" name="endTime" style="width:117px;" type="text" onclick="simHandler.showDaterangepickerWin('event_queryform_start_end_time_Id');" readonly="readonly">
+							<a class="btn" id="event_queryform_start_end_time_Id"><i class="icon-calendar"></i></a>
+						</div>
+					</td>
+					<td style="width:40px;">级别:</td>
+					<td style="width:102px;">
+						<select name="level" style="width:100px" >
+							<option value ="">全部</option>
+							<option value ="4">非常高</option>
+							<option value ="3">高</option>
+							<option value ="2">中</option>
+							<option value ="1">低</option>
+							<option value ="0">非常低</option>
+						</select>
+					</td>
+					<td style="width:60px;" id="event_name">事件名称:</td>
+					<td style="width:102px;" id="eventname_input">
+					  <input name="ruleName" type="hidden" />
+						<input name="eventName" type="text" style="width:100px;"/>
+					</td>
+					<td style="width:60px;">地址包含:</td>
+					<td style="width:102px;">
+						<input name="ip" type="text" style="width:100px;"/>
+					</td>
+					<!-- showQueryEvent(); -->
+					<td class="w85"><a href="javascript:void(0);" class="easyui-linkbutton" onclick="doEventQuery();" data-options="iconCls:'icon-search'">查询</a></td>
+					<td class="w85"><a href="javascript:void(0);" class="easyui-linkbutton" onclick="doEventExport();" data-options="iconCls:'icon-export'">导出</a></td>
+					<td class="w85"><a href="javascript:void(0);" class="easyui-linkbutton" onclick="doEventReset();" data-options="iconCls:'icon-clear-all'">清空</a></td>
+					<!-- <td class="w85"><a href="javascript:void(0);" class="easyui-linkbutton" onclick="doConfirm(1);" data-options="iconCls:'icon-enabled'">确认</a></td> -->
+					<!--  td style="width:108px;"><a href="javascript:void(0);" class="easyui-linkbutton" onclick="doConfirm(0);" data-options="iconCls:'icon-disable'">取消确认</a></td>-->
+				</tr>
+			</table>
+			<!-- 以下暂时去掉 -->
+			<div id="moreSearchInfoId" style="display:none;">
+				<table style="height:30px;vertical-align: middle;text-align: center;">
+					<tr>
+						<td style="width:31px;">源 IP:</td>
+						<td style="width:102px;">
+							<input name="srcIp" type="text" style="width:100px;"/>
+						</td>
+						<td style="width:60px;">目的 IP:</td>
+						<td style="width:102px;">
+							<input name="destIp" type="text" style="width:100px;"/>
+						</td>
+	
+						<td style="width:62px;">源端口:</td>
+						<td style="width:101px;">
+							<input name="srcPort" type="text" style="width:99px;"/>
+						</td>
+						<td style="width:60px;">目的端口:</td>
+						<td style="width:102px;">
+							<input name="destPort" type="text" style="width:100px;"/>
+						</td>
+<!-- 						<td style="width:60px;">事件类型:</td>
+						<td style="width:102px;">
+							<input name="eventType" type="text" style="width:100px;"/>
+						</td> -->
+						<td style="width:60px;">传输协议:</td>
+						<td style="width:102px;">
+							<input name="transProtocol" type="text" style="width:100px;"/>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</form>
+    
+	<div id="event_query_condition" style="border:none;overflow:auto;"></div>
+</div>
+<script type="text/javascript" src="/js/sim/event/event_evtquery_base.js"></script>
+<script type="text/javascript" src="/js/sim/event/event_evtquery_form.js"></script>
+<script type="text/javascript" src="/js/sim/event/event_evtquery_opt.js"></script>
+<!-- wq对时间范围组件的js代码 -->
+<script>
+	$(function() {
+		var servertime = simHandler.serverTime;
+		/**
+		 * 当改变日志接收时间，则重新加载日志列表
+		 */
+		function onChangeReceiptTime(){
+			var searchParams = {};
+			searchParams.pageNo = 1;
+			searchParams.queryStartDate = $('#startTimeId').val();
+			searchParams.queryEndDate = $('#endTimeId').val();
+		}
+		
+		//日期范围选择器回调函数
+		var cb = function(start, end) {
+		    $('#startTimeId').val(start.format('YYYY-MM-DD HH:mm:ss'));
+		    $('#endTimeId').val(end.format('YYYY-MM-DD HH:mm:ss'));
+		    onChangeReceiptTime();
+		};
+	  	//日期范围选择器初始化参数
+		var optionSet = {
+		    startDate: moment(servertime).subtract('days',1),
+		    endDate: moment(servertime),
+		    maxDate: false,
+		    minDate: false,
+		    showDropdowns:true,
+		    timePicker: true,//显示时间选择器
+		    timePickerIncrement: 5,//时间间隔5分钟
+		    timePicker12Hour: false,//12小时制
+		    locale: locales['zh-CN'],
+		    format: 'YYYY-MM-DD HH:mm:ss',
+		    opens: 'right',
+		    ranges: {
+		       '最近一小时': [moment(servertime).subtract('hours',1), moment(servertime)],
+		       '最近一天': [moment(servertime).subtract('days',1), moment(servertime)],
+		       '最近一月': [moment(servertime).subtract('month',1), moment(servertime)],
+		       '最近一周': [moment(servertime).subtract('days',7), moment(servertime)],
+		       '今天': [moment(servertime).startOf('day'), moment(servertime)],
+		       '昨天': [moment(servertime).subtract('days', 1).startOf('day'), moment(servertime).subtract('day', 1).endOf('day')]
+		    }
+		};
+		//初始化日期范围选择器
+		$('#event_queryform_start_end_time_Id').daterangepicker(optionSet, cb);
+		if($.isEmptyObject(simHandler.indexEventQuery)){
+			cb(optionSet.startDate,optionSet.endDate);
+		} else {
+			simHandler.indexEventQuery={};
+		}
+		/* 初始化表单·未作修改 */
+		// eventQueryForm.init();
+	});
+	
+	function more(it){
+		var disp = $("#moreSearchInfoId").css("display");
+		if(disp=='none'){
+			$("#moreSearchInfoId").css("display","block");
+			$(it).attr("title","隐藏");
+			$(it).find(".l-btn-left>.l-btn-text>.l-btn-empty").removeClass("easyui-accordion-expand");
+			$(it).find(".l-btn-left>.l-btn-text>.l-btn-empty").addClass("easyui-accordion-collapse");
+			$("#moreSearchInfoId input").val("");
+		}else{
+			$("#moreSearchInfoId").css("display","none");
+			$(it).attr("title","更多");
+			$(it).find(".l-btn-left>.l-btn-text>.l-btn-empty").removeClass("easyui-accordion-collapse");
+			$(it).find(".l-btn-left>.l-btn-text>.l-btn-empty").addClass("easyui-accordion-expand");
+		}
+		$('#event_query_table_id').datagrid('resize');
+	}
+	
+</script>

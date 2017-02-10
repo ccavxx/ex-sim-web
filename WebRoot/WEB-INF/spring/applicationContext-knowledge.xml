@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+     http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+	<bean id="knowledgeService" class="com.topsec.tsm.sim.kb.service.KnowledgeServiceImpl">
+		<property name="knowledgeDao" ref="knowledgeDao"></property>
+		<property name="knowledgeAsscoDao" ref="knowledgeAsscoDao"></property>
+	</bean>
+
+	<bean id="knowledgeDao" class="com.topsec.tsm.sim.kb.dao.KnowledgeDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="sqlMapClient" ref="sqlMap_mysql" />
+	</bean>
+	<bean id="knowledgeAsscoDao" class="com.topsec.tsm.sim.kb.dao.KnowledgeAsscoDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="cpeDao" class="com.topsec.tsm.sim.leak.dao.CpeDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="cpeService" class="com.topsec.tsm.sim.leak.service.CpeServiceImpl">
+		<property name="cpeDao" ref="cpeDao"></property>
+	</bean>
+	<bean id="leakDao" class="com.topsec.tsm.sim.leak.dao.LeakDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="leakService" class="com.topsec.tsm.sim.leak.service.LeakServiceImpl">
+		<property name="leakDao" ref="leakDao"/>
+		<property name="cpeDao" ref="cpeDao"/>
+	</bean>
+</beans>

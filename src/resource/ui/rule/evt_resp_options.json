@@ -1,0 +1,9 @@
+[
+	{"name":"声音响应","value":"resp_cfg_wavalert"},
+	{"name":"Snmp Trap","value":"resp_cfg_snmptrap"},
+	{"name":"执行本地命令","value":"resp_cfg_execcmd"},
+	{"name":"声光响应","value":"resp_cfg_wavashinelert"},
+	{"name":"邮件响应","value":"resp_cfg_mail"},
+	{"name":"短信响应","value":"resp_cfg_phonemsg"},
+	{"name":"一信通响应","value":"resp_cfg_umsgate"}
+]

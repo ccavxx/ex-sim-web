@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"  name="ml" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="title" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="footlogo" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="headlogo" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="cretime" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="V_DOWN_PAGE" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="bgChart" class="java.lang.String" isForPrompting="false"/>
+	<background>
+		<band splitType="Prevent"/>
+	</background>
+	<title>
+		<band height="120" splitType="Prevent">
+			<line>
+				<reportElement key="line-2" x="54" y="66" width="480" height="1" forecolor="#6699FF"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="87" splitType="Prevent">
+			<printWhenExpression><![CDATA[new Boolean($V{PAGE_NUMBER}.intValue()>1)]]></printWhenExpression>
+			<line>
+				<reportElement key="line-3" x="65" y="65" width="478" height="1" forecolor="#6699FF"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Prevent"/>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Prevent"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Prevent"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="42" splitType="Prevent">
+			<image>
+				<reportElement key="image-3" x="375" y="10" width="164" height="25"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{footlogo}]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-4" x="59" y="10" width="105" height="25"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{cretime}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line-1" x="59" y="10" width="480" height="1" forecolor="#6699FF"/>
+			</line>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-5" x="245" y="10" width="56" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[new Integer($V{PAGE_NUMBER}.intValue()+$P{V_DOWN_PAGE}.intValue())]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Prevent"/>
+	</summary>
+</jasperReport>

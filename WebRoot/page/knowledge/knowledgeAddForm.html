@@ -1,0 +1,77 @@
+<div class="p5">
+	<form class="margin0" name="knowledge_add_Form" id="knowledge_add_Form_id" action="#">
+		<input name="id" type="hidden" />
+	 	<table class="horizon-toolbar tableBody">
+	 		<tr>
+	 			<td class="w50">名称</td>
+	 			<td class="w120"><input name="name" type="text" style="width:120px"/></td>
+	 			<td></td>
+	 		</tr>
+	 		<tr>
+	 			<td>一级分类</td>
+	 			<td><input type="text" id="add_cat1_id" /></td>
+	 			<td><input name="cat1" id="hid_add_cat1_id" type="hidden"/></td>
+	 		</tr>
+	 		<tr>
+	 			<td>二级分类</td>
+	 			<td><input class="easyui-combobox" data-options="width:120,height:24,
+	 					valueField:'text',textField:'text',editable:false,
+	 					onSelect : function(rec) {
+				        	var val = $(this).combobox('getValue');
+				        	$('#hid_add_cat2_id').val(val);
+				        }" id="add_cat2_id"/></td>
+	 			<td><input name="cat2" id="hid_add_cat2_id" type="hidden"/></td>
+	 		</tr>
+	 		<tr>
+	 			<td>描述</td>
+	 			<td colspan="2"><textarea name="desc" class="w330 h80 p0" ></textarea></td>
+	 		</tr>
+	 		<tr>
+	 			<td>解决方法</td>
+	 			<td colspan="2"><textarea name="solution" class="w330 h80 p0" ></textarea></td>
+	 		</tr>
+	 		<tr>
+	 			<td colspan="3" class="txc">
+	 				<a class="easyui-linkbutton" href="javascript:void(0)" onclick="$('#knowledge_add_Form_id').submit();">保存</a>
+	 				<a class="easyui-linkbutton" href="javascript:void(0)" onclick="knowledgeSelf.closeKnowledgeW('kn_add_id');">取消</a>
+	 			</td>
+	 		</tr>
+	 	</table>
+ 	</form>
+</div>
+
+<script>
+$(function(){
+	$("#add_cat1_id").combobox({
+		width:120,
+		height:24,
+		valueField:'text',
+		textField:'text',
+		editable:false,
+        url : "/sim/knowledge/knowledgeCategory",
+        onSelect : function(rec) {
+        	var val = $(this).combobox("getValue");
+        	$("#hid_add_cat1_id").val(val);
+        	$("#add_cat2_id").combobox("setValue", "");
+        	$('#hid_add_cat2_id').val("");
+          	$("#add_cat2_id").combobox("reload", "/sim/knowledge/knowledgeCategory?id=" + rec.id);
+        }
+    });
+
+	$("#knowledge_add_Form_id").validator({
+		theme: 'simple_right',
+		showOk: "",
+		rules: simHandler.rules,
+		fields:{
+			name : 'required;length[1~30];remote[/sim/knowledge/uniqueName, name, id];specialchar',
+			cat1 : 'required',
+			cat2 : 'required',
+			desc : 'length[~100]',
+			solution : 'length[~100]'
+		},
+		valid : function(form){
+			knowledgeSelf.doAddKnowledge();
+		}
+	});
+});
+</script>

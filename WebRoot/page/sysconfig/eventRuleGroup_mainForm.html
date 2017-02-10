@@ -1,0 +1,161 @@
+<script src="/js/jplumb/dom.jsPlumb-1.6.1.js"></script>
+<style>
+/* svg图的样式  */
+<!--
+.flow_container .item {border:1px solid #346789;box-shadow:2px 2px 19px #aaa;-o-box-shadow:2px 2px 19px #aaa;
+-webkit-box-shadow:2px 2px 19px #aaa;-moz-box-shadow:2px 2px 19px #aaa;-moz-border-radius:0.5em;border-radius:0.5em;opacity:0.8;
+filter:alpha(opacity = 80);text-align:center;z-index:20;position:absolute;background-color:#eeeeef;color:black;
+font-family:helvetica;padding:0.5em;font-size: 0.9em;}
+-->
+.connClickStyle{border:1px dotted #999999;}
+.connHandStyle{cursor:pointer;}
+/*导航*/
+.breadcrumb > li > .divider{font-size:15px;}
+.breadcrumb > .active a{color:#999999;}
+.horizon-breadcrumb-li-left{float:right;}
+</style>
+<!-- 自定义组件 -->
+<link href="/js/cnComboPanel/horizonComboPanel.css" rel="stylesheet" type="text/css">
+
+<div id="horizon-eventRuleGroupMainFormPanel" class="easyui-panel" data-options="fit:true,border:false,title:'关联规则配置',headerCls:'sim-panel-header',bodyCls:'sim-panel-body'">
+	<div class="easyui-layout" data-options="fit:true,border:false">
+		<div class="h40" data-options="region:'north',border:false" style="overflow:hidden">
+			<ul class="horizon-breadcrumb breadcrumb h35">
+				<li class="horizon-breadcrumb-li-left">　<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" onclick="eventRuleGroup.closeAddOrEditDialog();">返回</a></li>
+				<li class="horizon-breadcrumb-li-left"><a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="doEventGroupConfig();">保存</a></li>
+			</ul>
+		</div>
+		<div id="horizon-eventRuleGroupMainFormPanel-mainCenter" style="overflow:hidden" data-options="region:'center',border:false">
+			<div class="easyui-panel" data-options="title:'基本信息',iconCls:'icon-grid',
+						headerCls:'sim-panel-header',bodyCls:'sim-panel-body'">
+	 			<form action="#" class="margin0 borderb1" id="rule_group_prop_form_id" name="rule_group_prop_form" >
+	 				<input name="id" type="hidden"/>
+					<table class="horizon-toolbar">
+						<tr>
+							<td class="w50 txr"><span style="color:red;">*</span>名称：</td>
+							<td class="w200 txl" style="width:200px"><input id="group_name_id" name="rule_group" type="text" style="width:170px" /></td>
+							<td class="w100 txr"><span style="color:red;">*</span>一级分类：</td>
+							<td class="w120 txl"><select id="_r_cat1_id" name="_r_cat1" style="width:120px"></select></td>
+							<td class="w100 txr"><span style="color:red;">*</span>二级分类：</td>
+							<td class="w120 txl"><select id="_r_cat2_id" name="_r_cat2" style="width:120px"></select></td>
+						</tr>
+						<tr>
+							<td class="txr"><span style="color:red;">*</span>级别：</td>
+							<td class="txl"><select name="level" id="level_id" style="width:170px">
+						   			<option value="0">非常低</option>
+						   			<option value="1">低</option>
+						   			<option value="2">中</option>
+						   			<option value="3">高</option>
+						   			<option value="4">非常高 </option>
+		   						</select>
+		   					</td>
+							<td class="txr"><span style="color:red;">*</span>超时：</td>
+							<td class="txl"><input name="rule_timeout" id="rule_timeout_id" style="width:75px;" maxlength="5" type="text" value="120"/><span class="w25" style="text-align:center;display:inline-block;">秒</span><span class="msg-box" for="rule_timeout_id"></span></td>
+		   					<td class="txr">启用：</td>
+							<td class="txl"><input id="status_id" name="status" type="checkbox"/></td>
+						</tr>
+						<tr>
+							<td class="txr">描述：</td>
+							<td colspan="5" class="txl"><textarea id="descContent_id" name="descContent" class="h32 w880"></textarea></td>
+						</tr>
+					</table>
+				</form>
+				<div id="rule_group_config_panel_tb">
+				 	<a href="javascript:void(0);" class="icon-add" title="创建规则" onclick="createRule();"/>
+				</div>
+				<div id="rule_group_config_panel" style="overflow:auto;" class="easyui-panel" data-options="height:150,title:'关联规则',
+						collapsible:false,iconCls:'icon-grid',border:false,tools:'#rule_group_config_panel_tb',headerCls:'sim-panel-header'">
+					<div id="container_id" class="flow_container" style="position:relative;"></div>
+				</div>
+				<div id="config_tab_id" class="easyui-tabs" data-options="height:290">
+					  <div title="告警方式" >
+					 	 <form class="margin0" action="#" name="event_resp_choice_form" id="event_resp_choice_form_id">
+					 	<table style="margin:0 auto;">
+      		 			<tr>
+      		 				<th>已选告警方式</th>
+      		 				<th></th>
+      		 				<th>可选告警方式</th>
+      		 			</tr>
+      		 			<tr>
+      		 				<td><select id="_responseIds" multiple="multiple" style="height:120px;width:300px" name="responseIds"></select></td>
+      		 				<td class="w85 txc">双击添加 / 移除</td>
+      		 				<td><select id="_allResponseId" multiple="multiple" style="height:120px;width:300px" name="allResponse"></select></td>
+      		 			</tr>
+	        		 </table>
+	        		 </form>
+					 </div>
+					 <div title="关联知识" >
+					 <div style="margin: 5px;"><a href="javascript:void(0);" class="easyui-linkbutton" onclick="_kn_openW();">关联知识库</a></div> 
+					 <div id="selected_knowledge_id"></div>
+					 </div>
+					 <div title="规则配置" data-options="disabled:true">
+						<form action="#" class="margin0" id="rule_group_rule_form_id" name="rule_group_rule_form">
+							<table class="tableHead horizon-toolbar">
+					   			<tr>
+					   				<td class="w50"><span style="color:red;">*</span>名称 ：</td>
+					   				<td class="w100"><input id="evtname_id" name="event_name" style="width:170px" type="text" data-rule="required;length[1~20]" onchange="ruleFlow.setRuleNode()" maxlength="20"/></td>
+						   			<td class="w100 txl"><span class="msg-box" for="evtname_id"></span></td>
+						   			<td class="w50"><span style="color:red;">*</span>时间 ：</td>
+						   			<td class="w50"><input type="text" id="evttime_id" name="time" style="width:50px;" data-rule="required;integer[+];range[1~99999];" maxlength="5" /></td>
+						   			<td class="w25 txl">秒</td>
+						   			<td class="w120 txl"><span class="msg-box" for="evttime_id"></span></td>
+						   			<td class="w50"><span style="color:red;">*</span>次数 ：</td>
+						   			<td class="w50"><input type="text" id="evtcount_id" name="count" style="width:50px;" data-rule="required;integer[+];range[1~500];" maxlength="5" /></td>
+						   			<td class="w100 txl"><span class="msg-box" for="evtcount_id"></span></td>
+						   			<td></td>
+					   			</tr>
+					   			<tr><td class="txl" colspan="11"><span style="color: red;">说明：值分隔符 “,” 在 “等于” 中表示 “或” 、在 “不等于” 中表示 “与” </span><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="eventCondition.addCondition()">添加条件</a></td></tr>
+					   			<tr><td class="txl" colspan="11"><div id="syscfg_evt_div_id" class="p5"></div></td></tr>
+						 	</table>
+						</form>
+					 </div>
+					 <div title="关联条件" data-options="disabled:true">
+						 <form action="#" class="margin0" id="rule_group_assc_form_id" name="rule_group_assc_form" > 
+						   	<table class="tableHead horizon-toolbar">
+						 		<tr>
+						 			<td class="w120"><select style="width:120px"  name="cc1" id="_c1"></select></td>
+									<td class="w120"><select style="width: 100px"  name="f2" id="_f2" title="选中后添加关键条件"></select></td>
+						 			<td class="w120 txr"><a id="btn_add_assc" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="ruleFlow.addRuleCorr()">添加</a></td>
+						 			<td class="txl">从　<span id="formPointId" style="color:red"></span>　到　<span id="toPointId" style="color:red"></span></td>
+						 		</tr>
+						 		<tr>
+						 			<td class="txl" colspan="4">
+						 				<select style="height:150px;width:350px" multiple="multiple" id="linkConditionId"  name="linkCondition" title="双击删除"></select><span style="color:red;">*</span>
+						 			</td>
+						 			<!-- <td class="txl"><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="ruleFlow.RuleCorr()">移除</a></td> -->
+						 		</tr>
+						 	</table>
+						</form>
+					 </div>
+				</div>
+			</div>
+		   <div id="knowledge_datagrid_id" class="easyui-window" title="知识库列表"
+		    		data-options="height:400,width:650,
+		    			closed:true,collapsible:false,shadow:true,modal:true,minimizable:false,maximizable:false,resizable:false">
+		    	<div id="kn_query_table_id_toolbar" class="h32">
+			   		<form class="margin0" action="#" name="event_rule_kn_form">
+						<table class="tableHead">
+							<tr>
+								<td class="w50">名称：</td>
+								<td class="w120"><input name="kn_name" class="w120"/></td>
+								<td class="w100"><a class="easyui-linkbutton" href="javascript:void(0)" onclick="knowledge.doQuery()" data-options="iconCls:'icon-search'">查询</a></td>
+								<td class="w100"><a class="easyui-linkbutton" href="javascript:void(0)" onclick="doAssociation()" data-options="iconCls:'icon-add'">关联</a></td>
+								<td></td>
+							</tr>
+						</table>
+					</form>
+				</div>
+				<table id="kn_query_table_id" data-options="toolbar:'#kn_query_table_id_toolbar',border:false"></table>
+		    </div>
+		   
+		</div>
+	</div>
+</div>
+<!-- 自定义组件 -->
+<script src="/js/cnComboPanel/jquery.horizonComboPanel.js"></script>
+<!-- 初始化规则配置 -->
+<script src="/js/sim/sysconfig/eventRule_maincfg_form_mk.js"></script>
+<!-- ruleFlow.init();// 初始化整个图形 -->
+<script	src="/js/sim/sysconfig/eventRuleGroup_maincfg_form.js"></script>
+<!-- 初始化规则表单数据 -->
+<script	src="/js/sim/sysconfig/eventRuleGroup_maincfg_form_setting.js"></script>

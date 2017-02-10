@@ -1,0 +1,59 @@
+<style>
+#onlineUserListContentHeaderId{
+	height:26px;
+	line-height:26px;
+	padding-left:10px;
+	font-size:12px;
+	font-weight:bolder;
+}
+#onlineUserListContentBodyId{
+	padding:5px 10px;
+}
+#onlineUserListContentBodyId table{
+	width:100%;
+}
+#onlineUserListContentBodyId th,
+#onlineUserListContentBodyId td{
+	width:50%;
+	border-bottom:1px solid #ccc;
+	padding:5px 0;
+	text-align:left;
+}
+#onlineUserListContentTableBodyId{
+	overflow:auto;
+	height:120px;
+}
+.overfl-hide{
+	overflow:hidden;
+}
+</style>
+<div class="overfl-hide">
+	<div id="onlineUserListContentHeaderId">当前在线用户列表</div>
+	<div id="onlineUserListContentBodyId">
+		<table>
+			<thead>
+				<tr>
+					<th>用户名</th><th>登录地址</th>
+				</tr>
+			</thead>
+		</table>
+		<div id="onlineUserListContentTableBodyId">
+			<table>
+				<tbody id="onlineUserListContentId"></tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<script>
+$.getJSON("/sim/index/onlineUserList?_time="+new Date().getTime(), function(data) {
+	
+	var onlineUserListContent = $("#onlineUserListContentId");
+	if(data) {
+		$.each(data, function(ind, val) {
+			onlineUserListContent.append("<tr><td><i class='icon-user'></i>" + val.userName + "</td><td>" + val.loginIP + "</td></tr>");
+		});
+	} else {
+		onlineUserListContent.html("<tr><td><span class='alert'>当前无其他用户在线</span></td></tr>");
+	}
+});
+</script>

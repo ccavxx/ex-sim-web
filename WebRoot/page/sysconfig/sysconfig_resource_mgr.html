@@ -1,0 +1,61 @@
+<style>
+<!--
+#sysres_iplocation_form select,
+#sysres_iplocation_form input
+{
+	width:150px;
+}
+#sysres_iplocation_form select,
+#sysres_iplocation_form input
+{
+	margin-bottom: 0px;
+}
+-->
+</style>
+<div class="easyui-layout sim" data-options="fit:true" >
+	<div data-options="region:'center',title:'IP地址库',headerCls:'sim-panel-header',bodyCls:'sim-panel-body'" >
+		<div id="sysconf_resource_table_panel" class="easyui-panel" data-options="fit:true,border:0">
+			<table id="ipLocationGrid" class="easyui-datagrid" 
+				data-options="url:'/sim/resource/ipLocationList',fit:true,fitColumns:true,toolbar:'#sysres_iplocation_toolbar',
+							  singleSelect:true,checkOnSelect:false,selectOnCheck:false,pagination:true,scrollbarSize:0">
+				<thead>  
+			        <tr>  
+			            <th data-options="field:'id',checkbox:true">选择</th>  
+			            <th data-options="field:'name',width:40,editor:'text',formatter:ResourceManager.nameFormater">名称</th>  
+			            <th data-options="field:'startIp',width:20,editor:'text'">起始IP地址</th>  
+			            <th data-options="field:'endIp',width:20,editor:'text'">结束IP地址</th>
+			            <th data-options="field:'operation',width:10,formatter:ResourceManager.formatterOperation">操作</th>  
+			        </tr>  
+			    </thead>  
+			</table>
+		</div>
+		<div id="sysres_iplocation_toolbar" style="padding:3px;">
+			  <form id="sysres_iplocation_form" method="post" onkeydown="enterEventHandler(event,function(){ResourceManager.executeQuery();})" style="margin: 0 auto;font-size:12px;height: 28px;" >
+				<table style="height:28px;vertical-align:middle;text-align:center;">
+					<tr>
+						<td style="width:80px;">名称:</td>
+						<td style="width:102px;">
+							<input id="sysres_iplocation_name" type="text" name="name" />
+						</td>
+						<td style="width:80px;">IP地址:</td>
+						<td style="width:152px;">
+							<input id="sysres_iplocation_ip" type="text" name="ip" placeholder="输入完整的IP地址" title="输入完整的IP地址，查询IP所属范围"/>
+						</td>
+						<td colspan="2">
+							<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="ResourceManager.executeQuery()">查询</a>
+						</td>
+					</tr>
+				</table>
+			 </form>
+			 <table style="height:28px;vertical-align: middle;text-align: center;width:100%">
+				<tr>
+					<td style="width:85px;"><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="ResourceManager.addIpLocation()">新建</a></td>
+					<td style="width:85px;"><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="ResourceManager.deleteIpLocation()">删除</a></td>
+					<td style="text-align: right;color:red;font-size:12px;font-weight: bolder;"></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div id="sysconf_resource_editor_dialog" ></div>
+</div>
+<script src="/js/sim/sysconfig/sys_resource_mgr.js"></script>

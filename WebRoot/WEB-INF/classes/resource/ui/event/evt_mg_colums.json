@@ -1,0 +1,10 @@
+[
+ [
+	{"field":"ck","checkbox":true},
+	{"field":"partitionName","title":"名称","width":200},
+	{"field":"eventCount","title":"事件数","width":200},
+	{"field":"importFlag","title":"导入","width":200},
+	{"field":"exportFlag","title":"导出","width":200},
+	{"field":"delete","title":"删除","width":200}
+  ]
+]

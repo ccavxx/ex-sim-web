@@ -1,0 +1,64 @@
+<div id="p" class="easyui-panel" 
+        style="width:auto;height:auto;padding:10px;"  
+        data-options="title:'备份管理',fit:true,closable:false,collapsible:false,minimizable:false,maximizable:false,headerCls:'sim-panel-header',bodyCls:'sim-panel-body'">  
+        <table cellpadding="10" cellspacing="10">
+          <tr>
+            <td align="right">
+                                          备份时间：
+            </td>
+            <td>
+             <select id="backupDate" class="easyui-combobox" name="dept" data-options="width:185,height:24,panelHeight:60">  
+              <option value="0">备份某一天</option>  
+              <option value="1">备份时间范围</option>  
+             </select>
+            </td>
+          </tr>
+           <tr id="selectOneDay" style="display:''">
+            <td>
+                  &nbsp;                       
+            </td>
+            <td>
+            <input id="datetime" readonly="readonly" name="datetime" style="height:15px;width:172px;" type="text" class="Wdate cursorHand" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:CurentTime()})" ></input>
+            </td>
+          </tr>
+           <tr id="selectScopeDay" style="display:none;">
+            <td>
+                  &nbsp;                       
+            </td>
+            <td colspan="2">
+            <input id="startDate" readonly="readonly" name="startDate" style="height:15px;width:172px;" type="text" class="Wdate cursorHand" onclick="WdatePicker({startDate:CurentTime(),dateFmt:'yyyy-MM-dd',maxDate:CurentTime()})" ></input>
+            &nbsp;至&nbsp;
+            <input id="endDate" readonly="readonly" name="endDate" style="height:15px;width:172px;" type="text" class="Wdate cursorHand" onclick="WdatePicker({maxDate:CurentTime(),dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'startDate\')}'})" ></input>
+            </td>
+          </tr>
+        </table>
+        <table cellpadding="10" cellspacing="10"><tr>
+            <td align="right">
+                                          备份内容：
+            </td>
+            <td>
+             <select multiple="multiple" id="backupContent"  style="width:280px;" disabled="disabled"></select>
+            </td>
+             <td>
+             <a id="addBtn" href="javascript:void(0);" iconCls="icon-add" class="easyui-linkbutton">添加</a><br/><br/>
+             <a id="deleteBtn" href="javascript:void(0);" iconCls="icon-remove" class="easyui-linkbutton">删除</a>
+            </td>
+          </tr>
+           <tr>
+            <td colspan="2" align="center">
+                <a id="backupBtn" href="javascript:void(0);" iconCls="icon-backup" class="easyui-linkbutton">开始备份</a>
+            </td>
+            <td>
+             
+            </td>
+          </tr></table>
+       <div id="logDialog" class="easyui-dialog" title="选择日志源" closed="true" style="width:400px;height:450px;"  
+                data-options="iconCls:'icon-save',resizable:true,modal:true,buttons:'#dlg-butons'">  
+             <ul id="logDataTree" class="easyui-tree"></ul> 
+       </div>
+       <div id="dlg-butons">
+             <a id="okBtn" href="javascript:void(0);" class="easyui-linkbutton" >确定</a>
+             <a id="closeBtn" href="javascript:void(0);" class="easyui-linkbutton" >关闭</a>
+       </div>
+</div>
+<script type="text/javascript" src="../../js/sim/log/log_manager.js"></script>

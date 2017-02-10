@@ -1,0 +1,31 @@
+<div class="alert alert-info" style="margin-bottom: 3px;">
+	<strong>说明:</strong> 导入备份的历史日志，支持导入服务器端的备份日志和下载到本地的日志文件。
+</div>
+<div id="log_import_msg" style="display: none;margin-bottom: 3px;padding: 3px;"/>
+<div class="tabbable log-import">
+	<ul class="nav nav-tabs" style="margin-bottom: 5px;">
+		<li class="active">
+			<a href="#ftp" data-toggle="tab">备份文件导入</a>
+		</li>
+		<li>
+			<a href="#local" data-toggle="tab">自定义文件导入</a>
+		</li>
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane active" id="ftp">
+			<ul id="log_import_tree" class="easyui-tree" data-options="fit:true,url:'/sim/logHistory/getTreeNode',formatter:initCheckbox"></ul>
+		</div>
+		<div class="tab-pane" id="local">
+		 <form id = "uploadFileForm" method="post" enctype="multipart/form-data">
+			<div class="control-group">
+				<div class="controls" style="text-align:center;padding-top:50px;">
+					<table style="width:450px;">
+						<tr><td style="text-align:right;padding-bottom:10px;width:150px;">文件：</td><td><input class="horizon-fileupload" name="uploadFfile" id="uploadFfile" type="file"/></td></tr>
+					</table>
+				</div>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="/js/sim/log/log_file_import.js"></script>

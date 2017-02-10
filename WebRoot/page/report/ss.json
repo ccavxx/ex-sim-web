@@ -1,0 +1,7 @@
+
+[{   "id": 1,   "text": "Node 1",   "state": "closed", 
+ "children": [
+ {        "id": 11,        "text": "Node 11"    },
+ {       "id": 12,       "text": "Node 12"    }
+ ]
+ }]

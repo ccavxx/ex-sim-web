@@ -1,0 +1,18 @@
+<div class="easyui-panel sim" data-options="fit:true,border:false">
+	<div class="easyui-tabs" data-options="fit:true,border:false,onSelect:function(title,index){
+         	if(title == '用户管理') {
+				var tab = $(this).tabs('getTab',title);
+				tab.panel('refresh','/page/user/userManagement.html');
+         	} else {
+				var tab = $(this).tabs('getTab',title);
+				tab.panel('refresh','/page/user/safetyManagement.html');
+         	}
+		}">
+		<div title="用户管理" >
+			<div class="easyui-panel" data-options="fit:true" style="border-color:#C4DBE9;border-top:none;"></div>
+		</div>
+		<div title="安全管理" >
+			<div class="easyui-panel" data-options="fit:true" style="border-color:#C4DBE9;border-top:none;padding:25px;"></div>
+		</div>
+	</div>
+</div>
